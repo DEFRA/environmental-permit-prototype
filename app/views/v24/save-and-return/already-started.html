@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+
+{% set title = "Search for 'standard rules permit application' in your emails" %}
+
+{% block page_title %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+
+{% endblock %}
+
+{% set versionxxx = "v24" %}
+
+{% block content %}
+
+  {{backlink|safe}}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">
+          {{title}}
+        </h1>
+
+          <p>The email has a link to get back to your saved application.</p>
+
+          <details class="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                    I cannot find the email
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                  <li>Check your spam folder.</li>
+                  <li>Search for 'standard rules permit application' in your emails.</li>
+                  <li>Wait for a few minutes - email can take a while to arrive.</li>
+                  <li>Resend the email.</li>
+                </ol>
+                <form method="get" action="/{{folder}}/save-and-return/link-resent">
+
+</br>
+                      <div class="form-group">
+
+                          {{ govukInput({
+                            label: {
+                              text: "Email address you gave us"
+                            },
+                            hint: {
+                              text: "This must be the email you used before"
+                            },
+                            classes: "govuk-input--width-20",
+                            id: "width-20",
+                            name: "width-20"
+                          }) }}
+                      
+                      
+                      <!--    <label class="form-label" for="user_email">Email address you gave us</label>
+                        <span class="form-hint">This must be the email you used before</span>
+                        <input class="form-control form-control-3-4" id="user_email" name="saveReturnEmail" type="text" value="{{permit.saveReturnEmail}}">-->
+                      </div>
+    
+    
+    
+                  <div class="form-group">
+                      {{ govukButton({
+                        text: "Resend email"
+                      }) }}
+                 <!-- <button type="submit" class="button" name="Resend email">Resend email</button>-->
+                </details>
+                </div>
+
+              </div>
+
+
+
+      </form>
+
+  
+      <p>For testing:
+        <a href="/{{folder}}/save-and-return/email-save-link" target="_blank" rel="noopener noreferrer">link email</a>
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Prototype change log
+{% endblock %}
+
+<!--
+REGEXP replacements for google HTML
+ class="c[0-9][0-9]? ?c?[0-9][0-9]?"
+</?span>
+
+<h2 class="heading-large"   with  <h2 class="heading-large" class="heading-large"
+-->
+
+{% block content %}
+
+<main id="content" role="main">
+
+  <h1 class="govuk-heading-l">
+  Prototype change log
+  </h1>
+
+  <p>This summarises the main changes we've made in response to feedback.</p>
+  
+  <h2 class="govuk-heading-m">Version 23 to 24</h2>
+  <p><a href="index-v24">Version 24</a></p>
+
+
+  <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header" scope="col">Summary of change in v24</th>
+          <th class="govuk-table__header" scope="col">User need, reason or source</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell" scope="row">Building bespoke pages into the new prototype kit</td>
+          <td class="govuk-table__cell">So the code can be used for front end tool kit, prototype will continue to be supported, componant styles and patterns will be kept updated via nunjucks</td>
+        </tr>
+      </tbody>
+    </table>
+<!-- Can't remove last two rows without braking it, nunjucks table preset as three rows??
+
+  {{ govukTable({
+    head: [
+      {
+        text: "Summary of change in v24"
+      },
+      {
+        text: "User need, reason or source"
+      }
+    ],
+    rows: [
+      [
+        {
+          text: "Building bespoke pages in to the new prototype kit"
+        },
+        {
+          text: "So the code can be used for front end tool kit, prototype will continue to be supported, and styles will be kept updated via nunjucks"
+        }
+      ],
+      [
+        {
+          text: "Next 33 weeks"
+        },
+        {
+          text: "£109.80 per week"
+        }
+      ],
+      [
+        {
+          text: "Total estimated pay"
+        },
+        {
+          text: "£4,282.20"
+        }
+      ]
+    ]
+  }) }}
+
+ -->
+
+
+</main>
+
+{% endblock %}
