@@ -1,0 +1,110 @@
+{% extends "layout.html" %}
+
+{% set title = "Complete your application then make a bank transfer by Bacs" %}
+
+{% block page_title %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+    {% include "includes/phase_banner_beta.html" %}
+
+    <div class="grid-row">
+        <div class="column-two-thirds">
+
+
+<h1 class="heading-large">{{title}}</h1>
+
+  <p>
+    We’ll email you a copy of these payment details.
+  </p>
+
+  <dl class="govuk-check-your-answers cya-questions-short">
+    <div>
+      <dt class="cya-question">
+      Payment reference
+    </dt>
+    <dd class="cya-answer">
+      WP-{{ permit.permitRefNumber }}
+    </dd>
+    </div>
+
+    <div>
+      <dt class="cya-question">
+        Amount
+      </dt>
+      <dd class="cya-answer">
+    {{permit.permitCost}}
+    </dd>
+    </div>
+
+    <div>
+      <dt class="cya-question">
+      Sort code
+      </dt>
+      <dd class="cya-answer">
+      60-70-80
+    </dd>
+    </div>
+
+<div>
+  <dt class="cya-question">
+  Account number
+</dt>
+<dd class="cya-answer">
+  1001 4411
+</dd>
+</div>
+
+</dl>
+
+<!-- <p>
+  Account name: EA RECEIPTS<br />
+  Company address: SSCL (Environment Agency), PO Box 797, Newport Gwent, NP10 8FZ<br />
+  Bank: RBS/NatWest<br />
+  Bank address: London Corporate Service Centre, CPB Services, 2nd Floor, 280 Bishopsgate, London EC2M 4RB
+</p> -->
+
+<p>
+  After you’ve paid, send an email to <a href="mailto:psc-bacs@environment-agency.gov.uk">psc-bacs@environment-agency.gov.uk</a>. Include the reference number, amount and the date you expect the payment to arrive.
+</p>
+
+<details>
+
+  <summary><span class="summary">Overseas accounts</span></summary>
+
+  <div class="panel panel-border-narrow">
+
+    <p>
+      Use the following details to pay from an overseas account.
+    </p>
+
+    <p>
+      International bank account number (IBAN): GB23NWK60708010014411.<br>
+      SWIFT bank identifier code (BIC): NWBKGB2L.<br>
+      Use the payment reference above.
+    </p>
+    
+    <p>
+      The payment must be in sterling.
+    </p>
+
+  </div>
+
+</details>
+
+
+<form method="post" action="{{formAction}}">
+  <div class="form-group">
+      <button type="submit" class="button" name="Continue">Complete application</button>{{completeLink|safe}}
+  </div>
+</form>
+
+
+    </div>
+  </div>
+</main>
+
+{% endblock %}

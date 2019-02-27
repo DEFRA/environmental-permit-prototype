@@ -1,0 +1,39 @@
+// global styles for <a> and <p> tags
+$govuk-global-styles: true;
+
+// Import GOV.UK Frontend and any extension styles if extensions have been configured
+@import "lib/extensions/extensions";
+
+// Patterns that aren't in Frontend
+@import "patterns/step-by-step-navigation";
+@import "patterns/task-list";
+@import "patterns/related-items";
+
+// Components that aren't in Frontend
+@import "components/cookie-banner";
+
+// Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+.blue-box{
+    background: #005ea5;
+    padding:1em;
+    margin-bottom:45px;
+    font-size: 16px;
+    line-height: 1.25;
+    color:#FFFFFF;
+  
+      p,a{color:#FFFFFF;}
+      span{font-weight:normal;}
+  
+  
+  }
+
+  .grey-box{
+    background: #dee0e2;
+    padding:1em;
+    margin-bottom:45px;
+    font-size: 19px;
+
+  }
+
+
+

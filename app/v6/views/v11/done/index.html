@@ -1,0 +1,119 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  {% include "includes/phase_banner_beta.html" %}
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+        <div class="govuk-box-highlight">
+          <h1 class="heading-xlarge">
+              Application received{% if permit.paymentMethod=="Bank transfer" %}.<br>
+              You need to pay.
+              {% endif %}
+          </h1>
+
+          <p class="font-large">
+            Your reference number is
+            <br />
+            <strong class="bold">{{ permit.permitRefNumber }}</strong>
+          </p>
+        </div>
+<p class="text">
+  We've sent a confirmation to jane.person@email.com. {% if permit.paymentMethod=="Bank transfer" %}We’ve included the Bacs payment details.{% endif %}
+</p>
+        <h2 class="heading-medium">You should now pay by bank transfer</h2>
+          <p class="text">
+            We won’t start processing your application until we get your payment.
+          </p>
+          
+          {% if permit.paymentMethod=="Bank transfer" %}
+
+          <details>
+
+            <summary><span class="summary">Bacs payment details</span></summary>
+
+            <div class="panel panel-border-narrow">
+
+              <dl class="govuk-check-your-answers cya-questions-short">
+                <div>
+                  <dt class="cya-question">
+                  Payment reference
+                </dt>
+                <dd class="cya-answer">
+                  PSCAPP-{{ permit.permitRefNumber }}
+                </dd>
+                </div>
+
+                <div>
+                  <dt class="cya-question">
+                    Amount
+                  </dt>
+                  <dd class="cya-answer">
+                {{permit.permitCost}}
+                </dd>
+                </div>
+
+                <div>
+                  <dt class="cya-question">
+                  Sort code
+                  </dt>
+                  <dd class="cya-answer">
+                  60-70-80
+                </dd>
+                </div>
+
+            <div>
+              <dt class="cya-question">
+              Account number
+            </dt>
+            <dd class="cya-answer">
+              1001 4411
+            </dd>
+            </div>
+
+            </dl>
+
+            </div>
+          </details>
+          {% endif %}
+          
+{% if permit.paymentMethod=="Bank transfer" %}
+        <h2 class="heading-medium">When we get your payment</h2>
+{% else %}
+        <h2 class="heading-medium">What happens next</h2>
+{% endif %}
+        
+          <p class="text">
+            We’ll check the documents you’ve uploaded, your technical qualification and any site location. We’ll also run checks on the permit holder and any other relevant people.
+          </p>
+
+          <p class="text">
+            It takes up to 13 weeks to issue a permit. It may take longer if the information you gave us doesn’t meet our requirements.
+          </p>
+
+          <p class="text">
+            We won’t issue a permit if we believe that your operation will pollute the environment or harm human health.
+          </p>
+
+
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>For testing:</p>
+        <ul class="list list-bullet">
+          <li><a href="/{{folder}}/done/email-confirm">Confirmation email</a></li>
+        </ul>
+
+
+    </div>
+  </div>
+
+</main>
+
+{% endblock %}

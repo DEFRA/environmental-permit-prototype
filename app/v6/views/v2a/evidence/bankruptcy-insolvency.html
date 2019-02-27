@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% set title = "Tell us about any bankruptcy or insolvency" %}
+
+{% block page_title %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  {% include "includes/phase_banner_alpha.html" %}
+  
+  <div class="grid-row">
+      <div class="column-two-thirds">
+
+
+<h1 class="heading-large">{{title}}</h1>
+
+<h2 class="heading-small" style="margin-bottom:20px">Do you or any relevant person have any current or past bankruptcy or insolvency proceedings against you?</h2>
+
+<form method="post" action="{{formAction}}" class="form">
+  <div class="form-group">
+    <fieldset>
+
+      <legend class="visually-hidden">Do you or any relevant person have any current or past bankruptcy or insolvency proceedings against you?</legend>
+
+      <div class="multiple-choice" data-target="bankruptcyInsolvency">
+      <input id="yesBankruptcyInsolvency" type="radio" name="bankruptcyInsolvency" value="yes">
+<label class="selection-button-radio" for="yesBankruptcyInsolvency">
+        Yes, there are bankruptcy or insolvency proceedings
+      </label>
+      </div>
+      <div class="panel panel-border-narrow js-hidden" id="bankruptcyInsolvency">
+        <label class="form-label" for="bankruptcyInsolvencyDetails">Please give details, including dates, for the bankruptcy or insolvency proceedings</label>
+        <textarea class="form-control" name="bankruptcyInsolvencyDetails" type="text" id="bankruptcyInsolvencyDetails"></textarea>
+      </div>
+
+      <div class="multiple-choice">
+      <input id="noBankruptcyInsolvency" type="radio" name="bankruptcyInsolvency" value="no">
+<label class="selection-button-radio" for="noBankruptcyInsolvency">
+        No
+      </label>
+      </div>
+
+    </fieldset>
+  </div>
+
+    <div class="form-group">
+    <input type="submit" class="button" value="Continue">
+  </div>
+
+
+</form>
+
+
+    </div>
+  </div>
+</main>
+
+{% endblock %}

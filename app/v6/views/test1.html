@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Test 1
+{% endblock %}
+
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <h1 class="heading-xlarge">
+		      File upload test
+	    </h1>
+      
+<form method="post" action="#">
+  
+  <div class="form-group">
+    <label class="form-label" for="file-upload-1">
+      Upload a file
+    </label>
+    <input class="govuk-file-upload" id="file-upload-1" name="file-upload-1" type="file">
+  </div>
+  
+  <div class="form-group">
+    <button type="submit" class="button" name="Continue">Continue</button>
+  </div>
+  
+</form>
+
+
+
+    </div>
+  </div>
+</main>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+  crossorigin="anonymous"></script>
+  
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    $("#file-upload-1").keydown(function(e) {
+      if (e.keyCode === 13) {
+        // Enter key is keyCode 13
+        e.preventDefault()
+        $("#file-upload-1").trigger('click');
+      }
+    })
+    
+  })
+</script>
+
+{% endblock %}

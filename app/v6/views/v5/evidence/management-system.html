@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% set title = "Which management system will you use?" %}
+
+{% block page_title %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block content %}
+<main id="content" role="main">
+  {% include "includes/phase_banner_alpha.html" %}
+  
+  <div class="grid-row">
+      <div class="column-two-thirds">
+
+<h1 class="heading-large">{{title}}</h1>
+
+<div class="panel panel-border-wide">
+  <p> 
+    You must have a written management system in place by the time we issue the permit.
+  </p>
+</div>
+
+
+<form method="post" action="{{formAction}}" class="form">
+  <div class="form-group">
+    <fieldset>
+      
+      <p>Select all that apply</p>
+
+      <legend class="visually-hidden">{{title}}</legend>
+
+      <div class="multiple-choice">
+      <input id="manSysECEco" name="manSys" type="checkbox" value="EC Eco management and audit scheme (EMAS)">
+<label class="selection-button-checkbox" for="manSysECEco">
+        EC Eco management and audit scheme (EMAS)
+      </label>
+      </div>
+      <div class="multiple-choice">
+      <input id="manSysISO14001" name="manSys" type="checkbox" value="ISO 14001">
+<label class="selection-button-checkbox" for="manSysISO14001">
+        ISO 14001
+      </label>
+      </div>
+      <div class="multiple-choice">
+      <input id="manSysBS8555" name="manSys" type="checkbox" value="BS 8555 (Phases 1-5)">
+<label class="selection-button-checkbox" for="manSysBS8555">
+        BS 8555 (Phases 1-5)
+      </label>
+      </div>
+      <div class="multiple-choice">
+      <input id="manSysGreenDragon" name="manSys" type="checkbox" value="Green Dragon">
+<label class="selection-button-checkbox" for="manSysGreenDragon">
+        Green Dragon
+      </label>
+      </div>
+
+      <div class="multiple-choice">
+      <input id="manSysOwnMeets" name="manSys" type="checkbox" value="Our own system that meets your guidance conditions">
+<label class="selection-button-checkbox" for="manSysOwnMeets">
+        Own management system
+        <span class="form-hint">If you use your own system, it must meet our standards.<br>
+          <a href="https://www.gov.uk/guidance/develop-a-management-system-environmental-permits" target="_blank">Guidance about management systems on GOV.UK (opens new tab)</a></span>
+      </label>
+      </div>
+    </fieldset>
+  </div>
+  
+  
+
+  
+  <div class="form-group">
+      <input type="submit" class="button" value="Continue">
+  </div>
+</form>
+
+    </div>
+  </div>
+</main>
+
+{% endblock %}
