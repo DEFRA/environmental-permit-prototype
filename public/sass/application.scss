@@ -13,3 +13,27 @@ $govuk-global-styles: true;
 @import "components/cookie-banner";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+.blue-box{
+    background: #005ea5;
+    padding:1em;
+    margin-bottom:45px;
+    font-size: 16px;
+    line-height: 1.25;
+    color:#FFFFFF;
+  
+      p,a{color:#FFFFFF;}
+      span{font-weight:normal;}
+  
+  
+  }
+
+  .grey-box{
+    background: #dee0e2;
+    padding:1em;
+    margin-bottom:45px;
+    font-size: 19px;
+
+  }
+
+
+
