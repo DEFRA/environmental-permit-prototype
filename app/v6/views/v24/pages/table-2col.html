@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% set title = "Cookies" %}
+
+{% block page_title %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  {% include "includes/phase_banner_beta.html" %}
+  
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      
+      <style>
+        .table-noheading{margin:1em 0;border-top:1px solid #bfc1c3;}
+        </style>
+
+  <h1 class="heading-large">
+You have sent your application so you cannot go back and change it
+  </h1>
+  
+  <p>Now you have sent the application, you cannot change it online.
+</p>
+
+      <table class="table-noheading">
+        <caption><p>If you need to change something, please send us an email. Include your application reference WP123456.<p></caption>
+        <tbody>
+          <tr>
+            <td>Standard rules application for medium combustion plant and specified generators</td>
+            <td><a href="mailto:MCPDHELP@environment-agency.gov.uk">MCPDHELP@environment-agency.gov.uk</a></td>
+          </tr>
+          <tr>
+            <td>All other standard rules and bespoke applications
+</td>
+            <td><a href="mailto:psc@environment-agency.gov.uk">psc@environment-agency.gov.uk</a></td>
+          </tr>
+        </tbody>
+      </table>
+      
+      
+      <p>
+      We have sent you an email to confirm your application.
+      </p>
+      
+      
+  </div>
+</div>
+
+</main>
+
+{% endblock %}
