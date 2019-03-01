@@ -1,4 +1,4 @@
-# Standard waste permit prototype
+# Apply for an environmental permit prototype
 
 ## About
 
