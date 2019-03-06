@@ -1,6 +1,6 @@
 {% extends "layout_unbranded.html" %}
 
-{% set imgpath="/public/v6/images/email/" %}
+{% set imgpath="/public/images/email/" %}
 
 {% block page_title %}
   Gmail | Environmental permit application
@@ -22,14 +22,14 @@
   <img src="{{ imgpath }}gmail_header.png" alt="" />
 </div>
 
-  <div class="grid-row">
+<div class="govuk-grid-row">
 
-    <div class="column-one-quarter">
-      <img src="{{ imgpath }}gmail_menu_left.png" alt="" />
+    <div class="govuk-grid-column-one-quarter">
+        <img src="{{ imgpath }}gmail_menu_left.png" alt="" />
     </div>
 
 
-    <div class="column-three-quarter">
+    <div class="govuk-grid-column-three-quarter">
 
       <p class="subject">
         Standard rules waste permit application return link <img class="inboxicon" src="{{ imgpath }}gmail_icon_inbox.png" alt="" />
@@ -44,11 +44,11 @@
         <div id="banner" class="email-banner"><img src="{{ imgpath }}gov_uk_email_header.png" alt="GOV.UK" /></div>
 
 
-        <h1 class="heading-medium">
+        <h1 class="govuk-heading-m">
           Use this link to get back to your environmental permit application
         </h1>
 
-        <h2 class="heading-small">Permit application IB1234CD</h2>
+        <h2 class="govuk-heading-s">Permit application IB1234CD</h2>
         <p>Household, commercial and industrial waste transfer station</br>
           <a href="/{{folder}}/check/task-list?return=y" target="_blank">
             https://apply-environmental-permit.service.gov.uk/r/Ab2C34De6F45GhP
@@ -59,7 +59,7 @@
           You will not need a password.
         </p>
 
-        <h2 class="heading-small">
+        <h2 class="govuk-heading-s">
           Contact the Environment Agency
         </h2>
         <p class="text">

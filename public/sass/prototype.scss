@@ -1,0 +1,559 @@
+// This prototype code not for production use
+
+
+.email-url-number .email,
+.email-url-number .tel{
+  margin-bottom:0;
+}
+// Guide page meta block
+#meta{
+  font-size:16px;
+  margin-bottom:30px;
+}
+#meta p{
+  margin:0;
+  display:flex;
+}
+#meta p span.col1{
+  width: 150px;
+}
+#meta p span.col2{
+  width: 450px;
+}
+
+.slides{
+  p.font-xsmall{
+    font-size:19px;
+  }
+}
+
+.after-button{
+  padding-top:0.8em;
+  font-size:19px;
+  display:inline-block;
+}
+
+.list.list-border{
+  li{
+  border-top:1px solid #bfc1c3;
+  padding:10px 0;
+  margin:0;
+  }
+  li:last-child{
+  border-bottom:1px solid #bfc1c3;
+  }
+}
+
+.list.no-border{
+  li{
+  border: none;
+  padding:5px 0;
+  margin:0;
+  }
+  li:last-child{
+  border: none;
+  }
+}
+
+.list.location-list{
+  li{
+  border:none;
+  padding:5px 0;
+  margin:0;
+  }
+  li:last-child{
+  border:none;
+  }
+  margin-bottom:0;
+}
+
+
+
+
+// How to format Environment Agency data
+
+.data-exchange-protocol {
+	.column-three-quarters {
+	    float: left;
+	    width: 75%;
+      box-sizing: border-box;
+      padding: 0 15px;
+	}
+	.head-section h1 {
+      font-size: 24px;
+      line-height: 1.25;
+      font-weight: 700;
+		}
+	.inner-block {
+	    padding: 0 30px;
+	}
+	.heading {
+		padding: 45px 0;
+		.type {
+			color:#6F777B;
+			margin-bottom: 0.2em;
+		}
+	}
+	.list {
+		li {
+			margin-bottom:10px;
+		}
+		li:last-child {
+			margin-bottom:0;
+		}
+	}
+
+	.example-file-wrapper {
+		overflow: auto;
+		margin-bottom:30px;
+		table, .example-file {
+			margin-bottom:0;
+		}
+	}
+
+	.editions {
+		h2 {
+			font-size: 27px;
+	    font-weight: 400;
+	    line-height: 1.11111;
+	    padding-top: 30px;
+	    text-transform: none;
+		}
+		.document-list {
+			.document-row {
+		    border-bottom: 1px solid #bfc1c3;
+		    display: block;
+		    list-style: outside none none;
+		    overflow: hidden;
+		    padding: 5px 0 10px;
+		    h3 {
+		        font-size: 19px;
+		        font-weight: bold;
+		        line-height: 1.31579;
+		        margin-top: 5px;
+		        text-transform: none;
+		    }
+		    ul li {
+		        display: block;
+		        float: left;
+		        font-size: 14px;
+		        font-weight: 400;
+		        line-height: 1.42857;
+		        list-style: outside none none;
+		        padding: 0 15px 0 0;
+		        text-transform: none;
+		    }
+		    a {
+		    	text-decoration: none;
+		    }
+		  }
+		}
+	}
+
+
+	.metadata-list {
+		display: block;
+		clear:both;
+		margin-bottom: 30px;
+		overflow: hidden;
+		a {
+			text-decoration: none;
+		}
+		dl {
+			font-size: 14px;
+	    font-weight: 400;
+	    line-height: 1.42857;
+	    text-transform: none;
+			dt {
+			  min-width: 120px;
+			  padding-right: 10px;
+			  width: auto;
+			  clear: left;
+			  float: left;
+			}
+			dd {
+				width: 70%;
+				float: left;
+			}
+		}
+	}
+	.contextual-info {
+	    padding-top: 5px;
+	    font-size: 16px;
+	    h1 {
+        	margin: 0;
+        	padding: 0;
+	    }
+	    ol {
+	        font-size: 16px;
+	        font-weight: 400;
+	        line-height: 1.25;
+	        margin: 0;
+	        padding: 0;
+	        text-transform: none;
+	    }
+	    li {
+	        a {
+	            text-decoration: none;
+	        }
+	    }
+	    .dash-list {
+	        margin-bottom: 20px;
+	        h1 {
+	        }
+	        li {
+	            list-style-position: inside;
+	            padding: 0 15px 0 0;
+	        }
+	    }
+	    @media (min-width: 1px) {
+		   	.dash-list {
+		   		li {
+		   	    list-style: outside none none;
+		   	    margin-left: 15px;
+		   		}
+		   		li::before {
+		   		    content: "-";
+		   		    float: left;
+		   		    margin-left: -15px;
+		   		    position: relative;
+		   		    width: 15px;
+		   		}
+		   	}
+		  }
+	    @media (min-width: 769px) {
+		    .dash-list li {
+		        padding-top: 5px;
+		    }
+	    }
+    }
+    .summary {
+    	padding-bottom: 45px;
+    	padding-top: 15px;
+    }
+  	.back {
+			background: #2b8cc4 none repeat scroll 0 0;
+			display: block;
+			margin-left: 0;
+			margin-top: 30px;
+			padding: 5px;
+  	}
+  	h2 {
+      font-size: 24px;
+      line-height: 1.25;
+      font-weight: 700;
+		  margin-top:45px;
+  	}
+  	h3 {
+  	  font-size: 24px;
+      line-height: 1.25;
+      font-weight: 700;
+  	}
+  	h4, caption {
+  	  font-size: 19px;
+      line-height: 1.31579;
+      font-weight: 700;
+			margin-top:45px;
+  	}
+  	strong {
+  		font-weight:bold;
+  	}
+  	table {
+  		margin-bottom:45px;
+			caption {
+        font-size: 16px;
+        line-height: 1.25;
+        font-weight: 700;
+				text-align:left;
+			}
+  		th, td {
+  			vertical-align:top;
+  		}
+  		td {
+	  		p:first-child {
+	  			margin-top:0;
+	  		}
+	  		p:last-child {
+	  			margin-bottom:0;
+	  		}
+  		}
+  	}
+  	.date-and-time {
+  		th {
+  			width:25%;
+  		}
+  		td {
+  			th {
+  				width:inherit;
+  			}
+  		}
+	}
+	.csv {
+		border-bottom:1px solid #DEE0E2;
+		h2 {
+	    font-size: 19px;
+      line-height: 1.31579;
+      font-weight: 700;
+		  margin-top: 20px;
+		}
+		p {
+	  	font-size: 16px;
+      line-height: 1.25;
+		}
+	}
+}
+
+
+// Email styles
+#email {
+  .column-one-quarter {
+    float: left;
+    width: 210px;
+  }
+  .column-three-quarter {
+    float: left;
+    width: 75%;
+  }
+}
+#banner {
+  margin-bottom:20px;
+}
+#gmail_header {
+  background-image:  file-url("email/gmail_header_bg.png");
+  background-repeat: repeat-x;
+}
+#email_text {
+  width:60%;
+  margin-left:40px;
+  margin-bottom:6em;
+  ul {
+    list-style-type: disc;
+    margin-left:1em;
+    margin-top:-0.5em;
+    margin-bottom: 1em;
+  }
+  .head {
+    font-size:150%;
+    font-weight:bold;
+    margin-bottom:0.8em;
+  }
+  .subhead {
+    font-weight:bold;
+    margin-top:1em;
+    margin-bottom:0.5em;
+  }
+  td {
+    font-size:100%;
+  }
+}
+.subject {
+  font-size:110%;
+}
+.start {
+  font-weight:bold;
+}
+.subject {
+  margin-bottom:0.9em;
+  padding-bottom:0.6em;
+  border-bottom:1px solid #DEDEDE;
+}
+img.inboxicon {
+  display:inline-block;
+  margin:0 0 0 10px;
+  vertical-align: middle;
+}
+
+
+// payment page summary box
+.payment-summary-small {
+    border: 10px solid #DEE0E2;
+    background-color: #F8F8F8;
+    padding: 15px;
+    margin-top: 50px;
+
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      padding-bottom: 30px;
+    }
+}
+
+.payment-info {
+    font-weight: 700;
+}
+.payment-amount {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    margin-top: 0px;
+}
+
+  .accepted-image-1 {
+      max-width: 320px;
+      margin-bottom: 30px;
+  }
+
+  #visa-image {
+    margin-bottom: -10px;
+    max-width: 110px;
+}
+.visa-hidden {
+    visibility: hidden;
+}
+img.card-image {
+    max-height: 38px;
+    padding-top: 2px;
+    margin-left: 15px;
+    vertical-align: middle;
+}
+#building-and-street {
+    margin-bottom: 10px;
+}
+
+/* added card-details class to form  */
+
+.card-details {
+  .form-control {
+      font-family: "nta", Arial, sans-serif;
+      font-size: 19px;
+      line-height: 1.3157894737;
+      font-weight: 400;
+      text-transform: none;
+      width: 66%;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      padding: 4px;
+      background-color: #fff;
+      border: 2px solid #6f777b;
+      margin-bottom: 5px;
+      border-radius: 0;
+  }
+  .form-label-bold {
+      font-size: 19px;
+      margin-bottom: 5px;
+  }
+  #security-number {
+      width: 100px;
+  }
+  #postcode {
+      width: 120px;
+  }
+  table.payment-confirm {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    td {
+        font-size: 19px;
+        font-weight: 300;
+        border-bottom: none;
+    }
+    .table-info {
+      font-weight: 700;
+    }
+  }
+  .check-details {
+      margin-bottom: 30px;
+  }
+}
+
+
+.button-secondary{
+  background-color:#dee0e2;
+  color:#444444;
+  box-shadow: 0 2px 0 #b5babe;
+  font-size:90%;
+  &:active{
+      background-color:#d0d3d6;
+      color:#444444;
+  }
+  &:focus{
+      background-color:#d0d3d6;
+      color:#444444;
+  }
+  &:hover{
+      background-color:#d0d3d6;
+      color:#444444;
+  }
+}
+
+// autocomplete exeriment
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+
+.autosearch {
+  position: relative;
+
+  input {
+   width: 40em;
+  }
+}
+
+.autosearch input { text-indent: 32px;}
+
+.autosearch .fa-search { 
+  position: absolute;
+  top: 60px;
+  left: 10px;
+  color: #aaa;
+}
+
+span.resume-link{
+  display:inline-block;
+  padding:10px 0 0 0;
+}
+
+.overview{
+    .overviewHead {
+      display: flex; 
+      justify-content: space-between;
+      border-top:1px solid #ccc;
+      padding-top:1em;
+      margin-top:1em;
+    }
+    h2{
+      margin-top: 0; 
+      margin-bottom: 0;
+    }
+    p{
+      margin-top: 0; 
+      margin-bottom: 0;
+    }
+    hr {
+      margin-top: 0;
+    }
+}
+.ov_details{
+  p{
+    margin:0;
+    padding:0;
+  }
+}
+p.ov_action{
+  font-weight:bold;
+}
+.overviewEnd {
+  border-bottom:1px solid #ccc;
+  padding-bottom:0.5em;
+  margin-bottom:2em;
+}
+.docSummary {
+    background-color: #F8F8F8;
+    padding: 15px;
+    margin-top: 50px;
+}
+
+/* Save for later panel on task-list page */
+.save-for-later {
+    background: #dee0e2;
+    margin: 15px 0;
+    padding: 10px 15px;
+}
+
+.permitNo {
+    color: #6f777b;
+    white-space: nowrap;
+}
+
+.permitWeight { 
+    color:#6f777b; 
+}
