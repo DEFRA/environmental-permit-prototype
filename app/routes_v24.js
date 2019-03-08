@@ -70,5 +70,74 @@ router.all('*', function (req, res, next) {
   next()
 })
 
+// Route to check if application has started and redirect
+router.post('/save-and-return/save-choice', function (req, res) {
+  if (req.body['started-application']=="no") {
+    res.redirect("/"+ folder + "/selectpermit/bespoke-or-standard")
+  } else {
+    res.redirect("/"+ folder + "/save-and-return/already-started")
+  }
+})
+
+// Check category is in-scope ============================
+
+// required for 'select a different permit' via start page or task list
+router.post('/selectpermit/bespoke-or-standard', function (req, res) {
+  res.render(folder + '/selectpermit/bespoke-or-standard',{
+    "formAction":"/"+ folder + "/start/start-or-resume"
+    // "chosenPermitID":req.body['chosenPermitID']
+  })
+})
+
+router.get('/selectpermit/bespoke-or-standard', function (req, res) {
+  res.render(folder + '/selectpermit/bespoke-or-standard',{
+    "formAction":"/"+ folder + "/start/start-or-resume"
+    // "chosenPermitID":req.body['chosenPermitID']
+  })
+})
+
+// required for 'select an activity for bespoke' via start page or task list
+router.post('/selectpermit/select-bespoke-or-standard', function (req, res) {
+if(req.body['bespokePermit']=="standard"){ // think you need square bracket for radios
+    res.render(folder + '/selectpermit/permit-category2',{
+      "formAction":"/"+ folder + "/selectpermit/choose-permit2",
+      "chosenPermitID":req.body['chosenPermitID']
+    })
+} else if(req.body['bespokePermit']=="bespoke-other") {
+    res.render(folder + '/selectpermit/bespoke-offline')
+} else {
+    res.render(folder + '/bespoke/v2-activities/bespoke-category',{
+        "formAction":"/"+ folder + "/bespoke/v2-activities/bespoke-choose-activity"
+    })
+}
+})
+
+
+
+router.post('/selectpermit/check-category', function (req, res) {
+switch (req.body['chosenCategory']) {
+  // These categories are NOT online
+  case 'Flood risk activities':
+  case 'Radioactive substances for non-nuclear sites':
+  case 'Water discharges':
+    // go on to 'paper' form page'
+    return res.render(folder + '/selectpermit/permit-not-in-service',{})
+}
+
+switch (req.body['operatorType']) {
+  case 'Limited company':
+  case 'Sole trader':
+  case 'Limited liability partnership':
+  case 'Individual':
+    // go on to choose permit
+    return res.render(folder + '/selectpermit/choose-permit2',{
+      "formAction":"/"+ folder + "/check/save-permit-details",
+      "chosenCategory":req.body['chosenCategory']
+    })
+}
+
+res.render(folder + '/selectpermit/permit-not-in-service',{})
+})
+
 
 module.exports = router

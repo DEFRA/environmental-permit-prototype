@@ -19,7 +19,6 @@
 
     <form action="{{formAction}}" method="post">
 
-      <h1 class="govuk-heading-l">{{title}}</h1>
 
 
         {{ govukRadios({
@@ -27,7 +26,8 @@
           name: "started-application",
   fieldset: {
     legend: {
-      classes: "govuk-fieldset__legend--xl"
+      text: "Apply for an environmental permit",
+      classes: "govuk-fieldset__legend--l"
     }
   },
   items: [
@@ -42,24 +42,7 @@
 
   ]
 }) }}
-     <!--   <legend class="visuallyhidden">{{title}}</legend>
 
-
-        <div class="form-group">
-          <div class="multiple-choice">
-            <input id="start-application" type="radio" name="started-application" value="no">
-            <label for="start-application">
-            Start a new application
-            </label>
-          </div>
-          <div class="multiple-choice">
-            <input id="open-application" type="radio" name="started-application" value="yes">
-            <label for="open-application">
-            Open a saved application
-            </label>
-          </div>
-        </div>
- -->
       
       <p>
         When you apply for a permit you will need to give us some personal data such as your email address or date of birth.<br>
