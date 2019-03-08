@@ -12,6 +12,9 @@ $govuk-global-styles: true;
 // Components that aren't in Frontend
 @import "components/cookie-banner";
 
+// email temple
+@import "prototype";
+
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
 .blue-box{
     background: #005ea5;
@@ -35,5 +38,7 @@ $govuk-global-styles: true;
 
   }
 
-
+  .email-banner {
+    background: #0b0c0c;
+  }
 
