@@ -153,30 +153,7 @@ router.get('/save-and-return/check', function (req, res) {
   }
 })
 
-// Pre-app ====================================================================
 
-router.get('/bespoke/pre-app/pre-app', function (req, res) {
-  res.render(folder + '/bespoke/pre-app/pre-app',{
-    "formAction":"/"+ folder + "/bespoke/pre-app/pre-app-check"
-  })
-})
-
-router.post('/bespoke/pre-app/pre-app', function (req, res) {
-  res.render(folder + '/bespoke/pre-app/pre-app',{
-    "formAction":"/"+ folder + "/bespoke/pre-app/pre-app-check"
-  })
-})
-
-// Deal with what to show next
-router.post('/bespoke/pre-app/pre-app-check', function (req, res) {
-  var preAppYesNo = req.body.preAppYesNo
-
-  if (preAppYesNo === 'no') {
-    res.redirect("/"+ folder + "/bespoke/pre-app/get-pre-app")
-  } else {
-    res.redirect("/"+ folder + "/bespoke/activities-assessments/bespoke-type")
-  }
-})
 
 // What's next ===============================================================
 router.get('/bespoke/whats-next', function (req, res) {

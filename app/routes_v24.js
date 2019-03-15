@@ -140,4 +140,135 @@ res.render(folder + '/selectpermit/permit-not-in-service',{})
 })
 
 
+// permit holder screen
+router.post('/operator/site-operator', function (req, res) {
+  res.render(folder + '/operator/site-operator',{
+      "formAction":"/"+ folder + "/bespoke/pre-app/pre-app"
+  })
+})
+
+ router.get('/operator/site-operator', function (req, res) {
+   res.render(folder + '/operator/site-operator',{
+       "formAction":"/"+ folder + "/operator/checkoperator"
+   })
+ })
+
+ // Pre-app ====================================================================
+
+router.get('/bespoke/pre-app/pre-app', function (req, res) {
+  res.render(folder + '/bespoke/pre-app/pre-app',{
+    "formAction":"/"+ folder + "/bespoke/pre-app/pre-app-check"
+  })
+})
+
+router.post('/bespoke/pre-app/pre-app', function (req, res) {
+  res.render(folder + '/bespoke/pre-app/pre-app',{
+    "formAction":"/"+ folder + "/bespoke/pre-app/pre-app-check"
+  })
+})
+
+// Deal with what to show next
+router.post('/bespoke/pre-app/pre-app-check', function (req, res) {
+  var preAppYesNo = req.body.preAppYesNo
+
+  if (preAppYesNo === 'no') {
+    res.redirect("/"+ folder + "/bespoke/activities-assessments/bespoke-type")
+  } else {
+    res.redirect("/"+ folder + "/bespoke/pre-app/get-pre-app")
+  }
+})
+
+// permit holder screen
+router.post('/operator/site-operator', function (req, res) {
+  res.render(folder + '/operator/site-operator',{
+      "formAction":"/"+ folder + "/bespoke/pre-app/pre-app"
+  })
+})
+
+ router.get('/operator/site-operator', function (req, res) {
+   res.render(folder + '/operator/site-operator',{
+       "formAction":"/"+ folder + "/operator/checkoperator"
+   })
+ })
+
+// After operator, route depends on permit type
+router.post('/after-operator-choice', function (req, res) {
+  if (req.session.data.bespokePermit=="bespoke") { // bespoke
+    res.redirect("/"+ folder + "/bespoke/pre-app/pre-app")
+  } else { // standard rule
+    res.redirect("/"+ folder + "/selectpermit/permit-category2")
+  }
+})
+
+
+
+router.post('/save-and-return/confirm', function (req, res) {
+  res.render(folder + '/save-and-return/confirm',{
+    "formAction":"/"+ folder + "/save-and-return/sent"
+  })
+})
+
+router.post('/save-and-return/sent', function (req, res) {
+  // IF EMAIL WAS RECEIVED GO TO TASK LIST
+  if(req.body.GOTEMAIL == "YES"){
+    res.render(folder + '/check/task-list',{
+        "formAction":"/"+ folder + "/check/check-answers"
+    })
+  // EMAIL NOT RECEIVED SHOW PAGE AGAIN
+  } else {
+    res.render(folder + '/save-and-return/sent',{
+        "formAction":"/"+ folder + "/save-and-return/sent_again",
+        "resent":"resent"  // use this to change the heading
+    })
+  }
+})
+
+router.post('/save-and-return/sent_again', function (req, res) {
+  // IF EMAIL WAS RECEIVED GO TO TASK LIST
+  if(req.body.GOTEMAIL == "YES"){
+    res.render(folder + '/check/task-list',{
+        "formAction":"/"+ folder + "/check/check-answers"
+    })
+  // EMAIL NOT RECEIVED SHOW PAGE AGAIN
+  } else {
+    res.render(folder + '/save-and-return/sent_again',{
+        "formAction":"/"+ folder + "/save-and-return/sent_again",
+        "resent":"resent"  // use this to change the heading
+    })
+  }
+})
+
+router.post('/save-and-return/email-or-phone', function (req, res) {
+  // IF EMAIL WAS RECEIVED GO TO TASK LIST
+  if(req.body.GOTEMAIL == "YES"){
+    res.render(folder + '/check/task-list',{
+        "formAction":"/"+ folder + "/check/check-answers"
+    })
+  // EMAIL NOT RECEIVED SHOW PAGE AGAIN
+  } else {
+    res.render(folder + '/save-and-return/email-or-phone',{
+        "formAction":"/"+ folder + "/save-and-return/email-or-phone",
+        "resent":"resent"  // use this to change the heading
+    })
+  }
+})
+
+router.get('save-and-return/email-save-link', function (req, res) {
+  res.render(folder + 'save-and-return/email-save-link',{
+  })
+})
+
+
+// This is not a real page, just a URL for the route
+router.get('/save-and-return/check', function (req, res) {
+  if( req.session.data['saveReturnEmail']==null ){ // not created save link yet
+      res.render(folder + '/save-and-return/email-or-phone',{
+        "formAction":"/"+ folder + "/save-and-return/confirm"
+      })  
+  } else {
+      res.render(folder + '/save-and-return/complete-later',{
+      })
+  }
+})
+
 module.exports = router

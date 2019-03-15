@@ -41,5 +41,13 @@ module.exports = function (env) {
   /* ------------------------------------------------------------------
     keep the following line to return your filters to the app
   ------------------------------------------------------------------ */
+
+  filters.formatnumber = function(num) {
+    var formattedNum = num.toLocaleString('en',{ style: 'currency', currency: 'GBP' })
+    var returnNum = formattedNum
+    if(formattedNum.endsWith(".00")) returnNum = formattedNum.substring( 0, (formattedNum.length-3) )
+    return returnNum
+  }
+
   return filters
 }
