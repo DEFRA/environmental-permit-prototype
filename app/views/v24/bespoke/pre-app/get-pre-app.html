@@ -2,25 +2,33 @@
 
 {% set title = "Get help with your application" %}
 
-{% block page_title %}
+{% block pageTitle %}
     {{title}} - GOV.UK
 {% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% set versionxxx = "v24" %}
 
 {% block content %}
 
 <main id="content" role="main">
 
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-  <div class="grid-row">
-    <div class="column-two-thirds">
+      <form action="https://www.gov.uk/government/publications/environmental-permit-pre-application-advice-form" method="get">
 
 
-
-        <h1 class="heading-large">{{title}}</h1>
+        <h1 class="govuk-heading-l">{{title}}</h1>
         <p>
           The Environment Agency offers free basic pre-application advice to:
         </p>
-        <ul class="list list-bullet">
+        <ul class="govuk-list govuk-list--bullet">
           <li>check that your activity meets the criteria for a permit</li>
           <li>carry out nature and heritage conservation screening</li>
           <li>advise which risk assessments you may need to do to accompany your application</li>
@@ -28,8 +36,8 @@
         </ul>
         
       
-      <div class="panel panel-border-wide">
-        <p>
+        <div class="govuk-inset-text">
+          <p>
           We strongly recommend that you get pre-application advice before you apply.
         </p>
       </div>
@@ -40,11 +48,15 @@
             If you need more in depth advice they offer an enhanced pre-application advice service which costs £100 an hour plus VAT.
           </p>
         </div>
-
+      </br> 
         <div class="form-group">      
-          <a href="https://www.gov.uk/government/publications/environmental-permit-pre-application-advice-form" class="button">Request advice online</a>
+
+            {{ govukButton({
+              text: "Request advice online"
+            }) }}
+  
           
-          <span style="padding:10px 10px 10px 20px;display:inline-block;"><a href="/{{folder}}/bespoke/activities-assessments/bespoke-type">Continue with application
+          <span style="padding:10px 10px 10px 20px;display:inline-block;font-size: 19px;"><a href="/{{folder}}/bespoke/activities-assessments/bespoke-type">Continue with application
           </a></span>
         </div>
 

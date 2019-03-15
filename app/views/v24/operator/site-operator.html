@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set title = "We have resent the email - check again" %}
+{% set title = "Who will be the permit holder?" %}
 
 {% block pageTitle %}
     {{title}} - GOV.UK
@@ -23,6 +23,7 @@
       {# permit|dump #}
 
       <form action="/{{folder}}/after-operator-choice" method="post">
+       
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
 

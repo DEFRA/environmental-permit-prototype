@@ -271,4 +271,21 @@ router.get('/save-and-return/check', function (req, res) {
   }
 })
 
+// Bespoke type ==============================================================
+router.get('/bespoke/activities-assessments/bespoke-type', function (req, res) {
+  res.render(folder + '/bespoke/activities-assessments/bespoke-type',{
+    "formAction":"/"+ folder + "/bespoke-check"
+  })
+})
+
+// Bespoke Check - not real page =============================================
+router.post('/bespoke-check', function (req, res) {
+  var facilityType = req.body.facilityType
+  if (facilityType === "Waste treatment") {
+    res.redirect("/"+ folder + "/bespoke/activities-assessments/bespoke-choose-activity-radio")
+  } else {  
+    res.redirect("/"+ folder + "/bespoke/offline/bespoke-selection-offline")
+  }
+})
+
 module.exports = router
