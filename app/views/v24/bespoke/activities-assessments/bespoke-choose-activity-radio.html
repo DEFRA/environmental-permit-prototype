@@ -6,17 +6,20 @@
 {{title}} - GOV.UK
 {% endblock %}
 
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+
 {% block content %}
 
-<main id="content" role="main">
-  {% include "includes/phase_banner_beta.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-  {{backlink|safe}}
+        <h1 class="govuk-heading-l" id="radio_label">{{title}}</h1>
 
-  <div class="grid-row">
-    <div class="column-two-thirds">
-
-      <h1 class="heading-large" id="radio_label">{{title}}</h1>
 
         <p>
           Showing activities for waste operations. <!--: {{ permit.facilityType | lower }} -->
@@ -29,7 +32,7 @@
 
       <form method="post" action="/{{folder}}/activity-check">
         <div class="form-group">
-          <fieldset class="permitList" aria-labelledby="radio_label">
+          <fieldset class="govuk-fieldset" aria-labelledby="radio_label">
             <legend="Permit">
 
 
@@ -63,11 +66,16 @@
           </fieldset>
         </div>
 
+      </br>
+
 
         <div class="form-group">
-          <button type="submit" class="button" name="Continue">Continue</button>
-        </div>
 
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+
+          </div>
 
 
       </form>
@@ -75,6 +83,5 @@
     </div>
   </div>
 
-</main>
 
 {% endblock %}

@@ -20,12 +20,12 @@
 
 
 {% macro radio_but_2(label,name,id,value,labelClass='') %}
-<div class="multiple-choice">
-  <input id="{{name}}_{{id}}" type="radio" name="{{name}}" value="{{ value }}">
-  <label class="selection-button-radio{{labelClass}}" for="{{name}}_{{id}}">
+<span class="govuk-radios__item">
+    <input class="govuk-radios__input" id="{{name}}_{{id}}" type="radio" name="{{name}}" value="{{ value }}">
+  <label class="govuk-label govuk-radios__label{{labelClass}}" for="{{name}}_{{id}}">
     {{ label }}
   </label>
- </div>
+</span>
 {% endmacro %}
 
 {% macro hidden(name,value) %}

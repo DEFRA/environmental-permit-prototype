@@ -288,4 +288,51 @@ router.post('/bespoke-check', function (req, res) {
   }
 })
 
+// Facility type ==============================================================
+router.get('/bespoke/facility/facility-type', function (req, res) {
+  res.render(folder + '/bespoke/facility/facility-type',{
+    "formAction":"/"+ folder + "/facility-check"
+  })
+})
+
+// Bespoke type ==============================================================
+router.get('/bespoke/activities-assessments/bespoke-type', function (req, res) {
+  res.render(folder + '/bespoke/activities-assessments/bespoke-type',{
+    "formAction":"/"+ folder + "/bespoke-check"
+  })
+})
+
+// Bespoke Check - not real page =============================================
+router.post('/bespoke-check', function (req, res) {
+  var facilityType = req.body.facilityType
+  if (facilityType === "Waste treatment") {
+    res.redirect("/"+ folder + "/bespoke/activities-assessments/bespoke-choose-activity-radio")
+  } else {  
+    res.redirect("/"+ folder + "/bespoke/offline/bespoke-selection-offline")
+  }
+})
+
+
+// Activity Check - not real page =============================================
+router.post('/activity-check', function (req, res) {
+  // If set, add activity to the list in chosenPermitID
+  var {activityID,chosenPermitID = []} = req.session.data
+  if (activityID){
+    chosenPermitID.push(activityID) 
+    delete req.session.data.activityID
+    req.session.data.chosenPermitID = chosenPermitID
+    var showAddConfirmPage="Yes"
+    res.locals.data.chosenPermitID = chosenPermitID
+  }
+
+  if(req.body.addActivity=="Yes"){
+    res.redirect("/"+ folder + "/bespoke/activities-assessments/bespoke-choose-activity-radio")
+  } else if(req.body.addActivity=="_unchecked") {
+    res.redirect("/"+ folder + "/name-check") 
+  } else {
+    res.redirect("/"+ folder + "/bespoke/activities-assessments/add-confirm-radio")
+  }
+})
+
+
 module.exports = router
