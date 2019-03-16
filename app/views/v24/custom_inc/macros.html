@@ -149,14 +149,15 @@
 {% endmacro %}
 
 {% macro confirmlist( col1,col2 ) %}
-<div>
-  <dt class="cya-answer">
+<div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__value">
     {{ col1 }}
   </dt>
-  <dd class="cya-change">
+  <dd class="govuk-summary-list__actions">
     {{ col2 | safe }}
   </dd>
 </div>
+
 {% endmacro %}
 
 

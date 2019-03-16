@@ -288,30 +288,6 @@ router.post('/bespoke-check', function (req, res) {
   }
 })
 
-// Facility type ==============================================================
-router.get('/bespoke/facility/facility-type', function (req, res) {
-  res.render(folder + '/bespoke/facility/facility-type',{
-    "formAction":"/"+ folder + "/facility-check"
-  })
-})
-
-// Bespoke type ==============================================================
-router.get('/bespoke/activities-assessments/bespoke-type', function (req, res) {
-  res.render(folder + '/bespoke/activities-assessments/bespoke-type',{
-    "formAction":"/"+ folder + "/bespoke-check"
-  })
-})
-
-// Bespoke Check - not real page =============================================
-router.post('/bespoke-check', function (req, res) {
-  var facilityType = req.body.facilityType
-  if (facilityType === "Waste treatment") {
-    res.redirect("/"+ folder + "/bespoke/activities-assessments/bespoke-choose-activity-radio")
-  } else {  
-    res.redirect("/"+ folder + "/bespoke/offline/bespoke-selection-offline")
-  }
-})
-
 
 // Activity Check - not real page =============================================
 router.post('/activity-check', function (req, res) {
@@ -332,6 +308,25 @@ router.post('/activity-check', function (req, res) {
   } else {
     res.redirect("/"+ folder + "/bespoke/activities-assessments/add-confirm-radio")
   }
+})
+
+
+// Add and confirm
+router.post('/bespoke/activities-assessments/add-confirm-radio', function (req, res) {
+  res.render(folder + '/bespoke/activities-assessments/add-confirm-radio',{})
+})
+
+// Delete
+router.get('/bespoke/activities-assessments/add-confirm-radio', function (req, res) {
+    var activityIDtoDelete = req.query.del
+    for( var i = 0; i < req.session.data.chosenPermitID.length-1; i++){ 
+       if ( req.session.data.chosenPermitID[i] === activityIDtoDelete) {
+         req.session.data.chosenPermitID.splice(i, 1); 
+       }
+    }
+    res.render(folder + '/bespoke/activities-assessments/add-confirm-radio',{
+      "formAction":"/"+ folder + "/bespoke/activities-assessments/add-confirm-radio"
+    })
 })
 
 
