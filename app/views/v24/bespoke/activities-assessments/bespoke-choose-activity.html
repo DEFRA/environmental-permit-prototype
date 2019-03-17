@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 
-{% set title = "Add an activity to the permit" %}
+{% set title = "Select all the activities you want the permit to cover" %}
 
-{% block pageTitle %}
-    {{title}} - GOV.UK
+{% block page_title %}
+{{title}} - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
@@ -14,25 +14,27 @@
 
 
 {% block content %}
+  <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
 
-<div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-
-        <h1 class="govuk-heading-l" id="radio_label">{{title}}</h1>
-
+      <h1 class="govuk-heading-l" id="radio_label">{{title}}</h1>
 
         <p>
           Showing activities for waste operations. <!--: {{ permit.facilityType | lower }} -->
           <a href="/{{folder}}/bespoke/activities-assessments/bespoke-type">Change facility type</a>.
         </p>
+        
+        <p>
+          You can select more than one.
+        </p>
+
 
       {% import folder+"/custom_inc/macros.html" as macros %}
       {% from folder+"/bespoke/activities-assessments/json/bespoke_activities.html" import activities %}
 
 
-      <form method="post" action="/{{folder}}/activity-check">
+      <form method="post" action="{{formAction}}">
         <div class="form-group">
-          <fieldset class="govuk-fieldset" aria-labelledby="radio_label">
             <legend="Permit">
 
 
@@ -50,9 +52,9 @@
             '</span> --></span>'
             ] %}
 
-            {{ macros.radio_but_2(
+            {{ macros.checkbox(
             label | join | safe,
-            "activityID",
+            "chosenPermitID",
             loop.index,
             aNumber
             ) }}
@@ -63,12 +65,8 @@
     <p>You must select at least one category</p>
 {% endfor %}
 
-          </fieldset>
         </div>
-
-      </br>
-
-
+</br></br>
         <div class="form-group">
 
             {{ govukButton({
@@ -78,10 +76,12 @@
           </div>
 
 
+
       </form>
 
     </div>
   </div>
 
+</main>
 
 {% endblock %}

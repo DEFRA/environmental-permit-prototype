@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% set title = "Apply for a bespoke permit for an installation, landfill, mine or water discharge" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      
+      <p>You cannot apply online yet for that type of facility. We hope to add them soon.</p>
+      
+      <p>
+        Download and fill in the <a href="https://www.gov.uk/guidance/a1-installations-environmental-permits#apply-for-a-bespoke-permit">
+          forms to apply for a bespoke permit for an installation</a>.
+      </p>
+
+      <p>
+        Download and fill in the <a href="https://www.gov.uk/guidance/waste-environmental-permits#how-to-apply-for-a-bespoke-permit">
+          forms to apply for a bespoke waste environmental permit</a>.
+      </p>
+      
+      
+
+    </div>
+  </div>
+
+</main>
+
+{% endblock %}

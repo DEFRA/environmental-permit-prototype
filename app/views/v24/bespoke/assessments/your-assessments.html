@@ -1,19 +1,21 @@
 {% extends "layout.html" %}
 
-{% block page_title %}
-Assessments - GOV.UK
+{% set title = "Assessments - GOV.UK" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
 {% endblock %}
 
 {% block content %}
 
-<main id="content" role="main">
-  {% include "includes/phase_banner_beta.html" %}
-
-  {{backlink|safe}}
-
-  <div class="grid-row">
-    <div class="column-two-thirds">
-
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
 
 {% import folder+"/custom_inc/macros.html" as macros %}
@@ -120,11 +122,11 @@ Assessments - GOV.UK
 <!-- NOW WRITE THE ASSESSMENT LIST IF THERE ARE SOME ======================= -->
 
 {% if assessments=="yes" %}
-    <h1 class="heading-large" id="radio_label">What do we need to assess?</h1>
+    <h1 class="govuk-heading-l" id="radio_label">What do we need to assess?</h1>
 
     <p>{{ activityList }}</p>
 
-    <dl class="govuk-check-your-answers cya-questions-verywide">
+    <dl class="govuk-summary-list">
 {% endif %}
   
 {% if wasteRecoveryPlan=="yes" %}
@@ -135,10 +137,10 @@ Assessments - GOV.UK
 {% endif %}
 
 {% if firePreventionPlanIncluded=="yes" %}
-      <div>
-        <dt class="cya-answer">
-          Fire prevention plan assessment
-        </dt>
+<div class="govuk-summary-list__row">
+    <dd class="govuk-summary-list__value">
+        Fire prevention plan assessment
+        </dd>
       </div>
 {% endif %}
 
@@ -157,10 +159,10 @@ Assessments - GOV.UK
 {% endif %}
 
 {% if odourManagementPlanIncluded=="yes" %}
-      <div>
-        <dt class="cya-answer">
+<div class="govuk-summary-list__row">
+    <dd class="govuk-summary-list__value">
           Odour management plan assessment
-        </dt>
+        </dd>
       </div>
 {% endif %}
 
@@ -190,7 +192,7 @@ wood
 
 {% if assessments=="yes" %}
 {% else %}  
-    <h1 class="heading-large">What plans do we need to assess?</h1>
+    <h1 class="govuk-heading-l">What plans do we need to assess?</h1>
 {% endif %}
 <p>
   Select any other assessments identified by your risk assessment or as a result of pre-application advice. 
@@ -199,7 +201,9 @@ wood
 
         
         
-<div class="form-group">
+<div class="govuk-form-group">
+    <fieldset class="govuk-fieldset" aria-labelledby="radio_label">
+        <div class="govuk-checkboxes">
 
   
 <!-- Output hidden field to pass on the data for included plans -->
@@ -244,21 +248,25 @@ wood
 {# macros.checkbox("Waste recovery plan","wasteRecoveryPlan","a9","yes") 
   if wasteRecoveryPlan=="no" 
   else macros.hidden("wasteRecoveryPlan",wasteRecoveryPlan) #}
-                          
+</div>
+</fieldset>
+                     
 </div>
 
 
 
         
-        <div class="form-group">
-          <button type="submit" class="button" name="Continue">Continue</button>
-        </div>
-      </form>
+<div class="form-group">
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+
+  </div>
 
 
     </div>
   </div>
 
-</main>
 
 {% endblock %}

@@ -159,7 +159,6 @@ router.get('/save-and-return/check', function (req, res) {
 router.get('/bespoke/whats-next', function (req, res) {
   res.render(folder + '/bespoke/whats-next',{
     "formAction":"/"+ folder + "/bespoke/activities-assessments/bespoke-type"
-  })
 })
 
 // Facility type ==============================================================
@@ -244,36 +243,6 @@ router.get('/bespoke/activities-assessments/add-confirm-1', function (req, res) 
     })
 })
 
-// function to use to check dupes
-function hasDuplicates(array) {
-   return (new Set(array)).size !== array.length;
-}
-
-// Name activity check - not real page =============================================
-router.all('/name-check', function (req, res) {
-  if (hasDuplicates(req.session.data.chosenPermitID)) {
-    // find duplicate ID
-    var input = req.session.data.chosenPermitID
-    // from stack overflow
-    // https://bit.ly/2Ec3VXf
-    var duplicates = input.reduce(function(acc, el, i, arr) {
-      if (arr.indexOf(el) !== i && acc.indexOf(el) < 0) acc.push(el); return acc;
-    }, []);
-    req.session.data={add:[duplicates]} // add back into data object to use on name page
-
-    res.redirect("/"+ folder + "/bespoke/activities-assessments/name-activities")
-  } else {  
-    res.redirect("/"+ folder + "/bespoke/assessments/your-assessments")
-  }
-})
-
-// Names, if needed
-router.post('/bespoke/activities-assessments/name-activities', function (req, res) {
-    res.render(folder + '/bespoke/activities-assessments/name-activities',{
-      "formAction":"/"+ folder + "/bespoke/assessments/your-assessments"
-    })
-})
-
 
 // Site or mobile =============================================
 router.get('/bespoke/mobile-plant', function (req, res) {
@@ -303,31 +272,6 @@ router.get('/bespoke/activities-assessments/select-mobile-activity', function (r
 })
 
 
-// Select type - GET
-router.get('/bespoke/activities-assessments/bespoke-category', function (req, res) {
-    res.render(folder + '/bespoke/activities-assessments/bespoke-category',{
-      "formAction":"/"+ folder + "/bespoke/activities-assessments/bespoke-choose-activity"
-    })
-})
-
-// Select type POST version
-router.post('/bespoke/activities-assessments/bespoke-category', function (req, res) {
-    res.render(folder + '/bespoke/activities-assessments/bespoke-category',{
-      "formAction":"/"+ folder + "/bespoke/activities-assessments/bespoke-choose-activity"
-    })
-})
-
-// Select activity page
-router.post('/bespoke/activities-assessments/bespoke-choose-activity', function (req, res) {
-    res.render(folder + '/bespoke/activities-assessments/bespoke-choose-activity',{
-      "formAction":"/"+ folder + "/bespoke/assessments/your-assessments"
-    })
-})
-router.get('/bespoke/activities-assessments/bespoke-choose-activity', function (req, res) {
-    res.render(folder + '/bespoke/activities-assessments/bespoke-choose-activity',{
-      "formAction":"/"+ folder + "/bespoke/assessments/your-assessments"
-    })
-})
 
 // Sensitive receptor
 router.post('/bespoke/check-assessments/sensitive-receptor', function (req, res) {

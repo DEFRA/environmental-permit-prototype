@@ -2,7 +2,7 @@
 {% macro radio_button(label,name,id,value,labelClass='') %}
 <div class="multiple-choice permitSelector">
   <input id="{{name}}_{{id}}" type="radio" name="{{name}}" value="{{ value }}">
-  <label class="selection-button-radio{{labelClass}}" for="{{name}}_{{id}}">
+  <label class="govuk-label govuk-checkboxes__label{{labelClass}}" for="{{name}}_{{id}}">
     {{ label }}
   </label>
  </div>
@@ -10,9 +10,9 @@
 
 
 {% macro checkbox(label,name,id,value,labelClass='') %}
-<div class="multiple-choice">
-  <input id="{{name}}_{{id}}" type="checkbox" name="{{name}}" value="{{ value }}">
-  <label class="selection-button-radio{{labelClass}}" for="{{name}}_{{id}}">
+<div class="govuk-checkboxes__item">
+    <input class="govuk-checkboxes__input" id="{{name}}_{{id}}" type="checkbox" name="{{name}}" value="{{ value }}">
+  <label class="govuk-label govuk-checkboxes__label{{labelClass}}" for="{{name}}_{{id}}">
     {{ label }}
   </label>
  </div>
@@ -162,14 +162,15 @@
 
 
 {% macro taskHead( number, heading ) %}
-<h2 class="task-list-section">
-  <span class="task-list-section-number">{{number}}. </span> {{heading}}
-</h2>
+<h2 class="app-task-list__section">
+    <span class="app-task-list__section-number">{{number}}. </span> {{heading}}
+  </h2>
+
 {% endmacro %}
 
 {% macro task( taskTitle, permitValueToTest, pathToTaskPage, taskListErrorVariable  ) %}
 
-  <li class="task-list-item {% if taskListError and permitValueToTest==null %} form-group-error{% endif %}" id="{{ taskTitle  | lower | replace(' ', '-') | replace('\'', '') | safe }}">
+  <li class="app-task-list__item" {% if taskListError and permitValueToTest==null %} form-group-error{% endif %}" id="{{ taskTitle  | lower | replace(' ', '-') | replace('\'', '') | safe }}">
     
     {% if taskListErrorVariable and permitValueToTest==null %}
       <span class="error-message">
@@ -177,7 +178,7 @@
       </span>
     {% endif %}
     
-    <a class="task-name" href="{{ pathToTaskPage }}">
+    <a class="app-task-list__task-name" href="{{ pathToTaskPage }}">
       {{ taskTitle }}
     </a>
     {% if permitValueToTest!=null %}

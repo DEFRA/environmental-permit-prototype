@@ -33,23 +33,24 @@
     {% set appType = 'bespoke' %}
 {% endif %}
 
-{% block page_title %}
-{{title}} - GOV.UK
+{% block pageTitle %}
+    {{title}} - GOV.UK
 {% endblock %}
 
-{% block content %}
 
 {% import folder+"/custom_inc/macros.html" as macros %}
 {% from folder+"/custom_inc/permit-list-json.html" import permits %}
 {% from folder+"/bespoke/activities-assessments/json/bespoke-assessment-list.html" import assessments %}
 {% from folder+"/bespoke/activities-assessments/json/bespoke_activities.html" import activities %}
 
-<main id="content" role="main" class="task-list">
+    {% block beforeContent %}
+
   {% include "includes/phase_banner_beta.html" %}
+  {% endblock %}
+  {% block content %}
 
-
-  <div class="grid-row">
-    <div class="column-two-thirds column-minimum">
+  <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
 
       <form method="post" action="/{{folder}}/check/check-answers" name="tasklist">
 
@@ -69,7 +70,7 @@
 
 
 
-        <h1 class="heading-large">
+        <h1 class="govuk-heading-l">
           <span class="visually-hidden">Task list:</span>
           {% if appType=="bespoke" %}
               Apply for a bespoke environmental permit
@@ -83,13 +84,13 @@
 
 {% if appType=="bespoke" %}
       <!-- Output chosen activities ############################################ -->
-      {% for ref in permit.chosenPermitID %}
+      <p> {% for ref in permit.chosenPermitID %}
             {% for aNumber, aData in activities %}
                   {% if aNumber==ref %}
 
                   <!-- Output as a paragraph ============================== -->
                         {{ aData.D_Activity_Title }}<!-- ({{ ref }})--><br>
-
+                      
                   {% endif %}
             {% else %}
             <p>No activities</p>
@@ -99,7 +100,7 @@
       {% endfor %}
 
       <!-- Output chosen assessments ############################################ -->
-      {{ "Ammonia modelling assessment<br>" | safe
+       {{ "Ammonia modelling assessment<br>" | safe
         if permit.ammoniaModelling=="yes" }}
 
       {{ "Dust and bio-aerosol management plan assessment<br>" | safe 
@@ -135,7 +136,7 @@
 
 
       <!-- Link to change permit activities ##################################### -->
-      <p>
+      </br>
         <a href="/{{folder}}/bespoke/activities-assessments/bespoke-choose-activity">
           Change activities or assessments
         </a>
@@ -165,7 +166,6 @@
 </div>
 
 </div>
-</main>
 
 {% endblock %}
 
