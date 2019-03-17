@@ -182,7 +182,7 @@
       {{ taskTitle }}
     </a>
     {% if permitValueToTest!=null %}
-      <strong class="task-completed" id="waste-codes-upload-completed">Completed</strong>
+      <strong class="govuk-tag app-task-list__task-completed" id="waste-codes-upload-completed">Completed</strong>
     {% else %}
       <input type="hidden" name="complete[]" value="{{ taskTitle }}">
     {% endif %}

@@ -1,5 +1,4 @@
 {% extends "layout.html" %}
-  {% include "includes/phase_banner_beta.html" %}
         {% if permit.GOTEMAIL %}
 {% set title = "You have set up save and return for your application" %}
       {% endif %}
@@ -11,17 +10,20 @@
     {{title}} - GOV.UK
 {% endblock %}
 
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
 {% block content %}
 
-<main id="content" role="main">
 
 
-  <div class="grid-row">
-    <div class="column-two-thirds">
-
-
-
-        <h1 class="heading-large">{{title}}</h1>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+            <h1 class="govuk-heading-l">{{title}}</h1>
       {% if permit.GOTEMAIL %}
 
 
@@ -32,8 +34,10 @@
       <p class="text">
 Every time you complete a screen we will save your data automatically.
       </p>
-        <div class="form-group">
-        <button type="submit" class="button" name="Continue">Return to task list</button>
+      <div class="form-group">
+          {{ govukButton({
+            text: "Return to the task list"
+          }) }}
       </div>
 
     </form>
@@ -52,22 +56,24 @@ Every time you complete a screen we will save your data automatically.
       {% else %}
       
       
-      <div class="panel panel-border-wide">
-        <p>
-          We will email you a link you can use to get back to your saved application. Every time you complete a screen we will save your data automatically.
-        </p>
-      </div>
+      {{ govukInsetText({
+            text:  "We will email you a link you can use to get back to your saved application. Every time you complete a screen we will save your data automatically."
+      }) }}
 
         <form action="confirm" method="post">
-        <fieldset>
-          <legend class="visuallyhidden">
-            Save and return later
-          </legend>
+        <fieldset class="govuk-fieldset">
 
-          <div class="form-group">
-            <label class="form-label" for="user_email">Email address</label>
-            <input class="form-control form-control-3-4" id="user_email" name="saveReturnEmail" type="text" value="{{permit.saveReturnEmail}}">
-          </div>
+          {{ govukInput({
+            label: {
+              text: "Email address"
+            },
+            hint: {
+              text: ""
+          },
+            classes: "govuk-input--width-20",
+            id: "user_email",
+            name: "saveReturnEmail" 
+          }) }}
 
           <!-- ######################################################
 
@@ -117,5 +123,4 @@ Every time you complete a screen we will save your data automatically.
     </div>
   </div>
 
-</main>
 {% endblock %}

@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+{% set title = "Check your email" %}
+
+
+{% block page_title %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+      <form action="{{formAction}}" method="post">
+
+
+          <h1 class="heading-large">Check your email</h1>
+
+          <p>We sent a secure link to <span class="bold">{{ permit.saveReturnEmail }}</span> that allows you to return to your application at any time.</p>
+
+          {{ govukInsetText({
+            text:  "Check your spam or junk mail folders if you cannot find the email. Some of these emails are being wrongly marked as spam."
+          }) }}
+
+
+
+
+          <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset" aria-describedby="how-contacted-conditional-hint">
+
+                
+                  <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="example-contact-by-email" type="radio" name="GOTEMAIL" value="YES">
+        <label class="govuk-label govuk-radios__label" for="example-contact-by-email">I got the email</label>
+      </div>
+
+      <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="example-contact-by-phone" type="radio" name="GOTEMAIL" value="NO">
+        <label class="govuk-label govuk-radios__label" for="example-contact-by-phone">I checked spam and junk and cannot find the email - resend it
+        </label>
+      </div>
+      
+      <div class="panel panel-border-narrow js-hidden" id="contact-by-phone">
+        <ol class="list list-number">
+<li>Check your spam folder.</li>
+<li>Search for 'standard rules permit application' in your emails.</li>
+<li>Wait for a few minutes - email can take a while to arrive.</li>
+<li>Select continue to resend the email.</a>
+</li>
+</ul></br>
+<input class="form-control form-control-3-4" id="user_email" name="saveReturnEmail" type="text" value="{{permit.saveReturnEmail}}">
+      </div>
+      </fieldset>
+      <div class="form-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+      </div>
+
+      </form>
+
+      <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>For testing:
+        <a href="/{{folder}}/save-and-return/email-save-link" target="_blank">link email</a>
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}

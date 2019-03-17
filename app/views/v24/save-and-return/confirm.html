@@ -2,24 +2,28 @@
 
 {% set title = "Make sure this is right" %}
 
-{% block page_title %}
+
+{% block pageTitle %}
     {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
 {% endblock %}
 
 {% block content %}
 
-<main id="content" role="main">
-  {% include "includes/phase_banner_beta.html" %}
-
-  <div class="grid-row">
-    <div class="column-two-thirds">
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
       <form action="{{formAction}}" method="post">
 
         <!-- Change save progress so we do not show the save screens again -->
         <input type="hidden" name="saveProgress" value="save-link-sent">
 
-        <h1 class="heading-large">{{title}}</h1>
+        <h1 class="govuk-heading-l">{{title}}</h1>
 
         {% if permit.saveReturnPhone %}
 
@@ -36,16 +40,24 @@
 
         {% else %}
 
-          <div class="form-group">
-            <label for="send_email_here" class="visuallyhidden">The email you entered</label>
-            <input class="form-control form-control-3-4" id="user_email" name="saveReturnEmail" type="text" value="{{permit.saveReturnEmail}}">
+        <fieldset class="govuk-fieldset">
+
+            <div class="govuk-form-group">
+                <label for="send_email_here" class="govuk-visually-hidden">The email you entered</label>
+            <input class="govuk-input govuk-input--width-20" id="user_email" name="saveReturnEmail" type="text" value="{{permit.saveReturnEmail}}">
           </div>
+
+        </fieldset>
 
           <p>If your email address is wrong, just change it.</p>
 
           <div class="form-group">
-            <button type="submit" class="button" name="Yes - this is my email">Yes - this is my email</button>
-          </div>
+
+              {{ govukButton({
+                text: "Yes - this is my email"
+              }) }}
+  
+            </div>
 
         {% endif %}
 
