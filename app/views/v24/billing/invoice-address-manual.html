@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% set title = "Enter the invoice address" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            {{title}}
+        </legend>
+
+        <form action="/{{folder}}/billing/invoice-contact" method="post">
+        
+        <p>
+          <span class="postcode-prefix">Postcode:</span>
+          <span class="postcode">BS1 5AH</span>
+          <a href="/{{folder}}/billing/invoice-postcode">
+            Change<span class="visuallyhidden"> postcode</span>
+          </a>
+        </p>
+
+        <fieldset class="govuk-fieldset">
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="premises">Building name or number
+              <span class="govuk-hint">For example, a business premises name or house number</span>
+            </label>
+            <input type="text" class="govuk-input govuk-!-width-one-half" id="invoice-premises" />
+          </div>
+
+          <div class="govuk-form-group">
+              <label class="govuk-label" for="street_address">Address line 1</label>
+            <input type="text" class="govuk-input govuk-!-width-one-half" id="invoice-street-address" />
+          </div>
+
+          <div class="govuk-form-group">
+              <label class="govuk-label" for="locality">Address line 2 (optional)</label>
+            <input type="text" class="govuk-input govuk-!-width-one-half" id="invoice-locality" />
+          </div>
+
+          <div class="govuk-form-group">
+              <label class="govuk-label" for="town">Town or city</label>
+            <input type="text" class="govuk-input govuk-!-width-one-half" id="invoice-town" />
+          </div>
+
+        </fieldset>
+
+
+        <div class="form-group">
+          {{submitButton|safe}}{{completeLink|safe}}
+        </div>
+
+      </form>
+
+      
+    </div>
+  </div>
+
+</main>
+
+{% endblock %}
