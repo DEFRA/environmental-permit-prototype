@@ -43,3 +43,9 @@ $govuk-global-styles: true;
   }
 
   .totalCost{font-weight:bold;}
+
+  #completeLink{
+    display:inline-block;
+    font-size: 18px; 
+    padding:9px 0 0 1em;
+  }

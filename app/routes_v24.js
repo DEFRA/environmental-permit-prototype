@@ -17,7 +17,7 @@ var sample = require('./views/'+folder+'/custom_inc/sample-permit.js')
 
 // HTML for standard buttons
 var backlink = '<a href="javascript:history.back()" class="govuk-back-link">Back</a>'
-var submitButton = '<button type="submit" id="continueButton" class="button" name="Continue">Save and continue</button>'
+var submitButton = '<button type="submit" id="continueButton" class="govuk-button" name="Continue">Save and continue</button>'
 var completeLink = '<a id="completeLink" href="/'+folder+'/save-and-return/check">Continue later</a>'
 // completeLink WAS <span id="completeLink"><a href="#" id="completeLater">Complete later</a></span>
 
@@ -415,6 +415,21 @@ router.post('/bespoke/activities-assessments/confirm', function (req, res) {
 router.post('/save-and-return/confirm', function (req, res) {
   res.render(folder + '/save-and-return/confirm',{
     "formAction":"/"+ folder + "/save-and-return/sent"
+  })
+})
+
+
+// Contact ===================================================================
+
+router.get('/contact/contact-details', function (req, res) {
+  res.render(folder + '/contact/contact-details',{
+      "formAction":"/"+ folder + "/site/site-contact"
+  })
+})
+
+router.post('/site/site-contact', function (req, res) {
+  res.render(folder + '/site/site-contact',{
+      "formAction":"/"+ folder + "/check/task-list"
   })
 })
 

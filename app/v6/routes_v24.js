@@ -624,23 +624,6 @@ router.get('/preapp/preapp-discussion', function (req, res) {
 })
 
 
-
-
-// Contact ===================================================================
-
-router.get('/contact/contact-details', function (req, res) {
-  res.render(folder + '/contact/contact-details',{
-      "formAction":"/"+ folder + "/site/site-contact"
-  })
-})
-
-router.post('/site/site-contact', function (req, res) {
-  res.render(folder + '/site/site-contact',{
-      "formAction":"/"+ folder + "/check/task-list"
-  })
-})
-
-
 // Location check
 router.post('/contact/contact-details', function (req, res) {
   if(req.session.data['locationCheck']=="Yes"){
