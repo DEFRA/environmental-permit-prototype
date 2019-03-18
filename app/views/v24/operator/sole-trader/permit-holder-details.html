@@ -2,40 +2,51 @@
 
 {% set title = "What are the permit holder’s contact details?" %}
 
-{% block page_title %}
+{% extends "layout.html" %}
+
+{% set title = "Have you already had pre-application advice from us?" %}
+
+{% block pageTitle %}
     {{title}} - GOV.UK
 {% endblock %}
 
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
 {% block content %}
-<main id="content" role="main">
-  {% include "includes/phase_banner_beta.html" %}
 
-  {{backlink|safe}}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-
-    <h1 class="heading-large">{{title}}</h1>
 
     <form action="/{{folder}}/operator/sole-trader/postcode" method="post">
 
-          <div class="form-group">
-            <label class="form-label visuallyhidden" for="companyRegNum">
-              {{title}}
-            </label>
-            <label class="form-label" for="contact-phone">Email address</label>
-              <span class="form-hint">Used to send a copy of the permit and any official notices
+          <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset">
+
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                  {{title}}
+              </legend>
+
+            <label class="govuk-label" for="contact-phone">Email address</label>
+              <span class="govuk-hint">Used to send a copy of the permit and any official notices
               </span>
-            <input class="form-control" id="contact-phone" name="contact-phone" type="text">
+            <input class="govuk-input govuk-!-width-one-half" id="contact-phone" name="contact-phone" type="text">
           </div>
           <div class="form-group">
-            <label class="form-label" for="contact-email">Telephone number</label>
-              <span class="form-hint">This can be a landline or mobile
+            <label class="govuk-label" for="contact-email">Telephone number</label>
+              <span class="govuk-hint">This can be a landline or mobile
               </span>
-            <input class="form-control" id="contact-email" name="contact-email" type="text">
+            <input class="govuk-input govuk-!-width-one-half" id="contact-email" name="contact-email" type="text">
+          </fieldset>
+
           </div>
 
-
+        </br>
+      </br>
 
       <div class="form-group">
         {{submitButton|safe}}{{completeLink|safe}}
@@ -46,6 +57,5 @@
   </div>
 </div>
 
-</main>
 
 {% endblock %}

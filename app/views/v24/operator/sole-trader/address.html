@@ -2,40 +2,42 @@
 
 {% set title = "What is their address?" %}
 
-{% block page_title %}
+{% block pageTitle %}
     {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
 {% endblock %}
 
 {% block content %}
 
-<main id="content" role="main">
-  {% include "includes/phase_banner_beta.html" %}
-
-  {{backlink|safe}}
-
-  <div class="grid-row">
-      <div class="column-two-thirds">
-
-
-      <h1 class="heading-large" id="radio_label">{{title}}</h1>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
       <form action="/{{folder}}/operator/sole-trader/convictions" method="post">
-
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            {{title}}
+        </legend>
 <p>
   <span class="postcode-prefix">Postcode:</span>
   <span class="postcode">BS1 5AH</span>
   <a href="/{{folder}}/operator/individual/postcode">
-      Change<span class="visuallyhidden"> postcode</span>
+      Change<span class="govuk-visually-hidden"> postcode</span>
   </a>
 </p>
 
-        <fieldset>
-          <legend class="visuallyhidden">Address</legend>
 
+<div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+
+ 
           <!-- Address -->
-          <div class="form-group">
-            <label class="form-label" for="the_address">Address</label>
-            <select class="address-select form-control form-control-char-auto" id="the_address" aria-describedby="manual_hint" name="individualAddress">
+ 
+            <label class="govuk-label" for="the_address">Address</label>
+            <select class="govuk-select form-control form-control-char-auto" id="the_address" aria-describedby="manual_hint" name="individualAddress">
               <option value="">15 addresses found</option>
               <option value="3, GRANGE ROAD, BRISTOL">3, GRANGE ROAD, BRISTOL, BS1 5AH</option>
               <option value="5, GRANGE ROAD, BRISTOL">5, GRANGE ROAD, BRISTOL, BS1 5AH</option>
@@ -57,7 +59,7 @@
           </div>
 
           <p class="label_link" id="manual_hint"><a href="/{{folder}}/operator/sole-trader/address-manual">
-            <span class="visuallyhidden">
+            <span class="govuk-visually-hidden">
               Enter address manually
             </span>
             I cannot find the address in the list
@@ -75,7 +77,5 @@
 
     </div>
   </div>
-
-</main>
 
 {% endblock %}

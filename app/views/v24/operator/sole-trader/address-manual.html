@@ -2,53 +2,54 @@
 
 {% set title = "What is their address?" %}
 
-{% block page_title %}
+{% block pageTitle %}
     {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
 {% endblock %}
 
 {% block content %}
 
-<main id="content" role="main">
-  {% include "includes/phase_banner_beta.html" %}
-
-  {{backlink|safe}}
-
-  <div class="grid-row">
-    <div class="column-two-thirds">
-
-<h1 class="heading-large" id="radio_label">{{title}}</h1>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
 <form action="/{{folder}}/operator/sole-trader/convictions" method="post">
 
-<fieldset>
-  <legend class="visuallyhidden">Site address</legend>
+  <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset">
 
-  <div class="form-group">
-    <label class="form-label" for="indiv-premises">Building name or number
-      <span class="form-hint">For example, a business premises name or house number</span>
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          {{title}}
+      </legend>
+    <label class="govuk-label" for="indiv-premises">Building name or number
+      <span class="govuk-hint">For example, a business premises name or house number</span>
     </label>
-    <input type="text" class="form-control form-control-char-40" id="indiv-premises" />
+    <input type="text" class="govuk-input govuk-!-width-one-half" id="indiv-premises" />
   </div>
 
-  <div class="form-group">
-    <label class="form-label" for="indiv-street_address">Address line 1</label>
-    <input type="text" class="form-control form-control-char-40" id="indiv-street_address" />
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="indiv-street_address">Address line 1</label>
+    <input type="text" class="govuk-input govuk-!-width-one-half" id="indiv-street_address" />
   </div>
 
-  <div class="form-group">
-    <label class="form-label" for="indiv-locality">Address line 2 (optional)</label>
-    <input type="text" class="form-control form-control-char-40" id="indiv-locality" />
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="indiv-locality">Address line 2 (optional)</label>
+    <input type="text" class="govuk-input govuk-!-width-one-half" id="indiv-locality" />
   </div>
 
-  <div class="form-group">
-    <label class="form-label" for="indiv-town">Town or city</label>
-    <input type="text" class="form-control form-control-char-40" id="indiv-town" />
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="indiv-town">Town or city</label>
+    <input type="text" class="govuk-input govuk-!-width-one-half" id="indiv-town" />
   </div>
 
-  <div class="form-group">
-    <label class="form-label" for="postcode">UK postcode (optional)
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="postcode">UK postcode (optional)
     </label>
-    <input type="text" class="form-control form-control-char-10" id="postcode" name="sitePostCode" value="" />
+    <input type="text" class="govuk-input govuk-!-width-one-half" id="postcode" name="sitePostCode" value="" />
   </div>
 
 </fieldset>

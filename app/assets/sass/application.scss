@@ -49,3 +49,16 @@ $govuk-global-styles: true;
     font-size: 18px; 
     padding:9px 0 0 1em;
   }
+
+// Address-manual. Spacing bewteen postcode and change link.
+span.postcode {
+  margin-right: 10px;
+}
+
+.form-control-char-auto { // intended for select options that have pre-populated text
+  width: 100%;
+
+  @include media(tablet) {
+    width: auto;
+  }
+}
