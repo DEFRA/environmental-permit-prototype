@@ -115,7 +115,11 @@ Every time you complete a screen we will save your data automatically.
         </div>
 
         <div class="form-group">
-          <button type="submit" class="button" name="Continue">Continue</button>
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
         </div>
 
       </form>

@@ -1,10 +1,12 @@
 {% extends "layout.html" %}
-{% set title = "Check your email" %}
+
+  {% set title = "We have resent the email - check again" %}
 
 
 {% block page_title %}
     {{title}} - GOV.UK
 {% endblock %}
+
 
 {% block beforeContent %}
 {% include "includes/phase_banner_beta.html" %}
@@ -20,16 +22,28 @@
       <form action="{{formAction}}" method="post">
 
 
-          <h1 class="govuk-heading-l">Check your email</h1>
+
+        {% if data.user_phone %}
+
+          <h1 class="heading-large">{{title}}</h1>
+
+          <p>We sent a secure code to <span class="bold">{{ permit.saveReturnPhone }}</span> that allows you to return to your application at any time.</p>
+
+        {% else %}
+
+          <h1 class="govuk-heading-l">{{title}}</h1>
 
           <p>We sent a secure link to <span class="bold">{{ permit.saveReturnEmail }}</span> that allows you to return to your application at any time.</p>
 
-          {{ govukInsetText({
-            text:  "Check your spam or junk mail folders if you cannot find the email. Some of these emails are being wrongly marked as spam."
-          }) }}
+          <p class="text">
+Every time you complete a screen we will save your data automatically.
+          </p>
 
 
-          <div class="govuk-form-group">
+        {% endif %}
+
+
+        <div class="govuk-form-group">
             <fieldset class="govuk-fieldset" aria-describedby="how-contacted-conditional-hint">
               <div class="govuk-radios govuk-radios--conditional" data-module="radios">
                 <div class="govuk-radios__item">
@@ -67,18 +81,19 @@
               </div>
             </fieldset>
           </div>
-
               
-      <div class="form-group">
-          {{ govukButton({
-            text: "Continue"
-          }) }}
-      </div>
+    <div class="form-group">
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+  </div>
+
+  </form>
 
       </form>
 
       <div class="govuk-grid-row">
-          <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-grid-column-two-thirds">
       <p>&nbsp;</p>
       <p>&nbsp;</p>
       <p>&nbsp;</p>
