@@ -497,4 +497,10 @@ router.post('/billing/invoice-contact', function (req, res) {
  })
 })
 
+router.get('/bespoke/treatment-capacity', function (req, res) {
+  res.render(folder + '/bespoke/treatment-capacity',{
+      "formAction":"/"+ folder + "/check/task-list"
+  })
+})
+
 module.exports = router

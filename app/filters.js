@@ -41,6 +41,9 @@ module.exports = function (env) {
   /* ------------------------------------------------------------------
     keep the following line to return your filters to the app
   ------------------------------------------------------------------ */
+  filters.typeof = function(textStr) {
+    return typeof textStr
+}
 
   filters.formatnumber = function(num) {
     var formattedNum = num.toLocaleString('en',{ style: 'currency', currency: 'GBP' })
