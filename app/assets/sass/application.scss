@@ -57,8 +57,9 @@ span.postcode {
 
 .form-control-char-auto { // intended for select options that have pre-populated text
   width: 100%;
+}
 
   @include media(tablet) {
     width: auto;
-  }
+
 }
