@@ -1,20 +1,27 @@
 {% extends "layout.html" %}
 
-{% block page_title %}
+{% block pageTitle %}
     {{title}} - GOV.UK
 {% endblock %}
 
-{% block content %}
-<main id="content" role="main">
-  {% include "includes/phase_banner_beta.html" %}
-  
-  {{backlink|safe}}
-  
-  
-  <div class="grid-row">
-      <div class="column-two-thirds">
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
 
-<h1 class="heading-large">{{title | safe}}</h1>
+{% endblock %}
+
+{% block content %}
+
+  
+
+  <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              {{title | safe}}
+          </legend>
+          <dl class="govuk-summary-list">
+
 
 {% set fileName1 = fileName+"1" %}
 {% set fileName2 = fileName+"2" %}
@@ -37,11 +44,12 @@
 
 
 {% if permit[fileName1] | typeof !== "undefined" %}
-  <dl class="govuk-check-your-answers cya-questions-short">
-    <div>
-      <dt class="cya-answer filelisthead">Uploaded files</dt>
-      <dd class="cya-change changelinks"></dd>
-    </div>
+    <div class="govuk-summary-list__row">
+          
+              <dd class="govuk-summary-list__value">Uploaded files</dd>
+              <dd class="govuk-summary-list__actions"></dd>
+
+                </div>
 {% endif %}
   
 {% import folder+"/custom_inc/macros.html" as macros %}
@@ -60,7 +68,7 @@
   
 {% if permit[fileName1] | typeof == "undefined" %}
     <p class="upload_head">Upload files one at a time</p>
-    <p class="text form-hint">
+    <p class="text govuk-hint">
       {{ fileTypes }} files<br>
       30MB maximum per file
     </p>
@@ -72,17 +80,22 @@
     
 {% else %}
 
-    <div class="form-group">
-      <div class="multiple-choice" data-target="uploadAnotherFile">
-        <input id="uploadOtherFile" name="uploadOtherFile" type="checkbox" value="yes">
-        <label for="uploadOtherFile">
-          Upload another file
-        </label>
-        <input id="dontUploadOtherFile" name="dontUploadOtherFile" type="hidden">
-      </div>
+    <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <div class="govuk-checkboxes" data-module="checkboxes">
+
+            <div class="govuk-checkboxes__item" data-target="uploadAnotherFile">
+               <input class="govuk-checkboxes__input" id="uploadOtherFile" name="uploadOtherFile" type="checkbox" value="yes">
+                   <label class="govuk-label govuk-checkboxes__label" for="uploadOtherFile">
+                       Upload another file
+                    </label>
+              <input id="dontUploadOtherFile" name="dontUploadOtherFile" type="hidden">
+            </div>
+         </div>
+      </fieldset>
     </div>
     <div class="panel panel-border-narrow js-hidden" id="uploadAnotherFile">
-      <p class="text form-hint">
+      <p class="text govuk-hint">
         {{ fileTypes }} files<br>
         30MB maximum per file
       </p>
@@ -129,6 +142,5 @@
 
     </div>
   </div>
-</main>
 
 {% endblock %}

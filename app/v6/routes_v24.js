@@ -719,36 +719,6 @@ router.get('/evidence/site-plan-check', function (req, res) {
 })
 
 
-// Environmental risk assessment ==========================================================
-router.get('/bespoke/upload-environmental-risk-assessment', function (req, res) {
-  res.render(folder + '/bespoke/upload-environmental-risk-assessment',{
-        "formAction":"/"+ folder + "/check-environmental-risk-assessment"
-    })
-})
-
-// fake route for first check of file uploads
-router.post('/check-environmental-risk-assessment', function (req, res) {
-    res.render(folder + '/bespoke/upload-environmental-risk-assessment',{
-      "formAction":"/"+ folder + "/check-environmental-risk-assessment2"
-    })
-})
-
-// fake route for second check of file uploads
-router.post('/check-environmental-risk-assessment2', function (req, res) {
-  if(req.session.data['uploadOtherFile']=="yes"){
-    res.render(folder + '/bespoke/upload-environmental-risk-assessment',{
-      "formAction":"/"+ folder + "/check-environmental-risk-assessment2"
-    })
-  } else {
-    // Display task list
-    res.render(folder + '/check/task-list',{
-        "formAction":"/"+ folder + "/check/task-list"
-    })
-  }
-})
-
-
-
 
 // Technical ability ==========================================================
 
@@ -1581,29 +1551,6 @@ router.all('/upload-site-plan', function (req, res) {
   }
 })
 
-// NON TECH SUMMARY UPLOAD ========================================================
-router.all('/upload-non-technical-summary', function (req, res) {
-  var path="/upload-non-technical-summary"
-  var title="Provide a non-technical summary"
-  var fileName="NonTechSummary"
-  var guidanceTop="nontechsummarytop"
-  var guidanceBot=""
-  var fileTypes="PDF, JPG, DOC or DOCX"
-  
-  if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
-    delete req.session.data['dontUploadOtherFile']
-    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
-    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
-    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
-    // Back to the task list
-    res.render(folder + "/check/task-list",{
-          "formAction":"/"+ folder + "/check/check-answers"
-    })
-  } else {  // show upload page
-    res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
-  }
-})
-
 
 // EUROPEAN WASTE CODES UPLOAD ========================================================
 router.all('/upload-waste-codes', function (req, res) {
@@ -1628,29 +1575,6 @@ router.all('/upload-waste-codes', function (req, res) {
   }
 })
 
-
-// ENVIRONMENTAL RISK ASSESSMENT UPLOAD ========================================================
-router.all('/upload-environmental-risk-assessment', function (req, res) {
-  var path="/upload-environmental-risk-assessment"
-  var title="Upload the environmental risk assessment"
-  var fileName="EnvRiskAssessment"
-  var guidanceTop="envriskassesstop"
-  var guidanceBot=""
-  var fileTypes="PDF, JPG, DOC or DOCX"
-  
-  if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
-    delete req.session.data['dontUploadOtherFile']
-    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
-    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
-    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
-    // Back to the task list
-    res.render(folder + "/check/task-list",{
-          "formAction":"/"+ folder + "/check/check-answers"
-    })
-  } else {  // show upload page
-    res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
-  }
-})
 
 // MANAGEMENT SYSTEM UPLOAD ========================================================
 router.all('/upload-management-system-summary', function (req, res) {

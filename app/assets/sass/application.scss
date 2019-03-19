@@ -49,3 +49,43 @@ $govuk-global-styles: true;
     font-size: 18px; 
     padding:9px 0 0 1em;
   }
+
+
+#upload{
+  padding:1em 0;
+  margin:1em 0 2em 0;
+  border-top:1px solid #bfc1c3;
+  border-bottom:1px solid #bfc1c3;
+  font-size:16px;
+}
+
+.form-uploader #upload{
+  border:none;
+  padding:0;
+  margin:0;
+  font-weight:bold;
+}
+
+.form-uploader{
+  border:2px solid #000;
+  padding:1em;
+}
+
+#uploadForm input[type="file"]::-webkit-file-upload-button{
+    font-size:18px;
+    padding:0.5rem 1rem;
+    background:#dee0e2;
+    color:#000
+}
+#uploadForm input[type=file]:hover,#uploadForm input[type=file]::-webkit-file-upload-button:hover{
+    cursor:pointer
+}
+
+.form-hint-upload{
+  margin-bottom:0;
+}
+
+.upload_head{
+  font-weight:bold;
+  margin-bottom:0;
+}

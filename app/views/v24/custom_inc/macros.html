@@ -36,14 +36,14 @@
 
 
 {% macro uploadList( fileTitle,fileName,fileNameVar,folder,returnPath ) %}
-<div>
-  <dt class="cya-question">
+<div class="govuk-summary-list__row">
+  <dd class="govuk-summary-list__value">
     {{ fileTitle }}
-  </dt>
-  <dd class="cya-answer">
+  </dd>
+  <dd class="govuk-summary-list__value">
     {{ fileName }}
   </dd>
-  <dd class="cya-change">
+  <dd class="govuk-summary-list__actions">
     <a href="/{{folder}}/remove-file?removeFile={{fileNameVar}}&returnPath={{returnPath}}">
       Remove file <span class="govuk-visually-hidden">{{ fileName }}</span>
     </a>
@@ -53,13 +53,13 @@
 
 
 {% macro uploadList2( fileName,fileNameVar ) %}
-<div>
-  <dt class="cya-answer filelist">
+  <div class="govuk-summary-list__row">
+    <dd class="govuk-summary-list__value filelist">
     {{ fileName }}
-  </dt>
-  <dd class="cya-change changelinks">
+  </dd>
+  <dd class="govuk-summary-list__actions">
     <a href="#">
-      Remove file <span class="visuallyhidden">{{ fileName }}</span>
+      Remove file <span class="govuk-visually-hidden">{{ fileName }}</span>
     </a>
   </dd>
 </div>
