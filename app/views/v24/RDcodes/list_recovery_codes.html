@@ -2,21 +2,25 @@
 
 {% set title = "List the recovery R codes for this activity" %}
 
-{% block page_title %}
+{% block pageTitle %}
     {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
 {% endblock %}
 
 {% block content %}
 
-<main id="content" role="main">
-  {% include "includes/phase_banner_beta.html" %}
-  
-  <div class="grid-row">
-    <div class="column-two-thirds">
 
-  <h1 class="heading-large">
-    {{title}}
-  </h1>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            {{title}}
+        </legend>
 
 <!-- Look up first chosen activity ############################################ -->
 {% from folder+"/bespoke/activities-assessments/json/bespoke_activities.html" import activities %}
@@ -35,31 +39,37 @@
 
 
 
-  <h2 class="heading-medium">R codes for  {{activitytext}}</h2>
-  <div class="hint">Select all that apply. Leave blank if there is no recovery for this activity.</div>
+  <h2 class="govuk-heading-m">R codes for  {{activitytext}}</h2>
+  <div class="govuk-hint">Select all that apply. Leave blank if there is no recovery for this activity.</div>
 </br>
 
 {% from folder+"/bespoke/activities-assessments/json/r-codes.html" import rcodes %}
 
 <form action="{{formAction}}" method="post">
 
+    <div class="govuk-form-group">
 
           {% for t in rcodes %}
 
-          <div class="multiple-choice">
-                          <!-- R and D codes stored -->
-            <input id="{{t.rd_code}}" type="checkbox" name="RCodes" value="{{t.rd_code}} {{t.rd_title}}">
-            <label for="{{t.rd_code}}">
+
+                <!-- R and D codes stored -->
+                <div class="govuk-checkboxes" style="margin:1em;">
+                    <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="{{t.rd_code}}" type="checkbox" name="RCodes" value="{{t.rd_code}} {{t.rd_title}}">
+            <label class="govuk-label govuk-checkboxes__label" for="{{t.rd_code}}">
               {{t.rd_code}} {{t.rd_title}} {{"-" if t.rd_hint!=""}} {{t.rd_hint}}
 
             </label>
           </div>
-
+        </div>
           {% else %}
           <p>No types</p>
           {% endfor %}
         </div>
+
+        </div>
       </div>
+
 </br>
 
   <div class="form-group">
@@ -69,6 +79,5 @@
   </div>
 </div>
 
-</main>
 
 {% endblock %}

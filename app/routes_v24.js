@@ -1009,5 +1009,222 @@ router.all('/upload-management-system-summary', function (req, res) {
   }
 })
 
+// R & D codes ===========================================================
+
+router.get('/RDcodes/list_recovery_codes', function (req, res) {
+  res.render(folder + '/RDcodes/list_recovery_codes',{
+    "formAction":"/"+ folder + "/RDcodes/list_disposal_codes"
+  })
+})
+
+router.get('/RDcodes/list_disposal_codes', function (req, res) {
+  res.render(folder + '/RDcodes/list_disposal_codes',{
+    "formAction":"/"+ folder + "/check/task-list"
+  })
+})
+
+
+// Check answers ===================================================================
+
+router.get('/check/check-answers', function (req, res) {
+  res.render(folder + '/check/check-answers',{
+      "formAction":"/"+ folder + "/pay/enter-card-details"
+  })
+})
+
+router.post('/check/check-answers', function (req, res) {
+  var payPath = ""
+  if(paymentMethod=="govpay"){  // yes I know this is ugly
+    payPath = "/pay/payment-method"
+  }
+  if(paymentMethod=="worldpay"){
+    payPath = "/pay/payment-method"
+  }
+
+  if(req.body['complete']=="" || req.body['complete']==null){
+    res.render(folder + '/check/check-answers',{
+        // "formAction":"/"+ folder + "/pay/payment-method", THIS WAS FOR PAYMENT METHOD
+        "formAction":"/"+ folder + payPath
+    })
+  } else {
+    var taskListError = true
+    // show error
+    // instead of /check/not-complete, render task list again
+    res.render(folder + '/check/task-list',{
+        'taskListError': taskListError,
+        // "formAction":"/"+ folder + "/check/task-list"
+    })
+  }
+})
+
+router.get('/check/not-complete', function (req, res) {
+  res.render(folder + '/check/not-complete',{
+  })
+})
+
+
+// Sections: check your answers
+
+router.get('/preapp/check-your-answers', function (req, res) {
+  res.render(folder + '/preapp/check-your-answers',{
+      "formAction":"/"+ folder + "/check/task-list"
+  })
+})
+
+router.get('/contact/check-your-answers', function (req, res) {
+  res.render(folder + '/contact/check-your-answers',{
+      "formAction":"/"+ folder + "/check/task-list"
+  })
+})
+
+router.get('/operator/check-your-answers', function (req, res) {
+  res.render(folder + '/operator/check-your-answers',{
+      "formAction":"/"+ folder + "/check/task-list"
+  })
+})
+
+router.get('/site/check-your-answers', function (req, res) {
+  res.render(folder + '/site/check-your-answers',{
+      "formAction":"/"+ folder + "/check/task-list"
+  })
+})
+
+router.get('/site/site-plan-check-your-answers', function (req, res) {
+  res.render(folder + '/site/site-plan-check-your-answers',{
+      "formAction":"/"+ folder + "/check/task-list"
+  })
+})
+
+router.get('/evidence/industry-check-answers', function (req, res) {
+  res.render(folder + '/evidence/industry-check-answers',{
+      "formAction":"/"+ folder + "/check/task-list"
+  })
+})
+
+router.get('/evidence/management-check-answers', function (req, res) {
+  res.render(folder + '/evidence/management-check-answers',{
+      "formAction":"/"+ folder + "/check/task-list"
+  })
+})
+
+router.get('/evidence/fire-plan-check-answers', function (req, res) {
+  res.render(folder + '/evidence/fire-plan-check-answers',{
+      "formAction":"/"+ folder + "/check/task-list"
+  })
+})
+
+router.get('/check/confidentiality-check-answers', function (req, res) {
+  res.render(folder + '/check/confidentiality-check-answers',{
+      "formAction":"/"+ folder + "/check/task-list"
+  })
+})
+
+router.get('/billing/check-your-answers', function (req, res) {
+  res.render(folder + '/billing/check-your-answers',{
+      "formAction":"/"+ folder + "/check/task-list"
+  })
+})
+
+
+// Submit and pay ======================================================
+router.get('/check/declaration', function (req, res) {
+  res.render(folder + '/check/declaration',{
+        "formAction":"/"+ folder + "/pay/payment-method"
+    })
+})
+
+router.post('/check/declaration', function (req, res) {
+  res.render(folder + '/check/declaration',{
+      "formAction":"/"+ folder + "/pay/payment-method"
+  })
+})
+
+
+
+// Pay ===================================================================
+
+router.post('/pay/payment-method', function (req, res) {
+  res.render(folder + '/pay/payment-method',{
+      "formAction":"/"+ folder + "/pay/how-to-pay"
+  })
+})
+
+// This is not a real page, just a URL for the route
+router.post('/pay/how-to-pay', function (req, res) {
+  if(req.body['paymentMethod']=="Debit or credit card"){ // think you need square bracket for radios
+    // show details page
+      res.render(folder + '/pay/enter-card-details',{
+          "formAction":"/"+ folder + "/pay/confirm-payment"
+      })
+  } else if(req.body['paymentMethod']=="Bank transfer") {
+    // go on to bankruptcy
+    res.render(folder + '/pay/pay-by-bank-transfer',{
+        "formAction":"/"+ folder + "/done/index"
+    })
+  } else {
+    // go on to cheque
+    res.render(folder + '/pay/pay-by-cheque',{
+        "formAction":"/"+ folder + "/done/index"
+    })
+  }
+})
+
+// ENTER CARD DETAILS
+router.post('/pay/enter-card-details', function (req, res) {
+  res.render(folder + '/pay/enter-card-details',{
+      "formAction":"/"+ folder + "/pay/confirm-payment"
+  })
+})
+
+router.post('/pay/confirm-payment', function (req, res) {
+  res.render(folder + '/pay/confirm-payment',{
+      "formAction":"/"+ folder + "/done/index"
+  })
+})
+
+
+// for worldpay instead of gov pay
+router.get('/pay/worldpay/worldpay-card-details', function (req, res) {
+  res.render(folder + '/pay/worldpay/worldpay-card-details',{
+      "formAction":"/"+ folder + "/pay/worldpay/worldpay-success"
+  })
+})
+
+router.get('/pay/worldpay/worldpay-success', function (req, res) {
+  res.render(folder + '/pay/worldpay/worldpay-success',{
+      "formAction":"/"+ folder + "/done/index" // previously /printcopy/index
+  })
+})
+
+
+
+// Get copy of application
+
+router.post('/printcopy/index', function (req, res) {
+  res.render(folder + '/printcopy/index',{
+      "formAction":"/"+ folder + "/done/index"
+  })
+})
+
+// fake PDF
+router.get('/printcopy/app-pdf', function (req, res) {
+  res.render(folder + '/printcopy/app-pdf',{
+  })
+})
+
+router.post('/done/index', function (req, res) {
+  res.render(folder + '/done/index',{
+      "formAction":"NOT_NEEDED"
+  })
+})
+
+// /v2/done/email-confirm Confirmation email
+
+router.get('/done/email-confirm', function (req, res) {
+  res.render(folder + '/done/email-confirm',{
+      "formAction":"NOT_NEEDED"
+  })
+})
+
 
 module.exports = router
