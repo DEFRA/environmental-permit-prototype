@@ -2,22 +2,26 @@
 
 {% set title = "What is the site address?" %}
 
-{% block page_title %}
+{% block pageTitle %}
     {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
 {% endblock %}
 
 {% block content %}
 
-<main id="content" role="main">
-  {% include "includes/phase_banner_beta.html" %}
   
-  {{backlink|safe}}
-  
-  <div class="grid-row">
-    <div class="column-two-thirds">
 
-<h1 class="heading-large" id="radio_label">{{title}}</h1>
-
+  <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              {{title}}
+          </legend>
 <form method="post" action="{{formAction}}">
   
 <p>
@@ -28,12 +32,12 @@
   </a>
 </p>
 
-  <fieldset>
-    <legend id="manual-address" class="visuallyhidden">Site address</legend>
+  <fieldset class="govuk-fieldset">
+    <legend id="manual-address" class="govuk-visually-hidden">Site address</legend>
 
-    <div class="form-group">
-      <label class="form-label" for="the_address">Site address</label>
-      <select class="address-select form-control form-control-char-auto" id="the_address" aria-describedby="manual_hint" name="siteAddress">
+    <div class="govukform-group">
+      <label class="govuk-label" for="the_address">Site address</label>
+      <select class="govuk-select form-control form-control-char-auto" id="the_address" aria-describedby="manual_hint" name="siteAddress">
         <option value="">15 addresses found</option>
         <option value="3, GRANGE ROAD, BRISTOL">3, GRANGE ROAD, BRISTOL, BS1 5AH</option>
         <option value="5, GRANGE ROAD, BRISTOL">5, GRANGE ROAD, BRISTOL, BS1 5AH</option>
@@ -53,15 +57,15 @@
         <option value="19, GRANGE ROAD, BRISTOL">19, GRANGE ROAD, BRISTOL, BS1 5AH</option>
       </select>
     </div>
-
+  </br>
     <p id="manual_hint">
       <a href="/{{folder}}/address/address-manual">
-      <span class="visuallyhidden">Enter address manually</span> 
+      <span class="govuk-visually-hidden">Enter address manually</span> 
       I cannot find the address in the list</a>
     </p>
 
   </fieldset>
-
+</br>
   <div class="form-group">
       {{submitButton|safe}}{{completeLink|safe}}
   </div>

@@ -557,6 +557,28 @@ router.post('/check-environmental-risk-assessment2', function (req, res) {
 })
 
 
+// EUROPEAN WASTE CODES UPLOAD ========================================================
+router.all('/upload-waste-codes', function (req, res) {
+  var path="/upload-waste-codes"
+  var title="Upload a document that lists the waste codes you want to accept"
+  var fileName="WasteCodes"
+  var guidanceTop="wastecodestop"
+  var guidanceBot=""
+  var fileTypes="PDF, DOC, DOCX, XLSX or XLS"
+  
+  if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
+    delete req.session.data['dontUploadOtherFile']
+    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
+    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
+    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+    // Back to the task list
+    res.render(folder + "/check/task-list",{
+          "formAction":"/"+ folder + "/check/check-answers"
+    })
+  } else {  // show upload page
+    res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
+  }
+})
 
 
 // ENVIRONMENTAL RISK ASSESSMENT UPLOAD ========================================================
@@ -581,5 +603,411 @@ router.all('/upload-environmental-risk-assessment', function (req, res) {
     res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
   }
 })
+
+// FIRE PLAN UPLOAD ========================================================
+router.all('/upload-fire-plan', function (req, res) {
+  var path="/upload-fire-plan"
+  var title="Upload the fire prevention plan"
+  var fileName="FirePlan"
+  var guidanceTop="fireplantop"
+  var guidanceBot=""
+  var fileTypes="PDF, DOC, DOCX, XLS, XLSX, JPG, ODT or ODS"
+  
+  if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
+    delete req.session.data['dontUploadOtherFile']
+    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
+    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
+    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+    // Back to the task list
+    res.render(folder + "/check/task-list",{
+          "formAction":"/"+ folder + "/check/check-answers"
+    })
+  } else {  // show upload page
+    res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
+  }
+})
+
+// SITE CONDITION REPORT ==========================================================
+
+router.all('/upload-site-condition-report', function (req, res) {
+  var path="/upload-site-condition-report"
+  var title="Complete and upload a site condition report"
+  var fileName="SiteCondition"
+  var guidanceTop="siteconditiontop"
+  var guidanceBot=""
+  var fileTypes="PDF, DOC, DOCX or JPG"
+  
+  if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
+    delete req.session.data['dontUploadOtherFile']
+    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
+    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
+    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+    // Back to the task list
+    res.render(folder + "/check/task-list",{
+          "formAction":"/"+ folder + "/check/check-answers"
+    })
+  } else {  // show upload page
+    res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
+  }
+})
+
+
+// SITE PLAN UPLOAD ========================================================
+router.all('/upload-site-plan', function (req, res) {
+  var path="/upload-site-plan"
+  var title="Upload a site plan"
+  var fileName="SitePlan"
+  var guidanceTop="siteplantop"
+  var guidanceBot=""
+  var fileTypes="PDF or JPG"
+  
+  if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
+    delete req.session.data['dontUploadOtherFile']
+    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
+    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
+    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+    // Back to the task list
+    res.render(folder + "/check/task-list",{
+          "formAction":"/"+ folder + "/check/check-answers"
+    })
+  } else {  // show upload page
+    res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
+  }
+})
+
+
+
+// LIST TECH STANDARDS UPLOAD ========================================================
+router.all('/list-technical-standards', function (req, res) {
+  var path="/list-technical-standards"
+  var title="List the technical standards you use"
+  var fileName="TechStandards"
+  var guidanceTop="techstandardslisttop"
+  var guidanceBot=""
+  var fileTypes="PDF, JPG, DOC or DOCX"
+  
+  if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
+    delete req.session.data['dontUploadOtherFile']
+    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
+    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
+    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+    // Back to the task list
+    res.render(folder + "/check/task-list",{
+          "formAction":"/"+ folder + "/check/check-answers"
+    })
+  } else {  // show upload page
+    res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
+  }
+})
+
+
+
+// ODOUR MANAGEMENT PLAN UPLOAD ========================================================
+router.all('/upload-odour-management-plan', function (req, res) {
+  var path="/upload-odour-management-plan"
+  var title="Upload the odour management plan"
+  var fileName="OdourPlan"
+  var guidanceTop="odourplantop"
+  var guidanceBot=""
+  var fileTypes="PDF, DOC, DOCX or JPG"
+  
+  if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
+    delete req.session.data['dontUploadOtherFile']
+    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
+    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
+    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+    // Back to the task list
+    res.render(folder + "/check/task-list",{
+          "formAction":"/"+ folder + "/check/check-answers"
+    })
+  } else {  // show upload page
+    res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
+  }
+})
+
+
+// EMISSIONS PLAN UPLOAD ========================================================
+router.all('/upload-emissions-management-plan', function (req, res) {
+  var path="/upload-emissions-management-plan"
+  var title="Upload the emissions management plan"
+  var fileName="EmissionsPlan"
+  var guidanceTop="emissionsplantop"
+  var guidanceBot=""
+  var fileTypes="PDF, DOC, DOCX or JPG"
+  
+  if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
+    delete req.session.data['dontUploadOtherFile']
+    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
+    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
+    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+    // Back to the task list
+    res.render(folder + "/check/task-list",{
+          "formAction":"/"+ folder + "/check/check-answers"
+    })
+  } else {  // show upload page
+    res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
+  }
+})
+
+
+
+// NOISE PLAN UPLOAD ========================================================
+router.all('/upload-noise-plan', function (req, res) {
+  var path="/upload-noise-plan"
+  var title="Upload the noise and vibration management plan"
+  var fileName="NoisePlan"
+  var guidanceTop="noiseplantop"
+  var guidanceBot=""
+  var fileTypes="PDF, DOC, DOCX or JPG"
+  
+  if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
+    delete req.session.data['dontUploadOtherFile']
+    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
+    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
+    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+    // Back to the task list
+    res.render(folder + "/check/task-list",{
+          "formAction":"/"+ folder + "/check/check-answers"
+    })
+  } else {  // show upload page
+    res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
+  }
+})
+
+router.get('/bespoke/substance-release', function (req, res) {
+  res.render(folder + '/bespoke/substance-release',{
+      "formAction":"/"+ folder + "/check/task-list"
+  })
+})
+
+
+// Site ===================================================================
+
+// site/site-name > /site/grid-reference > /address/postcode > /address/address
+// > /evidence/check-site-plan > /check/task-list
+
+// Add new page site/reason. Link from task-list will be a get
+//router.get('/site/reason', function (req, res) {
+//  res.render(folder + '/site/reason',{
+//      "formAction":"/"+ folder + "/site/site-name",
+//      "permit":req.session.permit // always send permit object to page
+//  })
+//})
+
+router.get('/site/site-name', function (req, res) {
+  res.render(folder + '/site/site-name',{
+      "formAction":"/"+ folder + "/site/grid-reference"
+  })
+})
+
+router.post('/site/grid-reference', function (req, res) {
+  if(req.session.data['locationCheck']=="Yes"){
+      res.render(folder + '/site/grid-reference',{
+          "formAction":"/"+ folder + "/screening/screening-site-plan"
+      })
+  } else {
+  res.render(folder + '/site/grid-reference',{
+      "formAction":"/"+ folder + "/address/postcode"
+   })
+  }
+})
+
+
+router.post('/address/postcode', function (req, res) {
+  res.render(folder + '/address/postcode',{
+      "formAction":"/"+ folder + "/address/address"
+  })
+})
+
+// Location check
+router.post('/address/address', function (req, res) {
+  if(req.session.data['locationCheck']=="Yes"){
+    res.render(folder + '/address/address',{
+        "formAction":"/"+ folder + "/contact/contact-details"
+    })
+  } else {
+    res.render(folder + '/address/address',{
+        "formAction":"/"+ folder + "/check/task-list"
+    })
+  }
+})
+
+
+// Manual address is a link - so a GET
+router.get('/address/address-manual', function (req, res) {
+  res.render(folder + '/address/address-manual',{
+      "formAction":"/"+ folder + "/check/task-list"
+  })
+})
+
+// Technical ability ==========================================================
+
+
+
+router.get('/evidence/techcomp/industry-scheme', function (req, res) {
+  res.render(folder + '/evidence/techcomp/industry-scheme',{
+      "formAction":"/"+ folder + "/evidence/techcomp/get-evidence"
+  })
+})
+
+
+
+// Not a page - just a route to process the form
+router.post('/evidence/techcomp/check-file', function (req, res) {
+      res.render(folder + '/evidence/techcomp/wamitab-details',{
+          "formAction":"/"+ folder + "/evidence/techcomp/manager-details"
+      })
+})
+
+router.get('/evidence/techcomp/manager-details', function (req, res) {
+  res.render(folder + '/evidence/techcomp/manager-details',{
+      "formAction":"/"+ folder + "/check/task-list"
+  })
+})
+
+// The 4 options with GET then go back to task list
+
+router.get('/evidence/techcomp/wamitab-details', function (req, res) {
+  res.render(folder + '/evidence/techcomp/wamitab-details',{
+      "formAction":"/"+ folder + "/check/task-list"
+  })
+})
+
+router.get('/evidence/techcomp/esa-eu-details', function (req, res) {
+  res.render(folder + '/evidence/techcomp/esa-eu-details',{
+      "formAction":"/"+ folder + "/check/task-list"
+  })
+})
+
+router.get('/evidence/techcomp/deemed', function (req, res) {
+  res.render(folder + '/evidence/techcomp/deemed',{
+      "formAction":"/"+ folder + "/check/task-list"
+  })
+})
+
+router.get('/evidence/techcomp/getting-it', function (req, res) {
+  res.render(folder + '/evidence/techcomp/getting-it',{
+      "formAction":"/"+ folder + "/check/task-list"
+  })
+})
+
+
+// Check answers GET
+router.get('/evidence/techcomp/industry-check-answer', function (req, res) {
+  res.render(folder + '/evidence/techcomp/industry-check-answer',{
+      "formAction":"/"+ folder + "/check/task-list"
+  })
+})
+
+
+
+// GET TECHNICAL COMPETENCE UPLOADS
+router.all('/evidence/techcomp/get-evidence', function (req, res) {
+  var path="/evidence/techcomp/get-evidence"
+  var fileTypes="PDF or JPG"
+  var fileName="TechnicalCompetenceFile"
+  var guidanceBot=""
+  
+  if( req.session.data['industryScheme']=='WAMITAB' ) {
+    var title="WAMITAB or EPOC: upload your evidence"
+    var guidanceTop="wamitabtop"
+  } else if( req.session.data['industryScheme']=='ESA-EU' ) {
+    var title="Energy &amp; Utility Skills / ESA: upload your evidence"
+    var guidanceTop="esaqualtop"
+  } else if( req.session.data['industryScheme']=='deemed' ) {
+    var title="Upload the evidence for your qualification"
+    var guidanceTop="deemedqualtop"
+  } else if( req.session.data['industryScheme']=='getting-qualification' ) {
+    var title="Getting a qualification: upload your evidence"
+    var guidanceTop="gettingqualtop"
+  }
+  
+  if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
+    delete req.session.data['dontUploadOtherFile']
+    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
+    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
+    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+    // Back to the task list
+    res.render(folder + "/check/task-list",{
+          "formAction":"/"+ folder + "/check/check-answers"
+    })
+  } else {  // show upload page
+    res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
+  }
+})
+
+
+router.get('/bespoke/emissions/emissions-check', function (req, res) {
+  res.render(folder + '/bespoke/emissions/emissions-check',{
+     "formAction":"/"+ folder + "/emissions-check"
+  })
+})
+
+// Deal with what to show after emissions question
+router.post('/emissions-check', function (req, res) {
+  if(req.body['emissionsYesNo']==="yes"){ 
+    // show upload
+    res.redirect("/"+ folder + "/upload-emissions-to-air-water-land")
+  } else {
+    // show task list
+    res.render(folder + '/check/task-list',{
+    })
+  }
+})
+
+router.get('/bespoke/management-system', function (req, res) {
+  res.render(folder + '/bespoke/management-system',{
+      "formAction":"/"+ folder + "/upload-management-system-summary"
+  })
+})
+
+// EMISSIONS TO AIR WATER AND LAND UPLOAD ========================================================
+router.all('/upload-emissions-to-air-water-land', function (req, res) {
+  var path="/upload-emissions-to-air-water-land"
+  var title="Upload details on emissions to air water and land"
+  var fileName="EmissionsAirWaterLand"
+  var guidanceTop="emissionsairwaterlandtop"
+  var guidanceBot=""
+  var fileTypes="PDF, DOC, DOCX or JPG"
+  
+  if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
+    delete req.session.data['dontUploadOtherFile']
+    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
+    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
+    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+    // Back to the task list
+    res.render(folder + "/check/task-list",{
+          "formAction":"/"+ folder + "/check/check-answers"
+    })
+  } else {  // show upload page
+    res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
+  }
+})
+
+
+
+// MANAGEMENT SYSTEM UPLOAD ========================================================
+router.all('/upload-management-system-summary', function (req, res) {
+  var path="/upload-management-system-summary"
+  var title="Upload a summary of your management system"
+  var fileName="ManSysSummary"
+  var guidanceTop="mansyssummarytop"
+  var guidanceBot=""
+  var fileTypes="PDF, JPG, DOC or DOCX"
+  
+  if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
+    delete req.session.data['dontUploadOtherFile']
+    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
+    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
+    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+    // Back to the task list
+    res.render(folder + "/check/task-list",{
+          "formAction":"/"+ folder + "/check/check-answers"
+    })
+  } else {  // show upload page
+    res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
+  }
+})
+
 
 module.exports = router

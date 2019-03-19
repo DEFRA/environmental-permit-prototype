@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% set title = "What is the grid reference for the centre of the site?" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            {{title}}
+        </legend>
+
+<form method="post" action="{{formAction}}">
+
+<div class="govuk-form-group">
+  <label class="govuk-label" for="grid-reference">National Grid reference for the centre of the site
+    <span class="govuk-hint text">Enter 2 letters and 10 digits. For example, ST 58132 72695.</span>
+  </label>
+  <input type="text" class="govuk-input govuk-!-width-one-half" id="grid-reference" name="siteGridRef" aria-describedby="ngr_help" value="{{permit.siteGridRef}}" />
+</div>
+
+<details class="govuk-details">
+<summary class="govuk-details__summary"><span class="govuk-details__summary-text">Help to find the grid reference</span></summary>
+<div class="govuk-details__text">
+  {% include folder+"/site/grid-reference-finder.html" %}
+</div>
+</details>
+
+<div class="form-group">
+  {{submitButton|safe}}{{completeLink|safe}}
+</div>
+
+</form>
+
+    </div>
+  </div>
+</main>
+
+{% endblock %}
