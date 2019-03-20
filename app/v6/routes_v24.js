@@ -994,19 +994,6 @@ router.get('/evidence/bankruptcy-insolvency', function (req, res) {
 
 
 
-// Submit and pay ======================================================
-router.get('/check/declaration', function (req, res) {
-  res.render(folder + '/check/declaration',{
-        "formAction":"/"+ folder + "/pay/payment-method"
-    })
-})
-
-router.post('/check/declaration', function (req, res) {
-  res.render(folder + '/check/declaration',{
-      "formAction":"/"+ folder + "/pay/payment-method"
-  })
-})
-
 // Special cases ==============================================================
 
 router.get('/check-special-cases', function (req, res) {
@@ -1079,93 +1066,6 @@ router.post('/specialcases/check-sr-2015-17_18', function (req, res) {
     })
   }
 })
-
-
-// Pay ===================================================================
-
-router.post('/pay/payment-method', function (req, res) {
-  res.render(folder + '/pay/payment-method',{
-      "formAction":"/"+ folder + "/pay/how-to-pay"
-  })
-})
-
-// This is not a real page, just a URL for the route
-router.post('/pay/how-to-pay', function (req, res) {
-  if(req.body['paymentMethod']=="Debit or credit card"){ // think you need square bracket for radios
-    // show details page
-      res.render(folder + '/pay/enter-card-details',{
-          "formAction":"/"+ folder + "/pay/confirm-payment"
-      })
-  } else if(req.body['paymentMethod']=="Bank transfer") {
-    // go on to bankruptcy
-    res.render(folder + '/pay/pay-by-bank-transfer',{
-        "formAction":"/"+ folder + "/done/index"
-    })
-  } else {
-    // go on to cheque
-    res.render(folder + '/pay/pay-by-cheque',{
-        "formAction":"/"+ folder + "/done/index"
-    })
-  }
-})
-
-// ENTER CARD DETAILS
-router.post('/pay/enter-card-details', function (req, res) {
-  res.render(folder + '/pay/enter-card-details',{
-      "formAction":"/"+ folder + "/pay/confirm-payment"
-  })
-})
-
-router.post('/pay/confirm-payment', function (req, res) {
-  res.render(folder + '/pay/confirm-payment',{
-      "formAction":"/"+ folder + "/done/index"
-  })
-})
-
-
-// for worldpay instead of gov pay
-router.get('/pay/worldpay/worldpay-card-details', function (req, res) {
-  res.render(folder + '/pay/worldpay/worldpay-card-details',{
-      "formAction":"/"+ folder + "/pay/worldpay/worldpay-success"
-  })
-})
-
-router.get('/pay/worldpay/worldpay-success', function (req, res) {
-  res.render(folder + '/pay/worldpay/worldpay-success',{
-      "formAction":"/"+ folder + "/done/index" // previously /printcopy/index
-  })
-})
-
-
-
-// Get copy of application
-
-router.post('/printcopy/index', function (req, res) {
-  res.render(folder + '/printcopy/index',{
-      "formAction":"/"+ folder + "/done/index"
-  })
-})
-
-// fake PDF
-router.get('/printcopy/app-pdf', function (req, res) {
-  res.render(folder + '/printcopy/app-pdf',{
-  })
-})
-
-router.post('/done/index', function (req, res) {
-  res.render(folder + '/done/index',{
-      "formAction":"NOT_NEEDED"
-  })
-})
-
-// /v2/done/email-confirm Confirmation email
-
-router.get('/done/email-confirm', function (req, res) {
-  res.render(folder + '/done/email-confirm',{
-      "formAction":"NOT_NEEDED"
-  })
-})
-
 
 // Errors ===================================================================
 

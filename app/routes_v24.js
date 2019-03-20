@@ -1159,7 +1159,7 @@ router.post('/pay/how-to-pay', function (req, res) {
   } else if(req.body['paymentMethod']=="Bank transfer") {
     // go on to bankruptcy
     res.render(folder + '/pay/pay-by-bank-transfer',{
-        "formAction":"/"+ folder + "/done/index"
+        "formAction":"/"+ folder + "/pay/proof-of-payment"
     })
   } else {
     // go on to cheque
