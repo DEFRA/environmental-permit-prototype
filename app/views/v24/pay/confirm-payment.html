@@ -6,77 +6,97 @@
 {% set email_address = "alansmith@gmail.com" %}
 {% set address = "2 Acacia Avenue, Redland, Bristol BS1 2FT" %}
 
-{% block page_title %}
+{% block pageTitle %}
     {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+
 {% endblock %}
 
 {% block content %}
 
-<main id="content" role="main">
-  {% include "includes/phase_banner_beta.html" %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-  <div class="grid-row">
-      <div class="column-two-thirds">
-  	  <h1 class="heading-large">Confirm your payment</h1>
-  	  <div class="check-details">
+			<h1 class="govuk-heading-l">Confirm your payment</h1>
+			
+			<dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
 
-  	  	<table class="payment-confirm">
-  		    <tbody>
+							<dt class="govuk-summary-list__value">
+								Card number
+							</dt>
+								<dd class="govuk-summary-list__value">
+									************6256</dd>
+								</div>
 
-  		      <tr>
-  		        <td>Card number</td>
-  		        <td class="table-info">************6256</td>
-  		      </tr>
-  		      <tr>
-  		        <td>Name on card</td>
-  		        <td class="table-info">{{name}}</td>
-  		      </tr>
-  		      <tr>
-  		        <td>Billing address</td>
-  		        <td class="table-info">{{address}}</td>
-  		      </tr>
-  		       <tr>
-  		        <td>Email address</td>
-  		        <td class="table-info">{{email_address}}</td>
-  		      </tr>
-  		      <tr>
-  		        <td>Payment for</td>
+								<div class="govuk-summary-list__row">
+
+								<dd class="govuk-summary-list__value">
+										Name on card
+									</dd>
+									<dd class="govuk-summary-list__value">
+											{{name}}
+										</dd>
+									</div>
+
+										<div class="govuk-summary-list__row">
+
+										<dd class="govuk-summary-list__value">
+								Billing address
+							</dd>
+  		        <dd class="govuk-summary-list__value">{{address}}</dd>
+						</div>
+
+						<div class="govuk-summary-list__row">
+
+								<dd class="govuk-summary-list__value">Email address</dd>
+								<dd class="govuk-summary-list__value">{{email_address}}</dd>
+
+						</div>
+						<div class="govuk-summary-list__row">
+							
+								<dd class="govuk-summary-list__value">Payment for</dd>
               {% if permit.bespokePermit=="bespoke" %}
-              <td class="table-info">Bespoke permit</td>
+              <dd class="govuk-summary-list__value">Bespoke permit</dd>
+						</div>
 
+
+					</dl> <div></div>
               {% endif %}
 
-  		        <td class="table-info">{{ permit.permitName }} {{ permit.permitCode }}</td>
-  		      </tr>
-  		      <tr>
-  		        <td>Amount to pay</td>
-              <td class="table-info">
+  		        <dd class="govuk-summary-list__value">{{ permit.permitName }} {{ permit.permitCode }}</dd>
+  		      </div>
+						<div class="govuk-summary-list__row">
+								<dd class="govuk-summary-list__value">
+								Amount to pay</dd>
+								<dd class="govuk-summary-list__value">
                 {% if permit.bespokePermit=="bespoke" %}
                     {{ permit.totalcost | int | formatnumber }}
                 {% else %}
                    {{ permit.permitCost }}
                 {% endif %}
-              </td>
-  		      </tr>
-  		    </tbody>
-    		</table>
+              </dd>
+  		      
   		</div>
   	</div>
   </div>
 
-  	<div class="grid-row">
-  		<div class="column-two-thirds">
 
         <form method="post" action="{{formAction}}">
-          <br>
+   
 					<div class="form-group">
-						<input class="button" type="submit" value="Continue">
+							{{ govukButton({
+								text: "Continue"
+							}) }}
 					</div>
         </form>
 
-          <div class="back">
+          <p>
   				<a href="/{{folder}}/pay/payment-method">Cancel payment</a>
-  			</div>
+					</p>
 
   		 </div>
   	 </div>

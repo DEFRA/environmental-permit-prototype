@@ -4,36 +4,38 @@
     {{title}} - GOV.UK
 {% endblock %}
 
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+
+{% endblock %}
+
 {% block content %}
+	
+			<div class="govuk-grid-row">
+				<div class="govuk-grid-column-two-thirds">
 
-<main id="content" role="main">
-  {% include "includes/phase_banner_beta.html" %}
+            <div class="govuk-panel govuk-panel--confirmation">
+                <h1 class="govuk-panel__title">
+                Application sent
+                </h1>
 
-  <div class="grid-row">
-    <div class="column-two-thirds">
-
-        <div class="govuk-box-highlight">
-          <h1 class="heading-xlarge">
-              Application sent
-          </h1>
-
-          <p class="font-large">
-            Your reference number is
-            <br />
-            <strong class="bold">{{ permit.permitRefNumber }}</strong>
-          </p>
+                <div class="govuk-panel__body">
+                    Your reference number is
+            <br/>
+            <strong>{{ permit.permitRefNumber }}</strong>
+                </div>
 
             {% if permit.paymentMethod=="Bank transfer" %}
-              <p class="font-large">
+              <p class="fgovuk-!-font-size-19">
                 You should now pay by bank transfer
               </p>
             {% endif %}
 
         </div>
-<p class="text">
+<p>
   We have sent a confirmation to jane.person@email.com. {% if permit.paymentMethod=="Bank transfer" %}The email includes the Bacs payment details.{% endif %}
 </p>
-<p class="text">
+<p>
   We will not start processing your application until we get your payment.
 </p>
 
@@ -123,7 +125,7 @@
 {% if permit.paymentMethod=="Bank transfer" %}
         <h2 class="heading-medium">When we get your payment</h2>
 {% else %}
-        <h2 class="heading-medium">What happens next</h2>
+        <h2 class="govuk-heading-m">What happens next</h2>
 {% endif %}
 
           <p class="text">
