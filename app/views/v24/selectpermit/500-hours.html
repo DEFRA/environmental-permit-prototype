@@ -1,0 +1,96 @@
+
+{% extends "layout.html" %}
+
+{% set title = "Is your MCP operating less than 500 hours a year?" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% set versionxxx = "v24" %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+    <form action="/{{folder}}/operator/site-operator" method="post">
+
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {# permit|dump #}
+
+
+        
+        {% set bespokeChecked="" %}
+        {% if permit.permitSelected=="bespoke" %}
+          {% set bespokeChecked=" checked" %}
+        {% endif %}
+<p>
+    Existing MCPs operating less than 500 hours per year as a 5 year rolling average are exempt from meeting ELV.
+</p>
+<p>
+    New MCPs operating less than 500 hours per year as a 3 year rolling average are exempt from meeting ELV. However, a limit of 100 mg/m3 dust applies to biomass MCPs.
+</p>
+
+<p>
+    MCPs that are also a Part B activity must comply with ELV even if the MCP operates for less than 500 hours per year.
+</p>
+
+
+        <div class="form-group">
+          
+
+
+            {{ govukRadios({
+              idPrefix: "bespoke-or-standard",
+              name: "bespokePermit",
+      fieldset: {
+        legend: {
+          text: "",
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      items: [
+        {
+          value: "yes",
+          text: "Yes, we will operate for less than 500 hours a year on average. I declare that we meet the conditions for an ELV exemption and that we will not operate for longer than the specified time."
+        },
+        {
+          value: "no",
+          text: "No, we may operate for more than 500 hours."
+        }
+    
+      ]
+    }) }}
+    
+
+    {{ govukWarningText({
+      text: "    If you claim this we will add an condition to your permit and you will not be allowed to operate for more than 500 hours a year.",
+      iconFallbackText: "Warning"
+    }) }}
+
+          
+        </div>
+
+
+      <div class="form-group">
+          {{ govukButton({
+            text: "Confirm"
+          }) }}      </div>
+
+    </form>
+
+    </div>
+  </div>
+
+
+{% endblock %}
