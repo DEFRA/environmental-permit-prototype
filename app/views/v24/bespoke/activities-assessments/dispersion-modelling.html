@@ -1,7 +1,6 @@
-
 {% extends "layout.html" %}
 
-{% set title = "Is your MCP operating less than 500 hours a year?" %}
+{% set title = "Do you need to provide an air dispersion modelling report?" %}
 
 {% block pageTitle %}
     {{title}} - GOV.UK
@@ -33,24 +32,19 @@
           {% set bespokeChecked=" checked" %}
         {% endif %}
 <p>
-    Existing MCPs operating less than 500 hours per year as a 5 year rolling average are exempt from meeting ELV.
+  To check this:
 </p>
-<p>
-    New MCPs operating less than 500 hours per year as a 3 year rolling average are exempt from meeting ELV. However, a limit of 100 mg/m3 dust applies to biomass MCPs.
-</p>
-
-<p>
-    MCPs that are also a Part B activity must comply with ELV even if the MCP operates for less than 500 hours per year.
-</p>
-
-
+<ul class="govuk-list govuk-list--bullet">
+  <li>for abated diesels generators operating less than 500 hours per or for gas fuelled generators operating over any period use the <a href="#">specified generator screening tool (opens new tab)</a></li>
+  <li>for generator plant operating on other fuels or for diesel generator plant operating for more than 500 hours per year use Environment Agency’s <a href="#">H1 risk assessment tool (opens new tab)</a></li>
+</ul>
         <div class="form-group">
           
 
 
             {{ govukRadios({
-              idPrefix: "bespoke-or-standard",
-              name: "bespokePermit",
+              idPrefix: "dispersion-modelling",
+              name: "dispersionModelling",
       fieldset: {
         legend: {
           text: "",
@@ -60,21 +54,16 @@
       items: [
         {
           value: "yes",
-          text: "Yes, we will operate for less than 500 hours a year on average. I declare that we meet the conditions for an ELV exemption and that we will not operate for longer than the specified time."
+          text: "Yes, we need to provide an air dispersion modelling report"
         },
         {
           value: "no",
-          text: "No, we may operate for more than 500 hours."
+          text: "No"
         }
     
       ]
     }) }}
-    
 
-    {{ govukWarningText({
-      text: "    If you claim this we will add an condition to your permit and you will not be allowed to operate for more than 500 hours a year.",
-      iconFallbackText: "Warning"
-    }) }}
 
           
         </div>
