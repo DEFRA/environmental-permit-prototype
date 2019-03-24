@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% set title = "Confirm activities and assessments" %}
+
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+  
+
+  <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds-from-desktop">
+        
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              {{title}}
+          </legend>
+
+{% import folder+"/custom_inc/macros.html" as macros %}
+{% from folder+"/bespoke/activities-assessments/json/bespoke-assessment-list.html" import assessments %}
+{% from folder+"/bespoke/activities-assessments/json/bespoke_activities.html" import activities %}
+
+
+  <dl class="govuk-summary-list">
+
+    
+<div class="govuk-summary-list__row">
+    <dd class="govuk-summary-list__value govuk-!-width-two-thirds">Medium combustion plant site - requires dispersion modelling</dd>
+    <dd class="govuk-summary-list__actions">£6,550</dd>
+</div>
+
+
+    <div class="govuk-summary-list__row">
+        <dd class="govuk-summary-list__value govuk-!-width-two-thirds">Habitat assessment</dd>
+        <dd class="govuk-summary-list__actions">£779</dd>
+    </div>
+
+     <div class="govuk-summary-list__row">
+        <dd class="govuk-summary-list__value govuk-!-width-two-thirds govuk-!-font-weight-bold">Total cost for the application</dd>
+         <dd class="govuk-summary-list__actions govuk-!-font-weight-bold">£7,329</dd>
+      </div>  
+
+</dl>
+
+<p>You must pay these charges before we will start assessing your application. You do not pay VAT on these costs.</p>
+
+<p><a href="#">Change activities or assessments</a></p>
+
+<form method="post" action="{{formAction}}">
+
+    <div class="form-group">
+        {{ govukButton({
+          text: "Confirm and continue",
+          name: "Confirm and pay"
+        }) }}
+    </div>
+
+
+</form>
+
+
+
+    </div>
+  </div>
+
+{% endblock %}
