@@ -528,6 +528,75 @@ router.all('/upload-non-technical-summary', function (req, res) {
 })
 
 
+// GENERATOR LIST UPLOAD ========================================================
+router.all('/generator-list-template', function (req, res) {
+  var path="/generator-list-template"
+  var title="Upload the completed plant or generator list template  "
+  var fileName="GenTemplate"
+  var guidanceTop=""
+  var guidanceBot=""
+  var fileTypes="XLS or ODS"
+  
+  if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
+    delete req.session.data['dontUploadOtherFile']
+    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
+    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
+    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+    // Back to the task list
+    res.render(folder + "/check/task-list",{
+          "formAction":"/"+ folder + "/check/check-answers"
+    })
+  } else {  // show upload page
+    res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
+  }
+})
+
+// SCREENING TOOL UPLOAD ========================================================
+router.all('/screening-tool', function (req, res) {
+  var path="/screening-tool"
+  var title="Upload the completed screening tool"
+  var fileName="ScreeningTool"
+  var guidanceTop="screeningtooltop"
+  var guidanceBot=""
+  var fileTypes="XLS or ODS"
+  
+  if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
+    delete req.session.data['dontUploadOtherFile']
+    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
+    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
+    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+    // Back to the task list
+    res.render(folder + "/check/task-list",{
+          "formAction":"/"+ folder + "/check/check-answers"
+    })
+  } else {  // show upload page
+    res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
+  }
+})
+
+// AIR DISPERSION MODELLING TOOL UPLOAD ========================================================
+router.all('/modelling-tool', function (req, res) {
+  var path="/modelling-tool"
+  var title="Upload the air dispersion modelling report and screening tool"
+  var fileName="ModellingTool"
+  var guidanceTop="modellingtooltop"
+  var guidanceBot=""
+  var fileTypes="XLS or ODS"
+  
+  if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
+    delete req.session.data['dontUploadOtherFile']
+    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
+    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
+    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+    // Back to the task list
+    res.render(folder + "/check/task-list",{
+          "formAction":"/"+ folder + "/check/check-answers"
+    })
+  } else {  // show upload page
+    res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
+  }
+})
+
 // Environmental risk assessment ==========================================================
 router.get('/bespoke/upload-environmental-risk-assessment', function (req, res) {
   res.render(folder + '/bespoke/upload-environmental-risk-assessment',{
