@@ -283,11 +283,39 @@ router.post('/bespoke-check', function (req, res) {
   var facilityType = req.body.facilityType
   if (facilityType === "Waste treatment") {
     res.redirect("/"+ folder + "/bespoke/activities-assessments/bespoke-choose-activity-radio")
+  
+  } else if (facilityType === 'mcp and sg') {
+    // redirect to the relevant page
+  res.redirect("/"+ folder + '/bespoke/activities-assessments/permit-select-mcp-sg')
+  
   } else {  
     res.redirect("/"+ folder + "/bespoke/offline/bespoke-selection-offline")
   }
 })
 
+// EPR PERMIT ============
+router.get('/selectpermit/other-permits', function (req, res) {
+  res.render(folder + '/selectpermit/other-permits',{
+    "formAction":"/"+ folder + "/selectpermit/other-permits-check"
+  })
+})
+
+router.post('/selectpermit/other-permits', function (req, res) {
+  res.render(folder + '/selectpermit/other-permits',{
+    "formAction":"/"+ folder + "/selectpermit/other-permits-check"
+  })
+})
+
+// Deal with what to show next
+router.post('/selectpermit/other-permits-check', function (req, res) {
+  var bespokePermit = req.body.bespokePermit
+
+  if (bespokePermit === 'no') {
+    res.redirect("/"+ folder + "/selectpermit/500-hours")
+  } else {
+    res.redirect("/"+ folder + "/selectpermit/epr-permit-holder")
+  }
+})
 
 // Activity Check - not real page =============================================
 router.post('/activity-check', function (req, res) {
