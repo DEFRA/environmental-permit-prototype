@@ -597,14 +597,14 @@ router.all('/modelling-tool', function (req, res) {
   }
 })
 
-// AIR DISPERSION MODELLING TOOL UPLOAD ========================================================
+// ENERGY EFFECIENCY REPORT UPLOAD ========================================================
 router.all('/energy-report', function (req, res) {
   var path="/energy-report"
-  var title="Upload the air dispersion modelling report and screening tool"
+  var title="Upload the energy efficiency report"
   var fileName="ModellingTool"
   var guidanceTop="energyefficiencyreporttop"
   var guidanceBot=""
-  var fileTypes="XLS or ODS"
+  var fileTypes="PDF, JPG, DOC or DOCX"
   
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
@@ -620,6 +620,28 @@ router.all('/energy-report', function (req, res) {
   }
 })
 
+// BEST AVAILABLE TECHNIQUES BAT REPORT UPLOAD ========================================================
+router.all('/bat-assessment-report', function (req, res) {
+  var path="/bat-assessment-report"
+  var title="Upload the best available techniques (BAT) assessment"
+  var fileName="BatAssessment"
+  var guidanceTop="batassessmenttop"
+  var guidanceBot=""
+  var fileTypes="PDF, JPG, DOC or DOCX"
+  
+  if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
+    delete req.session.data['dontUploadOtherFile']
+    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
+    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
+    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+    // Back to the task list
+    res.render(folder + "/check/task-list",{
+          "formAction":"/"+ folder + "/check/check-answers"
+    })
+  } else {  // show upload page
+    res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
+  }
+})
 
 // Environmental risk assessment ==========================================================
 router.get('/bespoke/upload-environmental-risk-assessment', function (req, res) {
