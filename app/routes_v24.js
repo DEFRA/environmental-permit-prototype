@@ -308,9 +308,9 @@ router.post('/selectpermit/other-permits', function (req, res) {
 
 // Deal with what to show next
 router.post('/selectpermit/other-permits-check', function (req, res) {
-  var bespokePermit = req.body.bespokePermit
+  var eprPermit = req.body.eprPermit
 
-  if (bespokePermit === 'no') {
+  if (eprPermit === 'no') {
     res.redirect("/"+ folder + "/selectpermit/500-hours")
   } else {
     res.redirect("/"+ folder + "/selectpermit/epr-permit-holder")
@@ -372,7 +372,7 @@ router.all('/name-check', function (req, res) {
    var duplicates = input.reduce(function(acc, el, i, arr) {
      if (arr.indexOf(el) !== i && acc.indexOf(el) < 0) acc.push(el); return acc;
    }, []);
-   req.session.data={add:[duplicates]} // add back into data object to use on name page
+  req.session.data = { ...req.session.data, ...{ add: [duplicates] } } // add back into data object to use on name page
 
    res.redirect("/"+ folder + "/bespoke/activities-assessments/name-activities")
  } else {  
@@ -543,13 +543,13 @@ router.all('/upload-non-technical-summary', function (req, res) {
   
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
-    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
-    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
-    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
-    // Back to the task list
-    res.render(folder + "/check/task-list",{
-          "formAction":"/"+ folder + "/check/check-answers"
-    })
+
+
+
+
+// Back to the task list
+res.redirect(`/${folder}/check/task-list`)
+
   } else {  // show upload page
     res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
   }
@@ -567,13 +567,13 @@ router.all('/generator-list-template', function (req, res) {
   
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
-    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
-    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
-    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
-    // Back to the task list
-    res.render(folder + "/check/task-list",{
-          "formAction":"/"+ folder + "/check/check-answers"
-    })
+
+
+
+
+// Back to the task list
+res.redirect(`/${folder}/check/task-list`)
+
   } else {  // show upload page
     res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
   }
@@ -590,13 +590,10 @@ router.all('/screening-tool', function (req, res) {
   
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
-    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
-    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
-    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+
     // Back to the task list
-    res.render(folder + "/check/task-list",{
-          "formAction":"/"+ folder + "/check/check-answers"
-    })
+res.redirect(`/${folder}/check/task-list`)
+
   } else {  // show upload page
     res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
   }
@@ -613,13 +610,10 @@ router.all('/modelling-tool', function (req, res) {
   
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
-    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
-    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
-    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
-    // Back to the task list
-    res.render(folder + "/check/task-list",{
-          "formAction":"/"+ folder + "/check/check-answers"
-    })
+
+// Back to the task list
+res.redirect(`/${folder}/check/task-list`)
+
   } else {  // show upload page
     res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
   }
@@ -636,13 +630,10 @@ router.all('/energy-report', function (req, res) {
   
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
-    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
-    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
-    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+
     // Back to the task list
-    res.render(folder + "/check/task-list",{
-          "formAction":"/"+ folder + "/check/check-answers"
-    })
+res.redirect(`/${folder}/check/task-list`)
+
   } else {  // show upload page
     res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
   }
@@ -659,13 +650,10 @@ router.all('/bat-assessment-report', function (req, res) {
   
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
-    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
-    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
-    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+   
     // Back to the task list
-    res.render(folder + "/check/task-list",{
-          "formAction":"/"+ folder + "/check/check-answers"
-    })
+res.redirect(`/${folder}/check/task-list`)
+
   } else {  // show upload page
     res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
   }
@@ -711,13 +699,13 @@ router.all('/upload-waste-codes', function (req, res) {
   
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
-    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
-    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
-    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+
+
+
+
     // Back to the task list
-    res.render(folder + "/check/task-list",{
-          "formAction":"/"+ folder + "/check/check-answers"
-    })
+res.redirect(`/${folder}/check/task-list`)
+
   } else {  // show upload page
     res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
   }
@@ -735,13 +723,13 @@ router.all('/upload-environmental-risk-assessment', function (req, res) {
   
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
-    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
-    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
-    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+
+
+
+   
     // Back to the task list
-    res.render(folder + "/check/task-list",{
-          "formAction":"/"+ folder + "/check/check-answers"
-    })
+res.redirect(`/${folder}/check/task-list`)
+
   } else {  // show upload page
     res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
   }
@@ -758,13 +746,13 @@ router.all('/upload-fire-plan', function (req, res) {
   
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
-    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
-    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
-    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+
+
+
+
     // Back to the task list
-    res.render(folder + "/check/task-list",{
-          "formAction":"/"+ folder + "/check/check-answers"
-    })
+res.redirect(`/${folder}/check/task-list`)
+
   } else {  // show upload page
     res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
   }
@@ -782,13 +770,13 @@ router.all('/upload-site-condition-report', function (req, res) {
   
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
-    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
-    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
-    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+
+
+
+    
     // Back to the task list
-    res.render(folder + "/check/task-list",{
-          "formAction":"/"+ folder + "/check/check-answers"
-    })
+res.redirect(`/${folder}/check/task-list`)
+
   } else {  // show upload page
     res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
   }
@@ -806,13 +794,13 @@ router.all('/upload-site-plan', function (req, res) {
   
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
-    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
-    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
-    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+
+
+
+
     // Back to the task list
-    res.render(folder + "/check/task-list",{
-          "formAction":"/"+ folder + "/check/check-answers"
-    })
+res.redirect(`/${folder}/check/task-list`)
+
   } else {  // show upload page
     res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
   }
@@ -831,13 +819,13 @@ router.all('/list-technical-standards', function (req, res) {
   
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
-    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
-    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
-    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+
+
+
+
     // Back to the task list
-    res.render(folder + "/check/task-list",{
-          "formAction":"/"+ folder + "/check/check-answers"
-    })
+res.redirect(`/${folder}/check/task-list`)
+
   } else {  // show upload page
     res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
   }
@@ -856,13 +844,13 @@ router.all('/upload-odour-management-plan', function (req, res) {
   
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
-    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
-    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
-    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+
+
+
+
     // Back to the task list
-    res.render(folder + "/check/task-list",{
-          "formAction":"/"+ folder + "/check/check-answers"
-    })
+res.redirect(`/${folder}/check/task-list`)
+
   } else {  // show upload page
     res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
   }
@@ -880,13 +868,13 @@ router.all('/upload-emissions-management-plan', function (req, res) {
   
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
-    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
-    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
-    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+
+
+
+
     // Back to the task list
-    res.render(folder + "/check/task-list",{
-          "formAction":"/"+ folder + "/check/check-answers"
-    })
+res.redirect(`/${folder}/check/task-list`)
+
   } else {  // show upload page
     res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
   }
@@ -905,13 +893,13 @@ router.all('/upload-noise-plan', function (req, res) {
   
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
-    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
-    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
-    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+
+
+
+
     // Back to the task list
-    res.render(folder + "/check/task-list",{
-          "formAction":"/"+ folder + "/check/check-answers"
-    })
+res.redirect(`/${folder}/check/task-list`)
+
   } else {  // show upload page
     res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
   }
@@ -1067,13 +1055,13 @@ router.all('/evidence/techcomp/get-evidence', function (req, res) {
   
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
-    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
-    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
-    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+
+
+
+
     // Back to the task list
-    res.render(folder + "/check/task-list",{
-          "formAction":"/"+ folder + "/check/check-answers"
-    })
+res.redirect(`/${folder}/check/task-list`)
+
   } else {  // show upload page
     res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
   }
@@ -1115,13 +1103,13 @@ router.all('/upload-emissions-to-air-water-land', function (req, res) {
   
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
-    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
-    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
-    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+
+
+
+
     // Back to the task list
-    res.render(folder + "/check/task-list",{
-          "formAction":"/"+ folder + "/check/check-answers"
-    })
+res.redirect(`/${folder}/check/task-list`)
+
   } else {  // show upload page
     res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
   }
@@ -1140,13 +1128,13 @@ router.all('/upload-management-system-summary', function (req, res) {
   
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
-    if (req.session.data[fileName+'1']=="") delete req.session.data[fileName+'1']
-    if (req.session.data[fileName+'2']=="") delete req.session.data[fileName+'2']
-    if (req.session.data[fileName+'3']=="") delete req.session.data[fileName+'3']
+
+
+
+
     // Back to the task list
-    res.render(folder + "/check/task-list",{
-          "formAction":"/"+ folder + "/check/check-answers"
-    })
+res.redirect(`/${folder}/check/task-list`)
+
   } else {  // show upload page
     res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
   }
@@ -1369,5 +1357,88 @@ router.get('/done/email-confirm', function (req, res) {
   })
 })
 
+// set up dummy data
+router.get('/dummy', function (req, res) {
+  req.session.data = { bespokePermit: 'bespoke',
+    operatorType: 'Sole trader',
+    preAppYesNo: 'no',
+    preAppRef: 'Pre-application reference number',
+    facilityType: 'Waste treatment',
+    siteOrMobile: 'site',
+    chosenPermitID: [ '1.16.19' ],
+    odourManagementPlanIncluded: 'yes',
+    odourManagementPlan: 'no',
+    totalcost: '10141',
+    saveReturnEmail: 'Register to return to this application email address',
+    saveProgress: 'save-link-sent',
+    GOTEMAIL: 'yes',
+    contactFirstName: 'Application contact - First name',
+    contactLastName: 'Application contact - Last name',
+    agentCompany: '',
+    contactTelephone: 'Application contact - Telephone number',
+    contactEmail: 'Application contact - Email address',
+    Continue: '',
+    siteContactFirstName: 'Site contact - First name',
+    siteContactLastName: 'Site contact - Last name',
+    siteContactTelephone: 'Site contact - Telephone number',
+    siteContactEmail: 'Site contact - Email address',
+    'first-name-2': 'Permit holder - First name',
+    'last-name-2': 'Permit holder - Last name',
+    'dob-day': '01',
+    'dob-month': '02',
+    'dob-year': '03',
+    'radio-contact-group': 'No',
+    'contact-phone': 'Permit holder - Email address',
+    'contact-email': 'Permit holder - Telephone number',
+    sitePostCode: 'Permit holder - postcode',
+    individualAddress: '3, GRANGE ROAD, BRISTOL',
+    relevantOffencesDetails: 'Convictions details',
+    bankruptcyInsolvency: 'yes',
+    bankruptcyInsolvencyDetails: 'Bankruptcy details',
+    confidential: 'yes',
+    confidentialReasons: 'Confidentiality details',
+    invoicePostCode: 'Invoices - postcode',
+    invoiceAddress: '3, GRANGE ROAD, BRISTOL',
+    invoiceName: 'Invoicing - Name',
+    invoiceEmail: 'Invoicing - Email address',
+    invoiceTelephone: 'Invoicing - Telephone number',
+    max_waste_stored: 'Waste - maximum',
+    annual_throughput: 'Waste - throughput',
+    nonhazardous_waste_treatment_capacity: 'Waste - non-hazardous capacity',
+    hazardous_waste_treatment_capacity: 'Waste - hazardous capacity',
+    NonTechSummary1: 'NonTechSummary.pdf',
+    sewerage: [ 'yea' ],
+    harbour: [ 'yes' ],
+    fisheries: [ 'yes' ],
+    substanceRelease: 'Yes',
+    sewerageUndertakerName: 'Sewerageundertakername@test.com',
+    harbourAuthorityName: 'Harbour authority name',
+    'contact-by-text': 'Fisheries committee name',
+    siteName: 'Site name',
+    siteGridRef: 'Site grid reference',
+    siteAddress: '3, GRANGE ROAD, BRISTOL',
+    SiteCondition1: 'SiteCondition.pdf',
+    SitePlan1: 'SitePlan.pdf',
+    RCodes:
+   [ 'R1 Use principally as a fuel or other means to generate energy',
+     'R2 Solvent reclamation/regeneration',
+     'R3 Recycling/reclamation of organic substances which are not used as solvents' ],
+    DCodes:
+   [ 'D1 Deposit into or on to land',
+     'D2 Land treatment',
+     'D3 Deep injection' ],
+    RDCode_entered: 'Yes',
+    WasteCodes1: 'WasteCodes.pdf',
+    industryScheme: 'WAMITAB',
+    TechnicalCompetenceFile1: 'TechnicalCompetenceFile.pdf',
+    EnvRiskAssessment1: 'EnvRiskAssessment.pdf',
+    emissionsYesNo: 'yes',
+    EmissionsAirWaterLand1: 'EmissionsAirWaterLand.pdf',
+    manSys: 'EC Eco management and audit scheme (EMAS)',
+    ManSysSummary1: 'ManSysSummary.pdf',
+    TechStandards1: 'TechStandards.pdf',
+    OdourPlan1: 'OdourPlan.pdf' }
+  res.redirect(`/${folder}/check/task-list`)
+})
 
 module.exports = router

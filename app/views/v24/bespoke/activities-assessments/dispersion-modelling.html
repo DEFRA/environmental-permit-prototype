@@ -24,13 +24,8 @@
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       {# permit|dump #}
+      {{ permit|dump }}
 
-
-        
-        {% set bespokeChecked="" %}
-        {% if permit.permitSelected=="bespoke" %}
-          {% set bespokeChecked=" checked" %}
-        {% endif %}
 
     
 <p>

@@ -53,7 +53,7 @@
       <div class="govuk-grid-column-two-thirds">
 
       <form method="post" action="/{{folder}}/check/check-answers" name="tasklist">
-
+        <p><a href="/{{folder}}/dummy">Populate session with dummy data</a></p>
         {% if taskListError %}
         <div class="error-summary" role="alert" aria-labelledby="error-summary-heading" tabindex="-1">
 
@@ -131,7 +131,7 @@
         
         
       <!-- Output cost ############################################ -->
-      <span class="totalCost">Total cost {{ permit.totalcost | int | formatnumber }}</span>
+      <span value="totalCost">Total cost {{ permit.totalcost | int | formatnumber }}</span>
 
 
 
@@ -168,7 +168,6 @@
 </div>
 
 {% endblock %}
-
 
 {% block page_scripts %}
 <script>

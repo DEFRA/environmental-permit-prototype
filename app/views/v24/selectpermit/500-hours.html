@@ -25,13 +25,8 @@
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       {# permit|dump #}
+      {{ permit|dump }}
 
-
-        
-        {% set bespokeChecked="" %}
-        {% if permit.permitSelected=="bespoke" %}
-          {% set bespokeChecked=" checked" %}
-        {% endif %}
 <p>
     Existing MCPs operating less than 500 hours per year as a 5 year rolling average are exempt from meeting ELV.
 </p>
@@ -49,8 +44,8 @@
 
 
             {{ govukRadios({
-              idPrefix: "bespoke-or-standard",
-              name: "bespokePermit",
+              idPrefix: "500-hours",
+              name: "500hours",
       fieldset: {
         legend: {
           text: "",
