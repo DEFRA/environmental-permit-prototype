@@ -623,7 +623,7 @@ res.redirect(`/${folder}/check/task-list`)
 router.all('/energy-report', function (req, res) {
   var path="/energy-report"
   var title="Upload the energy efficiency report"
-  var fileName="ModellingTool"
+  var fileName="EnergyEfficiency"
   var guidanceTop="energyefficiencyreporttop"
   var guidanceBot=""
   var fileTypes="PDF, JPG, DOC or DOCX"
