@@ -26,22 +26,15 @@
 
       
       {# permit|dump #}
-
-
-        
-        {% set bespokeChecked="" %}
-        {% if permit.permitSelected=="bespoke" %}
-          {% set bespokeChecked=" checked" %}
-        {% endif %}
-
+      {{ permit|dump }}
 
         <div class="form-group">
           
 
 
             {{ govukRadios({
-              idPrefix: "bespoke-or-standard",
-              name: "bespokePermit",
+              idPrefix: "epr-permit",
+              name: "eprPermit",
       fieldset: {
         legend: {
           text: "Does your site or installation already have an environmental (EPR) permit?",

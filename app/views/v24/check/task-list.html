@@ -33,6 +33,8 @@
     {% set appType = 'bespoke' %}
 {% endif %}
 
+{% set facilityType = permit.facilityType %}
+
 {% block pageTitle %}
     {{title}} - GOV.UK
 {% endblock %}
@@ -53,7 +55,7 @@
       <div class="govuk-grid-column-two-thirds">
 
       <form method="post" action="/{{folder}}/check/check-answers" name="tasklist">
-
+        <p><a href="/{{folder}}/dummy">Populate session with dummy data</a></p>
         {% if taskListError %}
         <div class="error-summary" role="alert" aria-labelledby="error-summary-heading" tabindex="-1">
 
@@ -81,68 +83,71 @@
         
         {# permit|dump #}
 
-
 {% if appType=="bespoke" %}
-      <!-- Output chosen activities ############################################ -->
-      <p> {% for ref in permit.chosenPermitID %}
-            {% for aNumber, aData in activities %}
-                  {% if aNumber==ref %}
+  <p>
+    <!-- Output chosen activities ############################################ -->
+    {% for ref in permit.chosenPermitID %}
+      {% for aNumber, aData in activities %}
+        {% if aNumber==ref %}
 
-                  <!-- Output as a paragraph ============================== -->
-                        {{ aData.D_Activity_Title }}<!-- ({{ ref }})--><br>
-                      
-                  {% endif %}
-            {% else %}
-            <p>No activities</p>
-            {% endfor %}
+          <!-- Output as a paragraph ============================== -->
+          {{ aData.D_Activity_Title }}
+          <!-- ({{ ref }})-->
+          <br>
+
+        {% endif %}
       {% else %}
-          <p>You must select at least one activity</p>
+        <p>No activities</p>
       {% endfor %}
+    {% else %}
+      {% if facilityType !== 'mcp and sg' %}
+        <p>You must select at least one activity</p>
+      {% endif %}
+    {% endfor %}
 
-      <!-- Output chosen assessments ############################################ -->
-       {{ "Ammonia modelling assessment<br>" | safe
-        if permit.ammoniaModelling=="yes" }}
+    <!-- Output chosen assessments ############################################ -->
+    {{ "Ammonia modelling assessment<br>" | safe
+          if permit.ammoniaModelling=="yes" }}
 
-      {{ "Dust and bio-aerosol management plan assessment<br>" | safe 
-        if permit.dustPlan=="yes" }}
+    {{ "Dust and bio-aerosol management plan assessment<br>" | safe 
+          if permit.dustPlan=="yes" }}
 
-      {{ "Emissions management plan assessment<br>" | safe
-        if permit.emissionsPlan=="yes" }}
+    {{ "Emissions management plan assessment<br>" | safe
+          if permit.emissionsPlan=="yes" }}
 
-      {{ "Fire prevention plan assessment<br>" | safe 
-        if firePreventionPlan=="yes" 
-        or permit.firePreventionPlan=="yes" }}
+    {{ "Fire prevention plan assessment<br>" | safe 
+          if firePreventionPlan=="yes" 
+          or permit.firePreventionPlan=="yes" }}
 
-      {{ "Habitats assessment<br>" | safe 
-        if permit.habitatsAssessment=="yes" }}
+    {{ "Habitats assessment<br>" | safe 
+          if permit.habitatsAssessment=="yes" }}
 
-      {{ "Noise and vibration management plan assessment<br>" | safe  
-        if permit.noisePlan=="yes" }}
+    {{ "Noise and vibration management plan assessment<br>" | safe  
+          if permit.noisePlan=="yes" }}
 
-      {{ "Odour management plan assessment<br>" | safe 
-        if permit.odourManagementPlan=="yes" 
-        or permit.odourManagementPlanIncluded=="yes" }}
+    {{ "Odour management plan assessment<br>" | safe 
+          if permit.odourManagementPlan=="yes" 
+          or permit.odourManagementPlanIncluded=="yes" }}
 
-      {{ "Pests management plan assessment<br>" | safe
-        if permit.pestsPlan=="yes" }}
+    {{ "Pests management plan assessment<br>" | safe
+          if permit.pestsPlan=="yes" }}
 
-      {{ "Waste recovery plan assessment<br>" | safe
-        if permit.wasteRecoveryPlan=="yes" }}
-        
-        
-      <!-- Output cost ############################################ -->
-      <span class="totalCost">Total cost {{ permit.totalcost | int | formatnumber }}</span>
+    {{ "Waste recovery plan assessment<br>" | safe
+          if permit.wasteRecoveryPlan=="yes" }}
 
+    <!-- Output cost ############################################ -->
+    <span value="totalCost">Total cost {{ permit.totalcost | int | formatnumber }}</span>
 
-
-      <!-- Link to change permit activities ##################################### -->
-      </br>
-        <a href="/{{folder}}/bespoke/activities-assessments/bespoke-choose-activity">
-          Change activities or assessments
-        </a>
-      </p>
+    <!-- Link to change permit activities ##################################### -->
+    </br>
+    {% if facilityType !== "mcp and sg" %}
+      <a href="/{{folder}}/bespoke/activities-assessments/bespoke-choose-activity">
+        Change activities or assessments
+      </a>
+    {% endif %}
+  </p>
 {% endif %}
-
+ 
 {% if appType=="standard" %}
     <p class="font-medium text">{{permit.permitName}} - {{permit.permitCode}}<br><a class="font-small" href="/{{folder}}/selectpermit/permit-category2">Select a different permit</a></p>
 {% endif %}
@@ -168,7 +173,6 @@
 </div>
 
 {% endblock %}
-
 
 {% block page_scripts %}
 <script>

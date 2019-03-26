@@ -24,7 +24,7 @@
 
 
       <form action="/{{folder}}/selectpermit/other-permits">
-
+        {{ permit|dump }}
       
         <div class="form-group">
           <fieldset class="govuk-fieldset" aria-labelledby="radio_label">
@@ -35,7 +35,7 @@
             <div class="govuk-radios">
             <div class="multiple-choice">
             <span class="govuk-radios__item">
-              <input class="govuk-radios__input" id="{{f.value}}" type="radio" name="facilityType" value="{{f.value}}">
+              <input class="govuk-radios__input" id="{{f.value}}" type="radio" name="generatorType" value="{{f.value}}">
               <label class="govuk-label govuk-radios__label" for="{{f.value}}">
                 {{f.text}} <span class="govuk-hint">{{f.hint}}</span>
               </label>

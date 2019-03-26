@@ -2,7 +2,6 @@
 
 {% set title = "Confirm activities and assessments" %}
 
-
 {% block pageTitle %}
     {{title}} - GOV.UK
 {% endblock %}
@@ -30,6 +29,7 @@
 {% from folder+"/bespoke/activities-assessments/json/bespoke-assessment-list.html" import assessments %}
 {% from folder+"/bespoke/activities-assessments/json/bespoke_activities.html" import activities %}
 
+{{ permit|dump }}
 
   <dl class="govuk-summary-list">
 
@@ -56,9 +56,8 @@
 
 <p><a href="#">Change activities or assessments</a></p>
 
-<form method="post" action="{{formAction}}">
+        <input type="hidden" name="totalcost" value="7329">
 
-    <div class="form-group">
         {{ govukButton({
           text: "Confirm and continue",
           name: "Confirm and pay"
