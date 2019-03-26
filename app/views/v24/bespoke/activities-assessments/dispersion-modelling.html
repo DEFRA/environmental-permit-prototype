@@ -27,7 +27,8 @@
       {{ permit|dump }}
 
 
-    
+      {% if permit.generatorType=="ssg" or permit.generatorType=="smcp also sg" %}
+  
 <p>
   To check this:
 </p>
@@ -35,6 +36,10 @@
   <li>for abated diesels generators operating less than 500 hours per or for gas fuelled generators operating over any period use the <a href="#">specified generator screening tool (opens new tab)</a></li>
   <li>for generator plant operating on other fuels or for diesel generator plant operating for more than 500 hours per year use Environment Agency’s <a href="#">H1 risk assessment tool (opens new tab)</a></li>
 </ul>
+{% endif %}
+
+{% if permit.generatorType=="smcp" %}
+
 <p>
   You should use the Environment Agency’s <a href="#">H1 risk assessment tool (opens new tab)</a> to check this if:
 </p>
@@ -45,6 +50,8 @@
 </ul>
 
 <p>If there are no protected habitats within these screening distances then a detailed modelling assessment is not required for ecological assessment.</p>
+{% endif %}
+
 
         <div class="form-group">
           

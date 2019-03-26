@@ -293,6 +293,30 @@ router.post('/bespoke-check', function (req, res) {
   }
 })
 
+// 500 hours ============
+router.get('/selectpermit/500-hours', function (req, res) {
+  res.render(folder + '/selectpermit/500-hours',{
+    "formAction":"/"+ folder + "/selectpermit/500-hours-check"
+  })
+})
+
+router.post('/selectpermit/500-hours', function (req, res) {
+  res.render(folder + '/selectpermit/500-hours',{
+    "formAction":"/"+ folder + "/selectpermit/500-hours-check"
+  })
+})
+
+// Deal with what to show next
+router.post('/selectpermit/500-hours-check', function (req, res) {
+  var hours = req.body.hours
+
+  if (hours === 'yes') {
+    res.redirect("/"+ folder + "/bespoke/activities-assessments/confirm-mcp-costs")
+  } else {
+    res.redirect("/"+ folder + "/bespoke/activities-assessments/dispersion-modelling")
+  }
+})
+
 // EPR PERMIT ============
 router.get('/selectpermit/other-permits', function (req, res) {
   res.render(folder + '/selectpermit/other-permits',{
