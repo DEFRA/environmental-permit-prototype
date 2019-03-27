@@ -592,9 +592,6 @@ router.all('/generator-list-template', function (req, res) {
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
 
-
-
-
 // Back to the task list
 res.redirect(`/${folder}/check/task-list`)
 
@@ -602,6 +599,8 @@ res.redirect(`/${folder}/check/task-list`)
     res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
   }
 })
+
+
 
 // SCREENING TOOL UPLOAD ========================================================
 router.all('/screening-tool', function (req, res) {
