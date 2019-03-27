@@ -81,20 +81,10 @@
   
     <ul class="app-task-list__items">
 
-    {% if permit.dispersionModelling=="yes" %}
-     <!-- Air dispersion modelling -->
-    {{ macros.task( "Upload air dispersion modelling report or screening tool", permit.ModellingTool1, "/"+folder+"/modelling-tool", taskListError ) }}
-    {% endif %}
-
 
     {% if permit.energyEffiencyReport=="yes" %}
     <!--Energy efficiency report -->
     {{ macros.task( "Upload the energy efficiency report", permit.EnergyEfficiency1, "/"+folder+"/energy-report", taskListError ) }}
-    {% endif %}
-
-    {% if permit.hours=="no" %}
-    <!--BAT report -->
-    {{ macros.task( "Upload the best available techniques assessment", permit.BatAssessment1, "/"+folder+"/bat-assessment-report", taskListError ) }}
     {% endif %}
 
     <!-- Tech competence ----------------------->
