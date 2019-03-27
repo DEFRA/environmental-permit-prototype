@@ -147,11 +147,29 @@ router.post('/operator/site-operator', function (req, res) {
   })
 })
 
+
+router.get('/save-and-return/check', function (req, res) {
+  if( req.session.data['saveReturnEmail']==null ){ // not created save link yet
+      res.render(folder + '/save-and-return/email-or-phone',{
+        "formAction":"/"+ folder + "/save-and-return/confirm"
+      })  
+  } else {
+      res.render(folder + '/save-and-return/complete-later',{
+      })
+  }
+})
+
  router.get('/operator/site-operator', function (req, res) {
    res.render(folder + '/operator/site-operator',{
        "formAction":"/"+ folder + "/operator/checkoperator"
    })
  })
+
+// set up dummy data
+router.get('/mcp', function (req, res) {
+  req.session.data = { permitoperation: 'mcp' }
+  res.redirect(`/${folder}/start/bespoke-guide`)
+})
 
  // Pre-app ====================================================================
 
@@ -167,6 +185,7 @@ router.post('/bespoke/pre-app/pre-app', function (req, res) {
   })
 })
 
+  
 // Deal with what to show next
 router.post('/bespoke/pre-app/pre-app-check', function (req, res) {
   var preAppYesNo = req.body.preAppYesNo
