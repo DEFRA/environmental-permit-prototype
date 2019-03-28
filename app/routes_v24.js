@@ -386,6 +386,27 @@ router.post('/bespoke/activities-assessments/dispersion-modelling-check', functi
     }
 })
 
+// 20-50mw ============
+router.get('/selectpermit/20-50mw', function (req, res) {
+  res.render(folder + '/selectpermit/20-50mw',{
+  "formAction":"/"+ folder + "/selectpermit/20-50mw-check"
+})
+})
+
+router.post('/selectpermit/20-50mw', function (req, res) {
+res.render(folder + '/selectpermit/20-50mw',{
+  "formAction":"/"+ folder + "/selectpermit/20-50mw-check"
+})
+})
+
+// Deal with what to show next
+router.post('/selectpermit/20-50mw-check', function (req, res) {
+  if (req.session.data.generatorType==="ssg"){
+    res.redirect("/"+ folder + "/bespoke/activities-assessments/habitat-assessment")
+  } else if (req.session.data.generatorType==="smcp also sg"){
+    res.redirect("/"+ folder + "/selectpermit/burning-biomass")
+  }
+})
 
 // ENERGY EFFICIENCY REPORT ROUTES ============
 router.get('/bespoke/activities-assessments/energy-efficiency-report', function (req, res) {
