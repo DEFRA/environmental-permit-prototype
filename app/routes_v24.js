@@ -344,11 +344,34 @@ router.post('/selectpermit/other-permits-check', function (req, res) {
   var eprPermit = req.body.eprPermit
 
   if (eprPermit === 'no') {
-    res.redirect("/"+ folder + "/selectpermit/500-hours")
+    if (req.session.data.generatorType==="mobile sg") {
+      res.redirect("/"+ folder + "/bespoke/activities-assessments/confirm-mcp-costs")
+    } else if (req.session.data.generatorType==="smcp also sg"){
+      res.redirect("/"+ folder + "/selectpermit/500-hours")
+    } else if (req.session.data.generatorType==="smcp"){
+      res.redirect("/"+ folder + "/selectpermit/500-hours")
+    } else if (req.session.data.generatorType==="ssg"){
+      res.redirect("/"+ folder + "/bespoke/activities-assessments/dispersion-modelling")
+    } else if (req.session.data.generatorType==="mobile sg also mcp"){
+      res.redirect("/"+ folder + "/bespoke/activities-assessments/energy-efficiency-report")
+    }
   } else {
     res.redirect("/"+ folder + "/selectpermit/epr-permit-holder")
   }
 })
+
+// After operator, route depends on permit type KEEP
+//router.post('/after-operator-choice', function (req, res) {
+ // if (req.session.data.permitoperation=="mcp") { // MCP
+  //  res.redirect("/"+ folder + "/bespoke/activities-assessments/bespoke-type")
+ // } else if( req.session.data['bespokePermit']=='standard' ) {// standard rule
+ //   res.redirect("/"+ folder + "/selectpermit/permit-category2")
+
+//  } else { // standard rule
+ // res.redirect("/"+ folder + "/bespoke/pre-app/pre-app") // Bespoke not MCP
+ // }
+//})
+
 
 // Activity Check - not real page =============================================
 router.post('/activity-check', function (req, res) {
