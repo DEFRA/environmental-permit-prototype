@@ -326,6 +326,7 @@ router.post('/selectpermit/500-hours-check', function (req, res) {
   }
 })
 
+
 // EPR PERMIT ============
 router.get('/selectpermit/other-permits', function (req, res) {
   res.render(folder + '/selectpermit/other-permits',{
@@ -360,17 +361,30 @@ router.post('/selectpermit/other-permits-check', function (req, res) {
   }
 })
 
-// After operator, route depends on permit type KEEP
-//router.post('/after-operator-choice', function (req, res) {
- // if (req.session.data.permitoperation=="mcp") { // MCP
-  //  res.redirect("/"+ folder + "/bespoke/activities-assessments/bespoke-type")
- // } else if( req.session.data['bespokePermit']=='standard' ) {// standard rule
- //   res.redirect("/"+ folder + "/selectpermit/permit-category2")
+// AIR DISPERSION MODELLING ROUTES ============
+router.get('/bespoke/activities-assessments/dispersion-modelling', function (req, res) {
+  res.render(folder + '/bespoke/activities-assessments/dispersion-modelling',{
+    "formAction":"/"+ folder + "/bespoke/activities-assessments/dispersion-modelling-check"
+  })
+})
 
-//  } else { // standard rule
- // res.redirect("/"+ folder + "/bespoke/pre-app/pre-app") // Bespoke not MCP
- // }
-//})
+router.post('/bespoke/activities-assessments/dispersion-modelling', function (req, res) {
+  res.render(folder + '/bespoke/activities-assessments/dispersion-modelling',{
+    "formAction":"/"+ folder + "/bespoke/activities-assessments/dispersion-modelling-check"
+  })
+})
+
+// Deal with what to show next
+router.post('/bespoke/activities-assessments/dispersion-modelling-check', function (req, res) {
+
+    if (req.session.data.generatorType==="smcp also sg"){
+      res.redirect("/"+ folder + "/bespoke/activities-assessments/energy-efficiency-report")
+    } else if (req.session.data.generatorType==="smcp"){
+      res.redirect("/"+ folder + "/bespoke/activities-assessments/energy-efficiency-report")
+    } else if (req.session.data.generatorType==="ssg"){
+      res.redirect("/"+ folder + "/selectpermit/20-50mw")
+    }
+})
 
 
 // Activity Check - not real page =============================================
