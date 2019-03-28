@@ -28,6 +28,12 @@
     {% set HrefLink = '/operator/partnerships/partner1' %}
 {% endif %}
 
+mcp and sg
+{% set facilityType = 'mcp and sg' %}
+{% if permit.facilityType=="mcp and sg" %}
+    {% set appType = 'mcp and sg' %}
+{% endif %}
+
 {% set appType = 'standard' %}
 {% if permit.bespokePermit=="bespoke" %}
     {% set appType = 'bespoke' %}
@@ -83,22 +89,22 @@
         
         {# permit|dump #}
 
-{% if appType=="bespoke" %}
-  <p>
-    <!-- Output chosen activities ############################################ -->
-    {% for ref in permit.chosenPermitID %}
-      {% for aNumber, aData in activities %}
-        {% if aNumber==ref %}
 
-          <!-- Output as a paragraph ============================== -->
-          {{ aData.D_Activity_Title }}
-          <!-- ({{ ref }})-->
-          <br>
+        {% if appType=="bespoke"
+        and facilityType=="waste" %}
+        <!-- Output chosen activities ############################################ -->
+      <p> {% for ref in permit.chosenPermitID %}
+            {% for aNumber, aData in activities %}
+                  {% if aNumber==ref %}
 
-        {% endif %}
-      {% else %}
-        <p>No activities</p>
-      {% endfor %}
+                  <!-- Output as a paragraph ============================== -->
+                        {{ aData.D_Activity_Title }}<!-- ({{ ref }})--><br>
+                      
+                  {% endif %}
+            {% else %}
+            <p>No activities</p>
+            {% endfor %}
+        
     {% else %}
       {% if facilityType !== 'mcp and sg' %}
         <p>You must select at least one activity</p>
@@ -147,12 +153,28 @@
     {% endif %}
   </p>
 {% endif %}
- 
+
+{% if appType=="bespoke"
+and facilityType=="mcp and sg" %}
+<p>
+    <!-- Output cost ############################################ -->
+    <span value="totalCost">Total cost {{ permit.totalcost | int | formatnumber }}</span>
+
+
+
+    <!-- Link to change permit activities ##################################### -->
+    </br>
+      <a href="/{{folder}}/operator/site-operator">
+Select a different permit      </a>
+</p>
+      {% endif %}
+
 {% if appType=="standard" %}
     <p class="font-medium text">{{permit.permitName}} - {{permit.permitCode}}<br><a class="font-small" href="/{{folder}}/selectpermit/permit-category2">Select a different permit</a></p>
 {% endif %}
 
-{% if appType=="bespoke" %}
+{% if appType=="bespoke" 
+and facilityType=="waste"%}
 {% include folder+"/custom_inc/task-list-bespoke.html" %}
 {% endif %}
 
@@ -161,6 +183,10 @@
 {% include folder+"/custom_inc/task-list-standard.html" %}
 {% endif %}
 
+{% if appType=="bespoke" 
+and facilityType=="mcp and sg" %}
+{% include folder+"/custom_inc/task-list-mcp-bespoke.html" %}
+{% endif %}
 
 <!-- Only show if 'Tasklist Save' route -->
 {% if permit.saveReturnEmail!==null  %}

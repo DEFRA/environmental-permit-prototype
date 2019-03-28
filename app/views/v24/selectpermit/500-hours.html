@@ -19,8 +19,8 @@
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      
-    <form action="/{{folder}}/bespoke/activities-assessments/dispersion-modelling" method="post">
+
+        <form action="{{formAction}}" method="post">
 
       <h1 class="govuk-heading-l">{{title}}</h1>
 
@@ -45,7 +45,7 @@
 
             {{ govukRadios({
               idPrefix: "500-hours",
-              name: "500hours",
+              name: "hours",
       fieldset: {
         legend: {
           text: "",

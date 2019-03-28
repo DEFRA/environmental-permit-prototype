@@ -140,20 +140,25 @@ res.render(folder + '/selectpermit/permit-not-in-service',{})
 })
 
 
-// permit holder screen
-router.post('/operator/site-operator', function (req, res) {
-  res.render(folder + '/operator/site-operator',{
-      "formAction":"/"+ folder + "/bespoke/pre-app/pre-app"
-  })
+router.get('/save-and-return/check', function (req, res) {
+  if( req.session.data['saveReturnEmail']==null ){ // not created save link yet
+      res.render(folder + '/save-and-return/email-or-phone',{
+        "formAction":"/"+ folder + "/save-and-return/confirm"
+      })  
+  } else {
+      res.render(folder + '/save-and-return/complete-later',{
+      })
+  }
 })
 
- router.get('/operator/site-operator', function (req, res) {
-   res.render(folder + '/operator/site-operator',{
-       "formAction":"/"+ folder + "/operator/checkoperator"
-   })
- })
 
- // Pre-app ====================================================================
+// set up dummy data
+router.get('/mcp', function (req, res) {
+  req.session.data = { permitoperation: 'mcp' }
+  res.redirect(`/${folder}/start/bespoke-guide`)
+})
+
+ // Pre-app to get pre app ====================================================================
 
 router.get('/bespoke/pre-app/pre-app', function (req, res) {
   res.render(folder + '/bespoke/pre-app/pre-app',{
@@ -167,6 +172,7 @@ router.post('/bespoke/pre-app/pre-app', function (req, res) {
   })
 })
 
+  
 // Deal with what to show next
 router.post('/bespoke/pre-app/pre-app-check', function (req, res) {
   var preAppYesNo = req.body.preAppYesNo
@@ -178,7 +184,7 @@ router.post('/bespoke/pre-app/pre-app-check', function (req, res) {
   }
 })
 
-// permit holder screen
+// permit holder screen KEEP
 router.post('/operator/site-operator', function (req, res) {
   res.render(folder + '/operator/site-operator',{
       "formAction":"/"+ folder + "/bespoke/pre-app/pre-app"
@@ -191,12 +197,15 @@ router.post('/operator/site-operator', function (req, res) {
    })
  })
 
-// After operator, route depends on permit type
+// After operator, route depends on permit type KEEP
 router.post('/after-operator-choice', function (req, res) {
-  if (req.session.data.bespokePermit=="bespoke") { // bespoke
-    res.redirect("/"+ folder + "/bespoke/pre-app/pre-app")
-  } else { // standard rule
+  if (req.session.data.permitoperation=="mcp") { // MCP
+    res.redirect("/"+ folder + "/bespoke/activities-assessments/bespoke-type")
+  } else if( req.session.data['bespokePermit']=='standard' ) {// standard rule
     res.redirect("/"+ folder + "/selectpermit/permit-category2")
+
+  } else { // standard rule
+  res.redirect("/"+ folder + "/bespoke/pre-app/pre-app") // Bespoke not MCP
   }
 })
 
@@ -290,6 +299,30 @@ router.post('/bespoke-check', function (req, res) {
   
   } else {  
     res.redirect("/"+ folder + "/bespoke/offline/bespoke-selection-offline")
+  }
+})
+
+// 500 hours ============
+router.get('/selectpermit/500-hours', function (req, res) {
+  res.render(folder + '/selectpermit/500-hours',{
+    "formAction":"/"+ folder + "/selectpermit/500-hours-check"
+  })
+})
+
+router.post('/selectpermit/500-hours', function (req, res) {
+  res.render(folder + '/selectpermit/500-hours',{
+    "formAction":"/"+ folder + "/selectpermit/500-hours-check"
+  })
+})
+
+// Deal with what to show next
+router.post('/selectpermit/500-hours-check', function (req, res) {
+  var hours = req.body.hours
+
+  if (hours === 'yes') {
+    res.redirect("/"+ folder + "/bespoke/activities-assessments/confirm-mcp-costs")
+  } else {
+    res.redirect("/"+ folder + "/bespoke/activities-assessments/dispersion-modelling")
   }
 })
 
@@ -568,9 +601,6 @@ router.all('/generator-list-template', function (req, res) {
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
 
-
-
-
 // Back to the task list
 res.redirect(`/${folder}/check/task-list`)
 
@@ -578,6 +608,8 @@ res.redirect(`/${folder}/check/task-list`)
     res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
   }
 })
+
+
 
 // SCREENING TOOL UPLOAD ========================================================
 router.all('/screening-tool', function (req, res) {
@@ -623,7 +655,7 @@ res.redirect(`/${folder}/check/task-list`)
 router.all('/energy-report', function (req, res) {
   var path="/energy-report"
   var title="Upload the energy efficiency report"
-  var fileName="ModellingTool"
+  var fileName="EnergyEfficiency"
   var guidanceTop="energyefficiencyreporttop"
   var guidanceBot=""
   var fileTypes="PDF, JPG, DOC or DOCX"
