@@ -62,6 +62,7 @@ mcp and sg
 
       <form method="post" action="/{{folder}}/check/check-answers" name="tasklist">
         <p><a href="/{{folder}}/dummy">Populate session with dummy data</a></p>
+        {# permit|dump #}
         {% if taskListError %}
         <div class="error-summary" role="alert" aria-labelledby="error-summary-heading" tabindex="-1">
 
@@ -83,7 +84,7 @@ mcp and sg
           {% if appType=="bespoke" %}
               Apply for a bespoke environmental permit
           {% else %}
-              Apply for a standard rules environmental permit
+              Apply for a standard rules environmental permit 
           {% endif %}
         </h1>
         
@@ -91,7 +92,7 @@ mcp and sg
 
 
         {% if appType=="bespoke"
-        and facilityType=="waste" %}
+        and facilityType=="Waste treatment" %}
         <!-- Output chosen activities ############################################ -->
       <p> {% for ref in permit.chosenPermitID %}
             {% for aNumber, aData in activities %}
@@ -174,7 +175,7 @@ Select a different permit      </a>
 {% endif %}
 
 {% if appType=="bespoke" 
-and facilityType=="waste"%}
+and facilityType=="Waste treatment"%}
 {% include folder+"/custom_inc/task-list-bespoke.html" %}
 {% endif %}
 
