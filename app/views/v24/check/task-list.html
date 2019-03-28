@@ -39,6 +39,8 @@ mcp and sg
     {% set appType = 'bespoke' %}
 {% endif %}
 
+{% set facilityType = permit.facilityType %}
+
 {% block pageTitle %}
     {{title}} - GOV.UK
 {% endblock %}
@@ -102,54 +104,55 @@ mcp and sg
             {% else %}
             <p>No activities</p>
             {% endfor %}
-      {% else %}
-          <p>You must select at least one activity</p>
-      {% endfor %}
-
-      <!-- Output chosen assessments ############################################ -->
-       {{ "Ammonia modelling assessment<br>" | safe
-        if permit.ammoniaModelling=="yes" }}
-
-      {{ "Dust and bio-aerosol management plan assessment<br>" | safe 
-        if permit.dustPlan=="yes" }}
-
-      {{ "Emissions management plan assessment<br>" | safe
-        if permit.emissionsPlan=="yes" }}
-
-      {{ "Fire prevention plan assessment<br>" | safe 
-        if firePreventionPlan=="yes" 
-        or permit.firePreventionPlan=="yes" }}
-
-      {{ "Habitats assessment<br>" | safe 
-        if permit.habitatsAssessment=="yes" }}
-
-      {{ "Noise and vibration management plan assessment<br>" | safe  
-        if permit.noisePlan=="yes" }}
-
-      {{ "Odour management plan assessment<br>" | safe 
-        if permit.odourManagementPlan=="yes" 
-        or permit.odourManagementPlanIncluded=="yes" }}
-
-      {{ "Pests management plan assessment<br>" | safe
-        if permit.pestsPlan=="yes" }}
-
-      {{ "Waste recovery plan assessment<br>" | safe
-        if permit.wasteRecoveryPlan=="yes" }}
         
-        
-      <!-- Output cost ############################################ -->
-      <span value="totalCost">Total cost {{ permit.totalcost | int | formatnumber }}</span>
+    {% else %}
+      {% if facilityType !== 'mcp and sg' %}
+        <p>You must select at least one activity</p>
+      {% endif %}
+    {% endfor %}
 
+    <!-- Output chosen assessments ############################################ -->
+    {{ "Ammonia modelling assessment<br>" | safe
+          if permit.ammoniaModelling=="yes" }}
 
+    {{ "Dust and bio-aerosol management plan assessment<br>" | safe 
+          if permit.dustPlan=="yes" }}
 
-      <!-- Link to change permit activities ##################################### -->
-      </br>
-        <a href="/{{folder}}/bespoke/activities-assessments/bespoke-choose-activity">
-          Change activities or assessments
-        </a>
-      </p>
+    {{ "Emissions management plan assessment<br>" | safe
+          if permit.emissionsPlan=="yes" }}
+
+    {{ "Fire prevention plan assessment<br>" | safe 
+          if firePreventionPlan=="yes" 
+          or permit.firePreventionPlan=="yes" }}
+
+    {{ "Habitats assessment<br>" | safe 
+          if permit.habitatsAssessment=="yes" }}
+
+    {{ "Noise and vibration management plan assessment<br>" | safe  
+          if permit.noisePlan=="yes" }}
+
+    {{ "Odour management plan assessment<br>" | safe 
+          if permit.odourManagementPlan=="yes" 
+          or permit.odourManagementPlanIncluded=="yes" }}
+
+    {{ "Pests management plan assessment<br>" | safe
+          if permit.pestsPlan=="yes" }}
+
+    {{ "Waste recovery plan assessment<br>" | safe
+          if permit.wasteRecoveryPlan=="yes" }}
+
+    <!-- Output cost ############################################ -->
+    <span value="totalCost">Total cost {{ permit.totalcost | int | formatnumber }}</span>
+
+    <!-- Link to change permit activities ##################################### -->
+    </br>
+    {% if facilityType !== "mcp and sg" %}
+      <a href="/{{folder}}/bespoke/activities-assessments/bespoke-choose-activity">
+        Change activities or assessments
+      </a>
+    {% endif %}
+  </p>
 {% endif %}
-
 
 {% if appType=="bespoke"
 and facilityType=="mcp and sg" %}
