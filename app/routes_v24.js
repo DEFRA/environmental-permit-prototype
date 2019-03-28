@@ -140,14 +140,6 @@ res.render(folder + '/selectpermit/permit-not-in-service',{})
 })
 
 
-// permit holder screen
-router.post('/operator/site-operator', function (req, res) {
-  res.render(folder + '/operator/site-operator',{
-      "formAction":"/"+ folder + "/bespoke/pre-app/pre-app"
-  })
-})
-
-
 router.get('/save-and-return/check', function (req, res) {
   if( req.session.data['saveReturnEmail']==null ){ // not created save link yet
       res.render(folder + '/save-and-return/email-or-phone',{
@@ -159,11 +151,6 @@ router.get('/save-and-return/check', function (req, res) {
   }
 })
 
- router.get('/operator/site-operator', function (req, res) {
-   res.render(folder + '/operator/site-operator',{
-       "formAction":"/"+ folder + "/operator/checkoperator"
-   })
- })
 
 // set up dummy data
 router.get('/mcp', function (req, res) {
@@ -171,7 +158,7 @@ router.get('/mcp', function (req, res) {
   res.redirect(`/${folder}/start/bespoke-guide`)
 })
 
- // Pre-app ====================================================================
+ // Pre-app to get pre app ====================================================================
 
 router.get('/bespoke/pre-app/pre-app', function (req, res) {
   res.render(folder + '/bespoke/pre-app/pre-app',{
@@ -197,7 +184,7 @@ router.post('/bespoke/pre-app/pre-app-check', function (req, res) {
   }
 })
 
-// permit holder screen
+// permit holder screen KEEP
 router.post('/operator/site-operator', function (req, res) {
   res.render(folder + '/operator/site-operator',{
       "formAction":"/"+ folder + "/bespoke/pre-app/pre-app"
@@ -210,12 +197,15 @@ router.post('/operator/site-operator', function (req, res) {
    })
  })
 
-// After operator, route depends on permit type
+// After operator, route depends on permit type KEEP
 router.post('/after-operator-choice', function (req, res) {
-  if (req.session.data.bespokePermit=="bespoke") { // bespoke
-    res.redirect("/"+ folder + "/bespoke/pre-app/pre-app")
-  } else { // standard rule
+  if (req.session.data.permitoperation=="mcp") { // MCP
+    res.redirect("/"+ folder + "/bespoke/activities-assessments/bespoke-type")
+  } else if( req.session.data['bespokePermit']=='standard' ) {// standard rule
     res.redirect("/"+ folder + "/selectpermit/permit-category2")
+
+  } else { // standard rule
+  res.redirect("/"+ folder + "/bespoke/pre-app/pre-app") // Bespoke not MCP
   }
 })
 
