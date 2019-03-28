@@ -387,6 +387,31 @@ router.post('/bespoke/activities-assessments/dispersion-modelling-check', functi
 })
 
 
+// ENERGY EFFICIENCY REPORT ROUTES ============
+router.get('/bespoke/activities-assessments/energy-efficiency-report', function (req, res) {
+    res.render(folder + '/bespoke/activities-assessments/energy-efficiency-report',{
+    "formAction":"/"+ folder + "/bespoke/activities-assessments/energy-efficiency-report-check"
+  })
+})
+
+router.post('/bespoke/activities-assessments/energy-efficiency-report', function (req, res) {
+  res.render(folder + '/bespoke/activities-assessments/energy-efficiency-report',{
+    "formAction":"/"+ folder + "/bespoke/activities-assessments/energy-efficiency-report-check"
+  })
+})
+
+// Deal with what to show next
+router.post('/bespoke/activities-assessments/energy-efficiency-report-check', function (req, res) {
+    if (req.session.data.generatorType==="smcp also sg"){
+      res.redirect("/"+ folder + "/selectpermit/20-50mw")
+    } else if (req.session.data.generatorType==="smcp"){
+      res.redirect("/"+ folder + "/selectpermit/burning-biomass")
+    } else if (req.session.data.generatorType==="mobile sg also mcp"){
+      res.redirect("/"+ folder + "/selectpermit/burning-biomass")
+    }
+})
+
+
 // Activity Check - not real page =============================================
 router.post('/activity-check', function (req, res) {
   // If set, add activity to the list in chosenPermitID
