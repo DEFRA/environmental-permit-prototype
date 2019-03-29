@@ -23,7 +23,6 @@
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               {{title}}
           </legend>
-          {# permit|dump #}
           {{ permit|dump }}
 {% import folder+"/custom_inc/macros.html" as macros %}
 {% from folder+"/bespoke/activities-assessments/json/bespoke-assessment-list.html" import assessments %}
@@ -33,8 +32,8 @@
   <dl class="govuk-summary-list govuk-!-margin-bottom-9">
     
     
-      {% if appType=="bespoke" and facilityType=="Waste treatment" %}
-    
+{% if permit.bespokePermit=="bespoke" and permit.facilityType=="Waste treatment"%}
+
 <!-- Output chosen activities ############################################ -->
 <div class="govuk-summary-list__row">
   <dt class="govuk-summary-list__key">Activities</dt>
@@ -204,7 +203,7 @@
     </div>
     
 <!-- BASIC details -->
-{% if appType=="bespoke" and facilityType=="Waste treatment" %}
+{% if permit.bespokePermit=="bespoke" and permit.facilityType=="Waste treatment"%}
 <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">Name of operation</dt>
       <dd class="govuk-summary-list__value">{{permit.waste_operation_name}}</dd>
@@ -263,7 +262,7 @@
     
     
 <!-- Substance release consultations -->
-{% if appType=="bespoke" and facilityType=="Waste treatment" %}
+{% if permit.bespokePermit=="bespoke" and permit.facilityType=="Waste treatment"%}
   {% if permit.sewerageUndertakerName!=="undefined" or permit.harbourAuthorityName!=="undefined" or permit.fisheriesComitteeName!=="undefined" %} 
   <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">People we have to consult</dt>
@@ -278,8 +277,7 @@
 {% endif %}
     
 <!-- Waste codes -->
-{% if appType=="bespoke"
- and facilityType=="Waste treatment" %}
+{% if permit.bespokePermit=="bespoke" and permit.facilityType=="Waste treatment"%}
 <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">Waste codes spreadsheet filename</dt>
       <dd class="govuk-summary-list__value">{{permit.WasteCodes1}}</dd>
@@ -368,12 +366,16 @@
 {% endif %}
   
   
-{% if appType=="bespoke" and facilityType=="Waste treatment" %}
+{% if permit.bespokePermit=="bespoke" %}
+
 <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">Non-technical summarytest</dt>
+    <dt class="govuk-summary-list__key">Non-technical summary</dt>
       <dd class="govuk-summary-list__value">{{ permit.NonTechSummary1 }}</dd>
       <dd class="govuk-summary-list__actions"><a href="/{{folder}}/upload-non-technical-summary">Change</a></dd>
     </div>
+    {% endif %}
+
+    {% if permit.bespokePermit=="bespoke" and permit.facilityType=="Waste treatment"%}
 
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">Waste codes spreadsheet</dt>
@@ -397,7 +399,6 @@
       <dd class="govuk-summary-list__value">{{ permit.TechStandards1 }}</dd>
       <dd class="govuk-summary-list__actions"><a href="/{{folder}}/list-technical-standards">Change</a></dd>
     </div>
-    
     
     {% if permit.wasteRecoveryPlan=="yes" %}
     <div class="govuk-summary-list__row">
@@ -495,7 +496,7 @@
 </ul>
 
 
-{% if appType=="bespoke" and facilityType=="Waste treatment" %}
+{% if permit.bespokePermit=="bespoke" %}
     <h3 class="govuk-heading-s">Ecological survey data</h3>
     <p>If you supply ecological survey data we may use your ecological survey data for other uses in addition to assessing your application. Contact us if you do not want us to use your data in this way.</p>
 
