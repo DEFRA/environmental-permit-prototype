@@ -34,6 +34,36 @@ mcp and sg
     {% set appType = 'mcp and sg' %}
 {% endif %}
 
+set mobile sg
+{% set generatorType = 'mobile sg' %}
+{% if permit.generatorType=="mobile sg" %}
+    {% set appType = 'mobile sg' %}
+{% endif %}
+
+set smcp
+{% set generatorType = 'smcp' %}
+{% if permit.generatorType=="smcp" %}
+    {% set appType = 'smcp' %}
+{% endif %}
+
+set ssg
+{% set generatorType = 'ssg' %}
+{% if permit.generatorType=="ssg" %}
+    {% set appType = 'ssg' %}
+{% endif %}
+
+set smcp also sg
+{% set generatorType = 'smcp also sg' %}
+{% if permit.generatorType=="smcp also sg" %}
+    {% set appType = 'smcp also sg' %}
+{% endif %}
+
+set mobile sg also mcp
+{% set generatorType = 'mobile sg also mcp' %}
+{% if permit.generatorType=="mobile sg also mcp" %}
+    {% set appType = 'mobile sg also mcp' %}
+{% endif %}
+
 {% set appType = 'standard' %}
 {% if permit.bespokePermit=="bespoke" %}
     {% set appType = 'bespoke' %}
@@ -60,8 +90,14 @@ mcp and sg
   <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
+       
       <form method="post" action="/{{folder}}/check/check-answers" name="tasklist">
+        {% if appType=="bespoke"
+          and facilityType=="Waste treatment" %}
         <p><a href="/{{folder}}/dummy">Populate session with dummy data</a></p>
+        {% endif %}
+
+       
         {# permit|dump #}
         {% if taskListError %}
         <div class="error-summary" role="alert" aria-labelledby="error-summary-heading" tabindex="-1">
@@ -88,7 +124,7 @@ mcp and sg
           {% endif %}
         </h1>
         
-        {# permit|dump #}
+        {{ permit|dump }}
 
 
         {% if appType=="bespoke"
@@ -158,7 +194,36 @@ mcp and sg
 {% if appType=="bespoke"
 and facilityType=="mcp and sg" %}
 <p>
+    {% if permit.dispersionModelling=="yes" %}
+    1.10.2 Medium combustion plant site – requires dispersion modelling
+    {% endif %}
+
+    {% if permit.dispersionModelling=="no" or permit.generatorType=="mobile sg" or permit.generatorType=="mobile sg also mcp" %}
+    1.10.3 Medium combustion plant site – does not require dispersion modelling
+    {% endif %}
+</br>
+{% if permit.generatorType=="smcp" %}
+Stationary medium combustion plant (MCP)
+{% endif %}
+
+{% if permit.generatorType=="ssg" %}
+Stationary specified generator (SG)
+{% endif %}
+
+{% if permit.generatorType=="smcp also sg" %}
+Stationary MCP which is also an SG
+{% endif %}
+
+{% if permit.generatorType=="mobile sg" %}
+Mobile SG
+{% endif %}
+
+{% if permit.generatorType=="mobile sg also mcp" %}
+Mobile SG which is also an MCP
+{% endif %}
     <!-- Output cost ############################################ -->
+  
+</br>
     <span value="totalCost">Total cost {{ permit.totalcost | int | formatnumber }}</span>
 
 
@@ -179,14 +244,23 @@ and facilityType=="Waste treatment"%}
 {% include folder+"/custom_inc/task-list-bespoke.html" %}
 {% endif %}
 
-
 {% if appType=="standard" %}
 {% include folder+"/custom_inc/task-list-standard.html" %}
 {% endif %}
 
 {% if appType=="bespoke" 
-and facilityType=="mcp and sg" %}
+and facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.generatorType=="ssg" or permit.generatorType=="smcp also sg" or permit.generatorType=="mobile sg also mcp" and permit.energyEffiencyReport=="yes" %}
 {% include folder+"/custom_inc/task-list-mcp-bespoke.html" %}
+{% endif %}
+
+{% if appType=="bespoke" 
+and facilityType=="mcp and sg" and permit.generatorType=="mobile sg" %}
+{% include folder+"/custom_inc/task-list-mcp-bespoke-mobile.html" %}
+{% endif %}
+
+{% if appType=="bespoke" 
+and facilityType=="mcp and sg" and permit.generatorType=="mobile sg also mcp" and permit.energyEffiencyReport=="no" %}
+{% include folder+"/custom_inc/task-list-mcp-bespoke-mobile.html" %}
 {% endif %}
 
 <!-- Only show if 'Tasklist Save' route -->
