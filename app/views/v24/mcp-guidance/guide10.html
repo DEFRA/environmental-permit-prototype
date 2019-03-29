@@ -1,0 +1,329 @@
+{% set pageTitle="Specified generators: dispersion modelling assessment" %}
+
+{% set pageSummary="Guidance on how to do detailed air quality modelling for specified generators." %}
+
+{% extends "layout-guide.html" %}
+
+{% block pageTitle %}
+	{{ pageTitle }}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-width-container">
+
+			<div class="govuk-grid-row">
+				<div class="govuk-grid-column-two-thirds">
+						<span class="govuk-caption-xl">
+								Guidance
+							</span>
+							<h2 class="govuk-heading-l">{{ pageTitle }}</h2>
+							<p class="govuk-body-l">{{ pageSummary }}</p>
+						</div>
+
+
+				<div class="govuk-grid-column-full">
+					<hr class="govuk-section-break govuk-section-break--visible">
+
+		</div>
+	</div>
+</div>
+
+<div class="govuk-width-container">
+			<div class="govuk-grid-row">
+				<div class="govuk-grid-column-two-thirds">
+
+				<p class="govuk-body govuk-!-font-size-16">Published 6 April 2018<br>
+					Last updated 21 March 2019<br>
+					From: Defra, Welsh Government, Environment Agency, National Resources Wales
+				</p>
+
+				</div>
+			</div>
+</div>
+
+<div class="govuk-width-container">
+		<div class="govuk-grid-row">
+			<div class="govuk-grid-column-two-thirds">
+
+						<div class="blue-box">
+								<p class="govuk-body govuk-!-font-size-16">Applies to: England and <a rel="external" href="https://naturalresources.wales/permits-and-permissions/environmental-permits/?lang=en">Wales</a>)</p>
+						</div>
+
+						<div class="contents">
+								<h3 class="govuk-body govuk-!-font-size-16 mcp-contents-head" style="margin-bottom:0.5em">Contents</h3>
+							<ol class="govuk-list" id="mcp-contents-list">
+								<!-- List itrems added by jQuery script on each page -->
+							</ol>
+						</div>
+
+
+
+<div id="mcp-content">
+
+
+						<p>You may be required to do detailed dispersion modelling to assess the risk to the environment from your specified generator’s proposed emissions to air.</p>
+						<p>A suitably qualified consultant will need to do the dispersion modelling assessment using fit for purpose computer software.</p>
+						<h2 class="govuk-heading-m"><a id="Check_if_you_need_to_do_dispersion_modelling_17"></a>Check if you need to do dispersion modelling</h2>
+						<p>You need to read the guidance <a href="guide3.html">Specified generators: when you need a permit</a> to make sure:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>your generator is covered by the Specified Generator Regulations</li>
+						<li>you know if your specified generator qualifies for transitional arrangements</li>
+						</ul>
+						<p>You only need to do an air dispersion modelling assessment if your specified generator requires a complex bespoke permit. You must submit the report and your modelling input files with your application.</p>
+						<p>To find out if you need to apply for a specified generator complex bespoke permit you can:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>check the guidance <a href="guide7.html">Specified generator: apply for an environmental permit</a></li>
+						<li>use the <a href="#">Environment Agency’s specified generator Tranche B screening tool</a> for generators fired on natural gas or ultra low sulphur diesel with secondary abatement</li>
+						<li>use a different method - the regulator will need to check that your choice of method is robust</li>
+						</ul>
+						<p>Specified generators are classed as Tranche A or Tranche B generators. See the guidance <a href="guide3.html">Specified generators: when you need a permit</a> which explains the difference between Tranche A and B. Both types of specified generator will require dispersion modelling where their emissions have a negative impact on air quality.</p>
+						<p>They could be:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>Tranche A specified generators with high NOx emissions</li>
+						<li>Tranche A or Tranche B specified generators located very close to sensitive receptors or in or near an Air Quality Management Area (AQMA) declared for NO2</li>
+						</ul>
+						<p>This guidance explains the specific information you need to collect to do a dispersion modelling assessment for a specified generator. You must include this information in your report. Your report will need to demonstrate how you will safeguard air quality where there are significant impacts or potential breaches of an environmental standard.</p>
+						<p>Read the guidance <a href="https://www.gov.uk/guidance/environmental-permitting-air-dispersion-modelling-reports">environmental permitting air dispersion modelling reports</a> which explains what information you must include in your report.</p>
+						<h2 class="govuk-heading-m"><a id="Describe_the_site_setting_40"></a>Describe the site setting</h2>
+						<p>Describe the site location and expected operational life.</p>
+						<p>State the number of generators on site and the thermal capacity for each.</p>
+						<p>You must state if there are one or more of the following within 1km of the site:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>boundary of a neighbouring local authority (LA)</li>
+						<li>AQMA declared for NO2</li>
+						<li>any other specified generator site operating more than 50 hours per year, if known</li>
+						</ul>
+						<h2 class="govuk-heading-m"><a id="Define_the_operating_envelope_51"></a>Define the operating envelope</h2>
+						<p>The Environment Agency will base your site permit conditions on the period(s) of operation.<br>
+						Therefore, your modelling must represent how the site operates. You must describe the operating envelope - this is the way your site operates. The description must cover:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>all periods of potential operations</li>
+						<li>hourly, daily, weekly or seasonal operations</li>
+						<li>planned operations at certain times of the year, such as to meet balancing market contract requirements</li>
+						<li>testing regimes</li>
+						<li>typical and maximum periods of continuous operation</li>
+						</ul>
+						<p>Your assessment report must fully describe the number and capacities of generators and how they are used at these times.</p>
+						<p>You can use temporally varying emissions using an hourly emissions file where operations are scheduled at certain:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>times of the day</li>
+						<li>days of the week</li>
+						<li>times of the year</li>
+						</ul>
+						<h3 class="govuk-heading-s"><a id="Operational_hours_68"></a>Operational hours</h3>
+						<p>The operational hours are the number of hours the specified generator will operate per year within the described operating envelope. Make sure you have accounted for ‘typical’ and ‘maximum’ operating hours per year.</p>
+						<p>If you operate under the ‘<a href="#">500 hour rule exemption</a>’ you must account for the maximum number of operational hours allowed per 12 months over the rolling average period of:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>5 years for existing generators</li>
+						<li>3 years for new generators</li>
+						</ul>
+						<p>The operational hours for:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>an annual assessment is the total number of hours per year</li>
+						<li>a short term assessment and statistical analysis is any hour or portion of an hour that the plant operates</li>
+						</ul>
+						<h2 class="govuk-heading-m"><a id="Characterise_the_emissions_80"></a>Characterise the emissions</h2>
+						<p>The emissions you will need to model depends on the fuel the specified generator uses, for example:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>natural gas and gas oil fuelled specified generators, such as diesel will need NOX emission modelling</li>
+						<li>liquid or gaseous fuels, other than gas oil or natural gas are more likely to need sulphur dioxide (SO2) and particulate emission modelling</li>
+						<li>specified generators fitted with secondary abatement need to consider ammonia slip emissions</li>
+						</ul>
+						<p>You must measure emissions concentrations to get the emission rates for Tranche A specified generators. The NOX measurements must be <a href="https://www.gov.uk/government/collections/monitoring-emissions-to-air-land-and-water-mcerts">MCERTS</a> approved and meet the standard BS EN 14792:2017.</p>
+						<p>To accurately measure stack primary NO2 to NOX ratio you need an inert gas sampling probe. The sample line must be made of a suitable corrosion resistant material, such as stainless steel, borosilicate glass, ceramic. It must not be made from copper or copper based alloys. At flue gas temperatures more than 250°C you need to use one of the following:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>ceramic</li>
+						<li>glass</li>
+						<li>quartz</li>
+						<li>titanium</li>
+						</ul>
+						<p>Polytetrafluoroethylene (PTFE) is only suitable for temperatures lower than 200°C.</p>
+						<p>You must quote emission concentrations at reference conditions of 273.15 K, 101.3 kPa, 0% moisture and 15% oxygen. In the modelling assessment report you must state the:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>actual exhaust temperature</li>
+						<li>oxygen and moisture content</li>
+						<li>exhaust volumetric flow rates</li>
+						<li>measured or assumed primary NO2 to NOX ratios</li>
+						</ul>
+						<p>When you model Tranche B specified generators that must comply with an emission limit value of 190 mg/Nm3 within the time period of 10 to 20 minutes, you will need to account for potentially higher emissions during this period.</p>
+						<h2 class="govuk-heading-m"><a id="Model_the_effect_of_buildings_and_terrain_105"></a>Model the effect of buildings and terrain</h2>
+						<p>You must model the effect of buildings and terrain on dispersion, if relevant. A building could be an engine unit body or other structure which could influence dispersion.</p>
+						<p>You need to consider the effects of building downwash when:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>the stack height is less than 2.5 times the height of a building</li>
+						<li>the distance of a building from the stack is less than 5L - where L is the lesser dimension of the building height and maximum projected width (such as the distance between 2 opposing corners of a roof)</li>
+						</ul>
+						<p>You need to consider terrain when slope gradients are more than 1:10 (10%) in the modelling domain.</p>
+						<h2 class="govuk-heading-m"><a id="Explain_the_background_concentration_115"></a>Explain the background concentration</h2>
+						<p>You must explain how the ambient background concentration data you use to calculate the PECs at individual receptor locations are representative.</p>
+						<p>You need local background data at receptor locations close to other sources, such as busy roads or major industry. Low resolution grid average background values are not likely to be suitable. This is important in or near AQMAs. You can ask the LA for advice on representative background concentrations at these receptor locations.</p>
+						<p>You must not double count the background for existing sites.</p>
+						<p>Use <a href="https://uk-air.defra.gov.uk/interactive-map">UK Air</a> to see a map of the Defra UK monitoring network and the monitoring sites in England and Wales near your site.</p>
+						<h2 class="govuk-heading-m"><a id="Use_environmental_standards_for_air_125"></a>Use environmental standards for air</h2>
+						<p>You need to do your dispersion modelling assessment against the short and long term NO2 environmental standards. The NO2 environmental standards for human health receptors are:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>40 mg/m3 annual mean</li>
+						<li>200 mg/m3 hourly mean - must not be exceeded more than 18 times per calendar year</li>
+						</ul>
+						<h3 class="govuk-heading-s"><a id="Impact_on_sensitive_receptors_131"></a>Impact on sensitive receptors</h3>
+						<p>You need to assess against these standards at sensitive receptors. Sensitive receptors are where there is relevant public exposure, including where members of the public:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>have access</li>
+						<li>are regularly present</li>
+						<li>can be exposed for a significant portion of the averaging time of the standard</li>
+						</ul>
+						<p>These standards do not apply where health and safety at work provisions are in place and where members of the public do not have access.</p>
+						<p>Examples of relevant public exposure include:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>annual mean - residential properties, schools, hospitals, care homes</li>
+						<li>hourly mean - residential properties, schools, hospitals, care homes, hotels, gardens, busy shopping streets, bus stations, railway stations (not fully enclosed), car parks where the public may spend an hour or more</li>
+						</ul>
+						<p>You need to include the maximum hourly (100th percentile) NO2 Predicted Environmental Concentration (PEC). This is to understand the potential health effects and the amount of risk to members of the public. There is no absolute hourly limit environmental standard for the acute exposure to NO2, but there can be effects on health over a certain threshold.</p>
+						<h3 class="govuk-heading-s"><a id="Impact_on_conservation_sites_146"></a>Impact on conservation sites</h3>
+						<p>You may also need to assess the NOX impacts on:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>special protection areas (SPAs)</li>
+						<li>special areas of conservation (SACs)</li>
+						<li>Ramsar sites</li>
+						<li>sites of special scientific interest (SSSIs)</li>
+						</ul>
+						<p>You can find out if your site requires this assessment by:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>checking if there are any  SAC, SPA and Ramsar sites within 5 km for specified generators fuelled on natural gas or low sulphur diesel</li>
+						<li>checking if there are any SAC, SPA and Ramsar sites within 10 km for specified generators using liquid or gaseous fuels, other than natural gas or low sulphur diesel</li>
+						<li>checking if there are any SSSIs within 2 km</li>
+						<li>using the <a href="#">specified generator Tranche B screening tool</a> - this will provide a site specific screening distance for your site</li>
+						</ul>
+						<p>If it is, you need to assess impacts against site relevant:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>critical levels</li>
+						<li>nutrient nitrogen critical loads</li>
+						<li>acid deposition critical loads</li>
+						</ul>
+						<p>You can find this information on the <a href="htttp://www.apis.ac.uk/srcl">air pollution information system</a>.</p>
+						<h3 class="govuk-heading-s"><a id="Emissions_modelling_for_other_pollutants_167"></a>Emissions modelling for other pollutants</h3>
+						<p>Depending on the fuel your specified generator uses and if secondary abatement is fitted you may also need to do dispersion modelling assessment for SO2, particulates and ammonia.</p>
+						<p>Find more detailed information in the guidance <a href="https://www.gov.uk/guidance/air-emissions-risk-assessment-for-your-environmental-permit#environmental-standards-for-air-emissions">environmental standards for air emissions</a>.</p>
+						<h2 class="govuk-heading-m"><a id="NOX_to_NO2_conversion_ratios_to_use_173"></a>NOX to NO2 conversion ratios to use</h2>
+						<p>In your report you will need to state which NOX to NO2 conversion ratios you used or what photochemistry parameters and any assumptions you’ve made.</p>
+						<p>For primary NO2 to NOX ratios of 10% or less, you can use worst case NOX to NO2 conversion ratios of:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>35% for short term assessment</li>
+						<li>70% for long term assessment</li>
+						</ul>
+						<p>For high NOX emission specified generators you may calculate case specific ratios. You will need to use a suitable atmospheric chemical reaction method or model. The method or model must use valid input data, including:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>measured or assumed primary NO2 to NOX ratios</li>
+						<li>representative background O3, NO and NO2</li>
+						<li>sunlight</li>
+						</ul>
+						<p>Use <a href="https://uk-air.defra.gov.uk/interactive-map">UK Air</a> to see a map of Automatic Urban and Rural Network (AURN) monitoring sites in England and Wales  that measure O3, NO and NO2.</p>
+						<h2 class="govuk-heading-m"><a id="Results_and_impact_assessment_188"></a>Results and impact assessment</h2>
+						<p>You must compare your process contributions (PCs) and Predicted Environmental Concentrations (PECs) against the <a href="https://www.gov.uk/guidance/air-emissions-risk-assessment-for-your-environmental-permit#environmental-standards-for-air-emissions">environmental standards for air</a>, and allow for <a href="https://www.gov.uk/guidance/environmental-permitting-air-dispersion-modelling-reports#estimate-model-uncertainty">modelling uncertainties</a>.</p>
+						<p>Your <a href="https://www.gov.uk/guidance/environmental-permitting-air-dispersion-modelling-reports#carry-out-impact-assessment">impact assessment report</a> must include:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>breaches of air quality standards</li>
+						<li>relevant contour plots</li>
+						<li>results tables</li>
+						</ul>
+						<h3 class="govuk-heading-s"><a id="Short_term_statistical_analysis_197"></a>Short term statistical analysis</h3>
+						<p>You must carry out statistical analysis if short term predictions show that 19 or more hours exceed the environmental standard at a sensitive receptor over the modelled operating envelope.</p>
+						<p>You could use the:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>hypergeometric probability distribution</li>
+						<li>Monte Carlo simulation<br>
+						The base parameters are the:</li>
+						<li>number of hours where the PEC exceeds the standard</li>
+						<li>number of operating hours per year</li>
+						<li>defined operational envelope</li>
+						</ul>
+						<p>You must multiply the calculated probability by a factor of 2.5 where both of these apply, the:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>statistical method assumes independent and random operational hours, for example the hypergeometric distribution</li>
+						<li>defined operating envelope includes continuous operations of more than an hour</li>
+						</ul>
+						<p>You need to:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>justify your choice of the statistical analysis method</li>
+						<li>calculate and discuss probability and the likelihood of exceedance</li>
+						</ul>
+						<p>Where the probability is:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>1% or less - exceedances are highly unlikely</li>
+						<li>less than 5% - exceedances are unlikely as long as the generator plant operational lifetime is no more than 20 years</li>
+						<li>more than or equal to 5% - there is potential for exceedances and the regulator will consider if acceptable on a case by case basis</li>
+						</ul>
+						<h3 class="govuk-heading-s"><a id="Annual_mean_assessment_222"></a>Annual mean assessment</h3>
+						<p>If you do an annual mean assessment you can calculate annual mean PCs by scaling down long term predictions. To get the factor to scale down by, you need to divide the number of total operational hours per year by the total number of hours in your operating envelope.</p>
+						<p>For example, for 400 operational hours per year with a full year (8760 hours) operating envelope, long term PCs can be scaled down by a factor of 400 divided by 8760.</p>
+						<p>You can then calculate the PECs by adding representative annual mean background concentrations.</p>
+						<h3 class="govuk-heading-s"><a id="Hourly_mean_assessment_230"></a>Hourly mean assessment</h3>
+						<p>You must provide proposals to reduce the risk of the exceedance, where short term statistical analysis shows potential for the hourly mean standard to be exceeded by the PEC - that is where the probability is more than or equal to 5%.<br>
+						For example, you could propose to restrict the number of operating hours.</p>
+						<h3 class="govuk-heading-s"><a id="Example_calculation_235"></a>Example calculation</h3>
+						<p>Download the example calculation.</p>
+
+
+</div><!-- END MCP_CONTENT -->
+
+
+						<h2 id="contact-the-environment-agency" class="govuk-heading-m">Contact the regulator</h2>
+							<div style="border-left:0.75px solid#bfc1c3; padding:20px;line-height:-23.25em;">
+
+									<h4 class="govuk-heading-s">General enquiries</h4>
+
+						<p class="adr">
+							<span class="fn">National Customer Contact Centre</span><br>
+							<span class="street-address">PO Box 544</span><br>
+							<span class="locality">Rotherham</span><br>
+							<span class="postal-code">S60 1BY</span>
+						</p>
+
+							<div style="email-url-number">
+								<p class="email">
+									<span class="type">Email</span>
+								  <a class="email" href="mailto:enquiries@environment-agency.gov.uk">enquiries@environment-agency.gov.uk</a>
+								  <br>
+								</p>
+								<p class="tel">
+								  <span class="type">Telephone</span>
+								  03708 506 506
+								  <br>
+								</p>
+								<p class="tel">
+								  <span class="type">Telephone from outside the UK (Monday to Friday, 8am to 6pm GMT)</span>
+								  +44 (0) 114 282 5312
+								  <br>
+								</p>
+								<p class="tel">
+								  <span class="type">Minicom (for the hard of hearing)</span>
+								  03702 422 549
+								</p>
+							</div>
+
+							<p class="comments">Monday to Friday, 8am to 6pm</p>
+
+						</div>
+
+					</div><!-- END govuk-grid-column-two-thirds -->
+
+
+						<div class="govuk-grid-column-one-third">
+							<hr class="govuk-section-break govuk-section-break--visible">
+							<br>
+							<h3 class="govuk-heading-m">Related content</h3>
+								<p class="govuk-body govuk-!-font-size-16">Explore the topic</p>
+								<p class="govuk-body govuk-!-font-size-16"><a href="#">Environmental permits</a></p>
+								<p class="govuk-body govuk-!-font-size-16"><a href="#">Policy</a></p>
+								<p class="govuk-body govuk-!-font-size-16"><a href="#">Business and the environment</a></p>
+								<hr class="govuk-section-break govuk-section-break--visible">
+						</div>
+
+			</div><!-- END govuk-grid-row -->
+		</div><!-- END govuk-width-container -->
+
+
+
+{% endblock %}

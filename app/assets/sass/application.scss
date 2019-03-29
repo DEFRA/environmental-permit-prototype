@@ -23,11 +23,11 @@ $govuk-global-styles: true;
     font-size: 16px;
     line-height: 1.25;
     color:#FFFFFF;
-  
+
       p,a{color:#FFFFFF;}
       span{font-weight:normal;}
-  
-  
+
+
   }
 
   .grey-box{
@@ -46,7 +46,7 @@ $govuk-global-styles: true;
 
   #completeLink{
     display:inline-block;
-    font-size: 18px; 
+    font-size: 18px;
     padding:9px 0 0 1em;
   }
 
@@ -88,4 +88,18 @@ $govuk-global-styles: true;
 .upload_head{
   font-weight:bold;
   margin-bottom:0;
+}
+
+// MCP guidance ######################
+
+#mcp-contents-list{
+  margin-bottom: 2em;
+}
+
+.mcp-contents-head{
+  margin-bottom:0.5em;
+}
+
+.govuk-section-break--visible {
+    margin-bottom: 1em;
 }
