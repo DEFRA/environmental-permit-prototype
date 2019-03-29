@@ -92,12 +92,7 @@
     {{ macros.task( "Upload the energy efficiency report", permit.EnergyEfficiency1, "/"+folder+"/energy-report", taskListError ) }}
     {% endif %}
 
-    {% if permit.hours=="yes" %}
-    <!--BAT report -->
-    {{ macros.task( "Upload the best available techniques assessment", permit.BatAssessment1, "/"+folder+"/bat-assessment-report", taskListError ) }}
-    {% endif %}
-
-    {% if permit.energysource=="boiler-furnace-gas" %}
+    {% if permit.hours=="yes" or permit.energysource=="boiler-furnace-gas"%}
     <!--BAT report -->
     {{ macros.task( "Upload the best available techniques assessment", permit.BatAssessment1, "/"+folder+"/bat-assessment-report", taskListError ) }}
     {% endif %}
