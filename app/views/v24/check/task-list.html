@@ -198,7 +198,7 @@ and facilityType=="mcp and sg" %}
     1.10.2 Medium combustion plant site – requires dispersion modelling
     {% endif %}
 
-    {% if permit.dispersionModelling=="no" or permit.generatorType=="mobile sg" or permit.generatorType=="mobile sg also mcp" %}
+    {% if permit.dispersionModelling=="no" or permit.generatorType=="mobile sg" or permit.generatorType=="mobile sg also mcp" or permit.generatorType=="smcp also sg" and permit.hours=="yes" %}
     1.10.3 Medium combustion plant site – does not require dispersion modelling
     {% endif %}
 </br>
@@ -249,7 +249,7 @@ and facilityType=="Waste treatment"%}
 {% endif %}
 
 {% if appType=="bespoke" 
-and facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.generatorType=="ssg" or permit.generatorType=="smcp also sg" or permit.generatorType=="mobile sg also mcp" and permit.energyEffiencyReport=="yes" %}
+and facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.generatorType=="ssg" or permit.generatorType=="smcp also sg" and permit.hours=="no" or permit.generatorType=="mobile sg also mcp" and permit.energyEffiencyReport=="yes" %}
 {% include folder+"/custom_inc/task-list-mcp-bespoke.html" %}
 {% endif %}
 
@@ -259,7 +259,7 @@ and facilityType=="mcp and sg" and permit.generatorType=="mobile sg" %}
 {% endif %}
 
 {% if appType=="bespoke" 
-and facilityType=="mcp and sg" and permit.generatorType=="mobile sg also mcp" and permit.energyEffiencyReport=="no" %}
+and facilityType=="mcp and sg" and permit.generatorType=="mobile sg also mcp" and permit.energyEffiencyReport=="no" or permit.generatorType=="smcp also sg" and permit.hours=="yes" %}
 {% include folder+"/custom_inc/task-list-mcp-bespoke-mobile.html" %}
 {% endif %}
 

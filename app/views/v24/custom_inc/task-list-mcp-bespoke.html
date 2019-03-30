@@ -78,7 +78,7 @@
 
     {% if permit.dispersionModelling=="yes" %}
      <!-- Air dispersion modelling -->
-    {{ macros.task( "Upload air dispersion modelling report or screening tool", permit.ModellingTool1, "/"+folder+"/modelling-tool", taskListError ) }}
+    {{ macros.task( "Upload air dispersion modelling report and screening tool", permit.ModellingTool1, "/"+folder+"/modelling-tool", taskListError ) }}
     {% endif %}
 
     {% if permit.dispersionModelling=="no" %}
@@ -92,7 +92,7 @@
     {{ macros.task( "Upload the energy efficiency report", permit.EnergyEfficiency1, "/"+folder+"/energy-report", taskListError ) }}
     {% endif %}
 
-    {% if permit.hours=="yes" or permit.energysource=="boiler-furnace-gas"%}
+    {% if permit.hours=="no" and permit.energysource=="boiler-furnace-gas" or permit.exceed1mwth=="yes"%}
     <!--BAT report -->
     {{ macros.task( "Upload the best available techniques assessment", permit.BatAssessment1, "/"+folder+"/bat-assessment-report", taskListError ) }}
     {% endif %}
