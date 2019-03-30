@@ -426,7 +426,7 @@ router.post('/bespoke/activities-assessments/energy-efficiency-report', function
 // Deal with what to show next
 router.post('/bespoke/activities-assessments/energy-efficiency-report-check', function (req, res) {
     if (req.session.data.generatorType==="smcp also sg"){
-      res.redirect("/"+ folder + "/selectpermit/20-50mw")
+      res.redirect("/"+ folder + "/bespoke/activities-assessments/confirm-mcp-costs")
     } else if (req.session.data.generatorType==="smcp"){
       res.redirect("/"+ folder + "/selectpermit/burning-biomass")
     } else if (req.session.data.generatorType==="mobile sg also mcp"){
