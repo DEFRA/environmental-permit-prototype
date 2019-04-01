@@ -10,3 +10,19 @@
 {% if useAutoStoreData %}
   <script src="/public/javascripts/auto-store-data.js"></script>
 {% endif %}
+
+<script>
+
+    $( document ).ready(function() {
+    		var headingtext = "";
+
+        $("#mcp-content h2").each(function() {
+            headingtext = $(this).text();
+            linkid = $(this).find('a').attr('id');
+            $("#mcp-contents-list").append('<li>— <a class="govuk-body govuk-!-font-size-16" href="#'+linkid+'">'+headingtext+'</a></li>');
+            // <li><a class="govuk-body govuk-!-font-size-16" href="#zzzzzzz">Zzzzzzzzz</a></li>
+        });
+
+    });
+
+</script>

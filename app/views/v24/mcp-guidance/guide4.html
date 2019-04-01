@@ -1,0 +1,307 @@
+{% set pageTitle="Complying with medium combustion plant (MCP) emission limit values" %}
+
+{% set pageSummary="When the MCP is exempt from meeting emission limit values (ELVs), which ELVs apply to the MCP and deadlines for meeting them." %}
+
+{% extends "layout-guide.html" %}
+
+{% block pageTitle %}
+	{{ pageTitle }}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-width-container">
+
+			<div class="govuk-grid-row">
+				<div class="govuk-grid-column-two-thirds">
+						<span class="govuk-caption-xl">
+								Guidance
+							</span>
+							<h2 class="govuk-heading-l">{{ pageTitle }}</h2>
+							<p class="govuk-body-l">{{ pageSummary }}</p>
+						</div>
+
+
+				<div class="govuk-grid-column-full">
+					<hr class="govuk-section-break govuk-section-break--visible">
+
+		</div>
+	</div>
+</div>
+
+<div class="govuk-width-container">
+			<div class="govuk-grid-row">
+				<div class="govuk-grid-column-two-thirds">
+
+				<p class="govuk-body govuk-!-font-size-16">Published 6 April 2018<br>
+					Last updated 21 March 2019<br>
+					From: Defra, Welsh Government, Environment Agency, National Resources Wales
+				</p>
+
+				</div>
+			</div>
+</div>
+
+<div class="govuk-width-container">
+		<div class="govuk-grid-row">
+			<div class="govuk-grid-column-two-thirds">
+
+						<div class="blue-box">
+								<p class="govuk-body govuk-!-font-size-16">Applies to: England and <a rel="external" href="https://naturalresources.wales/permits-and-permissions/environmental-permits/?lang=en">Wales</a></p>
+						</div>
+
+						<div class="contents">
+								<h3 class="govuk-body govuk-!-font-size-16 mcp-contents-head">Contents</h3>
+							<ol class="govuk-list" id="mcp-contents-list">
+								<!-- List itrems added by jQuery script on each page -->
+							</ol>
+						</div>
+
+
+<div id="mcp-content">
+
+						<p>If you need a permit, before you apply you need to check what ELV your MCP must to meet.<br>
+						This guidance explains:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>the ELV the MCP must meet, based on its type, such as if it’s new or existing, the fuel it burns and technology it uses</li>
+						<li>if the MCP is exempt from meeting ELVs</li>
+						</ul>
+						<p>It also explains when the MCP may need to meet a stricter ELV, such as when the MCP, including a mobile MCP deployment, is located within:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>a local authority (LA) Air Quality Management Area air quality zone</li>
+						<li>the minimum distance to a habitats site</li>
+						</ul>
+						<p>If your MCP is also a specified generator see the ELVs and controls that <a href="guide5.html">apply to specified generators</a>.</p>
+						<p>If you have a MCP that’s already permitted as part of a <a href="#existing">Part A(1) IED activity</a> you will need to check which ELVs you must meet by what date.</p>
+						<p>You will need to do monitoring to demonstrate you can meet the ELVs set in your permit conditions. See the:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li><a href="#deadlines">deadlines for meeting ELVs</a></li>
+						<li>guidance on <a href="guide8.html">how to comply with your MCPD permit</a>.</li>
+						</ul>
+						<h2 class="govuk-heading-m"><a id="Minimum_ELVs_your_MCP_must_comply_with_17"></a>Minimum ELVs your MCP must comply with</h2>
+						<p>New MCP must meet ELVs from 20 December 2018 or before you commission your new MCP.</p>
+						<p>MCPD sets the minimum ELVs your MCP must comply with. See the <a href="#mcpannexe2">Annex 2 tables</a>. For:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>new MCP that are not engines or gas turbines (GTs) the ELVs are listed in MCPD part 2, table 1</li>
+						<li>new MCP that are engines and GTs the ELVs are listed in part 2, table 2</li>
+						<li>existing MCP that are not engines or GTs between more than 5 and less than 50 MWth the ELVs are listed in part 1, table 2 – they must meet these by 1 January 2025</li>
+						<li>existing MCP that are not engines or GTs between greater than or equal to 1 and less than 5 MWth the ELVs are listed in part 1, table 1 – they must meet these by 1 January 2030</li>
+						<li>existing MCPs between 1 and 50 MWth which are engines or GTs the ELVS are listed in part 1, table 3 – will depend on their capacity as to what deadline applies</li>
+						</ul>
+						<p>You must refer to the notes with the tables.</p>
+						<h2 class="govuk-heading-m"><a id="ELV_to_use_for_MCP_using_2_or_more_fuels_30"></a>ELV to use for MCP using 2 or more fuels</h2>
+						<p>How to calculate ELVs for these MCPs.</p>
+						<h3 class="govuk-heading-s"><a id="Cofired_and_multifuelled_MCPs_34"></a>Co-fired and multi-fuelled MCPs</h3>
+						<p>To determine the ELV for one MCP which uses 2 or more fuels at the same time you will first need to determine the:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>MCP’s total rated input (net calorific value) using <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/435475/LIT_6529.pdf">Regulatory Guidance Note (RGN) 2 (pdf)</a></li>
+						<li>fuel consumption for the monitoring period</li>
+						</ul>
+						<p>You then need to determine the fuel weighted ELV based on the:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>Annex 2 ELV for each fuel</li>
+						<li>thermal input delivered by each fuel</li>
+						</ul>
+						<p>For fuel 1:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>multiply the relevant Annex 2 ELV by the fuel’s thermal input</li>
+						<li>divide the sum by the MCPs total rated thermal input</li>
+						</ul>
+						<p>Do this calculation for each fuel. Then add together each fuel’s contribution to get the MCP’s aggregated ELV.</p>
+						<p>If one of the fuels is a gas or liquid there may not be an ELV for some pollutants. For example, there will be negligible SO2 and particulate emissions from natural gas, therefore the ELV contribution from that fuel is zero.</p>
+						<p>You will normally need to apply for a bespoke MCPD permit for this type of MCP.</p>
+						<h3 class="govuk-heading-s"><a id="Dual_fuel_MCPs_54"></a>Dual fuel MCPs</h3>
+						<p>2 different ELVs apply where different fuels are fired on the same MCP separately. For example, where liquid fuel is used as a backup fuel if the natural gas supply is interrupted.</p>
+						<p>You’ll normally need to apply for a bespoke MCPD permit for this type of MCP.</p>
+						<h3 class="govuk-heading-s"><a id="GT_with_supplementary_firing_60"></a>GT with supplementary firing</h3>
+						<p>2 different ELVs apply where a GT has a supplementary fired waste heat recovery boiler (WHRB) – one for the GT and one for the boiler.</p>
+						<p>Where both the GT and boiler are being fired, or the GT alone, the GT ELV applies at 15% O2.<br>
+						Where the WHRB is being fired alone (auxiliary mode), the boiler ELV applies at 3% O2.</p>
+						<h3 class="govuk-heading-s"><a id="ELV_to_use_for_landfill_gas_engines_67"></a>ELV to use for landfill gas engines</h3>
+						<p>The Environment Agency and NRW do not consider landfill gas to be biogas so you cannot use the higher SO2 ELV.</p>
+						<p>New engines must have a permit by 20 December 2018 or before you commission a new MCP. You must meet ELV monitoring requirements within 4 months.</p>
+						<p>Existing engines less than 5 MWth must have a permit by 1 January 2029 and comply with ELV by 1 January 2030.</p>
+						<p>The ELV for:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>NOX is 190 mg/m3</li>
+						<li>SO2 is 15mg/m3 at 15% O2</li>
+						</ul>
+						<h2 class="govuk-heading-m"><a id="ELV_exemptions_79"></a>ELV exemptions</h2>
+						<p>Check if your MCP is:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>exempt from meeting ELVs</li>
+						<li>required to meet relaxed ELVs or there’s a delay to meeting them</li>
+						</ul>
+						<h3 class="govuk-heading-s"><a id="Less_than_500_operating_hours_per_year_exemption_85"></a>Less than 500 operating hours per year exemption</h3>
+						<p>Existing MCPs operating less than 500 hours per year as a 5 year rolling average are exempt from meeting MCPD ELV.</p>
+						<p>New MCPs operating less than 500 hours per year as a 3 year rolling average are exempt from meeting MCPD ELV.</p>
+						<p>If a dual fuel MCP uses its backup fuel for less than 500 hours per year (over the rolling average) the MCP is exempt from meeting MCPD ELV.</p>
+						<p>MCP that are also a Part B activity must comply with MCPD ELV even if the MCP operates for less than 500 hours per year on a:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>5 year rolling average – existing</li>
+						<li>3 year rolling average – new</li>
+						</ul>
+						<p>However you do not need to monitor every year. Instead you must monitor every 500 operating hours or every 5 years, whichever comes first.</p>
+						<h3 class="govuk-heading-s"><a id="Extension_to_1000_hours_99"></a>Extension to 1000 hours</h3>
+						<p>500 operating hours per year can be extended to 1000 operating hours per year when an emergency or standby MCP is used:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>for back-up power generation in islands when the power supply is interrupted</li>
+						<li>to supply heat in exceptionally cold weather – Defra or Welsh Government will advise the EA or NRW when cold weather is classed as exceptional</li>
+						</ul>
+						<p>For dust the ELV of 200 mg/Nm3 applies for plants firing solid fuel.</p>
+						<h3 class="govuk-heading-s"><a id="How_to_calculate_operating_hours_107"></a>How to calculate operating hours</h3>
+						<p>Operating hours start from when the MCP is operating and discharging emissions to air. The clock starts ticking at the end of start-up (SU) and stops at the beginning of shut down (SD).</p>
+						<p>The regulators have adopted the IED rule on SU and SD. These define a minimum start-up load (MSUL) and a minimum shut down load (MSDL) for stable generation. Below this the combustion unit cannot deliver:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>its output to the NG safely and reliably</li>
+						<li>useful heat or electricity to an industrial or commercial site</li>
+						</ul>
+						<p>See the detail in the Joint Environmental Programme (JEP) guide: <a href="https://www.energy-uk.org.uk/publication.html?task=file.download&amp;id=5650">IED compliance protocol for utility boilers and GTs</a>.</p>
+						<p>For each MCP you must record its SU and SD value. This means one of the following:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>the SU and SD thresholds as a fixed percentage of rated output<br>
+						another separate criterion, for example a physical state of the MCP such as a valve</li>
+						<li>opening which indicates stable operation</li>
+						</ul>
+						<p>You must keep SU and SD periods as short as possible.</p>
+						<p>Manufacturers usually recommend a minimum percent load for their engines depending on the fuel. For example, typically 30% for diesel engines. We will accept these where the value is not determined.<br>
+						If the MCP has multiple flues the start time begins once the first flue passes its SU threshold.<br>
+						For GTs ELVs apply above 70% full load so the SU and SD value is 70% full load.</p>
+						<p>The first 12 month period starts on the day the permit is issued. You need to add up the operating hours of the first 5 or 3 year period and take the average. Thereafter the following 12 month period is added and the first 12 month period dropped off and you calculate a new average.</p>
+						<p>If your MCP qualifies for a 500 hour exemption it can run for more than 500 hours per 12 month period but it must not exceed:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>2500 over 5 years</li>
+						<li>1500 over 3 years</li>
+						</ul>
+						<p>The maximum number of operational hours allowed in a single 12 month period is 750:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>before the MCPs 5 or 3 year rolling operational period starts</li>
+						<li>if the MCP closes before the 5 or 3 year operational period ends</li>
+						</ul>
+						<p>You must keep records of each 12 month period of operational hours for each MCP for 6 years.<br>
+						You must tell the Environment Agency or NRW if any MCP exceeds the 500 hour annual operational limit in one 12 month period. You must prove that you have not exceeded 500 hours rolling average over 5 or 3 years.</p>
+						<h3 class="govuk-heading-s"><a id="Gas_compressor_stations_141"></a>Gas compressor stations</h3>
+						<p>Gas turbines more than 5 MWth used to drive gas compressor stations on the gas national transmission system (GNTS) are exempt from meeting ELV until 1 January 2030.<br>
+						The compressor must be for natural gas on the National Grid (NG) and their operation must be essential to the safety and security of national gas supply.</p>
+						<h3 class="govuk-heading-s"><a id="Fuel_supply_interruption_146"></a>Fuel supply interruption</h3>
+						<p>You may be suspended from meeting ELV when there is a shortage of fuel supply or it’s stopped or interrupted. If you normally operate your MCP with:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>low sulphur fuel and cannot because of an interruption to fuel supply  - you can get a suspension for up to 6 months</li>
+						<li>natural gas and you need to fire on standby liquid fuels (which would need secondary abatement to meet MCPD ELVs) - you can get a suspension for up to 10 days or longer</li>
+						</ul>
+						<p>You must write to the Environment Agency or NRW to:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>tell them why you need a suspension and the likely length required</li>
+						<li>provide evidence of fuel interruption and why energy supplies must be maintained</li>
+						</ul>
+						<p>The Environment Agency or NRW:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>will confirm acceptance in writing</li>
+						<li>must immediately inform Defra or Welsh Government</li>
+						</ul>
+						<h2 class="govuk-heading-m"><a id="MCP_is_located_within_an_air_quality_management_area_AQMA_160"></a>MCP is located within an air quality management area (AQMA)</h2>
+						<p>If your MCP generates electricity you also need to review the <a href="guide5.html">specified generator permit conditions requirements</a>.</p>
+						<p>If your MCP is not a generator, for example it’s a boiler you must find out if your MCP is located within a LA AQMA. You need to tell us this in your application. The regulator will consult the LA to check if your MCP is identified in the associated Air Quality Management Plan.</p>
+						<p>If it is, your MCP emissions may be identified as adversely impacting air quality in the area. The LA, in their plan, will identify how much stricter the ELV needs to be to deliver a noticeable improvement to air quality. The regulator will include the agreed stricter ELV in your permit conditions.</p>
+						<h2 class="govuk-heading-m"><a id="MCP_is_located_near_a_habitats_site_168"></a>MCP is located near a habitats site</h2>
+						<p>A habitats site can be a:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>Special Area of Conservation</li>
+						<li>Special Protection Area</li>
+						<li>Ramsar site</li>
+						<li>Site of Special Scientific Interest</li>
+						</ul>
+						<p>If your MCP is of low risk to air quality and can meet the rules in a SRP, it sets the minimum requirements for the:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>distance from the habitats site</li>
+						<li>stack height</li>
+						</ul>
+						<p>The limits that apply to your MCP will depend on the fuel it uses and its technology.</p>
+						<p>If your MCP is of higher risk to air quality you may need to do an air emissions risk assessment of impacts to nature conservation sites. You’ll need to apply for a bespoke permit and submit your risk assessment with your application.</p>
+						<p>Read the guidance on <a href="https://www.gov.uk/guidance/air-emissions-risk-assessment-for-your-environmental-permit">how to do air emissions risk assessment</a>.</p>
+						<h2 class="govuk-heading-m"><a id="Dark_smoke_186"></a>Dark smoke</h2>
+						<p>The MCP must not persistently emit dark smoke. See the guidance on <a href="https://www.gov.uk/preventing-air-pollution/dark-smoke">how to identify dark smoke</a>.</p>
+						<h2 class="govuk-heading-m"><a id="Monitoring_requirements_190"></a>Monitoring requirements</h2>
+						<p>For new MCP you must start monitoring emissions within 4 months of the grant of the permit or start of operation, whichever is latest.</p>
+						<p>For existing MCP you must start monitoring within 4 months of permit issue, you must have your permit issued by:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>1 January 2024 – existing MCP between 5 MWth and &lt;50 MWth</li>
+						<li>1 January 2029 – existing MCP between 1 MWth and 5 MWth</li>
+						</ul>
+						<p>Periodic monitoring will be required at least every:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>3 years for MCP less than or equal to 20MWth</li>
+						<li>year for MCP greater than 20 MWth</li>
+						</ul>
+						<h2 class="govuk-heading-m"><a id="Apply_for_a_MCPD_environmental_permit_202"></a>Apply for a MCPD environmental permit</h2>
+						<p>You cannot apply for a permit until you can meet the required ELVs. You’ll need to fit secondary abatement ahead of applying for your permit if it’s needed to meet ELVs. Improvement conditions are not available for MCPD permits.</p>
+						<p>You need to:</p>
+						<ul class="govuk-list govuk-list--bullet">
+						<li>select the correct permit to apply for</li>
+						<li>complete and submit the correct form, the fee and required information<br>
+						See the guidance on <a href="guide6.html">applying for a MCPD environmental permit</a> for MCPs.</li>
+						</ul>
+
+
+</div><!-- END MCP_CONTENT -->
+
+
+						<h2 id="contact-the-environment-agency" class="govuk-heading-m">Contact the regulator</h2>
+							<div style="border-left:0.75px solid#bfc1c3; padding:20px;line-height:-23.25em;">
+
+									<h4 class="govuk-heading-s">General enquiries</h4>
+
+						<p class="adr">
+							<span class="fn">National Customer Contact Centre</span><br>
+							<span class="street-address">PO Box 544</span><br>
+							<span class="locality">Rotherham</span><br>
+							<span class="postal-code">S60 1BY</span>
+						</p>
+
+							<div style="email-url-number">
+								<p class="email">
+									<span class="type">Email</span>
+								  <a class="email" href="mailto:enquiries@environment-agency.gov.uk">enquiries@environment-agency.gov.uk</a>
+								  <br>
+								</p>
+								<p class="tel">
+								  <span class="type">Telephone</span>
+								  03708 506 506
+								  <br>
+								</p>
+								<p class="tel">
+								  <span class="type">Telephone from outside the UK (Monday to Friday, 8am to 6pm GMT)</span>
+								  +44 (0) 114 282 5312
+								  <br>
+								</p>
+								<p class="tel">
+								  <span class="type">Minicom (for the hard of hearing)</span>
+								  03702 422 549
+								</p>
+							</div>
+
+							<p class="comments">Monday to Friday, 8am to 6pm</p>
+
+						</div>
+
+					</div><!-- END govuk-grid-column-two-thirds -->
+
+
+						<div class="govuk-grid-column-one-third">
+							<hr class="govuk-section-break govuk-section-break--visible">
+							<br>
+							<h3 class="govuk-heading-m">Related content</h3>
+								<p class="govuk-body govuk-!-font-size-16">Explore the topic</p>
+								<p class="govuk-body govuk-!-font-size-16"><a href="#">Environmental permits</a></p>
+								<p class="govuk-body govuk-!-font-size-16"><a href="#">Policy</a></p>
+								<p class="govuk-body govuk-!-font-size-16"><a href="#">Business and the environment</a></p>
+								<hr class="govuk-section-break govuk-section-break--visible">
+						</div>
+
+			</div><!-- END govuk-grid-row -->
+		</div><!-- END govuk-width-container -->
+
+
+
+{% endblock %}
