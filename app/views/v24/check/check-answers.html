@@ -23,7 +23,8 @@
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               {{title}}
           </legend>
-          {{ permit|dump }}
+          {# permit|dump #}
+          
 {% import folder+"/custom_inc/macros.html" as macros %}
 {% from folder+"/bespoke/activities-assessments/json/bespoke-assessment-list.html" import assessments %}
 {% from folder+"/bespoke/activities-assessments/json/bespoke_activities.html" import activities %}
@@ -327,12 +328,15 @@
       </dd>
       <dd class="govuk-summary-list__actions"><a href="/{{folder}}/site/site-contact">Change <span class="govuk-visually-hidden">site contact details</span></a></dd>
     </div>
-    
+
+    {% if permit.bespokePermit=="bespoke" and permit.facilityType=="Waste treatment"%}
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">Site plan</dt>
       <dd class="govuk-summary-list__value">{{permit.SitePlan1}}</dd>
       <dd class="govuk-summary-list__actions"><a href="/{{folder}}/evidence/upload-site-plan">Change <span class="govuk-visually-hidden">site plan</span></a></dd>
     </div>
+    {% endif %}
+
 {% endif %}
 
 {% if permit.industryScheme=="WAMITAB" %}

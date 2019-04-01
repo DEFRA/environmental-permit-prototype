@@ -155,7 +155,7 @@ router.get('/save-and-return/check', function (req, res) {
 // set up dummy data
   router.get('/mcp', function (req, res) {
   req.session.data = { permitoperation: 'mcp' }
-  res.redirect(`/${folder}/start/bespoke-guide`)
+  res.redirect(`/${folder}/start/start-or-resume`)
 })
 
 
