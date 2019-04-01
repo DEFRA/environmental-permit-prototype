@@ -23,7 +23,7 @@
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               {{title}}
           </legend>
-
+          {{ permit|dump }}
 {% import folder+"/custom_inc/macros.html" as macros %}
 {% from folder+"/bespoke/activities-assessments/json/bespoke-assessment-list.html" import assessments %}
 {% from folder+"/bespoke/activities-assessments/json/bespoke_activities.html" import activities %}
@@ -32,8 +32,8 @@
   <dl class="govuk-summary-list govuk-!-margin-bottom-9">
     
     
-{% if permit.bespokePermit=="bespoke" %}
-    
+{% if permit.bespokePermit=="bespoke" and permit.facilityType=="Waste treatment"%}
+
 <!-- Output chosen activities ############################################ -->
 <div class="govuk-summary-list__row">
   <dt class="govuk-summary-list__key">Activities</dt>
@@ -109,7 +109,13 @@
 
 {% endif %}<!-- END IF BESPOKE -->
     
-    
+{% if facilityType !== 'mcp and sg' %}
+<div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">Application cost</dt>
+    <dd class="govuk-summary-list__value">£{{ permit.totalcost | formatnumber }}</dd>
+    <dd class="govuk-summary-list__actions"></dd>
+  </div>
+  {% endif %}
 <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">Contact details</dt>
       <dd class="govuk-summary-list__value">
@@ -123,12 +129,13 @@
       <dd class="govuk-summary-list__actions"><a href="/{{folder}}/contact/contact-details">Change <span class="govuk-visually-hidden">Contact details</span></a></dd>
     </div>
 
-
+    {% if permit.bespokePermit=="bespoke" and permit.facilityType=="Waste treatment"%}
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">Company name</dt>
       <dd class="govuk-summary-list__value">{{permit.companyName}}</dd>
       <dd class="govuk-summary-list__actions"><a href="/{{folder}}/operator/company/company-name">Change <span class="govuk-visually-hidden">company name</span></a></dd>
     </div>
+    {% endif %}
 
 
 {% if permit.useBusinessTradingName=="Yes" %}
@@ -139,11 +146,12 @@
     </div>
 {% endif %}
 
-
+{% if permit.bespokePermit=="bespoke" and permit.facilityType=="Waste treatment"%}
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">Company address</dt><dd class="govuk-summary-list__value">{{permit.companyAddress}}</dd>
       <dd class="govuk-summary-list__actions"><a href="/{{folder}}/operator/company/company-name">Change</a></dd>
     </div>
+    {% endif %}
 
 
 {% if permit.differentMainBusinessAddress=="Yes" %}
@@ -169,6 +177,7 @@
     </div>
 {% endif %}
 
+{% if permit.bespokePermit=="bespoke" and permit.facilityType=="Waste treatment"%}
 <div class="govuk-summary-list__row">
   <dt class="govuk-summary-list__key">Company directors' dates of birth</dt>
   <dd class="govuk-summary-list__value">
@@ -180,14 +189,16 @@
   </dd>
   <dd class="govuk-summary-list__actions"><a href="/{{folder}}/operator/company/company-name">Change</a></dd>
 </div>
+{% endif %}
 
-
+{% if permit.bespokePermit=="bespoke" and permit.facilityType=="Waste treatment"%}
 {% if permit.companySecretaryEmail!=="" %}
 <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">Email address for permit and official notices</dt>
       <dd class="govuk-summary-list__value">{{permit.companySecretaryEmail}}</dd>
       <dd class="govuk-summary-list__actions"><a href="/{{folder}}/contact/company-secretary">Change <span class="govuk-visually-hidden"> email address for permit and official notices</span></a></dd>
     </div>
+{% endif %}
 {% endif %}
 
 <div class="govuk-summary-list__row">
@@ -203,7 +214,7 @@
     </div>
     
 <!-- BASIC details -->
-{% if permit.bespokePermit=="bespoke" %}  
+{% if permit.bespokePermit=="bespoke" and permit.facilityType=="Waste treatment"%}
 <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">Name of operation</dt>
       <dd class="govuk-summary-list__value">{{permit.waste_operation_name}}</dd>
@@ -262,7 +273,7 @@
     
     
 <!-- Substance release consultations -->
-{% if permit.bespokePermit=="bespoke" %}
+{% if permit.bespokePermit=="bespoke" and permit.facilityType=="Waste treatment"%}
   {% if permit.sewerageUndertakerName!=="undefined" or permit.harbourAuthorityName!=="undefined" or permit.fisheriesComitteeName!=="undefined" %} 
   <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">People we have to consult</dt>
@@ -277,7 +288,7 @@
 {% endif %}
     
 <!-- Waste codes -->
-{% if permit.bespokePermit=="bespoke" %}  
+{% if permit.bespokePermit=="bespoke" and permit.facilityType=="Waste treatment"%}
 <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">Waste codes spreadsheet filename</dt>
       <dd class="govuk-summary-list__value">{{permit.WasteCodes1}}</dd>
@@ -323,7 +334,6 @@
       <dd class="govuk-summary-list__actions"><a href="/{{folder}}/evidence/upload-site-plan">Change <span class="govuk-visually-hidden">site plan</span></a></dd>
     </div>
 {% endif %}
-
 
 {% if permit.industryScheme=="WAMITAB" %}
 <div class="govuk-summary-list__row">
@@ -373,6 +383,9 @@
       <dd class="govuk-summary-list__value">{{ permit.NonTechSummary1 }}</dd>
       <dd class="govuk-summary-list__actions"><a href="/{{folder}}/upload-non-technical-summary">Change</a></dd>
     </div>
+    {% endif %}
+
+    {% if permit.bespokePermit=="bespoke" and permit.facilityType=="Waste treatment"%}
 
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">Waste codes spreadsheet</dt>
@@ -436,6 +449,76 @@
           <dd class="govuk-summary-list__actions"><a href="/{{folder}}/upload-dust-management-plan">Change</a></dd>
         </div>  
     {% endif %}
+
+{% endif %} 
+
+{% if facilityType !== 'mcp and sg' %}
+
+    {% if permit.bespokePermit=="bespoke" %}
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">What is the name of the AQMA?</dt>
+        <dd class="govuk-summary-list__value">{{permit.aqmaname}}</dd>
+        <dd class="govuk-summary-list__actions"><a href="/{{folder}}/bespoke/activities-assessments/aqma">Change <span class="govuk-visually-hidden">Give Air Quality Management Area details</span></a></dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">What is the name of the local authority where the site is located?</dt>
+        <dd class="govuk-summary-list__value">{{permit.aqmala}}</dd>
+        <dd class="govuk-summary-list__actions"><a href="/{{folder}}/bespoke/activities-assessments/aqma">Change <span class="govuk-visually-hidden">Give Air Quality Management Area details</span></a></dd>
+    </div>
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">What is the background level of nitrogen dioxide?</dt>
+        <dd class="govuk-summary-list__value">{{permit.nitrogendioxide}}</dd>
+        <dd class="govuk-summary-list__actions"><a href="/{{folder}}/bespoke/activities-assessments/aqma">Change <span class="govuk-visually-hidden">Give Air Quality Management Area details</span></a></dd>
+    </div>
+
+<div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">Plant or generator list template</dt>
+    <dd class="govuk-summary-list__value">{{permit.GenTemplate1}}</dd>
+    <dd class="govuk-summary-list__actions"><a href="/{{folder}}/generator-list-template">Change <span class="govuk-visually-hidden">Plant or generator list template</span></a></dd>
+</div>
+
+<div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">Choose business or activity type</dt>
+    <dd class="govuk-summary-list__value">{{permit.nacecodes}}</dd>
+    <dd class="govuk-summary-list__actions"><a href="/{{folder}}/check/nace-code">Change <span class="govuk-visually-hidden">Choose business or activity type</span></a></dd>
+</div>
+
+{% if permit.dispersionModelling=="yes" %}
+<div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">Upload air dispersion modelling report</dt>
+    <dd class="govuk-summary-list__value">{{permit.ModellingTool1}}</dd>
+    <dd class="govuk-summary-list__actions"><a href="/{{folder}}/modelling-tool">Change <span class="govuk-visually-hidden">Upload air dispersion modelling report</span></a></dd>
+</div>
+{% endif %}
+
+{% if permit.dispersionModelling=="no" %}
+<div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">Upload screening tool</dt>
+    <dd class="govuk-summary-list__value">{{permit.ScreeningTool1}}</dd>
+    <dd class="govuk-summary-list__actions"><a href="/{{folder}}/screening-tool">Change <span class="govuk-visually-hidden">Upload screening tool</span></a></dd>
+</div>
+{% endif %}
+
+{% if permit.energyEffiencyReport=="yes" %}
+<div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">Upload the energy efficiency report</dt>
+    <dd class="govuk-summary-list__value">{{permit.EnergyEfficiency1}}</dd>
+    <dd class="govuk-summary-list__actions"><a href="/{{folder}}/energy-report">Change <span class="govuk-visually-hidden">Upload the energy efficiency report</span></a></dd>
+</div>
+{% endif %}
+
+{% if permit.hours=="yes" or permit.energysource=="boiler-furnace-gas"%}
+<div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">Upload the best available techniques assessment</dt>
+    <dd class="govuk-summary-list__value">{{permit.BatAssessment1}}</dd>
+    <dd class="govuk-summary-list__actions"><a href="/{{folder}}/bat-assessment-report">Change <span class="govuk-visually-hidden">Upload the best available techniques assessment</span></a></dd>
+</div>
+{% endif %}
+
+  {% endif %} 
+
 
 {% endif %} 
 

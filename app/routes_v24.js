@@ -153,10 +153,12 @@ router.get('/save-and-return/check', function (req, res) {
 
 
 // set up dummy data
-router.get('/mcp', function (req, res) {
+  router.get('/mcp', function (req, res) {
   req.session.data = { permitoperation: 'mcp' }
   res.redirect(`/${folder}/start/bespoke-guide`)
 })
+
+
 
  // Pre-app to get pre app ====================================================================
 
@@ -326,6 +328,7 @@ router.post('/selectpermit/500-hours-check', function (req, res) {
   }
 })
 
+
 // EPR PERMIT ============
 router.get('/selectpermit/other-permits', function (req, res) {
   res.render(folder + '/selectpermit/other-permits',{
@@ -344,11 +347,93 @@ router.post('/selectpermit/other-permits-check', function (req, res) {
   var eprPermit = req.body.eprPermit
 
   if (eprPermit === 'no') {
-    res.redirect("/"+ folder + "/selectpermit/500-hours")
+    if (req.session.data.generatorType==="mobile sg") {
+      res.redirect("/"+ folder + "/bespoke/activities-assessments/confirm-mcp-costs")
+    } else if (req.session.data.generatorType==="smcp also sg"){
+      res.redirect("/"+ folder + "/selectpermit/500-hours")
+    } else if (req.session.data.generatorType==="smcp"){
+      res.redirect("/"+ folder + "/selectpermit/500-hours")
+    } else if (req.session.data.generatorType==="ssg"){
+      res.redirect("/"+ folder + "/bespoke/activities-assessments/dispersion-modelling")
+    } else if (req.session.data.generatorType==="mobile sg also mcp"){
+      res.redirect("/"+ folder + "/bespoke/activities-assessments/energy-efficiency-report")
+    }
   } else {
     res.redirect("/"+ folder + "/selectpermit/epr-permit-holder")
   }
 })
+
+// AIR DISPERSION MODELLING ROUTES ============
+router.get('/bespoke/activities-assessments/dispersion-modelling', function (req, res) {
+  res.render(folder + '/bespoke/activities-assessments/dispersion-modelling',{
+    "formAction":"/"+ folder + "/bespoke/activities-assessments/dispersion-modelling-check"
+  })
+})
+
+router.post('/bespoke/activities-assessments/dispersion-modelling', function (req, res) {
+  res.render(folder + '/bespoke/activities-assessments/dispersion-modelling',{
+    "formAction":"/"+ folder + "/bespoke/activities-assessments/dispersion-modelling-check"
+  })
+})
+
+// Deal with what to show next
+router.post('/bespoke/activities-assessments/dispersion-modelling-check', function (req, res) {
+
+    if (req.session.data.generatorType==="smcp also sg"){
+      res.redirect("/"+ folder + "/bespoke/activities-assessments/energy-efficiency-report")
+    } else if (req.session.data.generatorType==="smcp"){
+      res.redirect("/"+ folder + "/bespoke/activities-assessments/energy-efficiency-report")
+    } else if (req.session.data.generatorType==="ssg"){
+      res.redirect("/"+ folder + "/selectpermit/20-50mw")
+    }
+})
+
+// 20-50mw ============
+router.get('/selectpermit/20-50mw', function (req, res) {
+  res.render(folder + '/selectpermit/20-50mw',{
+  "formAction":"/"+ folder + "/selectpermit/20-50mw-check"
+})
+})
+
+router.post('/selectpermit/20-50mw', function (req, res) {
+res.render(folder + '/selectpermit/20-50mw',{
+  "formAction":"/"+ folder + "/selectpermit/20-50mw-check"
+})
+})
+
+// Deal with what to show next
+router.post('/selectpermit/20-50mw-check', function (req, res) {
+  if (req.session.data.generatorType==="ssg"){
+    res.redirect("/"+ folder + "/bespoke/activities-assessments/habitat-assessment")
+  } else if (req.session.data.generatorType==="smcp also sg"){
+    res.redirect("/"+ folder + "/selectpermit/burning-biomass")
+  }
+})
+
+// ENERGY EFFICIENCY REPORT ROUTES ============
+router.get('/bespoke/activities-assessments/energy-efficiency-report', function (req, res) {
+    res.render(folder + '/bespoke/activities-assessments/energy-efficiency-report',{
+    "formAction":"/"+ folder + "/bespoke/activities-assessments/energy-efficiency-report-check"
+  })
+})
+
+router.post('/bespoke/activities-assessments/energy-efficiency-report', function (req, res) {
+  res.render(folder + '/bespoke/activities-assessments/energy-efficiency-report',{
+    "formAction":"/"+ folder + "/bespoke/activities-assessments/energy-efficiency-report-check"
+  })
+})
+
+// Deal with what to show next
+router.post('/bespoke/activities-assessments/energy-efficiency-report-check', function (req, res) {
+    if (req.session.data.generatorType==="smcp also sg"){
+      res.redirect("/"+ folder + "/selectpermit/20-50mw")
+    } else if (req.session.data.generatorType==="smcp"){
+      res.redirect("/"+ folder + "/selectpermit/burning-biomass")
+    } else if (req.session.data.generatorType==="mobile sg also mcp"){
+      res.redirect("/"+ folder + "/bespoke/activities-assessments/confirm-mcp-costs")
+    }
+})
+
 
 // Activity Check - not real page =============================================
 router.post('/activity-check', function (req, res) {
