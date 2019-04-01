@@ -129,12 +129,13 @@
       <dd class="govuk-summary-list__actions"><a href="/{{folder}}/contact/contact-details">Change <span class="govuk-visually-hidden">Contact details</span></a></dd>
     </div>
 
-
+    {% if permit.bespokePermit=="bespoke" and permit.facilityType=="Waste treatment"%}
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">Company name</dt>
       <dd class="govuk-summary-list__value">{{permit.companyName}}</dd>
       <dd class="govuk-summary-list__actions"><a href="/{{folder}}/operator/company/company-name">Change <span class="govuk-visually-hidden">company name</span></a></dd>
     </div>
+    {% endif %}
 
 
 {% if permit.useBusinessTradingName=="Yes" %}
@@ -145,11 +146,12 @@
     </div>
 {% endif %}
 
-
+{% if permit.bespokePermit=="bespoke" and permit.facilityType=="Waste treatment"%}
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">Company address</dt><dd class="govuk-summary-list__value">{{permit.companyAddress}}</dd>
       <dd class="govuk-summary-list__actions"><a href="/{{folder}}/operator/company/company-name">Change</a></dd>
     </div>
+    {% endif %}
 
 
 {% if permit.differentMainBusinessAddress=="Yes" %}
@@ -175,6 +177,7 @@
     </div>
 {% endif %}
 
+{% if permit.bespokePermit=="bespoke" and permit.facilityType=="Waste treatment"%}
 <div class="govuk-summary-list__row">
   <dt class="govuk-summary-list__key">Company directors' dates of birth</dt>
   <dd class="govuk-summary-list__value">
@@ -186,14 +189,16 @@
   </dd>
   <dd class="govuk-summary-list__actions"><a href="/{{folder}}/operator/company/company-name">Change</a></dd>
 </div>
+{% endif %}
 
-
+{% if permit.bespokePermit=="bespoke" and permit.facilityType=="Waste treatment"%}
 {% if permit.companySecretaryEmail!=="" %}
 <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">Email address for permit and official notices</dt>
       <dd class="govuk-summary-list__value">{{permit.companySecretaryEmail}}</dd>
       <dd class="govuk-summary-list__actions"><a href="/{{folder}}/contact/company-secretary">Change <span class="govuk-visually-hidden"> email address for permit and official notices</span></a></dd>
     </div>
+{% endif %}
 {% endif %}
 
 <div class="govuk-summary-list__row">

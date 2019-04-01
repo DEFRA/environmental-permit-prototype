@@ -64,11 +64,10 @@
 						</div>
 
 
-					</dl> <div></div>
+					 
               {% endif %}
 
-  		        <dd class="govuk-summary-list__value">{{ permit.permitName }} {{ permit.permitCode }}</dd>
-  		      </div>
+  		      
 						<div class="govuk-summary-list__row">
 								<dd class="govuk-summary-list__value">
 								Amount to pay</dd>
@@ -78,11 +77,12 @@
                 {% else %}
                    {{ permit.permitCost }}
                 {% endif %}
-              </dd>
-  		      
+							</dd>
+						</dl>
+  		      </div><div>
   		</div>
   	</div>
-  </div>
+  
 
 
         <form method="post" action="{{formAction}}">
