@@ -2,20 +2,24 @@
 
 {% set title = "Privacy: how we use your personal information" %}
 
-{% block page_title %}
+
+{% block pageTitle %}
     {{title}} - GOV.UK
 {% endblock %}
 
-{% block content %}
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
 
-<main id="content" role="main">
-  {% include "includes/phase_banner_beta.html" %}
+{% endblock %}
+
+{% block content %}
   
   <div class="grid-row">
     <div class="column-two-thirds">
 
-  <h1 class="heading-large">
-    {{title}}
+        <h1 class="govuk-heading-l">
+            {{title}}
   </h1>
 
   <p class="lede text">The Environment Agency runs the standard rules environmental permit application service. Their
@@ -28,8 +32,8 @@
     <p class="text">The information in the public register will include:
 </p>
 
-    <ul class="list-bullet text">
-      <li>the name and address of the responsible organisation or person</li>
+<ul class="govuk-list govuk-list--bullet">
+    <li>the name and address of the responsible organisation or person</li>
       <li>the permit you have applied for</li>
       <li>the site location</li>
     </ul>
@@ -38,8 +42,8 @@
 
     <p class="text">We may also use the personal information you give us to:</p>
 
-    <ul class="list-bullet text">
-      <li>contact you about our customer service</li>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>contact you about our customer service</li>
       <li>send you environmental information, or consult you about environmental issues</li>
       <li>carry out research on environmental issues</li>
       <li>prevent someone from breaking environmental laws</li>
