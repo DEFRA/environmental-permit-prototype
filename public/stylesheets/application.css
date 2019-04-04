@@ -2366,7 +2366,6 @@ p + .govuk-heading-s,
 
 .govuk-summary-list__key,
 .govuk-summary-list__value {
-  word-break: break-word;
 }
 
 .govuk-summary-list__key {
