@@ -355,7 +355,7 @@ router.post('/selectpermit/other-permits-check', function (req, res) {
       res.redirect("/"+ folder + "/selectpermit/500-hours")
     } else if (req.session.data.generatorType==="ssg"){
       res.redirect("/"+ folder + "/bespoke/activities-assessments/dispersion-modelling")
-    } else if (req.session.data.generatorType==="mobile sg also mcp"){
+    } else if (req.session.data.generatorType==="mobile mcp"){
       res.redirect("/"+ folder + "/bespoke/activities-assessments/energy-efficiency-report")
     }
   } else {
@@ -429,7 +429,7 @@ router.post('/bespoke/activities-assessments/energy-efficiency-report-check', fu
       res.redirect("/"+ folder + "/selectpermit/20-50mw")
     } else if (req.session.data.generatorType==="smcp"){
       res.redirect("/"+ folder + "/selectpermit/burning-biomass")
-    } else if (req.session.data.generatorType==="mobile sg also mcp"){
+    } else if (req.session.data.generatorType==="mobile mcp"){
       res.redirect("/"+ folder + "/bespoke/activities-assessments/confirm-mcp-costs")
     }
 })
