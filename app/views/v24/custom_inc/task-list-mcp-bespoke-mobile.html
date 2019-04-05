@@ -63,8 +63,14 @@
    <!-- Upload the plant or generator list -->
    {{ macros.task( "Upload the plant or generator list template", permit.GenTemplate1, "/"+folder+"/generator-list-template", taskListError ) }}
 
+
+
+   {% if appType=="bespoke" 
+   and facilityType=="mcp and sg" and permit.generatorType=="mobile mcp" or permit.generatorType=="smcp also sg" or permit.generatorType=="smcp"%}
+
    <!-- NACE code, Choose business or activity type -->
    {{ macros.task( "Choose business or activity type", permit.nacecodes, "/"+folder+"/check/nace-code", taskListError ) }}
+   {% endif %}
 
   </ul>
   </li><!-- END TASK SECTION -->
