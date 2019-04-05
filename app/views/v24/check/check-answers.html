@@ -462,7 +462,9 @@ and facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.genera
 {% if facilityType !== 'mcp and sg' %}
 
     {% if permit.bespokePermit=="bespoke" %}
-
+    {% if appType=="bespoke" 
+    and facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.generatorType=="ssg" or permit.generatorType=="smcp also sg" and permit.hours=="no" %}
+    
     <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">What is the name of the AQMA?</dt>
         <dd class="govuk-summary-list__value">{{permit.aqmaname}}</dd>
@@ -479,6 +481,7 @@ and facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.genera
         <dd class="govuk-summary-list__value">{{permit.nitrogendioxide}}</dd>
         <dd class="govuk-summary-list__actions"><a href="/{{folder}}/bespoke/activities-assessments/aqma">Change <span class="govuk-visually-hidden">Give Air Quality Management Area details</span></a></dd>
     </div>
+    {% endif %}
 
 <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">Plant or generator list template</dt>
