@@ -63,12 +63,19 @@
       {% endif %}
       
       
-      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Application details
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">
+          {% if permit.paymentMethod=="Bank transfer" %}
+          You paid £7,329 by BACS.
+          {% endif %}
+  
+        {% if permit.paymentMethod=="Debit or credit card" %}
+        You paid £7,329 by card.
+           {% endif %}
       </h2>
       <p class="text font-small">
       Application reference: {{ permit.permitRefNumber }}<br>
-      Standard rules permit: Vehicle storage depollution and dismantling (authorised treatment) facility SR2015 No 13<br>
-      Site: Bob's Autos 7, GRANGE ROAD, BRISTOL BS1 5AH<br>
+      1.10.3 Medium combustion plant – does not require dispersion modelling<br>
+      Mobile SG<br>
       Operator: ABC Limited<br>
       Date received: 12 March 2018
       </p>    
@@ -84,12 +91,17 @@
       {% endif %}
     </h2>
         <p>
-          We will check any documents you have uploaded, your technical qualification and the site location, if applicable. We will run checks on the permit holder and any other relevant people.
-        </p>
-        
-        <p>
-          It takes up to 13 weeks to issue a permit. It may take longer if the information you gave us does not meet our requirements.
-        </p>
+          We will check the information you supplied and the site location, if applicable. We will run checks on the permit holder and any other relevant people.
+      
+       
+        We usually issue a permit within: 
+          </p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>13 weeks for a waste permit</li>
+          <li>9 weeks for a medium combustion plant or generator permit</li>
+        </ul>
+     
         
         <p>
           We will not issue a permit if we believe that your operation will pollute the environment or harm human health.

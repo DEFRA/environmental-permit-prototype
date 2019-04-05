@@ -205,13 +205,13 @@
 <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">Relevant offences</dt>
       <dd class="govuk-summary-list__value">{{permit.offences}}</dd>
-      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/evidence/declare-offences">Change <span class="govuk-visually-hidden"> relevant offences</span></a></dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/operator/sole-trader/convictions">Change <span class="govuk-visually-hidden"> relevant offences</span></a></dd>
     </div>
 
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">Bankruptcy or insolvency</dt>
       <dd class="govuk-summary-list__value">{{permit.bankruptcyInsolvency}}</dd>
-      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/evidence/bankruptcy-insolvency">Change <span class="govuk-visually-hidden"> bankruptcy or insolvency</span></a></dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/operator/sole-trader/bankruptcy-insolvency">Change <span class="govuk-visually-hidden"> bankruptcy or insolvency</span></a></dd>
     </div>
     
 <!-- BASIC details -->
@@ -489,11 +489,14 @@ and facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.genera
     <dd class="govuk-summary-list__actions"><a href="/{{folder}}/generator-list-template">Change <span class="govuk-visually-hidden">Plant or generator list template</span></a></dd>
 </div>
 
+{% if appType=="bespoke" 
+and facilityType=="mcp and sg" and permit.generatorType=="mobile sg" %}
 <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">Choose business or activity type</dt>
     <dd class="govuk-summary-list__value">{{permit.nacecodes}}</dd>
     <dd class="govuk-summary-list__actions"><a href="/{{folder}}/check/nace-code">Change <span class="govuk-visually-hidden">Choose business or activity type</span></a></dd>
 </div>
+{% endif %}
 
 {% if permit.dispersionModelling=="yes" %}
 <div class="govuk-summary-list__row">
