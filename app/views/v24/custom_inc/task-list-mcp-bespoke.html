@@ -37,8 +37,9 @@
       {{ macros.taskHead("3", "Operations" )}}
       <ul class="app-task-list__items">
 
-          {% if permit.siteOrMobile=="site" %}
-          <!-- Site name and location ---------------->
+        {% if appType=="bespoke" 
+        and facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.generatorType=="ssg" or permit.generatorType=="smcp also sg" and permit.hours=="no" %}
+                  <!-- Site name and location ---------------->
           {{ macros.task( "Give site name and location", permit.siteName, "/"+folder+"/site/site-name", taskListError ) }}
     {% endif %}
 

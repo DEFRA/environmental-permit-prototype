@@ -37,10 +37,6 @@
       {{ macros.taskHead("3", "Operations" )}}
       <ul class="app-task-list__items">
 
-          {% if permit.siteOrMobile=="site" %}
-          <!-- Site name and location ---------------->
-          {{ macros.task( "Give site name and location", permit.siteName, "/"+folder+"/site/site-name", taskListError ) }}
-    {% endif %}
 
       <!-- AQMA -->
       {{ macros.task( "Give Air Quality Management Area details", permit.aqma, "/"+folder+"/bespoke/activities-assessments/aqma", taskListError ) }}
