@@ -46,14 +46,14 @@
               </div>
               <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-how-contacted-conditional-1">
                 
-                <h1 class="govuk-heading-m">What does that generator get its energy from?</h1>
+                <p>What does that generator get its energy from?</p>
                 {{ govukRadios({
                   idPrefix: "energy-source",
                   name: "energysource",
           fieldset: {
             legend: {
               text: "",
-              classes: "govuk-fieldset__legend--l"
+              classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
@@ -85,7 +85,8 @@
             text: "Confirm"
           }) }}      </div>
 
-  
+          <p>We are asking this to check if you need to provide a best available techniques assessment. If you do, we will add it to your application task list.
+            </p>
 
     </div>
   </div>
