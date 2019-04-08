@@ -248,7 +248,7 @@ and facilityType=="Waste treatment"%}
 {% endif %}
 
 {% if appType=="bespoke" 
-and facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.generatorType=="ssg" or permit.generatorType=="smcp also sg" and permit.hours=="no" or permit.generatorType=="mobile mcp" and permit.energyEffiencyReport=="yes" %}
+and facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.generatorType=="ssg" or permit.generatorType=="smcp also sg" or permit.generatorType=="mobile mcp" and permit.energyEffiencyReport=="yes" %}
 {% include folder+"/custom_inc/task-list-mcp-bespoke.html" %}
 {% endif %}
 
@@ -258,7 +258,7 @@ and facilityType=="mcp and sg" and permit.generatorType=="mobile sg" %}
 {% endif %}
 
 {% if appType=="bespoke" 
-and facilityType=="mcp and sg" and permit.generatorType=="mobile mcp" and permit.energyEffiencyReport=="no" or permit.generatorType=="smcp also sg" and permit.hours=="yes" %}
+and facilityType=="mcp and sg" and permit.generatorType=="mobile mcp" and permit.energyEffiencyReport=="no"%}
 {% include folder+"/custom_inc/task-list-mcp-bespoke-mobile.html" %}
 {% endif %}
 

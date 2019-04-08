@@ -39,14 +39,14 @@
 
           {% if permit.siteOrMobile=="site" %}
           {% if appType=="bespoke" 
-      and facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.generatorType=="ssg" or permit.generatorType=="smcp also sg" and permit.hours=="no" %}
+      and facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.generatorType=="ssg" or permit.generatorType=="smcp also sg" %}
           <!-- Site name and location ---------------->
           {{ macros.task( "Give site name and location", permit.siteName, "/"+folder+"/site/site-name", taskListError ) }}
     {% endif %}
     {% endif %}
 
     {% if appType=="bespoke" 
-      and facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.generatorType=="ssg" or permit.generatorType=="smcp also sg" and permit.hours=="no" %}
+      and facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.generatorType=="ssg" or permit.generatorType=="smcp also sg" %}
       <!-- AQMA -->
       {{ macros.task( "Give Air Quality Management Area details", permit.aqma, "/"+folder+"/bespoke/activities-assessments/aqma", taskListError ) }}
       {% endif %}
@@ -90,7 +90,7 @@
     {{ macros.task( "Upload air dispersion modelling report and screening tool", permit.ModellingTool1, "/"+folder+"/modelling-tool", taskListError ) }}
     {% endif %}
 
-    {% if permit.dispersionModelling=="no" %}
+    {% if permit.dispersionModelling=="no" or permit.hours=="yes"%}
     <!-- Screening tool -->
    {{ macros.task( "Upload screening tool", permit.ScreeningTool1, "/"+folder+"/screening-tool", taskListError ) }}
    {% endif %}

@@ -403,7 +403,7 @@ res.render(folder + '/selectpermit/20-50mw',{
 
 // Deal with what to show next
 router.post('/selectpermit/20-50mw-check', function (req, res) {
-  if (req.session.data.generatorType==="ssg"){
+  if (req.session.data.generatorType==="ssg" || req.session.data.energysource==="boiler-furnace-gas"){
     res.redirect("/"+ folder + "/bespoke/activities-assessments/habitat-assessment")
   } else if (req.session.data.generatorType==="smcp also sg"){
     res.redirect("/"+ folder + "/selectpermit/burning-biomass")

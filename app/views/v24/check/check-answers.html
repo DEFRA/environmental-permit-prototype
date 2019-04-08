@@ -298,9 +298,8 @@
 {% endif %}
 
 
-{% if permit.siteOrMobile=="site" %}
 {% if appType=="bespoke" 
-and facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.generatorType=="ssg" or permit.generatorType=="smcp also sg" and permit.hours=="no" %}
+and facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.generatorType=="ssg" or permit.generatorType=="smcp also sg" %}
 
 <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">Site name</dt>
@@ -339,7 +338,6 @@ and facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.genera
     </div>
     {% endif %}
 
-{% endif %}
 {% endif %}
 
 {% if permit.industryScheme=="WAMITAB" %}
@@ -463,7 +461,7 @@ and facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.genera
 
     {% if permit.bespokePermit=="bespoke" %}
     {% if appType=="bespoke" 
-    and facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.generatorType=="ssg" or permit.generatorType=="smcp also sg" and permit.hours=="no" %}
+    and facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.generatorType=="ssg" or permit.generatorType=="smcp also sg" %}
     
     <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">What is the name of the AQMA?</dt>
@@ -490,7 +488,7 @@ and facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.genera
 </div>
 
 {% if appType=="bespoke" 
-and facilityType=="mcp and sg" and permit.generatorType=="mobile sg" %}
+and facilityType=="mcp and sg" and permit.generatorType=="mobile mcp" or permit.generatorType=="smcp also sg" or permit.generatorType=="smcp"%}
 <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">Choose business or activity type</dt>
     <dd class="govuk-summary-list__value">{{permit.nacecodes}}</dd>
@@ -522,7 +520,7 @@ and facilityType=="mcp and sg" and permit.generatorType=="mobile sg" %}
 </div>
 {% endif %}
 
-{% if permit.hours=="yes" or permit.energysource=="boiler-furnace-gas"%}
+{% if permit.energysource=="boiler-furnace-gas" or permit.exceed1mwth=="yes"%}
 <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">Upload the best available techniques assessment</dt>
     <dd class="govuk-summary-list__value">{{permit.BatAssessment1}}</dd>
