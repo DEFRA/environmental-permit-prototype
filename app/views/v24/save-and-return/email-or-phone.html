@@ -4,7 +4,7 @@
       {% endif %}
       {% if permit.GOTEMAIL %}
             {% else %}
-{% set title = "Register to return to this application" %}
+{% set title = "Save your application" %}
     {% endif %}
 {% block page_title %}
     {{title}} - GOV.UK
@@ -22,7 +22,7 @@
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      
+
             <h1 class="govuk-heading-l">{{title}}</h1>
       {% if permit.GOTEMAIL %}
 
@@ -46,7 +46,7 @@ Every time you complete a screen we will save your data automatically.
                   I got the email
                 </label>
               </div>
-            
+
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="how-contacted-conditional-2" name="GOTEMAIL" type="radio" value="NO" data-aria-controls="conditional-how-contacted-conditional-2">
                 <label class="govuk-label govuk-radios__label" for="how-contacted-conditional-2">
@@ -55,7 +55,7 @@ Every time you complete a screen we will save your data automatically.
               </div>
               <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-how-contacted-conditional-2">
                 <div class="govuk-form-group">
-                  
+
                   <ul class="govuk-list govuk-list--number">
                     <li>Check your spam folder.</li>
                     <li>Search for 'standard rules permit application' in your emails.</li>
@@ -68,9 +68,9 @@ Every time you complete a screen we will save your data automatically.
               </br>
 
                 </div>
-        
+
               </div>
-              
+
 
             </div>
           </fieldset>
@@ -96,8 +96,8 @@ Every time you complete a screen we will save your data automatically.
       {% if permit.GOTEMAIL %}
 
       {% else %}
-      
-      
+
+
       {{ govukInsetText({
             text:  "We will email you a link you can use to get back to your saved application. Every time you complete a screen we will save your data automatically."
       }) }}
@@ -114,7 +114,7 @@ Every time you complete a screen we will save your data automatically.
           },
             classes: "govuk-input--width-20",
             id: "user_email",
-            name: "saveReturnEmail" 
+            name: "saveReturnEmail"
           }) }}
 
           <!-- ######################################################

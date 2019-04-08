@@ -18,8 +18,8 @@ var sample = require('./views/'+folder+'/custom_inc/sample-permit.js')
 // HTML for standard buttons
 var backlink = '<a href="javascript:history.back()" class="govuk-back-link">Back</a>'
 var submitButton = '<button type="submit" id="continueButton" class="govuk-button" name="Continue">Continue</button>'
-var completeLink = '<a id="completeLink" href="/'+folder+'/save-and-return/check">Continue later</a>'
-// completeLink WAS <span id="completeLink"><a href="#" id="completeLater">Complete later</a></span>
+//var completeLink = '<a id="completeLink" href="/'+folder+'/save-and-return/check">Continue later</a>'
+var completeLink = ''
 
 function nocache(req, res, next) {
   res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
@@ -144,7 +144,7 @@ router.get('/save-and-return/check', function (req, res) {
   if( req.session.data['saveReturnEmail']==null ){ // not created save link yet
       res.render(folder + '/save-and-return/email-or-phone',{
         "formAction":"/"+ folder + "/save-and-return/confirm"
-      })  
+      })
   } else {
       res.render(folder + '/save-and-return/complete-later',{
       })
@@ -174,7 +174,7 @@ router.post('/bespoke/pre-app/pre-app', function (req, res) {
   })
 })
 
-  
+
 // Deal with what to show next
 router.post('/bespoke/pre-app/pre-app-check', function (req, res) {
   var preAppYesNo = req.body.preAppYesNo
@@ -275,7 +275,7 @@ router.get('/save-and-return/check', function (req, res) {
   if( req.session.data['saveReturnEmail']==null ){ // not created save link yet
       res.render(folder + '/save-and-return/email-or-phone',{
         "formAction":"/"+ folder + "/save-and-return/confirm"
-      })  
+      })
   } else {
       res.render(folder + '/save-and-return/complete-later',{
       })
@@ -294,12 +294,12 @@ router.post('/bespoke-check', function (req, res) {
   var facilityType = req.body.facilityType
   if (facilityType === "Waste treatment") {
     res.redirect("/"+ folder + "/bespoke/activities-assessments/bespoke-choose-activity-radio")
-  
+
   } else if (facilityType === 'mcp and sg') {
     // redirect to the relevant page
   res.redirect("/"+ folder + '/bespoke/activities-assessments/permit-select-mcp-sg')
-  
-  } else {  
+
+  } else {
     res.redirect("/"+ folder + "/bespoke/offline/bespoke-selection-offline")
   }
 })
@@ -440,7 +440,7 @@ router.post('/activity-check', function (req, res) {
   // If set, add activity to the list in chosenPermitID
   var {activityID,chosenPermitID = []} = req.session.data
   if (activityID){
-    chosenPermitID.push(activityID) 
+    chosenPermitID.push(activityID)
     delete req.session.data.activityID
     req.session.data.chosenPermitID = chosenPermitID
     var showAddConfirmPage="Yes"
@@ -450,7 +450,7 @@ router.post('/activity-check', function (req, res) {
   if(req.body.addActivity=="Yes"){
     res.redirect("/"+ folder + "/bespoke/activities-assessments/bespoke-choose-activity-radio")
   } else if(req.body.addActivity=="_unchecked") {
-    res.redirect("/"+ folder + "/name-check") 
+    res.redirect("/"+ folder + "/name-check")
   } else {
     res.redirect("/"+ folder + "/bespoke/activities-assessments/add-confirm-radio")
   }
@@ -465,9 +465,9 @@ router.post('/bespoke/activities-assessments/add-confirm-radio', function (req, 
 // Delete
 router.get('/bespoke/activities-assessments/add-confirm-radio', function (req, res) {
     var activityIDtoDelete = req.query.del
-    for( var i = 0; i < req.session.data.chosenPermitID.length-1; i++){ 
+    for( var i = 0; i < req.session.data.chosenPermitID.length-1; i++){
        if ( req.session.data.chosenPermitID[i] === activityIDtoDelete) {
-         req.session.data.chosenPermitID.splice(i, 1); 
+         req.session.data.chosenPermitID.splice(i, 1);
        }
     }
     res.render(folder + '/bespoke/activities-assessments/add-confirm-radio',{
@@ -493,7 +493,7 @@ router.all('/name-check', function (req, res) {
   req.session.data = { ...req.session.data, ...{ add: [duplicates] } } // add back into data object to use on name page
 
    res.redirect("/"+ folder + "/bespoke/activities-assessments/name-activities")
- } else {  
+ } else {
    res.redirect("/"+ folder + "/bespoke/assessments/your-assessments")
  }
 })
@@ -658,7 +658,7 @@ router.all('/upload-non-technical-summary', function (req, res) {
   var guidanceTop="nontechsummarytop"
   var guidanceBot=""
   var fileTypes="PDF, JPG, DOC or DOCX"
-  
+
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
 
@@ -682,7 +682,7 @@ router.all('/generator-list-template', function (req, res) {
   var guidanceTop=""
   var guidanceBot=""
   var fileTypes="XLS or ODS"
-  
+
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
 
@@ -704,7 +704,7 @@ router.all('/screening-tool', function (req, res) {
   var guidanceTop="screeningtooltop"
   var guidanceBot=""
   var fileTypes="XLS or ODS"
-  
+
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
 
@@ -724,7 +724,7 @@ router.all('/modelling-tool', function (req, res) {
   var guidanceTop="modellingtooltop"
   var guidanceBot=""
   var fileTypes="XLS or ODS"
-  
+
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
 
@@ -744,7 +744,7 @@ router.all('/energy-report', function (req, res) {
   var guidanceTop="energyefficiencyreporttop"
   var guidanceBot=""
   var fileTypes="PDF, JPG, DOC or DOCX"
-  
+
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
 
@@ -764,10 +764,10 @@ router.all('/bat-assessment-report', function (req, res) {
   var guidanceTop="batassessmenttop"
   var guidanceBot=""
   var fileTypes="PDF, JPG, DOC or DOCX"
-  
+
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
-   
+
     // Back to the task list
 res.redirect(`/${folder}/check/task-list`)
 
@@ -813,7 +813,7 @@ router.all('/upload-waste-codes', function (req, res) {
   var guidanceTop="wastecodestop"
   var guidanceBot=""
   var fileTypes="PDF, DOC, DOCX, XLSX or XLS"
-  
+
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
 
@@ -837,13 +837,13 @@ router.all('/upload-environmental-risk-assessment', function (req, res) {
   var guidanceTop="envriskassesstop"
   var guidanceBot=""
   var fileTypes="PDF, JPG, DOC or DOCX"
-  
+
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
 
 
 
-   
+
     // Back to the task list
 res.redirect(`/${folder}/check/task-list`)
 
@@ -860,7 +860,7 @@ router.all('/upload-fire-plan', function (req, res) {
   var guidanceTop="fireplantop"
   var guidanceBot=""
   var fileTypes="PDF, DOC, DOCX, XLS, XLSX, JPG, ODT or ODS"
-  
+
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
 
@@ -884,13 +884,13 @@ router.all('/upload-site-condition-report', function (req, res) {
   var guidanceTop="siteconditiontop"
   var guidanceBot=""
   var fileTypes="PDF, DOC, DOCX or JPG"
-  
+
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
 
 
 
-    
+
     // Back to the task list
 res.redirect(`/${folder}/check/task-list`)
 
@@ -908,7 +908,7 @@ router.all('/upload-site-plan', function (req, res) {
   var guidanceTop="siteplantop"
   var guidanceBot=""
   var fileTypes="PDF or JPG"
-  
+
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
 
@@ -933,7 +933,7 @@ router.all('/list-technical-standards', function (req, res) {
   var guidanceTop="techstandardslisttop"
   var guidanceBot=""
   var fileTypes="PDF, JPG, DOC or DOCX"
-  
+
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
 
@@ -958,7 +958,7 @@ router.all('/upload-odour-management-plan', function (req, res) {
   var guidanceTop="odourplantop"
   var guidanceBot=""
   var fileTypes="PDF, DOC, DOCX or JPG"
-  
+
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
 
@@ -982,7 +982,7 @@ router.all('/upload-emissions-management-plan', function (req, res) {
   var guidanceTop="emissionsplantop"
   var guidanceBot=""
   var fileTypes="PDF, DOC, DOCX or JPG"
-  
+
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
 
@@ -1007,7 +1007,7 @@ router.all('/upload-noise-plan', function (req, res) {
   var guidanceTop="noiseplantop"
   var guidanceBot=""
   var fileTypes="PDF, DOC, DOCX or JPG"
-  
+
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
 
@@ -1155,7 +1155,7 @@ router.all('/evidence/techcomp/get-evidence', function (req, res) {
   var fileTypes="PDF or JPG"
   var fileName="TechnicalCompetenceFile"
   var guidanceBot=""
-  
+
   if( req.session.data['industryScheme']=='WAMITAB' ) {
     var title="WAMITAB or EPOC: upload your evidence"
     var guidanceTop="wamitabtop"
@@ -1169,7 +1169,7 @@ router.all('/evidence/techcomp/get-evidence', function (req, res) {
     var title="Getting a qualification: upload your evidence"
     var guidanceTop="gettingqualtop"
   }
-  
+
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
 
@@ -1193,7 +1193,7 @@ router.get('/bespoke/emissions/emissions-check', function (req, res) {
 
 // Deal with what to show after emissions question
 router.post('/emissions-check', function (req, res) {
-  if(req.body['emissionsYesNo']==="yes"){ 
+  if(req.body['emissionsYesNo']==="yes"){
     // show upload
     res.redirect("/"+ folder + "/upload-emissions-to-air-water-land")
   } else {
@@ -1217,7 +1217,7 @@ router.all('/upload-emissions-to-air-water-land', function (req, res) {
   var guidanceTop="emissionsairwaterlandtop"
   var guidanceBot=""
   var fileTypes="PDF, DOC, DOCX or JPG"
-  
+
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
 
@@ -1242,7 +1242,7 @@ router.all('/upload-management-system-summary', function (req, res) {
   var guidanceTop="mansyssummarytop"
   var guidanceBot=""
   var fileTypes="PDF, JPG, DOC or DOCX"
-  
+
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
 
