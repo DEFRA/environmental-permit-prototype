@@ -12,11 +12,11 @@
 
 {% block content %}
 
-  
+
 
   <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        
+
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               {{title | safe}}
           </legend>
@@ -45,13 +45,13 @@
 
 {% if permit[fileName1] | typeof !== "undefined" %}
     <div class="govuk-summary-list__row">
-          
+
               <dd class="govuk-summary-list__value">Uploaded files</dd>
               <dd class="govuk-summary-list__actions"></dd>
 
                 </div>
 {% endif %}
-  
+
 {% import folder+"/custom_inc/macros.html" as macros %}
 
 {{ macros.uploadList2( permit[fileName1],fileName1 ) if permit[fileName1] | typeof !== "undefined" and permit[fileName1] != "" }}
@@ -65,7 +65,7 @@
 
 
 <form method="post" action="{{formAction}}" id="uploadForm">
-  
+
 {% if permit[fileName1] | typeof == "undefined" %}
     <p class="upload_head">Upload files one at a time</p>
     <p class="text govuk-hint">
@@ -77,24 +77,19 @@
         <input id="upload" type="file" aria-labelelledby="upload-label">
         <input id="filename" name="{{currentFileName}}" type="hidden">
     </div>
-    
+
 {% else %}
 
-    <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset">
-          <div class="govuk-checkboxes" data-module="checkboxes">
-
-            <div class="govuk-checkboxes__item" data-target="uploadAnotherFile">
-               <input class="govuk-checkboxes__input" id="uploadOtherFile" name="uploadOtherFile" type="checkbox" value="yes">
-                   <label class="govuk-label govuk-checkboxes__label" for="uploadOtherFile">
-                       Upload another file
-                    </label>
-              <input id="dontUploadOtherFile" name="dontUploadOtherFile" type="hidden">
-            </div>
-         </div>
-      </fieldset>
+<div class="govuk-checkboxes" data-module="checkboxes">
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="uploadOtherFile" name="uploadOtherFile" type="checkbox" data-aria-controls="uploadAnotherFile">
+      <label class="govuk-label govuk-checkboxes__label" for="uploadOtherFile">
+        Upload another file
+      </label>
+      <input id="dontUploadOtherFile" name="dontUploadOtherFile" type="hidden">
     </div>
-    <div class="panel panel-border-narrow js-hidden" id="uploadAnotherFile">
+
+    <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="uploadAnotherFile">
       <p class="text govuk-hint">
         {{ fileTypes }} files<br>
         30MB maximum per file
@@ -104,10 +99,12 @@
           <input id="filename" name="{{currentFileName}}" type="hidden">
       </div>
     </div>
-  {% endif %}  
-    
-    
-    
+</div>
+
+{% endif %}
+
+
+
     <script>
       // captures uploaded filename and passes to hidden input
       document.getElementById('upload').onchange = uploadOnChange;
@@ -126,7 +123,7 @@
           }
       }
     </script>
-    
+
 
     {% if guidanceBot!="" %}
       {% include folder+"/custom_inc/uploadGuidance/"+guidanceBot+".html" %}
