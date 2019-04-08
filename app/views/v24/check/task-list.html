@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% set version = folder %}
 
-{% set title = "Task list: apply for a standard rules environmental permit" %}
+{% set title = "Apply for a standard rules environmental permit" %}
 
 {% set IndividualChecked = '' %}
 {% if permit.operatorType=='Individual' %}
@@ -90,14 +90,14 @@ set mobile mcp
   <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
-       
+
       <form method="post" action="/{{folder}}/check/check-answers" name="tasklist">
         {% if appType=="bespoke"
           and facilityType=="Waste treatment" %}
         <p><a href="/{{folder}}/dummy">Populate session with dummy data</a></p>
         {% endif %}
 
-       
+
         {# permit|dump #}
         {% if taskListError %}
         <div class="error-summary" role="alert" aria-labelledby="error-summary-heading" tabindex="-1">
@@ -120,10 +120,10 @@ set mobile mcp
           {% if appType=="bespoke" %}
               Apply for a bespoke environmental permit
           {% else %}
-              Apply for a standard rules environmental permit 
+              Apply for a standard rules environmental permit
           {% endif %}
         </h1>
-        
+
 
 
         {% if appType=="bespoke"
@@ -135,12 +135,12 @@ set mobile mcp
 
                   <!-- Output as a paragraph ============================== -->
                         {{ aData.D_Activity_Title }}<!-- ({{ ref }})--><br>
-                      
+
                   {% endif %}
             {% else %}
             <p>No activities</p>
             {% endfor %}
-        
+
     {% else %}
       {% if facilityType !== 'mcp and sg' %}
         <p>You must select at least one activity</p>
@@ -151,24 +151,24 @@ set mobile mcp
     {{ "Ammonia modelling assessment<br>" | safe
           if permit.ammoniaModelling=="yes" }}
 
-    {{ "Dust and bio-aerosol management plan assessment<br>" | safe 
+    {{ "Dust and bio-aerosol management plan assessment<br>" | safe
           if permit.dustPlan=="yes" }}
 
     {{ "Emissions management plan assessment<br>" | safe
           if permit.emissionsPlan=="yes" }}
 
-    {{ "Fire prevention plan assessment<br>" | safe 
-          if firePreventionPlan=="yes" 
+    {{ "Fire prevention plan assessment<br>" | safe
+          if firePreventionPlan=="yes"
           or permit.firePreventionPlan=="yes" }}
 
-    {{ "Habitats assessment<br>" | safe 
+    {{ "Habitats assessment<br>" | safe
           if permit.habitatsAssessment=="yes" }}
 
-    {{ "Noise and vibration management plan assessment<br>" | safe  
+    {{ "Noise and vibration management plan assessment<br>" | safe
           if permit.noisePlan=="yes" }}
 
-    {{ "Odour management plan assessment<br>" | safe 
-          if permit.odourManagementPlan=="yes" 
+    {{ "Odour management plan assessment<br>" | safe
+          if permit.odourManagementPlan=="yes"
           or permit.odourManagementPlanIncluded=="yes" }}
 
     {{ "Pests management plan assessment<br>" | safe
@@ -178,10 +178,10 @@ set mobile mcp
           if permit.wasteRecoveryPlan=="yes" }}
 
     <!-- Output cost ############################################ -->
-    <span value="totalCost">Total cost {{ permit.totalcost | int | formatnumber }}</span>
+    <span value="totalCost">Total cost {{ permit.totalcost | int | formatnumber }}</span><br>
 
     <!-- Link to change permit activities ##################################### -->
-    </br>
+    <p>
     {% if facilityType !== "mcp and sg" %}
       <a href="/{{folder}}/bespoke/activities-assessments/bespoke-choose-activity">
         Change activities or assessments
@@ -200,7 +200,7 @@ and facilityType=="mcp and sg" %}
     {% if permit.dispersionModelling=="no" or permit.generatorType=="mobile sg" or permit.generatorType=="mobile mcp" or permit.generatorType=="smcp also sg" and permit.hours=="yes" %}
     1.10.3 Medium combustion plant site – does not require dispersion modelling
     {% endif %}
-</br>
+<br>
 {% if permit.generatorType=="smcp" %}
 Stationary medium combustion plant (MCP)
 {% endif %}
@@ -221,14 +221,14 @@ Mobile SG
 Mobile MCP
 {% endif %}
     <!-- Output cost ############################################ -->
-  
-</br>
+
+<br>
     <span value="totalCost">Total cost {{ permit.totalcost | int | formatnumber }}</span>
 
 
 
     <!-- Link to change permit activities ##################################### -->
-    </br>
+    <br>
       <a href="/{{folder}}/operator/site-operator">
 Select a different permit      </a>
 </p>
@@ -238,7 +238,7 @@ Select a different permit      </a>
     <p class="font-medium text">{{permit.permitName}} - {{permit.permitCode}}<br><a class="font-small" href="/{{folder}}/selectpermit/permit-category2">Select a different permit</a></p>
 {% endif %}
 
-{% if appType=="bespoke" 
+{% if appType=="bespoke"
 and facilityType=="Waste treatment"%}
 {% include folder+"/custom_inc/task-list-bespoke.html" %}
 {% endif %}
@@ -247,17 +247,17 @@ and facilityType=="Waste treatment"%}
 {% include folder+"/custom_inc/task-list-standard.html" %}
 {% endif %}
 
-{% if appType=="bespoke" 
+{% if appType=="bespoke"
 and facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.generatorType=="ssg" or permit.generatorType=="smcp also sg" or permit.generatorType=="mobile mcp" and permit.energyEffiencyReport=="yes" %}
 {% include folder+"/custom_inc/task-list-mcp-bespoke.html" %}
 {% endif %}
 
-{% if appType=="bespoke" 
+{% if appType=="bespoke"
 and facilityType=="mcp and sg" and permit.generatorType=="mobile sg" %}
 {% include folder+"/custom_inc/task-list-mcp-bespoke-mobile.html" %}
 {% endif %}
 
-{% if appType=="bespoke" 
+{% if appType=="bespoke"
 and facilityType=="mcp and sg" and permit.generatorType=="mobile mcp" and permit.energyEffiencyReport=="no"%}
 {% include folder+"/custom_inc/task-list-mcp-bespoke-mobile.html" %}
 {% endif %}

@@ -24,22 +24,21 @@
               {{title}}
           </legend>
 
+
 <p>Download a template and save it on your computer. Enter the details for each plant or generator you want the permit to cover. You will be asked to upload it later in the application.</p>
 
-{% if appType=="bespoke" 
-and facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.generatorType=="smcp also sg" %}
+{% if permit.generatorType=="smcp" or permit.generatorType=="smcp also sg" %}
 
-<p><a href="/public/images/plant-generator-list-template-app1-v1-0.xls">Plant or generator list template (Excel XLS)</a></p>
-<p><a href="/public/images/plant-generator-list-template-app1-v1-0.ods">Plant or generator list template (Open Document ODS)</a>
-</p>
+    <p><a href="/public/images/plant-generator-list-template-app1-v1-0.xls">Plant or generator list template (Excel XLS)</a></p>
+    <p><a href="/public/images/plant-generator-list-template-app1-v1-0.ods">Plant or generator list template (Open Document ODS)</a>
+    </p>
 {% endif %}
 
-{% if appType=="bespoke" 
-and facilityType=="mcp and sg" and permit.generatorType=="ssg" or permit.generatorType=="mobile sg" %}
+{% if permit.generatorType=="ssg" or permit.generatorType=="mobile sg" %}
 
-<p><a href="/public/images/plant-generator-list-template-app1-v1-0.xls">Plant or generator list template (Excel XLS)</a></p>
-<p><a href="/public/images/plant-generator-list-template-app1-v1-0.ods">Plant or generator list template (Open Document ODS)</a>
-</p>
+    <p><a href="/public/images/plant-generator-list-template-app1-v1-0.xls">Plant or generator list template (Excel XLS)</a></p>
+    <p><a href="/public/images/plant-generator-list-template-app1-v1-0.ods">Plant or generator list template (Open Document ODS)</a>
+    </p>
 {% endif %}
 
 {% if permit.Confirmandpay %}
