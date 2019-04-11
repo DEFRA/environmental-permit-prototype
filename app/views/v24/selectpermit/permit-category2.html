@@ -2,22 +2,25 @@
 
 {% set title = "What do you want the permit for?" %}
 
-{% block page_title %}
-{{title}} - GOV.UK
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
 {% endblock %}
 
 {% block content %}
 
-<main id="content" role="main">
-  {% include "includes/phase_banner_beta.html" %}
 
-  {{backlink|safe}}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-  <div class="grid-row">
-    <div class="column-two-thirds">
-
-
-      <h1 class="heading-large" id="radio_label">{{title}}</h1>
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+        {{title}}
+    </legend>
       
       {# permit|dump #}
 
@@ -30,20 +33,22 @@
         
       <!-- STORE operatorType to pass on -->
       <input type="hidden" name="operatorType" value="{{permit.operatorType}}">
-      
-        <div class="form-group">
-          <fieldset aria-labelledby="radio_label">
-            <legend class="Permit type visuallyhidden">{{title}}</legend>
+      {% for c in categories %}
+      <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
 
-            {% for c in categories %}
-
+          
+          <div class="govuk-radios">
             <div class="multiple-choice">
-              <input id="{{c.category}}" type="radio" name="chosenCategory" value="{{c.category}}">
-              <label for="{{c.category}}">
-                {{c.category}} {{c.hint}}
-
-              </label>
+               <div class="govuk-radios__item govuk-!-margin-1">
+                  <input class="govuk-radios__input" id="{{c.category}}" type="radio" name="chosenCategory" value="{{c.category}}">
+                  <label class="govuk-label govuk-radios__label " for="{{c.category}}">
+                    {{c.category}} {{c.hint}}
+                  </label>
+              </div>
             </div>
+          </div>
+        </fieldset>
 
             {% else %}
             <p>No categories</p>
@@ -51,12 +56,14 @@
           </div>
 
 
-          <div class="form-group">
-            <details role="group">
+          <div class="govuk-form-group">
+              <details class="govuk-details">
 
-              <summary role="button" aria-controls="permit-not-found" aria-expanded="true"><span class="summary">I cannot find the permit I need</span></summary>
+              <summary class="govuk-details__summary" role="button" aria-controls="permit-not-found" aria-expanded="true">    
+                <span class="govuk-details__summary-text">
+                  I cannot find the permit I need</span></summary>
 
-              <div class="panel panel-border-narrow" id="permit-not-found" aria-hidden="false">
+                  <div class="govuk-details__text" id="permit-not-found" aria-hidden="false">
 
                 <p><a href="https://www.gov.uk/guidance/waste-environmental-permits">Read more about waste environmental permits on GOV.UK</a> or contact the Environment Agency.</p>
 
@@ -85,12 +92,15 @@
 
             </details>
 
-          </fieldset>
         </div>
 
-        <div class="form-group">
-          <button type="submit" class="button" name="Continue">Continue</button>
-        </div>
+        <div class="govuk-form-group">
+
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+
+          </div>
 
 
       </form>

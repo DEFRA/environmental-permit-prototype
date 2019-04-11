@@ -1,11 +1,15 @@
 
 {% macro radio_button(label,name,id,value,labelClass='') %}
-<div class="multiple-choice permitSelector">
-  <input id="{{name}}_{{id}}" type="radio" name="{{name}}" value="{{ value }}">
-  <label class="govuk-label govuk-checkboxes__label{{labelClass}}" for="{{name}}_{{id}}">
+<div class="govuk-radios">
+    <div class="multiple-choice">
+<div class="govuk-radios__item permitSelector">
+  <input class="govuk-radios__input" id="{{name}}_{{id}}" type="radio" name="{{name}}" value="{{ value }}">
+  <label class="govuk-radios__label{{labelClass}}" for="{{name}}_{{id}}">
     {{ label }}
   </label>
  </div>
+</div>
+</div>
 {% endmacro %}
 
 

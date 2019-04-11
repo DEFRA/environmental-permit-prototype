@@ -2,23 +2,28 @@
 
 {% set title = "Select a permit" %}
 
-{% block page_title %}
-{{title}} - GOV.UK
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
 {% endblock %}
 
 {% block content %}
 
-<main id="content" role="main">
-  {% include "includes/phase_banner_beta.html" %}
 
-  {{backlink|safe}}
-
-  <div class="grid-row">
-    <div class="column-two-thirds">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
 
-      <h1 class="heading-large" id="radio_label">{{title}}</h1>
-      
+
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            {{title}}
+        </legend>
+              
       {# permit|dump #}
 
 
@@ -31,9 +36,8 @@
 
 
       <form method="post" action="{{formAction}}">
-        <div class="form-group">
-          <fieldset class="permitList" aria-labelledby="radio_label">
-            <legend="Permit">
+          <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset" aria-labelledby="radio_label">
 
             {% for pNumber, pData in permits %}
 
@@ -72,17 +76,21 @@
             {% else %}
             <p>No radios</p>
             {% endfor %}
-
+            </div>
           </fieldset>
-        </div>
 
 
         <input type="hidden" name="saveProgress" value="started-application">
 
 
-        <div class="form-group">
-          <button type="submit" class="button" name="Continue">Continue</button>
-        </div>
+        <div class="govuk-form-group">
+
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+
+          </div>
+
 
 
 
@@ -91,6 +99,5 @@
     </div>
   </div>
 
-</main>
 
 {% endblock %}
