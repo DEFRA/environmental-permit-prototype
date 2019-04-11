@@ -98,7 +98,7 @@ set mobile mcp
         {% endif %}
 
 
-        {# permit|dump #}
+        {{ permit|dump }}
         {% if taskListError %}
         <div class="error-summary" role="alert" aria-labelledby="error-summary-heading" tabindex="-1">
 
@@ -244,7 +244,7 @@ and facilityType=="Waste treatment"%}
 {% endif %}
 
 {% if appType=="standard" %}
-{% include folder+"/custom_inc/task-list-standard.html" %}
+{% include folder+"/custom_inc/task-list-mcp-standard.html" %}
 {% endif %}
 
 {% if appType=="bespoke"
