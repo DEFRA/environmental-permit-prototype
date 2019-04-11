@@ -158,6 +158,11 @@ router.get('/save-and-return/check', function (req, res) {
   res.redirect(`/${folder}/start/start-or-resume`)
 })
 
+// set up dummy data
+router.get('/mcp-standard', function (req, res) {
+  req.session.data = { permitoperation: 'mcp-standard' }
+  res.redirect(`/${folder}/start/start-or-resume`)
+})
 
 
  // Pre-app to get pre app ====================================================================
@@ -357,6 +362,8 @@ router.post('/selectpermit/other-permits-check', function (req, res) {
       res.redirect("/"+ folder + "/bespoke/activities-assessments/dispersion-modelling")
     } else if (req.session.data.generatorType==="mobile mcp"){
       res.redirect("/"+ folder + "/bespoke/activities-assessments/energy-efficiency-report")
+    } else {
+      res.redirect("/"+ folder + "/check/task-list")
     }
   } else {
     res.redirect("/"+ folder + "/selectpermit/epr-permit-holder")
@@ -1638,7 +1645,7 @@ switch (req.body['operatorType']) {
   case 'Individual':
     // go on to choose permit
     return res.render(folder + '/selectpermit/choose-permit2',{
-      "formAction":"/"+ folder + "/check/save-permit-details",
+      "formAction":"/"+ folder + "/selectpermit/other-permits",
       "chosenCategory":req.body['chosenCategory']
     })
 }
@@ -1655,7 +1662,7 @@ if(typeof req.body['chosenCategory']==='undefined'){  // simple error handling
   })
 } else {
   res.render(folder + '/selectpermit/choose-permit2',{
-    "formAction":"/"+ folder + "/check/save-permit-details",
+    "formAction":"/"+ folder + "/selectpermit/other-permits",
     "chosenCategory":req.body['chosenCategory']
   })
 }
