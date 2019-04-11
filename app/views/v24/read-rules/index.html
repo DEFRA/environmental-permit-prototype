@@ -2,21 +2,26 @@
 
 {% set title = "Confirm your operation meets the rules" %}
 
-{% block page_title %}
+{% block pageTitle %}
     {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
 {% endblock %}
 
 {% block content %}
 
-<main id="content" role="main">
-  {% include "includes/phase_banner_beta.html" %}
-  
-  {{backlink|safe}}
 
-  <div class="grid-row">
-    <div class="column-two-thirds">
 
-     <h1 class="heading-large">{{title}}</h1>
+  <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds-from-desktop">
+
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              {{title}}
+          </legend>
 
     <form method="post" action="{{formAction}}">
 
@@ -36,7 +41,7 @@
       {% if permit.readRules %} 
       
       {% else %}
-          <p>If your operation does notmeet these rules, you may need a different standard rules permit or a bespoke permit instead.</p>
+          <p>If your operation does not meet these rules, you may need a different standard rules permit or a bespoke permit instead.</p>
       {% endif %}
       
         <!-- HIDDEN BECAUSE WE HAVE SCREENING IN THE EARLIER FLOW
@@ -67,10 +72,18 @@
         
 
         <div class="form-group">
-<button type="submit" class="button" name="{% if permit.readRules %}Return to task list{% else %}The operation meets these rules{% endif %}">{% if permit.readRules %}Return to task list{% else %}Our operation meets these rules{% endif %}</button>
-        </div>
 
-
+        {% if permit.readRules %}
+        {{ govukButton({
+          text: "Return to task list",
+          name: "Return to task list"
+        }) }}
+        {% else %}
+        {{ govukButton({
+          text: "Our operation meets these rules",
+          name: "{The operation meets these rules{"
+        }) }}
+        {% endif %}
       </form>
 
     </div>

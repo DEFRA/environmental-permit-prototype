@@ -491,24 +491,9 @@ router.get('/bespoke/give-cost-and-time', function (req, res) {
   })
 })
 
-// Cost and time ==============================================================
-router.get('/selectpermit/cost-and-time', function (req, res) {
-  res.render(folder + '/selectpermit/cost-and-time',{
-      "formAction":"/"+ folder + "/check/task-list"
-  })
-})
-
 // What you need to apply ==============================================================
 router.get('/selectpermit/what-need-to-apply', function (req, res) {
   res.render(folder + '/selectpermit/what-need-to-apply',{
-      "formAction":"/"+ folder + "/check/task-list"
-  })
-})
-
-// Read rules ===================================================================
-
-router.get('/read-rules/index', function (req, res) {
-  res.render(folder + '/read-rules/index',{
       "formAction":"/"+ folder + "/check/task-list"
   })
 })

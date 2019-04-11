@@ -1668,7 +1668,20 @@ if(typeof req.body['chosenCategory']==='undefined'){  // simple error handling
 }
 })
 
+// Cost and time ==============================================================
+router.get('/selectpermit/cost-and-time', function (req, res) {
+  res.render(folder + '/selectpermit/cost-and-time',{
+      "formAction":"/"+ folder + "/check/task-list"
+  })
+})
 
 
+// Read rules ===================================================================
+
+router.get('/read-rules/index', function (req, res) {
+  res.render(folder + '/read-rules/index',{
+      "formAction":"/"+ folder + "/check/task-list"
+  })
+})
 
 module.exports = router

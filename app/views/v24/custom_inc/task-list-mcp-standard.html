@@ -7,12 +7,20 @@
       {{ macros.taskHead("1", "Before you apply" )}}
       <ul class="app-task-list__items">
 
+        <!--Check rules--------------->
+        {{ macros.task( "Confirm you can meet the rules", permit.readRules, "/"+folder+"/read-rules/index", taskListError ) }}
+ 
+        <!--Cost and time standard--------------->
+        {{ macros.task( "Check costs and processing time", permit.costTime, "/"+folder+"/selectpermit/cost-and-time", taskListError ) }}
+  
         <!--Save and return--------------->
         {{ macros.task( "Save your application", permit.saveReturnEmail, "/"+folder+"/save-and-return/email-or-phone", taskListError ) }}
   
-        <!--Check rules--------------->
-        {{ macros.task( "Confirm you can meet the rules", permit.readRules, "/"+folder+"/read-rules/index", taskListError ) }}
+        <!-- Download and complete generator template -->
+        {{ macros.task( "Download and complete the plant or generator list template", permit.Confirmandpay, "/"+folder+"/bespoke/generator/download-template", taskListError ) }}
+
       </ul>
+
     </li><!-- END TASK SECTION -->
   
   
@@ -20,9 +28,6 @@
     {{ macros.taskHead("2", "Prepare application" )}}
     <ul class="app-task-list__items">
       
-      <!--Cost and time standard--------------->
-      {{ macros.task( "Check costs and processing time", permit.costTime, "/"+folder+"/selectpermit/cost-and-time", taskListError ) }}
-  
     <!-- Special cases ------------------>
     {% if permit.permitID=="SR-2009-4" %}
         {% set linkText="Give the stack height" %}
@@ -30,18 +35,6 @@
   
     {% if permit.permitID=="SR-2010-2" or permit.permitID=="SR-2010-3" %}
         {% set linkText="Tell us the date when you want the permit to start" %}
-    {% endif %}
-  
-    {% if permit.permitID=="SR-2014-2" %}
-        {% set linkText="Specify the type of mining waste plan" %}
-    {% endif %}
-  
-    {% if permit.permitID=="SR-2015-17" or permit.permitID=="SR-2015-18"  or permit.permitID=="SR-2015-13" %}
-        {% set linkText="Confirm the drainage system for your site" %}
-    {% endif %}
-  
-    {% if permit.permitID=="SR-2015-39" %}
-        {% set linkText="Upload the waste recovery plan" %}
     {% endif %}
   
     {% if
@@ -76,28 +69,12 @@
         {{ macros.task( "Give site name and location", permit.siteName, "/"+folder+"/site/site-name", taskListError ) }}
     {% endif %}
   
-  
-    <!-- Site plan ------------------------->
-    {% if permit.sitePlanNeeded=="Yes" %}
-        <!-- Site plan ------------------------->
-        {{ macros.task( "Upload the site plan", permit.SitePlan1, "/"+folder+"/upload-site-plan", taskListError ) }}
-    {% endif %}
-    
-    <!--Mining waste management plan 2009-8--------------->
-    {% if permit.miningWasteManagementPlanRequired=="Yes" %}
-        {{ macros.task( "Confirm you have a mining waste management plan", permit.miningWasteManagementPlanConfirmed, "/"+folder+"/specialcases/2009-8/sr-2009-8", taskListError ) }}
-    {% endif %}
-    
-    <!-- Tech competence ----------------------->
-    {% if permit.technicalAbilityEvidence=="Yes" %}
-        {{ macros.task( "Prove technical competence", permit.industryScheme, "/"+folder+"/evidence/techcomp/industry-scheme", taskListError ) }}
-    {% endif %}
-  
-    <!-- Fire prevention plan ----------->
-    {% if permit.firePlanNeeded=="Yes" %}
-            {{ macros.task( "Upload fire prevention plan", permit.firePlanFilename, "/"+folder+"/evidence/upload-fire-plan", taskListError ) }}
-    {% endif %}
-  
+    <!-- Upload the plant or generator list -->
+    {{ macros.task( "Upload the plant or generator list template", permit.GenTemplate1, "/"+folder+"/generator-list-template", taskListError ) }}
+
+    <!-- NACE code, Choose business or activity type -->
+    {{ macros.task( "Choose business or activity type", permit.nacecodes, "/"+folder+"/check/nace-code", taskListError ) }}
+ 
     <!-- Confidentiality  ----------->
     {{ macros.task( "Confirm confidentiality needs", permit.confidential, "/"+folder+"/check/claim-confidentiality", taskListError ) }}
   
