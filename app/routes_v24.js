@@ -1684,4 +1684,13 @@ router.get('/read-rules/index', function (req, res) {
   })
 })
 
+// save permit details is an autosubmit page ========================================
+// used to store all the data from the matrix
+router.post('/check/save-permit-details', function (req, res) {
+  res.render(folder + '/check/save-permit-details',{
+    "formAction":"/"+ folder + "/check/task-list",
+    "chosenPermitID":req.body['chosenPermitID']
+  })
+})
+
 module.exports = router

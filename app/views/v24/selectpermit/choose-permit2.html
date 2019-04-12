@@ -34,7 +34,13 @@
       {% import folder+"/custom_inc/macros.html" as macros %}
       {% from folder+"/custom_inc/permit-list-json.html" import permits %}
 
+      {% for pNumber, pData in permits %}
+      {% if pNumber==chosenPermitID %}
 
+{% include folder+"/custom_inc/permit-inputs.html" %}
+
+          {% endif %}
+        {% endfor %}
       <form method="post" action="{{formAction}}">
           <div class="govuk-form-group">
               <fieldset class="govuk-fieldset" aria-labelledby="radio_label">
