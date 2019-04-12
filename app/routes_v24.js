@@ -1662,16 +1662,26 @@ if(typeof req.body['chosenCategory']==='undefined'){  // simple error handling
   })
 } else {
   res.render(folder + '/selectpermit/choose-permit2',{
-    "formAction":"/"+ folder + "/selectpermit/other-permits",
+    "formAction":"/"+ folder + "/selectpermit/save-permit-details",
     "chosenCategory":req.body['chosenCategory']
   })
 }
 })
 
+// Save permit data ============================
+
+router.post('/selectpermit/save-permit-details', function (req, res) {
+  res.render(folder + '/selectpermit/save-permit-details',{
+    "formAction":"/"+ folder + "/selectpermit/other-permits",
+    "chosenPermitID":req.body['chosenPermitID']
+  })
+})
+
+
 // Cost and time ==============================================================
 router.get('/selectpermit/cost-and-time', function (req, res) {
   res.render(folder + '/selectpermit/cost-and-time',{
-      "formAction":"/"+ folder + "/check/task-list"
+      "formAction":"/"+ folder + "/selectpermit/other-permits"
   })
 })
 
