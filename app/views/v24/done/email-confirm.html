@@ -65,11 +65,11 @@
       
       <h2 class="govuk-heading-m govuk-!-margin-bottom-1">
           {% if permit.paymentMethod=="Bank transfer" %}
-          You paid £7,329 by BACS.
+          You paid {{permit.permitCost}} by BACS.
           {% endif %}
   
         {% if permit.paymentMethod=="Debit or credit card" %}
-        You paid £7,329 by card.
+        You paid {{permit.permitCost}} by card.
            {% endif %}
       </h2>
       <p class="text font-small">

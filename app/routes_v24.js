@@ -1681,7 +1681,7 @@ router.post('/selectpermit/save-permit-details', function (req, res) {
 // Cost and time ==============================================================
 router.get('/selectpermit/cost-and-time', function (req, res) {
   res.render(folder + '/selectpermit/cost-and-time',{
-      "formAction":"/"+ folder + "/selectpermit/other-permits"
+      "formAction":"/"+ folder + "/check/task-list"
   })
 })
 
