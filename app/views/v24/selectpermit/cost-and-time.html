@@ -24,30 +24,30 @@
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               {{title}}
           </legend>
-          
+
       <form method="post" action="{{formAction}}">
-      
+
           <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible govuk-!-margin-bottom-0 govuk-!-margin-top-6">
           <dl class="govuk-summary-list">
 
               <div class="govuk-summary-list__row govuk-!-margin-top-0">
                   <dd class="govuk-summary-list__value"> <span class="govuk-body govuk-!-font-weight-bold">Cost to apply</span>
-                  </br>You will pay this when you send your application.</dd>
-                  <dd class="govuk-summary-list__actions govuk-!-font-weight-bold">£7,329{{permit.permitCost}}</dd>
+                  <br>You will pay this when you send your application.</dd>
+                  <dd class="govuk-summary-list__actions govuk-!-font-weight-bold">{{permit.permitCost}}</dd>
               </div>
-              
-              
+
+
                   <div class="govuk-summary-list__row">
                       <dd class="govuk-summary-list__value govuk-body govuk-!-font-weight-bold">Time to wait after applying<p>It may take longer if we need to ask you for more information.</p></dd>
                       <dd class="govuk-summary-list__actions govuk-!-font-weight-bold">Up to 9 weeks</dd>
                   </div>
-              
+
                    <p class="govuk-!-margin-top-2">You do not pay VAT on these costs.</p>
-              
+
               </dl>
 
 
-         <!-- set costTime to yes -->       
+         <!-- set costTime to yes -->
         <input type="hidden" name="costTime" value="yes">
 
 
@@ -57,7 +57,7 @@
         </div>
 
       </form>
-      
+
     </div>
   </div>
 

@@ -490,7 +490,7 @@ img.card-image {
 
 .autosearch input { text-indent: 32px;}
 
-.autosearch .fa-search { 
+.autosearch .fa-search {
   position: absolute;
   top: 60px;
   left: 10px;
@@ -504,18 +504,18 @@ span.resume-link{
 
 .overview{
     .overviewHead {
-      display: flex; 
+      display: flex;
       justify-content: space-between;
       border-top:1px solid #ccc;
       padding-top:1em;
       margin-top:1em;
     }
     h2{
-      margin-top: 0; 
+      margin-top: 0;
       margin-bottom: 0;
     }
     p{
-      margin-top: 0; 
+      margin-top: 0;
       margin-bottom: 0;
     }
     hr {
@@ -554,6 +554,11 @@ p.ov_action{
     white-space: nowrap;
 }
 
-.permitWeight { 
-    color:#6f777b; 
+.permitWeight {
+    color:#6f777b;
+}
+
+
+.govuk-summary-list__key, .govuk-summary-list__value {
+    word-break: normal !important;
 }
