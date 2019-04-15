@@ -159,11 +159,16 @@ router.get('/save-and-return/check', function (req, res) {
 })
 
 // set up dummy data
-router.get('/mcp-standard', function (req, res) {
+router.get('/mcp-standard-rules', function (req, res) {
   req.session.data = { permitoperation: 'mcp-standard' }
   res.redirect(`/${folder}/start/start-or-resume`)
 })
 
+// set up dummy data
+router.get('/mcp-standard', function (req, res) {
+  req.session.data = { permitoperation: 'mcp-standard' }
+  res.redirect(`/${folder}/mcp-guidance/guide1`)
+})
 
  // Pre-app to get pre app ====================================================================
 
