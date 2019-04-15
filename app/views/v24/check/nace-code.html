@@ -1,7 +1,7 @@
 
 {% extends "layout.html" %}
 
-{% set title = "What is the main type of business or activity the plant is used for?" %}
+{% set title = "What is the NACE code for the main business activity that the plant or generator is used for?" %}
 
 {% block pageTitle %}
     {{title}} - GOV.UK
@@ -32,7 +32,7 @@
           {% set bespokeChecked=" checked" %}
         {% endif %}
 
-    
+    <p>These are the most common codes. If your activity does not exactly match these you should choose ‘Other’ and enter the code.</p>
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="how-contacted-conditional-hint">
             <div class="govuk-radios govuk-radios--conditional" data-module="radios">
@@ -102,7 +102,7 @@
                 <p>Find the 4-digit NACE code for your business in the <a href="#">list of NACE codes (opens new tab).</a></p>
                 <div class="govuk-form-group">
                     <label class="govuk-label" for="address-postcode">
-                        4-digit NACE code for your business or activity
+                        NACE code for your business
                     </label>
 
                     <span id="nace-code" class="govuk-hint">
