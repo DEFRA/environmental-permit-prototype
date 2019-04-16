@@ -1699,4 +1699,7 @@ router.get('/read-rules/index', function (req, res) {
   })
 })
 
+// set to mcp
+req.query['mcptype']=='mcp'
+
 module.exports = router

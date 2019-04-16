@@ -517,8 +517,6 @@ router.get('/check/task-list', function (req, res) {
   }
 })
 
-
-
 // Task List
 
 router.post('/check/task-list', function (req, res) {
