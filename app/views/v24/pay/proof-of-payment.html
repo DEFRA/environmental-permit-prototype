@@ -165,7 +165,16 @@
 					<p>&nbsp;</p>
 					<p>For testing:</p>
 					<ul class="govuk-list govuk-list--bullet">
-						<li><a href="/{{folder}}/pay/email-pay-by-bacs" target="_blank">Confirmation email</a></li>
+							{% if permitoperation=="mcp" %}
+
+						<li><a href="/{{folder}}/pay/email-pay-by-bacs-mcp" target="_blank">Confirmation email</a></li>
+
+						{% else %}
+						<li><a href="/{{folder}}/pay/email-pay-by-bacs-waste" target="_blank">Confirmation email</a></li>
+
+						{% endif %}
+
+
 					</ul>
 
 

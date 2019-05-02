@@ -1,0 +1,109 @@
+{% extends "layout_unbranded.html" %}
+
+{% set imgpath="/public/images/email/" %}
+
+{% block page_title %}
+  Gmail | Application received: standard rules environmental permit
+{% endblock %}
+
+{% block proposition_header %}
+  <!-- blank to remove the proposition header -->
+{% endblock %}
+
+{% block header_class %}
+  <!-- blank to remove the proposition header -->
+{% endblock %}
+
+{% block main %}
+
+<div id="email">
+
+<div id="gmail_header">
+  <img src="{{ imgpath }}gmail_header.png" alt="" />
+</div>
+
+  <div class="govuk-grid-row">
+
+      <div style="width:15%" class="govuk-grid-column-one-quarter">
+          <img style="margin-bottom:900px" src="{{ imgpath }}gmail_menu_left.png" alt="" />
+      </div>
+
+
+    <div class="govuk-grid-column-two-thirds">
+
+        <p class="subject">
+         Application received - standard rules environmental permit <img class="inboxicon" src="{{ imgpath }}gmail_icon_inbox.png" alt="" />
+        </p>
+
+      <p class="from">
+        <img src="{{ imgpath }}gmail_from_text.png" alt="" />
+      </p>
+
+      <div id="email_text">
+
+        <div id="banner" class="email-banner"><img src="{{ imgpath }}gov_uk_email_header.png" alt="GOV.UK"></div>
+
+
+        <h1 class="govuk-heading-l">
+            Pay by Bacs before you before you 
+            send your application</h1>
+            <br>
+            <h1 class="govuk-heading-m govuk-!-margin-bottom-1">
+            What you should do
+          </h1>
+      
+          <ol class="govuk-list govuk-list--number">
+              <li>Pay by Bacs using the details below.</li>
+              <li>Go back to your application using the link below and enter the date, amount and reference for the payment.</li>
+              <li>Send your application.</li>
+            </ol>
+      
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Application details
+      </h2>
+        <p>
+          <strong>Bacs details</strong><br>
+          <strong>Payment reference:</strong> WP-WE1234CD<br>
+          <strong>Amount:</strong>{{permit.permitCost}}<br>
+          <strong>Sort code:</strong>  60-70-80<br>
+          <strong>Account number:</strong> 1001 4411<br>
+          <strong>Account name:</strong> EA RECEIPTS
+          <p>
+
+
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
+          Use this link to get back to your application
+    </h3>
+        <p>
+          We will check any documents you have uploaded, your technical qualification and the site location, if applicable. We will run checks on the permit holder and any other relevant people.</br>
+        <a href="/{{folder}}/check/task-list?return=y">https://apply-environmental-permit.service.gov.uk/r/Ab2C34De6F45GhP</a> </p>
+        
+        <p>
+            You will not need a password.
+          </p>
+        
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
+          Application details
+        </h3>
+<p><strong>Permit application:</strong> EPR/WE1234CD</br>
+
+  {{permit.permitName}} - {{permit.permitCode}}</p>
+
+  
+
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-1">To contact us</h3>
+          <p>
+            Permitting and Support Centre<br>
+            <a href="mailto:p&sc-default-team@environment-agency.gov.uk">p&sc-default-team@environment-agency.gov.uk</a><br>
+            Telephone: 02030 253 898<br>
+            Monday to Friday, 8am to 5pm<br>
+          </p>
+
+      </div><!-- // end #email_text -->
+
+    </div><!-- // end .column 3/4 -->
+
+  </div><!-- // end .grid_row -->
+
+</div><!-- // end #email -->
+
+{% endblock %}

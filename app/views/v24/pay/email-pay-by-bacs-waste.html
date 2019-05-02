@@ -84,10 +84,16 @@
           <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
           Application details
         </h3>
-<p>Permit application EPR/WE1234CD</br>
-  {{permit.permitName}} - {{permit.permitCode}}</p>
+<p><strong>Permit application:</strong> EPR/WE1234CD</br>
 
-       
+
+
+  	<strong>Activities:</strong> Biological treatment of waste - not composting (1.16.19)</br>
+    <strong>Assessments:</strong> Odour management plan assessment</br>
+
+    <strong>Application cost:</strong> {{ permit.totalcost | int | formatnumber }}</p>
+
+
         <h3 class="govuk-heading-s govuk-!-margin-bottom-1">To contact us</h3>
           <p>
             Permitting and Support Centre<br>

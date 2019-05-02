@@ -53,10 +53,16 @@
         <p>&nbsp;</p>
         <p>For testing:</p>
         <ul class="govuk-list govuk-list--bullet">
-          <li><a href="/{{folder}}/done/email-confirm" target="_blank">Confirmation email</a></li>
-        </ul>
+      
+        {% if permitoperation=="mcp" %}
 
+        <li><a href="/{{folder}}/done/email-confirm-mcp" target="_blank">Confirmation email</a></li>
 
+        {% else %}
+        <li><a href="/{{folder}}/done/email-confirm-waste" target="_blank">Confirmation email</a></li>
+
+        {% endif %}
+      </ul>
     </div>
   </div>
 
