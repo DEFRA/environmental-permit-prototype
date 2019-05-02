@@ -199,7 +199,7 @@ router.post('/bespoke/pre-app/pre-app-check', function (req, res) {
 // permit holder screen KEEP
 router.post('/operator/site-operator', function (req, res) {
   res.render(folder + '/operator/site-operator',{
-      "formAction":"/"+ folder + "/bespoke/pre-app/pre-app"
+      "formAction":"/"+ folder + "/operator/sole-trader/sole-trader"
   })
 })
 
@@ -212,12 +212,12 @@ router.post('/operator/site-operator', function (req, res) {
 // After operator, route depends on permit type KEEP
 router.post('/after-operator-choice', function (req, res) {
   if (req.session.data.permitoperation=="mcp") { // MCP
-    res.redirect("/"+ folder + "/bespoke/activities-assessments/bespoke-type")
+    res.redirect("/"+ folder + "/operator/sole-trader/sole-trader")
   } else if( req.session.data['bespokePermit']=='standard' ) {// standard rule
     res.redirect("/"+ folder + "/selectpermit/permit-category2")
 
   } else { // standard rule
-  res.redirect("/"+ folder + "/bespoke/pre-app/pre-app") // Bespoke not MCP
+  res.redirect("/"+ folder + "/operator/sole-trader/sole-trader") // Bespoke not MCP
   }
 })
 
@@ -1616,20 +1616,20 @@ router.get('/selectpermit/bespoke-or-standard', function (req, res) {
 })
 
 // required for 'select an activity for bespoke' via start page or task list
-router.post('/selectpermit/select-bespoke-or-standard', function (req, res) {
-if(req.body['bespokePermit']=="standard"){ // think you need square bracket for radios
-    res.render(folder + '/selectpermit/permit-category2',{
-      "formAction":"/"+ folder + "/selectpermit/choose-permit2",
-      "chosenPermitID":req.body['chosenPermitID']
-    })
-} else if(req.body['bespokePermit']=="bespoke-other") {
-    res.render(folder + '/selectpermit/bespoke-offline')
-} else {
-    res.render(folder + '/bespoke/v2-activities/bespoke-category',{
-        "formAction":"/"+ folder + "/bespoke/v2-activities/bespoke-choose-activity"
-    })
-}
-})
+// router.post('/selectpermit/select-bespoke-or-standard', function (req, res) {
+// if(req.body['bespokePermit']=="standard"){ // think you need square bracket for radios
+//    res.render(folder + '/selectpermit/permit-category2',{
+ //     "formAction":"/"+ folder + "/selectpermit/choose-permit2",
+ //     "chosenPermitID":req.body['chosenPermitID']
+ //   })
+// } else if(req.body['bespokePermit']=="bespoke-other") {
+  //  res.render(folder + '/selectpermit/bespoke-offline')
+// } else {
+ //   res.render(folder + '/bespoke/v2-activities/bespoke-category',{
+ //       "formAction":"/"+ folder + "/bespoke/v2-activities/bespoke-choose-activity"
+  //  })
+// }
+//})
 
 
 

@@ -22,7 +22,7 @@
     {{ macros.task( "Give contact details", permit.contactFirstName, "/"+folder+"/contact/contact-details", taskListError ) }}
 
     <!--Permit holder--------------->
-    {{ macros.task( "Give permit holder details", permit.bankruptcyInsolvencyDetails, "/"+folder+HrefLink, taskListError ) }}
+    {{ macros.task( "Give permit holder details", permit.bankruptcyInsolvencyDetails, "/"+folder+"/operator/site-operator", taskListError ) }}
 
     <!-- Confidentiality  ----------->
     {{ macros.task( "Confirm confidentiality needs", permit.confidential, "/"+folder+"/check/claim-confidentiality", taskListError ) }}
