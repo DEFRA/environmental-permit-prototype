@@ -32,7 +32,7 @@
     <div class="govuk-grid-column-two-thirds">
 
         <p class="subject">
-         Application received - standard rules environmental permit <img class="inboxicon" src="{{ imgpath }}gmail_icon_inbox.png" alt="" />
+         Application received - Bespoke environmental permit <img class="inboxicon" src="{{ imgpath }}gmail_icon_inbox.png" alt="" />
         </p>
 
       <p class="from">
@@ -73,10 +73,12 @@
            {% endif %}
       </h2>
       <p class="text font-small">
-      Application reference: {{ permit.permitRefNumber }}<br>
-      {{permit.permitName}} - {{permit.permitCode}}<br>
-      Operator: ABC Limited<br>
-      Date received: 12 March 2018
+      Application reference: {{ permit.permitRefNumber }}</br>
+      <p><strong>Permit:</strong>1.10.3 Medium combustion plant site</br>
+        <strong>Operation:</strong> Stationary MCP which is also an SG  </br>
+        <strong>Application cost:</strong> {{ permit.totalcost | int | formatnumber }}</br>
+        <strong>Operator:</strong> ABC Limited</br>
+      <strong>Date received:</strong> 12 March 2018
       </p>    
       
 

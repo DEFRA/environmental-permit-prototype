@@ -27,7 +27,7 @@
       <form method="post" action="{{formAction}}">
         {# permit|dump #}
 
-        <div class="form-group">
+        <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-labelledby="radio_label">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">{{title}}</legend>
 
@@ -41,18 +41,22 @@
                 {{f.text}} <span class="govuk-hint">{{f.hint}}</span>
               </label>
             </span>
+          </div>
+        </div>
 
             {% else %}
             <p>No categories</p>
             {% endfor %}
           </div>
+          
         </div>
       </div>
+ 
           </br>
           <!-- Set default value and then over-ride on activity selection loop -->
           <input type="hidden" name="siteOrMobile" value="site">
           
-     <div class="form-group">
+     <div class="govuk-form-group">
 
             {{ govukButton({
               text: "Continue"

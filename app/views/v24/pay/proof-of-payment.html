@@ -19,6 +19,7 @@
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+        {{ permit|dump }}
 
 			<h1 class="govuk-heading-l">Give proof of your Bacs payment before you send your application</h1>
 
@@ -41,7 +42,11 @@
 										Amount
 									</dd>
 									<dd class="govuk-summary-list__value">
-											{{permit.permitCost}}
+										{% if permit.bespokePermit=="bespoke" %}
+										{{permit.totalcost | int | formatnumber }}
+										{% else %}
+										{{permit.permitCost}}
+										{% endif %}
 										</dd>
 									</div>
 
@@ -165,12 +170,12 @@
 					<p>&nbsp;</p>
 					<p>For testing:</p>
 					<ul class="govuk-list govuk-list--bullet">
-							{% if permitoperation=="mcp" %}
+							{% if permitoperation==="mcp" %}
 
 						<li><a href="/{{folder}}/pay/email-pay-by-bacs-mcp" target="_blank">Confirmation email</a></li>
 
 						{% else %}
-						<li><a href="/{{folder}}/pay/email-pay-by-bacs-waste" target="_blank">Confirmation email</a></li>
+						<li><a href="/{{folder}}/pay/email-pay-by-bacs-mcp" target="_blank">Confirmation email</a></li>
 
 						{% endif %}
 

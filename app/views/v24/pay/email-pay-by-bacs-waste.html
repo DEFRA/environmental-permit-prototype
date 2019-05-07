@@ -3,7 +3,7 @@
 {% set imgpath="/public/images/email/" %}
 
 {% block page_title %}
-  Gmail | Application received: standard rules environmental permit
+  Gmail | Application received: Bespoke MCP environmental permit
 {% endblock %}
 
 {% block proposition_header %}
@@ -32,7 +32,7 @@
     <div class="govuk-grid-column-two-thirds">
 
         <p class="subject">
-         Application received - standard rules environmental permit <img class="inboxicon" src="{{ imgpath }}gmail_icon_inbox.png" alt="" />
+         Application received - Bespoke MCP environmental permit <img class="inboxicon" src="{{ imgpath }}gmail_icon_inbox.png" alt="" />
         </p>
 
       <p class="from">
@@ -63,7 +63,7 @@
         <p>
           <strong>Bacs details</strong><br>
           <strong>Payment reference:</strong> WP-WE1234CD<br>
-          <strong>Amount:</strong>{{permit.permitCost}}<br>
+          <strong>Amount:</strong>{{ permit.totalcost | int | formatnumber }}<br>
           <strong>Sort code:</strong>  60-70-80<br>
           <strong>Account number:</strong> 1001 4411<br>
           <strong>Account name:</strong> EA RECEIPTS
