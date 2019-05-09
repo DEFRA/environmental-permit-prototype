@@ -92,11 +92,9 @@ set mobile mcp
 
 
       <form method="post" action="/{{folder}}/check/check-answers" name="tasklist">
-        {% if appType=="bespoke"
-          and facilityType=="Waste treatment" %}
+        {% if appType=="bespoke" %}
         <p><a href="/{{folder}}/dummy">Populate session with dummy data</a></p>
         {% endif %}
-
 
         {# permit|dump #}
         {% if taskListError %}
