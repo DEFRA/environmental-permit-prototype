@@ -1492,6 +1492,7 @@ const bespokeWasteDummyData = {
   preAppYesNo: 'no',
   preAppRef: 'Pre-application reference number',
   facilityType: 'Waste treatment',
+  permitRefNumber: 'EPR/WV6123XF',
   siteOrMobile: 'site',
   chosenPermitID: [ '1.16.19' ],
   odourManagementPlanIncluded: 'yes',
