@@ -477,13 +477,14 @@
         <dd class="govuk-summary-list__value">{{permit.nitrogendioxide}}</dd>
         <dd class="govuk-summary-list__actions"><a href="/{{folder}}/bespoke/activities-assessments/aqma">Change <span class="govuk-visually-hidden">Give Air Quality Management Area details</span></a></dd>
     </div>
-    {% endif %}
+   
 
 <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">Plant or generator list template</dt>
     <dd class="govuk-summary-list__value">{{permit.GenTemplate1}}</dd>
     <dd class="govuk-summary-list__actions"><a href="/{{folder}}/generator-list-template">Change <span class="govuk-visually-hidden">Plant or generator list template</span></a></dd>
 </div>
+{% endif %}
 
  {% if permit.bespokePermit=="bespoke"
 and permit.facilityType=="mcp and sg" and permit.generatorType=="mobile mcp" or permit.generatorType=="smcp also sg" or permit.generatorType=="smcp"%}
