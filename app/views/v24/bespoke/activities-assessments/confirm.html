@@ -211,15 +211,15 @@
     {% set totalcost = totalcost + discount %}
 
     <div class="govuk-summary-list__row">
-        <dd class="govuk-summary-list__value"><span class="total">Discount</span> {{ discountrate*100 }}% of lowest cost activity</dd>
+        <dd class="govuk-summary-list__value"><span class="total"><strong>Discount</strong></span> {{ discountrate*100 }}% of lowest cost activity</dd>
       <dd class="govuk-summary-list__actions">{{ discount | formatnumber }}</dd>
     </div>
 
 {% endif %}
 
 <div class="govuk-summary-list__row">
-    <dd class="govuk-summary-list__value">Total cost</dt>
-  <dd class="govuk-summary-list__actions total">{{ totalcost | formatnumber }}</dd>
+    <dd class="govuk-summary-list__value"><strong>Total cost for the application</strong></dt>
+  <dd class="govuk-summary-list__actions total"><strong>{{ totalcost | formatnumber }}</strong></dd>
 </div>
 
 <!-- Add cost to permit -->
