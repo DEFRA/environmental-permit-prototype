@@ -32,7 +32,7 @@
     <div class="govuk-grid-column-two-thirds">
 
         <p class="subject">
-         Application received - Bespoke rules environmental permit <img class="inboxicon" src="{{ imgpath }}gmail_icon_inbox.png" alt="" />
+         Application received - Bespoke waste environmental permit <img class="inboxicon" src="{{ imgpath }}gmail_icon_inbox.png" alt="" />
         </p>
 
       <p class="from">
@@ -73,13 +73,14 @@
            {% endif %}
       </h2>
       <p class="text font-small">
-      Application reference: {{ permit.permitRefNumber }}<br>
-      Activities: Biological treatment of waste - not composting (1.16.19)</br>
-      Assessments: Odour management plan assessment</br>
-      Application cost: {{ permit.totalcost | int | formatnumber }}
+      <strong>Application reference:</strong> {{ permit.permitRefNumber }}<br>
+      <strong>Activities:</strong> Biological treatment of waste - not composting (1.16.19)</br>
+      <strong>Assessments:</strong> Odour management plan assessment</br>
   
-      Operator: ABC Limited<br>
-      Date received: 12 March 2018</p>
+      <strong>Application cost:</strong> {{ permit.totalcost | int | formatnumber }}</br>
+  
+      <strong>Operator:</strong> ABC Limited<br>
+      <strong>Date received:</strong> 12 March 2018</p>
       
       
 

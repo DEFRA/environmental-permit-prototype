@@ -33,7 +33,7 @@
     <div class="govuk-grid-column-three-quarter">
 
       <p class="subject">
-        Standard rules waste permit application return link <img class="inboxicon" src="{{ imgpath }}gmail_icon_inbox.png" alt="" />
+        Bespoke waste permit application return link <img class="inboxicon" src="{{ imgpath }}gmail_icon_inbox.png" alt="" />
       </p>
 
       <p class="from">
@@ -50,8 +50,12 @@
         </h1>
 
         <h2 class="govuk-heading-s">Permit application IB1234CD</h2>
-        <p>{{permit.permitName}} - {{permit.permitCode}}</br>
-          <a href="/{{folder}}/check/task-list?return=y" target="_blank">
+        <p>
+        <strong>Activities:</strong> Biological treatment of waste - not composting (1.16.19)</br>
+        <strong>Assessments:</strong> Odour management plan assessment</br>
+    
+        <strong>Application cost:</strong> {{ permit.totalcost | int | formatnumber }}</br>
+              <a href="/{{folder}}/check/task-list?return=y" target="_blank">
             https://apply-environmental-permit.service.gov.uk/r/Ab2C34De6F45GhP
           </a>
         </p>
