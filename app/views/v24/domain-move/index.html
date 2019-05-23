@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+ {% set title = "The apply for a standard rules
+permit service has moved" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        The apply for a standard rules permit service has moved
+      </h1>
+
+      <h2 class="govuk-heading-m">
+        You have a saved application
+      </h2>
+
+      <p class="govuk-body">If you followed a link in an email to get here (do one of these things):</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          look in your inbox for a new email with an updated link
+        </li>
+        <li>
+          go to the <a class="govuk-link" href="https://apply-for-environmental-permit.service.gov.uk/xxxxx">new site</a>, enter your email and we will send you an updated link
+        </li>
+        <li>
+          if you need help with this, email <a class="govuk-link" href="mailto:psc@environment-agency.gov.uk">psc@environment-agency.gov.uk</a> or call us on 02030 253 898 (Monday to Friday, 8am to 5pm)
+        </li>
+      </ul>
+
+      <h2 class="govuk-heading-m">
+        You followed a link from another web page
+      </h2>
+
+      <p class="govuk-body">
+        Go to the new site: <a class="govuk-link" href="https://apply-for-environmental-permit.service.gov.uk">apply-for-environmental-permit.service.gov.uk</a>
+      </p>
+
+
+    </div>
+  </div>
+
+
+{% endblock %}
