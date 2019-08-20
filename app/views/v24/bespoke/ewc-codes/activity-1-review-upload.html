@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% set title = "EWC code summary for <activity 1>" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+  
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">   
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+        {{title}}
+    </legend>
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dd class="govuk-summary-list__value govuk-!-font-weight-bold">EWC description</dd>
+        <dd class="govuk-summary-list__actions govuk-!-font-weight-bold">EWC code</dd>
+        <dd class="govuk-summary-list__actions"><a href="activity-1-edit.html">Edit</a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dd class="govuk-summary-list__value">Acid-generating tailings from processing of sulphide ore</dd>
+        <dd class="govuk-summary-list__actions">01 03 04*</dd>
+        <dd class="govuk-summary-list__actions"></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dd class="govuk-summary-list__value">Waste gravel and crushed rocks other than those mentioned in 01 04 07</dd>
+        <dd class="govuk-summary-list__actions">01 04 08</dd>
+        <dd class="govuk-summary-list__actions"></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dd class="govuk-summary-list__value">Wastes from potash and rock salt processing other than those mentioned in 01 04 07</dd>
+        <dd class="govuk-summary-list__actions">01 04 11</dd>
+        <dd class="govuk-summary-list__actions"></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dd class="govuk-summary-list__value">Oil-containing drilling muds and wastes</dd>
+        <dd class="govuk-summary-list__actions">01 05 05*</dd>
+        <dd class="govuk-summary-list__actions"></dd>
+      </div>
+    </dl>
+  </div>
+</div>
+  
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-checkboxes" data-module="checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="re-enter-ewc-codes" name="reenterEwcCodes" type="checkbox" value="true" data-aria-controls="conditional-upload-ewc-codes">
+        <label class="govuk-label govuk-checkboxes__label" for="re-enter-ewc-codes">
+            Re-upload all EWC codes for this activity
+        </label>
+      </div>
+
+      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-upload-ewc-codes">
+          <div class="govuk-form-group">
+              <label class="govuk-label" for="input-ewc-codes">
+                Some guidance on uploading files
+              </label>
+              
+              <p class="upload_head">Upload a file</p>
+              <p class="text govuk-hint">
+                CSV files<br>
+                30MB maximum per file
+              </p>
+          
+              <div class="form-group form-uploader">
+                  <input id="upload" type="file" aria-labelelledby="upload-label">
+                  <input id="filename" name="{{currentFileName}}" type="hidden">
+              </div>
+          </div>
+      </div>
+    </div>  
+
+    <br/>
+
+    <a href="activity-2-provide" class="govuk-button">Continue</a>
+  </div>
+</div>
+
+{% endblock %}

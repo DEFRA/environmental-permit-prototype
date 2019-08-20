@@ -829,9 +829,6 @@ router.all('/upload-waste-codes', function (req, res) {
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
 
-
-
-
     // Back to the task list
 res.redirect(`/${folder}/check/task-list`)
 
@@ -840,6 +837,22 @@ res.redirect(`/${folder}/check/task-list`)
   }
 })
 
+// EUROPEAN WASTE CODES UPLOAD 2 ========================================================
+router.post('/provide-ewc-codes-activity-1', function (req, res) {
+  if (req.session.data['ewcCodesInputType'] === 'enterEwcCodes') {
+    res.redirect(`/${folder}/bespoke/ewc-codes/activity-1-review-enter`)
+  } else {
+    res.redirect(`/${folder}/bespoke/ewc-codes/activity-1-review-upload`)
+  }
+})
+
+router.post('/provide-ewc-codes-activity-2', function (req, res) {
+  if (req.session.data['ewcCodesInputType'] === 'enterEwcCodes') {
+    res.redirect(`/${folder}/bespoke/ewc-codes/activity-2-review-enter`)
+  } else {
+    res.redirect(`/${folder}/bespoke/ewc-codes/activity-2-review-upload`)
+  }
+})
 
 // ENVIRONMENTAL RISK ASSESSMENT UPLOAD ========================================================
 router.all('/upload-environmental-risk-assessment', function (req, res) {

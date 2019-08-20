@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% set title = "Provide EWC codes for <activity 2>" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+  
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">   
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+        {{title}}
+    </legend>
+
+    <form method="post" action="/{{folder}}/provide-ewc-codes-activity-2">
+      <div class="form-group">
+        <fieldset class="govuk-fieldset">
+          <div class="govuk-radios govuk-radios--conditional" data-module="radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="enter-ewc-codes-option" name="ewcCodesInputType" type="radio" value="enterEwcCodes" data-aria-controls="conditional-input-ewc-codes">
+              <label class="govuk-label govuk-radios__label" for="enter-ewc-codes-option">
+                Enter EWC Codes
+                <span class="govuk-hint">Copy from a spreadsheet or add in comma separated lists</span>
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-input-ewc-codes">
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="input-ewc-codes">
+                      add guidance on how to choose and enter the EWC codes
+                      <br/>
+                      <a href="#">Read about how to choose EWC codes on GOV.UK (opens new tab)</a>
+                    </label>
+                    
+                    <textarea class="govuk-textarea" name="inputEwcCodes" type="text" id="input-ewc-codes" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="upload-ewc-codes-option" name="ewcCodesInputType" type="radio" value="uploadEwcCodes" data-aria-controls="conditional-upload-ewc-codes">
+              <label class="govuk-label govuk-radios__label" for="upload-ewc-codes-option">
+                Upload EWC codes
+                <span class="govuk-hint">Upload a XML or CSV</span>
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-upload-ewc-codes">
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="input-ewc-codes">
+                      Some guidance on uploading files
+                    </label>
+                    
+                    <p class="upload_head">Upload a file</p>
+                    <p class="text govuk-hint">
+                      CSV files<br>
+                      30MB maximum per file
+                    </p>
+                
+                    <div class="form-group form-uploader">
+                        <input id="upload" type="file" aria-labelelledby="upload-label">
+                        <input id="filename" name="{{currentFileName}}" type="hidden">
+                    </div>
+                </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    
+      <div class="form-group">
+        {{submitButton|safe}}
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
