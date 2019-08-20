@@ -829,9 +829,6 @@ router.all('/upload-waste-codes', function (req, res) {
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
 
-
-
-
     // Back to the task list
 res.redirect(`/${folder}/check/task-list`)
 
@@ -840,6 +837,78 @@ res.redirect(`/${folder}/check/task-list`)
   }
 })
 
+// EUROPEAN WASTE CODES UPLOAD 2 ========================================================
+router.post('/provide-ewc-codes-activity-1', function (req, res) {
+  if (req.session.data['ewcCodesInputType'] === 'enterEwcCodes') {
+    res.redirect(`/${folder}/bespoke/ewc-codes/activity-1-review-enter`)
+  } else {
+    res.redirect(`/${folder}/bespoke/ewc-codes/activity-1-review-upload`)
+  }
+})
+
+router.post('/review-enter-ewc-codes-activity-1', function (req, res) {
+  if (req.session.data['reenterEwcCodes']) {
+    res.redirect(`/${folder}/bespoke/ewc-codes/activity-1-review-enter`)
+  } else {
+    res.redirect(`/${folder}/bespoke/ewc-codes/activity-2-provide`)
+  }
+})
+
+router.post('/review-upload-ewc-codes-activity-1', function (req, res) {
+  if (req.session.data['reenterEwcCodes']) {
+    res.redirect(`/${folder}/bespoke/ewc-codes/activity-1-review-upload`)
+  } else {
+    res.redirect(`/${folder}/bespoke/ewc-codes/activity-2-provide`)
+  }
+})
+
+router.post('/provide-ewc-codes-activity-2', function (req, res) {
+  if (req.session.data['ewcCodesInputType'] === 'enterEwcCodes') {
+    res.redirect(`/${folder}/bespoke/ewc-codes/activity-2-review-enter`)
+  } else {
+    res.redirect(`/${folder}/bespoke/ewc-codes/activity-2-review-upload`)
+  }
+})
+
+router.post('/review-enter-ewc-codes-activity-2', function (req, res) {
+  if (req.session.data['reenterEwcCodes']) {
+    res.redirect(`/${folder}/bespoke/ewc-codes/activity-2-review-enter`)
+  } else {
+    res.redirect(`/${folder}/bespoke/ewc-codes/review`)
+  }
+})
+
+router.post('/review-upload-ewc-codes-activity-2', function (req, res) {
+  if (req.session.data['reenterEwcCodes']) {
+    res.redirect(`/${folder}/bespoke/ewc-codes/activity-2-review-upload`)
+  } else {
+    res.redirect(`/${folder}/bespoke/ewc-codes/review`)
+  }
+})
+
+router.post('/review-ewc-codes', function (req, res) {
+  if (req.session.data['reenterEwcCodes'] || req.session.data['reuploadEwcCodes']) {
+    res.redirect(`/${folder}/bespoke/ewc-codes/review`)
+  } else {
+    res.redirect(`/${folder}/check/task-list`)
+  }
+})
+
+router.get('/bespoke/ewc-codes/activity-1-provide', function (req, res) {
+  res.render(`${folder}/bespoke/ewc-codes/provide`,
+  {
+    formAction: `/${folder}/provide-ewc-codes-activity-1`,
+    title: "Provide EWC codes for <activity 1>"
+  })
+})
+
+router.get('/bespoke/ewc-codes/activity-2-provide', function (req, res) {
+  res.render(`${folder}/bespoke/ewc-codes/provide`,
+  {
+    formAction: `/${folder}/provide-ewc-codes-activity-2`,
+    title: "Provide EWC codes for <activity 2>"
+  })
+})
 
 // ENVIRONMENTAL RISK ASSESSMENT UPLOAD ========================================================
 router.all('/upload-environmental-risk-assessment', function (req, res) {
