@@ -54,37 +54,42 @@
   
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <div class="govuk-checkboxes" data-module="checkboxes">
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="re-enter-ewc-codes" name="reenterEwcCodes" type="checkbox" value="true" data-aria-controls="conditional-upload-ewc-codes">
-        <label class="govuk-label govuk-checkboxes__label" for="re-enter-ewc-codes">
-            Re-upload all EWC codes for this activity
-        </label>
+    <form method="post" action="/{{folder}}/review-upload-ewc-codes-activity-1">
+      <div class="govuk-checkboxes" data-module="checkboxes">
+        <div class="govuk-checkboxes__item">
+          <input class="govuk-checkboxes__input" id="re-enter-ewc-codes" name="reenterEwcCodes" type="checkbox" value="true" data-aria-controls="conditional-upload-ewc-codes">
+          <label class="govuk-label govuk-checkboxes__label" for="re-enter-ewc-codes">
+              Re-upload all EWC codes for this activity
+          </label>
+        </div>
+
+        <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-upload-ewc-codes">
+            <div class="govuk-form-group">
+                <label class="govuk-label" for="input-ewc-codes">
+                  Some guidance on uploading files
+                </label>
+                
+                <p class="upload_head">Upload a file</p>
+                <p class="text govuk-hint">
+                  CSV files<br>
+                  30MB maximum per file
+                </p>
+            
+                <div class="form-group form-uploader">
+                    <input id="upload" type="file" aria-labelelledby="upload-label">
+                    <input id="filename" name="{{currentFileName}}" type="hidden">
+                </div>
+            </div>
+        </div>
+      </div>  
+
+      <br/>
+
+
+      <div class="form-group">
+        {{submitButton|safe}}
       </div>
-
-      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-upload-ewc-codes">
-          <div class="govuk-form-group">
-              <label class="govuk-label" for="input-ewc-codes">
-                Some guidance on uploading files
-              </label>
-              
-              <p class="upload_head">Upload a file</p>
-              <p class="text govuk-hint">
-                CSV files<br>
-                30MB maximum per file
-              </p>
-          
-              <div class="form-group form-uploader">
-                  <input id="upload" type="file" aria-labelelledby="upload-label">
-                  <input id="filename" name="{{currentFileName}}" type="hidden">
-              </div>
-          </div>
-      </div>
-    </div>  
-
-    <br/>
-
-    <a href="activity-2-provide" class="govuk-button">Continue</a>
+    </form>
   </div>
 </div>
 

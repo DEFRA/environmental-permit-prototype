@@ -846,11 +846,43 @@ router.post('/provide-ewc-codes-activity-1', function (req, res) {
   }
 })
 
+router.post('/review-enter-ewc-codes-activity-1', function (req, res) {
+  if (req.session.data['reenterEwcCodes']) {
+    res.redirect(`/${folder}/bespoke/ewc-codes/activity-1-review-enter`)
+  } else {
+    res.redirect(`/${folder}/bespoke/ewc-codes/activity-2-provide`)
+  }
+})
+
+router.post('/review-upload-ewc-codes-activity-1', function (req, res) {
+  if (req.session.data['reenterEwcCodes']) {
+    res.redirect(`/${folder}/bespoke/ewc-codes/activity-1-review-upload`)
+  } else {
+    res.redirect(`/${folder}/bespoke/ewc-codes/activity-2-provide`)
+  }
+})
+
 router.post('/provide-ewc-codes-activity-2', function (req, res) {
   if (req.session.data['ewcCodesInputType'] === 'enterEwcCodes') {
     res.redirect(`/${folder}/bespoke/ewc-codes/activity-2-review-enter`)
   } else {
     res.redirect(`/${folder}/bespoke/ewc-codes/activity-2-review-upload`)
+  }
+})
+
+router.post('/review-enter-ewc-codes-activity-2', function (req, res) {
+  if (req.session.data['reenterEwcCodes']) {
+    res.redirect(`/${folder}/bespoke/ewc-codes/activity-2-review-enter`)
+  } else {
+    res.redirect(`/${folder}/bespoke/ewc-codes/review`)
+  }
+})
+
+router.post('/review-upload-ewc-codes-activity-2', function (req, res) {
+  if (req.session.data['reenterEwcCodes']) {
+    res.redirect(`/${folder}/bespoke/ewc-codes/activity-2-review-upload`)
+  } else {
+    res.redirect(`/${folder}/bespoke/ewc-codes/review`)
   }
 })
 
