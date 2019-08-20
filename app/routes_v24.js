@@ -886,6 +886,14 @@ router.post('/review-upload-ewc-codes-activity-2', function (req, res) {
   }
 })
 
+router.post('/review-ewc-codes', function (req, res) {
+  if (req.session.data['reenterEwcCodes'] || req.session.data['reuploadEwcCodes']) {
+    res.redirect(`/${folder}/bespoke/ewc-codes/review`)
+  } else {
+    res.redirect(`/${folder}/check/task-list`)
+  }
+})
+
 router.get('/bespoke/ewc-codes/activity-1-provide', function (req, res) {
   res.render(`${folder}/bespoke/ewc-codes/provide`,
   {
