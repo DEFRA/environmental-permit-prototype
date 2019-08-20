@@ -1,7 +1,5 @@
 {% extends "layout.html" %}
 
-{% set title = "Provide EWC codes for <activity 1>" %}
-
 {% block pageTitle %}
     {{title}} - GOV.UK
 {% endblock %}
@@ -22,7 +20,7 @@
         {{title}}
     </legend>
 
-    <form method="post" action="/{{folder}}/provide-ewc-codes-activity-1">
+    <form method="post" action="{{formAction}}">
       <div class="form-group">
         <fieldset class="govuk-fieldset">
           <div class="govuk-radios govuk-radios--conditional" data-module="radios">

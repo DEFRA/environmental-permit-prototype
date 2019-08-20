@@ -886,6 +886,22 @@ router.post('/review-upload-ewc-codes-activity-2', function (req, res) {
   }
 })
 
+router.get('/bespoke/ewc-codes/activity-1-provide', function (req, res) {
+  res.render(`${folder}/bespoke/ewc-codes/provide`,
+  {
+    formAction: `/${folder}/provide-ewc-codes-activity-1`,
+    title: "Provide EWC codes for <activity 1>"
+  })
+})
+
+router.get('/bespoke/ewc-codes/activity-2-provide', function (req, res) {
+  res.render(`${folder}/bespoke/ewc-codes/provide`,
+  {
+    formAction: `/${folder}/provide-ewc-codes-activity-2`,
+    title: "Provide EWC codes for <activity 2>"
+  })
+})
+
 // ENVIRONMENTAL RISK ASSESSMENT UPLOAD ========================================================
 router.all('/upload-environmental-risk-assessment', function (req, res) {
   var path="/upload-environmental-risk-assessment"
