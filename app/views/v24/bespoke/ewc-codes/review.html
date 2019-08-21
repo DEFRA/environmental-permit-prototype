@@ -32,11 +32,11 @@
       </thead>
       <tbody class="govuk-table__body">
         {% for ewcCode in ewcCodes %}
-        <tr class="govuk-table__row">
+        <tr class="govuk-table__row" style="vertical-align: top">
 
           {% if editMode === 'mega-edit' %}
           <td class="govuk-table__cell"><textarea class="govuk-textarea" rows="2">{{ ewcCode.description }}</textarea></td>
-          <td class="govuk-table__cell"><input type="text" class="govuk-input" style="margin-bottom: 50px" value="{{ ewcCode.code }}"></textarea></td>
+          <td class="govuk-table__cell"><input type="text" class="govuk-input" value="{{ ewcCode.code }}"></textarea></td>
           {% elif editMode === 'mini-edit' and editRow == loop.index %}
           <td class="govuk-table__cell table-no-border">{{ ewcCode.description }}</td>
           <td class="govuk-table__cell table-no-border">{{ ewcCode.code }}</td>
@@ -49,7 +49,7 @@
           {% endif %}
         </tr>
         {% if editMode === 'mini-edit' and editRow == loop.index %}
-        <tr class="govuk-table__row">
+        <tr class="govuk-table__row" style="vertical-align: top">
           <td class="govuk-table__cell">
             <label class="govuk-hint" for="ewc-description">New description</label>
             <input class="govuk-input" id="ewc-description" type="text"/>
