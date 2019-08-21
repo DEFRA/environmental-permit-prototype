@@ -838,28 +838,32 @@ res.redirect(`/${folder}/check/task-list`)
 })
 
 // EUROPEAN WASTE CODES UPLOAD 2 ========================================================
-router.post('/provide-ewc-codes-activity/:id', function (req, res) {
+router.post('/provide-ewc-codes/:id/:editVersion', function (req, res) {
   if (req.session.data['ewcCodesInputType'] === 'enterEwcCodes') {
-    res.redirect(`/${folder}/bespoke/ewc-codes/activity-review/enter/${req.params.id}`)
+    res.redirect(`/${folder}/bespoke/ewc-codes/activity-review/enter/${req.params.id}/${req.params.editVersion}`)
   } else {
-    res.redirect(`/${folder}/bespoke/ewc-codes/activity-review/upload/${req.params.id}`)
+    res.redirect(`/${folder}/bespoke/ewc-codes/activity-review/upload/${req.params.id}/${req.params.editVersion}`)
   }
 })
 
-router.post('/review-ewc-codes/:enterOrUpload/:id', function (req, res) {
-  var nextRoute = req.params.id === '1' ? `/${folder}/bespoke/ewc-codes/activity-provide/2` : `/${folder}/check/task-list`
+router.post('/review-ewc-codes/:enterOrUpload/:id/:editVersion', function (req, res) {
+  var nextRoute = req.params.id === '1' ? `/${folder}/bespoke/ewc-codes/activity-provide/2/${req.params.editVersion}` : `/${folder}/check/task-list`
 
   if (req.session.data['redoEwcCodes']) {
-    res.redirect(`/${folder}/bespoke/ewc-codes/activity-review/${req.params.enterOrUpload}/${req.params.id}`)
+    res.redirect(`/${folder}/bespoke/ewc-codes/activity-review/${req.params.enterOrUpload}/${req.params.id}/${req.params.editVersion}`)
   } else {
     res.redirect(nextRoute)
   }
 })
 
-router.get('/bespoke/ewc-codes/activity-provide/:id', function (req, res) {
+router.post('/edit-ewc-codes/:enterOrUpload/:id/:editVersion', function (req, res) {
+  res.redirect(`/${folder}/bespoke/ewc-codes/activity-review/${req.params.enterOrUpload}/${req.params.id}/${req.params.editVersion}`)
+})
+
+router.get('/bespoke/ewc-codes/activity-provide/:id/:editVersion', function (req, res) {
   res.render(`${folder}/bespoke/ewc-codes/provide`,
   {
-    formAction: `/${folder}/provide-ewc-codes-activity/${req.params.id}`,
+    formAction: `/${folder}/provide-ewc-codes/${req.params.id}/${req.params.editVersion}`,
     title: `Provide EWC codes for <activity ${req.params.id}>`
   })
 })
@@ -872,13 +876,20 @@ var activity2Codes = [
   {description: 'Oil-containing drilling muds and wastes', code: '01 05 05'}
 ]
 
-router.get('/bespoke/ewc-codes/activity-review/:enterOrUpload/:id', function (req,res) {
+router.get('/bespoke/ewc-codes/activity-review/:enterOrUpload/:id/:editVersion/:editMode?/:editRow?', function (req,res) {
+  var formAction = req.params.editMode 
+  ? `/${folder}/edit-ewc-codes/${req.params.enterOrUpload}/${req.params.id}/${req.params.editVersion}` 
+  : `/${folder}/review-ewc-codes/${req.params.enterOrUpload}/${req.params.id}/${req.params.editVersion}`
+
   res.render(`${folder}/bespoke/ewc-codes/review`,
   {
     title: `EWC code summary for <activity ${req.params.id}>`,
     ewcCodes: req.params.id === '1' ? activity1Codes : activity2Codes,
-    enterOrUpload: req.params.enterOrUpload, 
-    formAction: `/${folder}/review-ewc-codes/${req.params.enterOrUpload}/${req.params.id}`
+    enterOrUpload: req.params.enterOrUpload,
+    editVersion: req.params.editVersion,
+    editMode: req.params.editMode,
+    editRow: req.params.editRow,
+    formAction: formAction
   })
 })
 
