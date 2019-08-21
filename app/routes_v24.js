@@ -847,7 +847,7 @@ router.post('/provide-ewc-codes-activity-1', function (req, res) {
 })
 
 router.post('/review-enter-ewc-codes-activity-1', function (req, res) {
-  if (req.session.data['reenterEwcCodes']) {
+  if (req.session.data['redoEwcCodes']) {
     res.redirect(`/${folder}/bespoke/ewc-codes/activity-1-review-enter`)
   } else {
     res.redirect(`/${folder}/bespoke/ewc-codes/activity-2-provide`)
@@ -855,7 +855,7 @@ router.post('/review-enter-ewc-codes-activity-1', function (req, res) {
 })
 
 router.post('/review-upload-ewc-codes-activity-1', function (req, res) {
-  if (req.session.data['reenterEwcCodes']) {
+  if (req.session.data['redoEwcCodes']) {
     res.redirect(`/${folder}/bespoke/ewc-codes/activity-1-review-upload`)
   } else {
     res.redirect(`/${folder}/bespoke/ewc-codes/activity-2-provide`)
@@ -871,24 +871,16 @@ router.post('/provide-ewc-codes-activity-2', function (req, res) {
 })
 
 router.post('/review-enter-ewc-codes-activity-2', function (req, res) {
-  if (req.session.data['reenterEwcCodes']) {
+  if (req.session.data['redoEwcCodes']) {
     res.redirect(`/${folder}/bespoke/ewc-codes/activity-2-review-enter`)
   } else {
-    res.redirect(`/${folder}/bespoke/ewc-codes/review`)
+    res.redirect(`/${folder}/check/task-list`)
   }
 })
 
 router.post('/review-upload-ewc-codes-activity-2', function (req, res) {
-  if (req.session.data['reenterEwcCodes']) {
+  if (req.session.data['redoEwcCodes']) {
     res.redirect(`/${folder}/bespoke/ewc-codes/activity-2-review-upload`)
-  } else {
-    res.redirect(`/${folder}/bespoke/ewc-codes/review`)
-  }
-})
-
-router.post('/review-ewc-codes', function (req, res) {
-  if (req.session.data['reenterEwcCodes'] || req.session.data['reuploadEwcCodes']) {
-    res.redirect(`/${folder}/bespoke/ewc-codes/review`)
   } else {
     res.redirect(`/${folder}/check/task-list`)
   }
@@ -907,6 +899,54 @@ router.get('/bespoke/ewc-codes/activity-2-provide', function (req, res) {
   {
     formAction: `/${folder}/provide-ewc-codes-activity-2`,
     title: "Provide EWC codes for <activity 2>"
+  })
+})
+
+var activity1Codes = [{description: 'Acid-generating tailings from processing of sulphide ore', code: '01 03 04*'}]
+var activity2Codes = [
+  {description: 'Acid-generating tailings from processing of sulphide ore', code: '01 03 04*'},
+  {description: 'Waste gravel and crushed rocks other than those mentioned in 01 04 07', code: '01 04 08'},
+  {description: 'Wastes from potash and rock salt processing other than those mentioned in 01 04 07', code: '01 04 11'},
+  {description: 'Oil-containing drilling muds and wastes', code: '01 05 05'}
+]
+
+router.get('/bespoke/ewc-codes/activity-1-review-enter', function (req,res) {
+  res.render(`${folder}/bespoke/ewc-codes/review`,
+  {
+    title: 'EWC code summary for <activity 1>',
+    ewcCodes: activity1Codes,
+    enterOrUpload: 'enter', 
+    formAction: `/${folder}/review-enter-ewc-codes-activity-1`
+  })
+})
+
+router.get('/bespoke/ewc-codes/activity-1-review-upload', function (req,res) {
+  res.render(`${folder}/bespoke/ewc-codes/review`,
+  {
+    title: 'EWC code summary for <activity 1>',
+    ewcCodes: activity1Codes,
+    enterOrUpload: 'upload', 
+    formAction: `/${folder}/review-upload-ewc-codes-activity-1`
+  })
+})
+
+router.get('/bespoke/ewc-codes/activity-2-review-enter', function (req,res) {
+  res.render(`${folder}/bespoke/ewc-codes/review`,
+  {
+    title: 'EWC code summary for <activity 2>',
+    ewcCodes: activity2Codes,
+    enterOrUpload: 'enter', 
+    formAction: `/${folder}/review-enter-ewc-codes-activity-2`
+  })
+})
+
+router.get('/bespoke/ewc-codes/activity-2-review-upload', function (req,res) {
+  res.render(`${folder}/bespoke/ewc-codes/review`,
+  {
+    title: 'EWC code summary for <activity 2>',
+    ewcCodes: activity2Codes,
+    enterOrUpload: 'upload', 
+    formAction: `/${folder}/review-upload-ewc-codes-activity-2`
   })
 })
 
