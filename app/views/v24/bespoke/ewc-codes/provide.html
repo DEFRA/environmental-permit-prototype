@@ -52,8 +52,41 @@
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-upload-ewc-codes">
                 <div class="govuk-form-group">
                     <label class="govuk-label" for="input-ewc-codes">
-                      Some guidance on uploading files
-                    </label>
+                        <p>Create your list in a spreadsheet to upload (CSV and ODS files only) or to copy and paste the information more easily.</p>
+                      
+                        <p>List the waste code and description for each type of waste you will accept.</p>
+                        
+                        <p>Use the codes and descriptions from the List of Waste or European Waste Catalogue (EWC). You can find these in the <a href="https://www.gov.uk/government/publications/waste-classification-technical-guidance" target="_blank">waste classification technical guidance (opens new tab).</a></p>
+                        
+                        <p>If the waste code ends in 99, you must give a full description of the waste.</p>
+                        
+                        <p>To restrict a type of waste you accept, for example for safety or legal reasons, add more text after the standard description to highlight this.</p>
+  
+                          <details class="govuk-details" data-module="govuk-details">
+                            <summary class="govuk-details__summary">
+                              <span class="govuk-details__summary-text">
+                              Examples of restrictions
+                              </span>
+                            </summary>
+                            <div class="govuk-details__text">
+                              <p>Add text after the description to restrict:</p>
+                              <ul class="govuk-list govuk-list--bullet">
+                                <li>the quantity of the waste, for example: 16 06 01* lead batteries - no more than 500 tonnes</li>
+                                
+                                <li>the description of a particular waste within a code, for example: 16 01 03 - bicycle tyres only</li>
+                                
+                                <li>hazardous property, for example: no corrosive waste</li>
+                                
+                                <li>physical form, for example: 06 03 11* solid salts and solutions containing cyanides - no liquids</li>
+                                
+                                <li>the nature or attribute of the waste, for example: no odorous wastes</li>
+                                
+                                <li>specific substances or specific concentrations, for example: no chromium (VII) substances (greater than 1000 ppm)</li>
+                                
+                                <li>container type or size, for example: no Intermediate Bulk Containers (IBCs)</li>                          
+                              </ul>
+                            </div>
+                          </details>                    </label>
                     
                     <p class="upload_head">Upload a file</p>
                     <p class="text govuk-hint">
@@ -70,7 +103,7 @@
           </div>
         </fieldset>
       </div>
-    
+    </br>
       <div class="form-group">
         {{submitButton|safe}}
       </div>
