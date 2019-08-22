@@ -287,15 +287,6 @@
   {% endif %}
 {% endif %}
 
-<!-- Waste codes -->
-{% if permit.bespokePermit=="bespoke" and permit.facilityType=="Waste treatment"%}
-<div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">Waste codes spreadsheet filename</dt>
-      <dd class="govuk-summary-list__value">{{permit.WasteCodes1}}</dd>
-      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/bespoke/waste-codes">Change <span class="govuk-visually-hidden">file</span></a></dd>
-    </div>
-{% endif %}
-
 
 {% if permit.facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.generatorType=="ssg" or permit.generatorType=="smcp also sg" or permit.IsMCP==="Yes" %}
 
@@ -391,9 +382,9 @@
     {% if permit.bespokePermit=="bespoke" and permit.facilityType=="Waste treatment"%}
 
     <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">Waste codes spreadsheet</dt>
-      <dd class="govuk-summary-list__value">{{ permit.WasteCodes1 }}</dd>
-      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/upload-waste-codes">Change</a></dd>
+      <dt class="govuk-summary-list__key">Waste codes</dt>
+      <dd class="govuk-summary-list__value">35 waste codes</dd>
+      <dd class="govuk-summary-list__actions"><a href="#">View</a><br><a href="#">Change</a></dd>
     </div>
 
     <div class="govuk-summary-list__row">
