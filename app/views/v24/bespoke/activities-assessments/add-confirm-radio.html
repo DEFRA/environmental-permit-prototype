@@ -15,80 +15,63 @@
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l" id="radio_label">{{title}}</h1>
       
-          <h1 class="govuk-heading-l" id="radio_label">{{title}}</h1>
-            
-            {% set addLinkText = "Delete" %}
+    {% set addLinkText = "Delete" %}
 
-            <form method="post" action="/{{folder}}/activity-check" id="confirmForm">
-            
-      {% import folder+"/custom_inc/macros.html" as macros %}
-      {% from folder+"/bespoke/activities-assessments/json/bespoke_activities.html" import activities %}
+    {% import folder+"/custom_inc/macros.html" as macros %}
+    {% from folder+"/bespoke/activities-assessments/json/bespoke_activities.html" import activities %}
 
-              <dl class="govuk-summary-list">
- 
+    <dl class="govuk-summary-list">
+      {% set numactivities = 0 %}
 
-{% set numactivities = 0 %}
-
-{% set linkStrStart = '<a href="add-confirm-radio?del=' %}
-{% set linkStrEnd = '">' + addLinkText + '</a>' %}
+      {% set linkStrStart = '<a href="add-confirm-radio?del=' %}
+      {% set linkStrEnd = '">' + addLinkText + '</a>' %}
 
 
-<!-- Output chosen activity ############################################ -->
+      <!-- Output chosen activity ############################################ -->
 
-
-<!-- Set siteOrMobile ============================== --> 
-<!-- Over-ride default value set on /bespoke/activities-assessments/bespoke-type -->
-
-
-<!-- Output chosen activities ############################################ -->
-{% for ref in permit.chosenPermitID|sort %}
 
       <!-- Set siteOrMobile ============================== --> 
       <!-- Over-ride default value set on /bespoke/activities-assessments/bespoke-type -->
-      {% if ref | string == "1.16.74" %}
-        <input type="hidden" name="siteOrMobile" value="mobile">
-      {% endif %}
 
-      {% for aNumber, aData in activities %}
-            {% if aNumber==ref %}
 
-                  <!-- Output as a CYA styled row ============================== --> 
-                  {{ macros.confirmlist(
-                    aData.D_Activity_Title + ' activity',
-                    linkStrStart + ref + linkStrEnd
-                    ) }}
+      <!-- Output chosen activities ############################################ -->
+      {% for ref in permit.chosenPermitID|sort %}
+        <!-- Set siteOrMobile ============================== --> 
+        <!-- Over-ride default value set on /bespoke/activities-assessments/bespoke-type -->
+        {% if ref | string == "1.16.74" %}
+          <input type="hidden" name="siteOrMobile" value="mobile">
+        {% endif %}
 
-            {% endif %}
-            
+        {% for aNumber, aData in activities %}
+          {% if aNumber==ref %}
+            <!-- Output as a CYA styled row ============================== --> 
+            {{ macros.confirmlist(
+              aData.D_Activity_Title + ' activity',
+              linkStrStart + ref + linkStrEnd
+              ) }}
+          {% endif %}
+        {% else %}
+          <p>No activities</p>
+        {% endfor %}
       {% else %}
-      <p>No activities</p>
+        <p>You must select at least one activity</p>
       {% endfor %}
+    </dl>
 
-{% else %}
-    <p>You must select at least one activity</p>
-{% endfor %}
+    <a href="/{{folder}}/bespoke/activities-assessments/bespoke-choose-activity-radio" class="govuk-button--secondary govuk-button">Add another</a>
+    </br>
 
-</dl>
-
- <a href="/{{folder}}/bespoke/activities-assessments/bespoke-choose-activity-radio" class="govuk-button--secondary govuk-button">Add another</a>
-</br>
-
-<form action="/{{folder}}/bespoke/assessments/your-assessments" method="post">
-
+    <form action="/{{folder}}/bespoke/assessments/your-assessments" method="post">
       {{ govukButton({
         text: "Confirm"
       }) }}
-
-    </div>
-
-      </form>
-
-
-    </div>
+    </form>
   </div>
+</div>
 
 
 {% endblock %}
