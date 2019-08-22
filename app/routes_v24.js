@@ -468,6 +468,10 @@ router.post('/activity-check', function (req, res) {
   }
 })
 
+// add activity button =============
+router.post('/add-another-activity', function (req, res) {
+  res.redirect("/"+ folder + "/bespoke/activities-assessments/bespoke-choose-activity-radio")
+})
 
 // Add and confirm
 router.post('/bespoke/activities-assessments/add-confirm-radio', function (req, res) {
