@@ -73,18 +73,10 @@
 
 </dl>
 
- 
-            <div class="govuk-checkboxes">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="addActivity" name="addActivity" type="checkbox" value="Yes">
-                <label class="govuk-label govuk-checkboxes__label" for="addActivity">
-                    Add another activity
-                </label>
-              </div>
-            </div>
-  </br>
+ <a href="/{{folder}}/bespoke/activities-assessments/bespoke-choose-activity-radio" class="govuk-button--secondary govuk-button">Add another</a>
 </br>
-  <div class="form-group">
+
+<form action="/{{folder}}/bespoke/assessments/your-assessments" method="post">
 
       {{ govukButton({
         text: "Confirm"
