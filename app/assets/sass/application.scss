@@ -130,3 +130,8 @@ label.permitItem {
 .table-no-border {
   border-bottom: none;
 }
+
+// Fix to stop scroll bars appearing on textareas in IE
+textarea {
+  overflow: auto;
+}
