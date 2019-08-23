@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+  
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">   
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      EWC code summary for activity 1
+    </legend>
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">EWC code</th>
+          <th scope="col" class="govuk-table__header">EWC description</th>
+                 
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+       
+        <tr class="govuk-table__row" style="vertical-align: top">
+          <td class="govuk-table__cell">01 03 04*</textarea></td>
+          <td class="govuk-table__cell">Acid-generating tailings from processing of sulphide ore</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">EWC code</th>
+          <th scope="col" class="govuk-table__header">EWC description</th>              
+        </tr>
+        <br/>
+        <br/>
+
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          EWC code summary for activity 2
+        </legend>
+      </thead>
+        <tr class="govuk-table__row" style="vertical-align: top">
+          <td class="govuk-table__cell">01 03 04*</textarea></td>
+          <td class="govuk-table__cell">Acid-generating tailings from processing of sulphide ore</td>
+        </tr>
+
+        <tr class="govuk-table__row" style="vertical-align: top">
+          <td class="govuk-table__cell">01 04 08</textarea></td>
+          <td class="govuk-table__cell">Waste gravel and crushed rocks other than those mentioned in 01 04 07</td>
+        </tr>
+
+        <tr class="govuk-table__row" style="vertical-align: top">
+          <td class="govuk-table__cell">01 04 11</textarea></td>
+          <td class="govuk-table__cell">Wastes from potash and rock salt processing other than those mentioned in 01 04 07</td>
+        </tr>
+
+        <tr class="govuk-table__row" style="vertical-align: top">
+          <td class="govuk-table__cell">01 05 05</textarea></td>
+          <td class="govuk-table__cell">Oil-containing drilling muds and wastes</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+      <br/>
+
+      <div class="form-group">
+        {{submitButton|safe}}
+
+        Return to check your check your answers
+
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
