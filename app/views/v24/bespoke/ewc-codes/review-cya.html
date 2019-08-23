@@ -77,10 +77,10 @@
 
       <br/>
 
-      <div class="form-group">
-        {{submitButton|safe}}
-
-        Return to check your check your answers
+      <form action="/{{folder}}/check/check-answers" method="post">
+        {{ govukButton({
+          text: "Return to check your check your answers"
+        }) }}
 
       </div>
     </form>
