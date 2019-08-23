@@ -1,14 +1,14 @@
 
 {% macro radio_button(label,name,id,value,labelClass='') %}
 <div class="govuk-radios">
-    <div class="multiple-choice">
-<div class="govuk-radios__item permitSelector">
-  <input class="govuk-radios__input" id="{{name}}_{{id}}" type="radio" name="{{name}}" value="{{ value }}">
-  <label class="govuk-radios__label{{labelClass}}" for="{{name}}_{{id}}">
-    {{ label }}
-  </label>
- </div>
-</div>
+  <div class="multiple-choice">
+    <div class="govuk-radios__item permitSelector">
+      <input class="govuk-radios__input" id="{{name}}_{{id}}" type="radio" name="{{name}}" value="{{ value }}">
+      <label class="govuk-radios__label{{labelClass}}" for="{{name}}_{{id}}">
+        {{ label }}
+      </label>
+    </div>
+  </div>
 </div>
 {% endmacro %}
 
@@ -22,22 +22,9 @@
  </div>
 {% endmacro %}
 
-
-{% macro radio_but_2(label,name,id,value,labelClass='') %}
-<span class="govuk-radios__item">
-    <input class="govuk-radios__input" id="{{name}}_{{id}}" type="radio" name="{{name}}" value="{{ value }}">
-  <label class="govuk-label govuk-radios__label{{labelClass}}" for="{{name}}_{{id}}">
-    {{ label }}
-  </label>
-</span>
-{% endmacro %}
-
 {% macro hidden(name,value) %}
   <input type="hidden" name="{{name}}" value="{{value}}">
 {% endmacro %}
-
-
-
 
 {% macro uploadList( fileTitle,fileName,fileNameVar,folder,returnPath ) %}
 <div class="govuk-summary-list__row">
