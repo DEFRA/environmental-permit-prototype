@@ -447,30 +447,29 @@ router.post('/bespoke/activities-assessments/energy-efficiency-report-check', fu
 })
 
 
-// Activity Check - not real page =============================================
-router.post('/activity-check', function (req, res) {
+// Add an activity to the list of selected activities =============================================
+router.post('/add-waste-activity', function (req, res) {
   // If set, add activity to the list in chosenPermitID
-  var {activityID,chosenPermitID = []} = req.session.data
-  if (activityID){
-    chosenPermitID.push(activityID)
-    delete req.session.data.activityID
-    req.session.data.chosenPermitID = chosenPermitID
-    var showAddConfirmPage="Yes"
-    res.locals.data.chosenPermitID = chosenPermitID
-  }
+  var { newActivity, chosenPermitID = [] } = req.session.data
 
-  if(req.body.addActivity=="Yes"){
-    res.redirect("/"+ folder + "/bespoke/activities-assessments/bespoke-choose-activity-radio")
-  } else if(req.body.addActivity=="_unchecked") {
-    res.redirect("/"+ folder + "/name-check")
-  } else {
-    res.redirect("/"+ folder + "/bespoke/activities-assessments/add-confirm-radio")
-  }
+  // If the user hasn't selected an activity select a default one
+  newActivity = newActivity ? newActivity : '1.16.19'
+
+  req.session.data.activityID = null
+  chosenPermitID.push(newActivity)
+  req.session.data.chosenPermitID = chosenPermitID
+  res.locals.data.chosenPermitID = chosenPermitID
+    
+  res.redirect("/"+ folder + "/bespoke/activities-assessments/add-confirm-radio")
 })
 
-// add activity button =============
-router.post('/add-another-activity', function (req, res) {
-  res.redirect("/"+ folder + "/bespoke/activities-assessments/bespoke-choose-activity-radio")
+router.get('/delete-waste-activity/:activityCode', function (req, res) {
+  var activityIndex = req.session.data.chosenPermitID.indexOf(req.params.activityCode)
+  req.session.data.chosenPermitID.splice(activityIndex, 1)
+  
+  res.render(folder + '/bespoke/activities-assessments/add-confirm-radio',{
+    "formAction":"/"+ folder + "/bespoke/activities-assessments/add-confirm-radio"
+  })
 })
 
 // Add and confirm
@@ -478,40 +477,10 @@ router.post('/bespoke/activities-assessments/add-confirm-radio', function (req, 
   res.render(folder + '/bespoke/activities-assessments/add-confirm-radio',{})
 })
 
-// Delete
 router.get('/bespoke/activities-assessments/add-confirm-radio', function (req, res) {
-    var activityIDtoDelete = req.query.del
-    for( var i = 0; i < req.session.data.chosenPermitID.length-1; i++){
-       if ( req.session.data.chosenPermitID[i] === activityIDtoDelete) {
-         req.session.data.chosenPermitID.splice(i, 1);
-       }
-    }
-    res.render(folder + '/bespoke/activities-assessments/add-confirm-radio',{
-      "formAction":"/"+ folder + "/bespoke/activities-assessments/add-confirm-radio"
-    })
-})
-
-// function to use to check dupes
-function hasDuplicates(array) {
-  return (new Set(array)).size !== array.length;
-}
-
-// Name activity check - not real page =============================================
-router.all('/name-check', function (req, res) {
- if (hasDuplicates(req.session.data.chosenPermitID)) {
-   // find duplicate ID
-   var input = req.session.data.chosenPermitID
-   // from stack overflow
-   // https://bit.ly/2Ec3VXf
-   var duplicates = input.reduce(function(acc, el, i, arr) {
-     if (arr.indexOf(el) !== i && acc.indexOf(el) < 0) acc.push(el); return acc;
-   }, []);
-  req.session.data = { ...req.session.data, ...{ add: [duplicates] } } // add back into data object to use on name page
-
-   res.redirect("/"+ folder + "/bespoke/activities-assessments/name-activities")
- } else {
-   res.redirect("/"+ folder + "/bespoke/assessments/your-assessments")
- }
+  res.render(folder + '/bespoke/activities-assessments/add-confirm-radio',{
+    "formAction":"/"+ folder + "/bespoke/activities-assessments/add-confirm-radio"
+  })
 })
 
 // Names, if needed

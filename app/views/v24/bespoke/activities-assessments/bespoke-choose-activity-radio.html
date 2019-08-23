@@ -1,9 +1,12 @@
 {% extends "layout.html" %}
 
+{% import folder+"/custom_inc/macros.html" as macros %}
+{% from folder+"/bespoke/activities-assessments/json/bespoke_activities.html" import activities %}
+
 {% set title = "Add an activity to the permit" %}
 
 {% block pageTitle %}
-    {{title}} - GOV.UK
+  {{title}} - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
@@ -16,72 +19,42 @@
 {% block content %}
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-        {# permit|dump #}
-                <h1 class="govuk-heading-l" id="radio_label">{{title}}</h1>
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l" id="radio_label">{{title}}</h1>
 
+    <p>
+      Showing activities for waste operations.
+      <a href="/{{folder}}/bespoke/activities-assessments/bespoke-type">Change facility type</a>.
+    </p>
 
-        <p>
-          Showing activities for waste operations. <!--: {{ permit.facilityType | lower }} -->
-          <a href="/{{folder}}/bespoke/activities-assessments/bespoke-type">Change facility type</a>.
-        </p>
+    <form method="post" action="/{{folder}}/add-waste-activity">
+      <div class="form-group">
+        <fieldset class="govuk-fieldset" aria-labelledby="radio_label">
+          {% for activityCode, activityDetails in activities %}
+            {% if activityDetails.D_Activity_Table=="Waste treatment" %}
+              {# D_Bespoke_activity_types has the more granular categories #}
+              {# D_Activity_Table has the SRoC+D broader options categories #}
 
-      {% import folder+"/custom_inc/macros.html" as macros %}
-      {% from folder+"/bespoke/activities-assessments/json/bespoke_activities.html" import activities %}
-
-
-      <form method="post" action="/{{folder}}/activity-check">
-        <div class="form-group">
-          <fieldset class="govuk-fieldset" aria-labelledby="radio_label">
-            <legend="Permit">
-
-
-{% for aNumber, aData in activities %}
-            
-            {% if aData.D_Activity_Table=="Waste treatment" %}
-            {# D_Bespoke_activity_types has the more granular categories #}
-            {# D_Activity_Table has the SRoC+D broader options categories #}
-
-            {% set label = [
-            '<span class="permitName">',
-            aData.D_Activity_Title,
-            ' <!-- &nbsp;<span class="hint">',
-            aNumber,
-            '</span> --></span>'
-            ] %}
-
-            {{ macros.radio_but_2(
-            label | join | safe,
-            "activityID",
-            loop.index,
-            aNumber
-            ) }}
-
+              <span class="govuk-radios__item">
+                <input class="govuk-radios__input" id="newActivity_{{loop.index}}" type="radio" name="newActivity" value="{{activityCode}}">
+                <label class="govuk-label govuk-radios__label" for="newActivity_{{loop.index}}">
+                  <span class="permitName">{{ activityDetails.D_Activity_Title}}</span>
+                </label>
+              </span>
             {% endif %}
-
-{% else %}
-    <p>You must select at least one category</p>
-{% endfor %}
-
-          </fieldset>
-        </div>
-
+          {% else %}
+              <p>You must select at least one category</p>
+          {% endfor %}
+        </fieldset>
+      </div>
       </br>
-
-
       <div class="govuk-form-group">
-
-            {{ govukButton({
-              text: "Continue"
-            }) }}
-
-          </div>
-
-
-      </form>
-
-    </div>
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </div>
+    </form>
   </div>
-
+</div>
 
 {% endblock %}

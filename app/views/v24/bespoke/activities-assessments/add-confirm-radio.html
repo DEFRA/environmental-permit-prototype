@@ -25,40 +25,19 @@
     {% from folder+"/bespoke/activities-assessments/json/bespoke_activities.html" import activities %}
 
     <dl class="govuk-summary-list">
-      {% set numactivities = 0 %}
-
-      {% set linkStrStart = '<a href="add-confirm-radio?del=' %}
-      {% set linkStrEnd = '">' + addLinkText + '</a>' %}
-
-
-      <!-- Output chosen activity ############################################ -->
-
-
-      <!-- Set siteOrMobile ============================== --> 
-      <!-- Over-ride default value set on /bespoke/activities-assessments/bespoke-type -->
-
-
-      <!-- Output chosen activities ############################################ -->
-      {% for ref in permit.chosenPermitID|sort %}
-        <!-- Set siteOrMobile ============================== --> 
-        <!-- Over-ride default value set on /bespoke/activities-assessments/bespoke-type -->
-        {% if ref | string == "1.16.74" %}
-          <input type="hidden" name="siteOrMobile" value="mobile">
-        {% endif %}
-
-        {% for aNumber, aData in activities %}
-          {% if aNumber==ref %}
-            <!-- Output as a CYA styled row ============================== --> 
-            {{ macros.confirmlist(
-              aData.D_Activity_Title + ' activity',
-              linkStrStart + ref + linkStrEnd
-              ) }}
+      {% for ref in permit.chosenPermitID | sort %}
+        {% for activityCode, activityDetails in activities %}
+          {% if activityCode == ref %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__value">
+              {{ activityDetails.D_Activity_Title }} activity
+            </dt>
+            <dd class="govuk-summary-list__actions">
+              <a href="/{{folder}}/delete-waste-activity/{{activityCode}}">Delete</a>
+            </dd>
+          </div>
           {% endif %}
-        {% else %}
-          <p>No activities</p>
         {% endfor %}
-      {% else %}
-        <p>You must select at least one activity</p>
       {% endfor %}
     </dl>
 
