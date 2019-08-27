@@ -20,95 +20,91 @@
         {{title}}
     </legend>
 
-    <form method="post" action="{{formAction}}">
-      <div class="form-group">
-        <fieldset class="govuk-fieldset">
-          <div class="govuk-radios govuk-radios--conditional" data-module="radios">
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="enter-ewc-codes-option" name="ewcCodesInputType" type="radio" value="enterEwcCodes" data-aria-controls="conditional-input-ewc-codes">
-              <label class="govuk-label govuk-radios__label" for="enter-ewc-codes-option">
-                Enter EWC Codes
-                <span class="govuk-hint">Copy from a spreadsheet or add in comma separated lists</span>
-              </label>
-            </div>
-            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-input-ewc-codes">
-                <div class="govuk-form-group">
-                    <label class="govuk-label" for="input-ewc-codes">
-                      add guidance on how to choose and enter the EWC codes
-                      <br/>
-                      <a href="#">Read about how to choose EWC codes on GOV.UK (opens new tab)</a>
-                    </label>
-                    
-                    <textarea class="govuk-textarea" name="inputEwcCodes" type="text" id="input-ewc-codes" rows="5"></textarea>
-                </div>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="upload-ewc-codes-option" name="ewcCodesInputType" type="radio" value="uploadEwcCodes" data-aria-controls="conditional-upload-ewc-codes">
-              <label class="govuk-label govuk-radios__label" for="upload-ewc-codes-option">
-                Upload EWC codes
-                <span class="govuk-hint">Upload a CSV</span>
-              </label>
-            </div>
-            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-upload-ewc-codes">
+    <div class="form-group">
+      <fieldset class="govuk-fieldset">
+        <div class="govuk-radios govuk-radios--conditional" data-module="radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="enter-ewc-codes-option" name="ewcCodesInputType" type="radio" value="enterEwcCodes" data-aria-controls="conditional-input-ewc-codes">
+            <label class="govuk-label govuk-radios__label" for="enter-ewc-codes-option">
+              Enter EWC Codes
+              <span class="govuk-hint">Copy from a spreadsheet or add in comma separated lists</span>
+            </label>
+          </div>
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-input-ewc-codes">
               <div class="govuk-form-group">
-                <label class="govuk-label" for="input-ewc-codes">
-                  <p>Create your list in a spreadsheet to upload (CSV and ODS files only) or to copy and paste the information more easily.</p>
+                  <label class="govuk-label" for="input-ewc-codes">
+                    add guidance on how to choose and enter the EWC codes
+                    <br/>
+                    <a href="#">Read about how to choose EWC codes on GOV.UK (opens new tab)</a>
+                  </label>
+                  
+                  <textarea class="govuk-textarea" name="inputEwcCodes" type="text" id="input-ewc-codes" rows="5"></textarea>
+              </div>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="upload-ewc-codes-option" name="ewcCodesInputType" type="radio" value="uploadEwcCodes" data-aria-controls="conditional-upload-ewc-codes">
+            <label class="govuk-label govuk-radios__label" for="upload-ewc-codes-option">
+              Upload EWC codes
+              <span class="govuk-hint">Upload a CSV</span>
+            </label>
+          </div>
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-upload-ewc-codes">
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="input-ewc-codes">
+                <p>Create your list in a spreadsheet to upload (CSV and ODS files only) or to copy and paste the information more easily.</p>
+              
+                <p>List the waste code and description for each type of waste you will accept.</p>
                 
-                  <p>List the waste code and description for each type of waste you will accept.</p>
-                  
-                  <p>Use the codes and descriptions from the List of Waste or European Waste Catalogue (EWC). You can find these in the <a href="https://www.gov.uk/government/publications/waste-classification-technical-guidance" target="_blank">waste classification technical guidance (opens new tab).</a></p>
-                  
-                  <p>If the waste code ends in 99, you must give a full description of the waste.</p>
-                  
-                  <p>To restrict a type of waste you accept, for example for safety or legal reasons, add more text after the standard description to highlight this.</p>
+                <p>Use the codes and descriptions from the List of Waste or European Waste Catalogue (EWC). You can find these in the <a href="https://www.gov.uk/government/publications/waste-classification-technical-guidance" target="_blank">waste classification technical guidance (opens new tab).</a></p>
+                
+                <p>If the waste code ends in 99, you must give a full description of the waste.</p>
+                
+                <p>To restrict a type of waste you accept, for example for safety or legal reasons, add more text after the standard description to highlight this.</p>
 
-                  <details class="govuk-details" data-module="govuk-details">
-                    <summary class="govuk-details__summary">
-                      <span class="govuk-details__summary-text">
-                      Examples of restrictions
-                      </span>
-                    </summary>
-                    <div class="govuk-details__text">
-                      <p>Add text after the description to restrict:</p>
-                      <ul class="govuk-list govuk-list--bullet">
-                        <li>the quantity of the waste, for example: 16 06 01* lead batteries - no more than 500 tonnes</li>
-                        
-                        <li>the description of a particular waste within a code, for example: 16 01 03 - bicycle tyres only</li>
-                        
-                        <li>hazardous property, for example: no corrosive waste</li>
-                        
-                        <li>physical form, for example: 06 03 11* solid salts and solutions containing cyanides - no liquids</li>
-                        
-                        <li>the nature or attribute of the waste, for example: no odorous wastes</li>
-                        
-                        <li>specific substances or specific concentrations, for example: no chromium (VII) substances (greater than 1000 ppm)</li>
-                        
-                        <li>container type or size, for example: no Intermediate Bulk Containers (IBCs)</li>                          
-                      </ul>
-                    </div>
-                  </details>                    
-                </label>
-                  
-                <p class="upload_head">Upload a file</p>
-                <p class="text govuk-hint">
-                  CSV files<br>
-                  30MB maximum per file
-                </p>
-            
-                <div class="form-group form-uploader">
-                    <input id="upload" type="file" aria-labelelledby="upload-label">
-                    <input id="filename" name="{{currentFileName}}" type="hidden">
-                </div>
+                <details class="govuk-details" data-module="govuk-details">
+                  <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                    Examples of restrictions
+                    </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                    <p>Add text after the description to restrict:</p>
+                    <ul class="govuk-list govuk-list--bullet">
+                      <li>the quantity of the waste, for example: 16 06 01* lead batteries - no more than 500 tonnes</li>
+                      
+                      <li>the description of a particular waste within a code, for example: 16 01 03 - bicycle tyres only</li>
+                      
+                      <li>hazardous property, for example: no corrosive waste</li>
+                      
+                      <li>physical form, for example: 06 03 11* solid salts and solutions containing cyanides - no liquids</li>
+                      
+                      <li>the nature or attribute of the waste, for example: no odorous wastes</li>
+                      
+                      <li>specific substances or specific concentrations, for example: no chromium (VII) substances (greater than 1000 ppm)</li>
+                      
+                      <li>container type or size, for example: no Intermediate Bulk Containers (IBCs)</li>                          
+                    </ul>
+                  </div>
+                </details>                    
+              </label>
+                
+              <p class="upload_head">Upload a file</p>
+              <p class="text govuk-hint">
+                CSV files<br>
+                30MB maximum per file
+              </p>
+          
+              <div class="form-group form-uploader">
+                  <input id="upload" type="file" aria-labelelledby="upload-label">
+                  <input id="filename" name="{{currentFileName}}" type="hidden">
               </div>
             </div>
           </div>
-        </fieldset>
-      </div>
+        </div>
+      </fieldset>
+    </div>
     </br>
-      <div class="form-group">
-        {{submitButton|safe}}
-      </div>
-    </form>
+    <a href="{{continueLink}}" class="govuk-button">Continue</a>
   </div>
 </div>
 
