@@ -815,7 +815,7 @@ router.get('/bespoke/ewc-codes/activity-provide/:id/:editVersion', function (req
   res.render(`${folder}/bespoke/ewc-codes/provide`,
   {
     continueLink: `/${folder}/bespoke/ewc-codes/activity-review/${req.params.id}/${req.params.editVersion}`,
-    title: `Provide EWC codes for <activity ${req.params.id}>`
+    title: `List the types of waste for <activity ${req.params.id}>`
   })
 })
 
@@ -841,7 +841,7 @@ router.get('/bespoke/ewc-codes/activity-review/:id/:editVersion/:editMode?/:edit
 
   res.render(`${folder}/bespoke/ewc-codes/review`,
   {
-    title: `EWC code summary for <activity ${req.params.id}>`,
+    title: `List the types of waste for <activity ${req.params.id}>`,
     ewcCodes: req.params.id === '1' ? activity1Codes : activity2Codes,
     editVersion: req.params.editVersion,
     editMode: req.params.editMode,
