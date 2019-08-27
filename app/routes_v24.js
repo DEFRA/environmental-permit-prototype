@@ -463,6 +463,29 @@ router.post('/add-waste-activity', function (req, res) {
   res.redirect("/"+ folder + "/bespoke/activities-assessments/add-confirm-radio")
 })
 
+// function to use to check dupes
+function hasDuplicates (array) {	
+  return (new Set(array)).size !== array.length;	
+}	
+
+// Check if we've got any duplicate activities. If so go to the name activities page, otherwise go to assessments
+router.post('/confirm-activities', function (req, res) {
+  if (hasDuplicates(req.session.data.chosenPermitID)) {
+    // find duplicate ID	
+    // from stack overflow	
+    // https://bit.ly/2Ec3VXf	
+    var input = req.session.data.chosenPermitID	
+    var duplicates = input.reduce(function(acc, el, i, arr) {	
+      if (arr.indexOf(el) !== i && acc.indexOf(el) < 0) acc.push(el); return acc;	
+    }, []);	
+   req.session.data = { ...req.session.data, ...{ add: [duplicates] } } // add back into data object to use on name page	
+ 
+     res.redirect("/"+ folder + "/bespoke/activities-assessments/name-activities")	
+  } else {	
+    res.redirect("/"+ folder + "/bespoke/assessments/your-assessments")	
+  }
+})
+
 router.get('/delete-waste-activity/:activityCode', function (req, res) {
   var activityIndex = req.session.data.chosenPermitID.indexOf(req.params.activityCode)
   req.session.data.chosenPermitID.splice(activityIndex, 1)

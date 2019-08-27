@@ -14,62 +14,40 @@
 
 
 {% block content %}
-  
-
-<div class="govuk-grid-row">
+  <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      
-        <h1 class="govuk-heading-l" id="radio_label">{{title}}</h1>
-            
-            
-            <!-- <p>
-              <a href="/{{folder}}/bespoke/activities-assessments/bespoke-choose-activity">Change activities</a><br>
-            </p> -->
+      <h1 class="govuk-heading-l" id="radio_label">{{title}}</h1>
 
-            <form method="post" action="/{{folder}}/bespoke/assessments/your-assessments">
-              
-              
-              <!-- Output duplicate activities ############################################ -->
-              {% from folder+"/bespoke/activities-assessments/json/bespoke_activities.html" import activities %}
-              {% for aNumber, aData in activities %}
-                  {% if aNumber==permit.add %}
-                      {% set dupeActivityName = aData.D_Activity_Title %}
-                      
-              <div class="govuk-form-group">
-                <label class="govuk-label" for="activityname1">
-                  Short name for {{ dupeActivityName |lower }} 1
-                  <span class="govuk-hint">
-                    For example, wood chipping, metal shredding or soil screening
-                  </span>
-                </label>
-                <input class="govuk-input govuk-input--width-20" id="activityname1" name="activityname1" type="text" value="">
-              </div>
-              
-              <div class="govuk-form-group">
-                <label class="govuk-label" for="activityname1">
-                  Short name for {{ dupeActivityName |lower }} 2
-                </label>
-                <input class="govuk-input govuk-input--width-20" id="activityname2" name="activityname2" type="text" value="">
-              </div>
-
-              {% endif %}
-          {% endfor %}
-          
-          
-          <div class="form-group">
-
-              {{ govukButton({
-                text: "Continue"
-              }) }}
-        
+      <form method="post" action="/{{folder}}/bespoke/assessments/your-assessments">
+        <!-- Output duplicate activities ############################################ -->
+        {% from folder+"/bespoke/activities-assessments/json/bespoke_activities.html" import activities %}
+        {% for aNumber, aData in activities %}
+          {% if aNumber==permit.add %}
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="activityname1">
+                Short name for {{ aData.D_Activity_Title |lower }} 1
+                <span class="govuk-hint">
+                  For example, wood chipping, metal shredding or soil screening
+                </span>
+              </label>
+              <input class="govuk-input govuk-input--width-20" id="activityname1" name="activityname1" type="text" value="">
             </div>
-
-
+            
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="activityname1">
+                Short name for {{ aData.D_Activity_Title |lower }} 2
+              </label>
+              <input class="govuk-input govuk-input--width-20" id="activityname2" name="activityname2" type="text" value="">
+            </div>
+          {% endif %}
+        {% endfor %}
+    
+        <div class="form-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+        </div>
       </form>
-
-
     </div>
   </div>
-
-
 {% endblock %}
