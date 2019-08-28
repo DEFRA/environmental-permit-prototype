@@ -811,21 +811,29 @@ res.redirect(`/${folder}/check/task-list`)
 })
 
 // EUROPEAN WASTE CODES UPLOAD 2 ========================================================
+var activity1Title = 'List the types of waste for physical treatment of hazardous waste'
+var activity2Title = 'List the types of waste for physical treatment of nonhazardous waste'
+
+var activity1Codes = [
+  { code: '15 01 10*', description: 'packaging containing residues of or contaminated by dangerous substances' },
+  { code: '15 02 02*', description: 'absorbents, filter materials (including oil filters not otherwise specified), wiping cloths, protective clothing contaminated by dangerous substances' },
+  { code: '16 03 03*', description: 'inorganic wastes containing dangerous substances' },
+  { code: '16 03 05*', description: 'organic wastes containing dangerous substances' },
+]
+var activity2Codes = [
+  { code: '01 01 02', description: 'wastes from mineral non-metalliferous excavation' },
+  { code: '01 03 06', description: 'tailings other than those mentioned in 01 03 04 and 01 03 05' },
+  { code: '01 03 08', description: 'dusty and powdery wastes other than those mentioned in 01 03 07' },
+  { code: '01 03 09', description: 'red mud from alumina production other than the wastes mentioned in 01 03 07' }
+]
+
 router.get('/bespoke/ewc-codes/activity-provide/:id/:editVersion', function (req, res) {
   res.render(`${folder}/bespoke/ewc-codes/provide`,
   {
     continueLink: `/${folder}/bespoke/ewc-codes/activity-review/${req.params.id}/${req.params.editVersion}`,
-    title: `List the types of waste for <activity ${req.params.id}>`
+    title: req.params.id === '1' ? activity1Title : activity2Title,
   })
 })
-
-var activity1Codes = [{description: 'Acid-generating tailings from processing of sulphide ore', code: '01 03 04*'}]
-var activity2Codes = [
-  {description: 'Acid-generating tailings from processing of sulphide ore', code: '01 03 04*'},
-  {description: 'Waste gravel and crushed rocks other than those mentioned in 01 04 07', code: '01 04 08'},
-  {description: 'Wastes from potash and rock salt processing other than those mentioned in 01 04 07', code: '01 04 11'},
-  {description: 'Oil-containing drilling muds and wastes', code: '01 05 05'}
-]
 
 router.get('/bespoke/ewc-codes/activity-review/:id/:editVersion/:editMode?/:editRow?', function (req,res) {
   var continueLink = ''
@@ -841,7 +849,7 @@ router.get('/bespoke/ewc-codes/activity-review/:id/:editVersion/:editMode?/:edit
 
   res.render(`${folder}/bespoke/ewc-codes/review`,
   {
-    title: `List the types of waste for <activity ${req.params.id}>`,
+    title: req.params.id === '1' ? activity1Title : activity2Title,
     ewcCodes: req.params.id === '1' ? activity1Codes : activity2Codes,
     editVersion: req.params.editVersion,
     editMode: req.params.editMode,
