@@ -843,7 +843,7 @@ router.get('/bespoke/ewc-codes/activity-review/:id/:editVersion/:editMode?/:edit
     if (req.params.id === '1') {
       continueLink = `/${folder}/bespoke/ewc-codes/activity-provide/2/${req.params.editVersion}`
     } else {
-      continueLink = `/${folder}/check/task-list`
+      continueLink = `/${folder}/bespoke/ewc-codes/task-list`
     }
   }
 

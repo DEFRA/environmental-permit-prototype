@@ -12,12 +12,10 @@
 
 {% block content %}
 
-  
-
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">   
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      EWC code summary for activity 1
+      EWC code summary for physical treatment of hazardous waste
     </legend>
 
     <table class="govuk-table">
@@ -31,12 +29,27 @@
       <tbody class="govuk-table__body">
        
         <tr class="govuk-table__row" style="vertical-align: top">
-          <td class="govuk-table__cell">01 03 04*</textarea></td>
-          <td class="govuk-table__cell">Acid-generating tailings from processing of sulphide ore</td>
+          <td class="govuk-table__cell">15 01 10**</textarea></td>
+          <td class="govuk-table__cell">Packaging containing residues of or contaminated by dangerous substances</td>
+        </tr>
+       
+        <tr class="govuk-table__row" style="vertical-align: top">
+          <td class="govuk-table__cell">15 02 02*</textarea></td>
+          <td class="govuk-table__cell">Absorbents, filter materials (including oil filters not otherwise specified), wiping cloths, protective clothing contaminated by dangerous substances</td>
+        </tr>
+       
+        <tr class="govuk-table__row" style="vertical-align: top">
+          <td class="govuk-table__cell">16 03 03*</textarea></td>
+          <td class="govuk-table__cell">Inorganic wastes containing dangerous substances</td>
+        </tr>
+       
+        <tr class="govuk-table__row" style="vertical-align: top">
+          <td class="govuk-table__cell">16 03 05*</textarea></td>
+          <td class="govuk-table__cell">Organic wastes containing dangerous substances</td>
         </tr>
       </tbody>
     </table>
-
+    
     <table class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
@@ -47,27 +60,27 @@
         <br/>
 
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-          EWC code summary for activity 2
+          EWC code summary for physical treatment of nonhazardous waste
         </legend>
       </thead>
         <tr class="govuk-table__row" style="vertical-align: top">
-          <td class="govuk-table__cell">01 03 04*</textarea></td>
-          <td class="govuk-table__cell">Acid-generating tailings from processing of sulphide ore</td>
+          <td class="govuk-table__cell">01 01 02</textarea></td>
+          <td class="govuk-table__cell">Wastes from mineral non-metalliferous excavation</td>
         </tr>
 
         <tr class="govuk-table__row" style="vertical-align: top">
-          <td class="govuk-table__cell">01 04 08</textarea></td>
-          <td class="govuk-table__cell">Waste gravel and crushed rocks other than those mentioned in 01 04 07</td>
+          <td class="govuk-table__cell">01 03 06</textarea></td>
+          <td class="govuk-table__cell">Tailings other than those mentioned in 01 03 04 and 01 03 05</td>
         </tr>
 
         <tr class="govuk-table__row" style="vertical-align: top">
-          <td class="govuk-table__cell">01 04 11</textarea></td>
-          <td class="govuk-table__cell">Wastes from potash and rock salt processing other than those mentioned in 01 04 07</td>
+          <td class="govuk-table__cell">01 03 08</textarea></td>
+          <td class="govuk-table__cell">Dusty and powdery wastes other than those mentioned in 01 03 07</td>
         </tr>
 
         <tr class="govuk-table__row" style="vertical-align: top">
-          <td class="govuk-table__cell">01 05 05</textarea></td>
-          <td class="govuk-table__cell">Oil-containing drilling muds and wastes</td>
+          <td class="govuk-table__cell">01 03 09</textarea></td>
+          <td class="govuk-table__cell">Red mud from alumina production other than the wastes mentioned in 01 03 07</td>
         </tr>
       </tbody>
     </table>
@@ -77,7 +90,7 @@
 
       <br/>
 
-      <form action="/{{folder}}/check/check-answers" method="post">
+      <form action="check-answers" method="post">
         {{ govukButton({
           text: "Return to check your check your answers"
         }) }}
