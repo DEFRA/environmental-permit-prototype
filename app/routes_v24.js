@@ -821,10 +821,10 @@ var activity1Codes = [
   { code: '16 03 05*', description: 'organic wastes containing dangerous substances' },
 ]
 var activity2Codes = [
-  { code: '01 01 02', description: 'wastes from mineral non-metalliferous excavation' },
-  { code: '01 03 06', description: 'tailings other than those mentioned in 01 03 04 and 01 03 05' },
-  { code: '01 03 08', description: 'dusty and powdery wastes other than those mentioned in 01 03 07' },
-  { code: '01 03 09', description: 'red mud from alumina production other than the wastes mentioned in 01 03 07' }
+  { code: '16 01 04*', description: 'end-of-life vehicles' },
+  { code: '16 01 06', description: 'end-of-life vehicles, containing neither liquids nor other hazardous components' },
+  { code: '16 01 07*', description: 'oil filters' },
+  { code: '16 01 17', description: 'ferrous metal' }
 ]
 
 router.get('/bespoke/ewc-codes/activity-provide/:id/:editVersion', function (req, res) {
