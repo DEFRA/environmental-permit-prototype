@@ -4,7 +4,7 @@ var router = express.Router()
 const request = require('request')
 const async = require('async')
 
-const ewcCodes = require('./ewcCodes')
+const getDescriptionForCode = require('./ewcCodes').getDescriptionForCode
 
 // this file deals with all paths starting /version_x
 // How to use folder variable:
@@ -816,19 +816,6 @@ res.redirect(`/${folder}/check/task-list`)
 var activity1Title = 'physical treatment of hazardous waste'
 var activity2Title = 'physical treatment of nonhazardous waste'
 
-var activity1Codes = [
-  { code: '15 01 10*', description: 'packaging containing residues of or contaminated by dangerous substances' },
-  { code: '15 02 02*', description: 'absorbents, filter materials (including oil filters not otherwise specified), wiping cloths, protective clothing contaminated by dangerous substances' },
-  { code: '16 03 03*', description: 'inorganic wastes containing dangerous substances' },
-  { code: '16 03 05*', description: 'organic wastes containing dangerous substances' },
-]
-var activity2Codes = [
-  { code: '16 01 04*', description: 'end-of-life vehicles' },
-  { code: '16 01 06', description: 'end-of-life vehicles, containing neither liquids nor other hazardous components' },
-  { code: '16 01 07*', description: 'oil filters' },
-  { code: '16 01 17', description: 'ferrous metal' }
-]
-
 router.get('/bespoke/ewc-codes/provide/:id/:editVersion', function (req, res) {
   res.render(`${folder}/bespoke/ewc-codes/provide`,
   {
@@ -872,9 +859,18 @@ router.get('/bespoke/ewc-codes/check-your-answers', function (req, res) {
 router.post('/bespoke/ewc-codes/provide/:id/:editVersion', function(req, res) {
   req.session.data.ewcCodes = req.session.data.ewcCodes || []
 
+  let ewcCodes = []
+  for(let code of req.session.data.inputEwcCodes.split(',')) {
+    code = code.trim()
+    ewcCodes.push({
+        code: code,
+        description: getDescriptionForCode(code)
+    })
+  }
+
   req.session.data.ewcCodes[req.params.id] = {
     title: req.params.id === '0' ? activity1Title : activity2Title,
-    codes: req.params.id === '0' ? activity1Codes : activity2Codes
+    codes: ewcCodes
   }
 
   res.redirect(`/${folder}/bespoke/ewc-codes/review/${req.params.id}/${req.params.editVersion}`)
