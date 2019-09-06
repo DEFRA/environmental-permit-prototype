@@ -4,6 +4,8 @@ var router = express.Router()
 const request = require('request')
 const async = require('async')
 
+const ewcCodes = require('./ewcCodes')
+
 // this file deals with all paths starting /version_x
 // How to use folder variable:
 // res.redirect( '/' + folder + '/exemptions/add_exemptions');
@@ -827,21 +829,22 @@ var activity2Codes = [
   { code: '16 01 17', description: 'ferrous metal' }
 ]
 
-router.get('/bespoke/ewc-codes/activity-provide/:id/:editVersion', function (req, res) {
+router.get('/bespoke/ewc-codes/provide/:id/:editVersion', function (req, res) {
   res.render(`${folder}/bespoke/ewc-codes/provide`,
   {
-    continueLink: `/${folder}/bespoke/ewc-codes/activity-review/${req.params.id}/${req.params.editVersion}`,
+    formAction: `/${folder}/bespoke/ewc-codes/provide/${req.params.id}/${req.params.editVersion}`,
+    continueLink: `/${folder}/bespoke/ewc-codes/review/${req.params.id}/${req.params.editVersion}`,
     title: req.params.id === '1' ? activity1Title : activity2Title,
   })
 })
 
-router.get('/bespoke/ewc-codes/activity-review/:id/:editVersion/:editMode?/:editRow?', function (req,res) {
+router.get('/bespoke/ewc-codes/review/:id/:editVersion/:editMode?/:editRow?', function (req,res) {
   var continueLink = ''
   if (req.params.editMode) {
-    continueLink = `/${folder}/bespoke/ewc-codes/activity-review/${req.params.id}/${req.params.editVersion}`
+    continueLink = `/${folder}/bespoke/ewc-codes/review/${req.params.id}/${req.params.editVersion}`
   } else {
     if (req.params.id === '1') {
-      continueLink = `/${folder}/bespoke/ewc-codes/activity-provide/2/${req.params.editVersion}`
+      continueLink = `/${folder}/bespoke/ewc-codes/provide/2/${req.params.editVersion}`
     } else {
       continueLink = `/${folder}/bespoke/ewc-codes/task-list`
     }
@@ -849,14 +852,25 @@ router.get('/bespoke/ewc-codes/activity-review/:id/:editVersion/:editMode?/:edit
 
   res.render(`${folder}/bespoke/ewc-codes/review`,
   {
-    title: req.params.id === '1' ? activity1Title : activity2Title,
-    ewcCodes: req.params.id === '1' ? activity1Codes : activity2Codes,
+    title: req.session.data.ewcCodes[req.params.id].title,
+    ewcCodes: req.session.data.ewcCodes[req.params.id].codes,
     editVersion: req.params.editVersion,
     editMode: req.params.editMode,
     editRow: req.params.editRow,
-    returnLink: `/${folder}/bespoke/ewc-codes/activity-provide/${req.params.id}/${req.params.editVersion}`,
+    returnLink: `/${folder}/bespoke/ewc-codes/provide/${req.params.id}/${req.params.editVersion}`,
     continueLink: continueLink
   })
+})
+
+router.post('/bespoke/ewc-codes/provide/:id/:editVersion', function(req, res) {
+  req.session.data.ewcCodes = req.session.data.ewcCodes || []
+
+  req.session.data.ewcCodes[req.params.id] = {
+    title: req.params.id === '1' ? activity1Title : activity2Title,
+    codes: req.params.id === '1' ? activity1Codes : activity2Codes
+  }
+
+  res.redirect(`/${folder}/bespoke/ewc-codes/review/${req.params.id}/${req.params.editVersion}`)
 })
 
 // ENVIRONMENTAL RISK ASSESSMENT UPLOAD ========================================================
