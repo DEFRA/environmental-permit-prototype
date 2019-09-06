@@ -13,9 +13,10 @@
 {% block content %}
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">   
+  <div class="govuk-grid-column-two-thirds"> 
+    {% for activity in activities %}
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      EWC code summary for physical treatment of hazardous waste
+      EWC code summary for {{ activity.title }}
     </legend>
 
     <table class="govuk-table">
@@ -27,64 +28,15 @@
         </tr>
       </thead>
       <tbody class="govuk-table__body">
-       
+        {% for ewcCode in activity.codes %}
         <tr class="govuk-table__row" style="vertical-align: top">
-          <td class="govuk-table__cell">15 01 10**</textarea></td>
-          <td class="govuk-table__cell">Packaging containing residues of or contaminated by dangerous substances</td>
+          <td class="govuk-table__cell">{{ewcCode.code}}</textarea></td>
+          <td class="govuk-table__cell">{{ewcCode.description}}</td>
         </tr>
-       
-        <tr class="govuk-table__row" style="vertical-align: top">
-          <td class="govuk-table__cell">15 02 02*</textarea></td>
-          <td class="govuk-table__cell">Absorbents, filter materials (including oil filters not otherwise specified), wiping cloths, protective clothing contaminated by dangerous substances</td>
-        </tr>
-       
-        <tr class="govuk-table__row" style="vertical-align: top">
-          <td class="govuk-table__cell">16 03 03*</textarea></td>
-          <td class="govuk-table__cell">Inorganic wastes containing dangerous substances</td>
-        </tr>
-       
-        <tr class="govuk-table__row" style="vertical-align: top">
-          <td class="govuk-table__cell">16 03 05*</textarea></td>
-          <td class="govuk-table__cell">Organic wastes containing dangerous substances</td>
-        </tr>
+        {% endfor %}
       </tbody>
     </table>
-    
-    <table class="govuk-table">
-      <thead class="govuk-table__head">
-        <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">EWC code</th>
-          <th scope="col" class="govuk-table__header">EWC description</th>              
-        </tr>
-        <br/>
-        <br/>
-
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-          EWC code summary for metal recycling site - vehicle dismantling
-        </legend>
-      </thead>
-        <tr class="govuk-table__row" style="vertical-align: top">
-          <td class="govuk-table__cell">16 01 04*</textarea></td>
-          <td class="govuk-table__cell">end-of-life vehicles</td>
-        </tr>
-
-        <tr class="govuk-table__row" style="vertical-align: top">
-          <td class="govuk-table__cell">16 01 06</textarea></td>
-          <td class="govuk-table__cell">end-of-life vehicles, containing neither liquids nor other hazardous components</td>
-        </tr>
-
-        <tr class="govuk-table__row" style="vertical-align: top">
-          <td class="govuk-table__cell">16 01 07*</textarea></td>
-          <td class="govuk-table__cell">oil filters</td>
-        </tr>
-
-        <tr class="govuk-table__row" style="vertical-align: top">
-          <td class="govuk-table__cell">16 01 17</textarea></td>
-          <td class="govuk-table__cell">ferrous metal</td>
-        </tr>
-      </tbody>
-    </table>
-
+    {% endfor %}
   </div>
 </div>
 

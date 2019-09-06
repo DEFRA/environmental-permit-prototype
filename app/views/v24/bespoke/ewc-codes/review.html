@@ -12,66 +12,71 @@
 
 {% block content %}
 
-  
+<form action="{{formAction}}" method="POST">
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">   
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-        {{title}}
-    </legend>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">   
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          List the types of waste for {{title}}
+      </legend>
 
-    <table class="govuk-table">
-      <thead class="govuk-table__head">
-        <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">EWC code</th>
-          <th scope="col" class="govuk-table__header">EWC description</th>
-          {% if not editMode %}
-          <th scope="col" class="govuk-table__header">{% if editVersion === 'mega-edit' %}<a href="mega-edit/mega-edit">Edit</a>{% endif %}</th>
-          {% endif %}
-        </tr>
-      </thead>
-      <tbody class="govuk-table__body">
-        {% for ewcCode in ewcCodes %}
-        <tr class="govuk-table__row" style="vertical-align: top">
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">EWC code</th>
+            <th scope="col" class="govuk-table__header">EWC description</th>
+            {% if not editMode %}
+            <th scope="col" class="govuk-table__header">{% if editVersion === 'mega-edit' %}<a href="mega-edit/mega-edit">Edit</a>{% endif %}</th>
+            {% endif %}
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          {% for ewcCode in ewcCodes %}
+          <tr class="govuk-table__row" style="vertical-align: top">
 
-          {% if editMode === 'mega-edit' %}
-          <td class="govuk-table__cell"><input type="text" class="govuk-input" value="{{ ewcCode.code }}"></textarea></td>
-          <td class="govuk-table__cell"><textarea class="govuk-textarea" rows="2">{{ ewcCode.description }}</textarea></td>
-          {% elif editMode === 'mini-edit' and editRow == loop.index %}
-          <td class="govuk-table__cell table-no-border">{{ ewcCode.code }}</td>
-          <td class="govuk-table__cell table-no-border">{{ ewcCode.description }}</td>
-          {% else %}
-          <td class="govuk-table__cell">{{ ewcCode.code }}</td>
-          <td class="govuk-table__cell">{{ ewcCode.description }}</td>
-          {% if editMode !== 'mini-edit' %}
-          <td class="govuk-table__cell">{% if editVersion === 'mini-edit' %}<a href="mini-edit/mini-edit/{{ loop.index }}">Edit</a>{% endif %}</td>
+            {% if editMode === 'mega-edit' %}
+            <td class="govuk-table__cell"><input type="text" class="govuk-input" value="{{ ewcCode.code }}" name="ewcCode{{loop.index0}}"></textarea></td>
+            <td class="govuk-table__cell"><textarea class="govuk-textarea" rows="2" name="ewcDescription{{loop.index0}}">{{ ewcCode.description }}</textarea></td>
+            {% elif editMode === 'mini-edit' and editRow == loop.index %}
+            <td class="govuk-table__cell table-no-border">{{ ewcCode.code }}</td>
+            <td class="govuk-table__cell table-no-border">{{ ewcCode.description }}</td>
+            {% else %}
+            <td class="govuk-table__cell">{{ ewcCode.code }}</td>
+            <td class="govuk-table__cell">{{ ewcCode.description }}</td>
+            {% if editMode !== 'mini-edit' %}
+            <td class="govuk-table__cell">{% if editVersion === 'mini-edit' %}<a href="mini-edit/mini-edit/{{ loop.index }}">Edit</a>{% endif %}</td>
+            {% endif %}
+            {% endif %}
+          </tr>
+          {% if editMode === 'mini-edit' and editRow == loop.index %}
+          <tr class="govuk-table__row" style="vertical-align: top">
+            <td class="govuk-table__cell">
+              <label class="govuk-hint" for="ewc-code">New code</label>
+              <input class="govuk-input" id="ewc-code" type="text" name="ewcCode{{loop.index0}}"/>
+            </td>
+            <td class="govuk-table__cell">
+              <label class="govuk-hint" for="ewc-description">New description</label>
+              <input class="govuk-input" id="ewc-description" type="text" name="ewcDescription{{loop.index0}}"/>
+            </td>
+          </tr> 
           {% endif %}
-          {% endif %}
-        </tr>
-        {% if editMode === 'mini-edit' and editRow == loop.index %}
-        <tr class="govuk-table__row" style="vertical-align: top">
-          <td class="govuk-table__cell">
-            <label class="govuk-hint" for="ewc-code">New code</label>
-            <input class="govuk-input" id="ewc-code" type="text"/>
-          </td>
-          <td class="govuk-table__cell">
-            <label class="govuk-hint" for="ewc-description">New description</label>
-            <input class="govuk-input" id="ewc-description" type="text"/>
-          </td>
-        </tr> 
-        {% endif %}
-        {% endfor %}
-      </tbody>
-    </table>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
-  
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <a href="{{returnLink}}" class="govuk-button govuk-button--secondary">Upload or enter this list again</a>
-    <br/>
-    <a href="{{continueLink}}" class="govuk-button">Confirm</a>
+    
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <a href="{{returnLink}}" class="govuk-button govuk-button--secondary">Upload or enter this list again</a>
+      <br/>
+      {% if editMode %}
+        {{submitButton|safe}}
+      {% else %}
+        <a href="{{continueLink}}" class="govuk-button">Confirm</a>
+      {% endif %}
+    </div>
   </div>
-</div>
+</form>
 
 {% endblock %}

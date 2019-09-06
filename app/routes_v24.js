@@ -813,8 +813,8 @@ res.redirect(`/${folder}/check/task-list`)
 })
 
 // EUROPEAN WASTE CODES UPLOAD 2 ========================================================
-var activity1Title = 'List the types of waste for physical treatment of hazardous waste'
-var activity2Title = 'List the types of waste for physical treatment of nonhazardous waste'
+var activity1Title = 'physical treatment of hazardous waste'
+var activity2Title = 'physical treatment of nonhazardous waste'
 
 var activity1Codes = [
   { code: '15 01 10*', description: 'packaging containing residues of or contaminated by dangerous substances' },
@@ -834,7 +834,7 @@ router.get('/bespoke/ewc-codes/provide/:id/:editVersion', function (req, res) {
   {
     formAction: `/${folder}/bespoke/ewc-codes/provide/${req.params.id}/${req.params.editVersion}`,
     continueLink: `/${folder}/bespoke/ewc-codes/review/${req.params.id}/${req.params.editVersion}`,
-    title: req.params.id === '1' ? activity1Title : activity2Title,
+    title: req.params.id === '0' ? activity1Title : activity2Title,
   })
 })
 
@@ -843,8 +843,8 @@ router.get('/bespoke/ewc-codes/review/:id/:editVersion/:editMode?/:editRow?', fu
   if (req.params.editMode) {
     continueLink = `/${folder}/bespoke/ewc-codes/review/${req.params.id}/${req.params.editVersion}`
   } else {
-    if (req.params.id === '1') {
-      continueLink = `/${folder}/bespoke/ewc-codes/provide/2/${req.params.editVersion}`
+    if (req.params.id === '0') {
+      continueLink = `/${folder}/bespoke/ewc-codes/provide/1/${req.params.editVersion}`
     } else {
       continueLink = `/${folder}/bespoke/ewc-codes/task-list`
     }
@@ -857,8 +857,15 @@ router.get('/bespoke/ewc-codes/review/:id/:editVersion/:editMode?/:editRow?', fu
     editVersion: req.params.editVersion,
     editMode: req.params.editMode,
     editRow: req.params.editRow,
+    formAction: `/${folder}/bespoke/ewc-codes/${req.params.id}/${req.params.editVersion}`,
     returnLink: `/${folder}/bespoke/ewc-codes/provide/${req.params.id}/${req.params.editVersion}`,
     continueLink: continueLink
+  })
+})
+
+router.get('/bespoke/ewc-codes/check-your-answers', function (req, res) {
+  res.render(`${folder}/bespoke/ewc-codes/review-cya`, {
+    activities: req.session.data.ewcCodes
   })
 })
 
@@ -866,8 +873,25 @@ router.post('/bespoke/ewc-codes/provide/:id/:editVersion', function(req, res) {
   req.session.data.ewcCodes = req.session.data.ewcCodes || []
 
   req.session.data.ewcCodes[req.params.id] = {
-    title: req.params.id === '1' ? activity1Title : activity2Title,
-    codes: req.params.id === '1' ? activity1Codes : activity2Codes
+    title: req.params.id === '0' ? activity1Title : activity2Title,
+    codes: req.params.id === '0' ? activity1Codes : activity2Codes
+  }
+
+  res.redirect(`/${folder}/bespoke/ewc-codes/review/${req.params.id}/${req.params.editVersion}`)
+})
+
+router.post('/bespoke/ewc-codes/:id/:editVersion', function(req, res) {
+  let ewcCodes = req.session.data.ewcCodes[req.params.id].codes
+
+  for (let i = 0; i < ewcCodes.length; i++) {
+    if (req.session.data[`ewcCode${i}`] !== undefined) {
+      ewcCodes[i].code = req.session.data[`ewcCode${i}`]
+      delete req.session.data[`ewcCode${i}`]
+    }
+    if (req.session.data[`ewcDescription${i}`] !== undefined) {
+      ewcCodes[i].description = req.session.data[`ewcDescription${i}`]
+      delete req.session.data[`ewcDescription${i}`]
+    }
   }
 
   res.redirect(`/${folder}/bespoke/ewc-codes/review/${req.params.id}/${req.params.editVersion}`)
