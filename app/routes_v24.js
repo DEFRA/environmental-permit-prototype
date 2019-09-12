@@ -816,12 +816,12 @@ res.redirect(`/${folder}/check/task-list`)
 var activity1Title = 'physical treatment of hazardous waste'
 var activity2Title = 'physical treatment of nonhazardous waste'
 
-router.get('/bespoke/ewc-codes/provide/:id/:editVersion', function (req, res) {
+router.get('/bespoke/ewc-codes/provide/:id/:provideVersion', function (req, res) {
   res.render(`${folder}/bespoke/ewc-codes/provide`,
   {
-    formAction: `/${folder}/bespoke/ewc-codes/provide/${req.params.id}/${req.params.editVersion}`,
-    continueLink: `/${folder}/bespoke/ewc-codes/review/${req.params.id}/${req.params.editVersion}`,
-    title: req.params.id === '0' ? activity1Title : activity2Title,
+    formAction: `/${folder}/bespoke/ewc-codes/provide/${req.params.id}/${req.params.provideVersion}`,
+    provideVersion: req.params.provideVersion,
+    title: req.params.id === '0' ? activity1Title : activity2Title
   })
 })
 
