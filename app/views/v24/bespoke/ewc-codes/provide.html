@@ -91,7 +91,7 @@
     </details>  
     {% endif %}        
 
-    <form action="{{formAction}}" method="POST"> 
+    <form action="{{formAction}}" method="POST" {%if provideVersion != 'text-area' %} enctype="multipart/form-data" {% endif %}> 
       {% if provideVersion == 'text-area' %}
       <span class="govuk-hint">e.g: 01 02 03, 34 56 23, 95 48 28*</span>
       <div class="govuk-form-group">
@@ -106,7 +106,7 @@
         </p>
     
         <div class="form-group form-uploader">
-          <input id="upload" type="file" aria-labelelledby="upload-label">
+          <input id="upload" type="file" name="ewcCodeFile" aria-labelelledby="upload-label">
           <input id="filename" name="{{currentFileName}}" type="hidden">
         </div>
       </div>

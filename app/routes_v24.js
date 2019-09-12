@@ -1,5 +1,6 @@
 var express = require('express')
 var router = express.Router()
+const expressFileUpload = require('express-fileupload')
 
 const request = require('request')
 const async = require('async')
@@ -44,6 +45,8 @@ router.use(function (req, res, next) {
 
   next()
 });
+
+router.use(expressFileUpload())
 
 // CLEAR SESSION ==============================================================
 router.get('/cls', function (req, res) {
@@ -860,12 +863,25 @@ router.post('/bespoke/ewc-codes/provide/:id/:editVersion', function(req, res) {
   req.session.data.ewcCodes = req.session.data.ewcCodes || []
 
   let ewcCodes = []
-  for(let code of req.session.data.inputEwcCodes.split(',')) {
-    code = code.trim()
-    ewcCodes.push({
-        code: code,
-        description: getDescriptionForCode(code)
-    })
+
+  if (req.session.data.inputEwcCodes) {
+    for(let code of req.session.data.inputEwcCodes.split(',')) {
+      code = code.trim()
+      ewcCodes.push({
+          code: code,
+          description: getDescriptionForCode(code)
+      })
+    }
+  } else {
+    var fileData = req.files.ewcCodeFile.data.toString()
+    var codes = fileData.split('\n')
+    for (let code of codes) {
+      let splitCode = code.split(',')
+      ewcCodes.push({
+        code: splitCode[0],
+        description: splitCode[1]
+      })
+    }
   }
 
   req.session.data.ewcCodes[req.params.id] = {
