@@ -828,27 +828,23 @@ router.get('/bespoke/ewc-codes/provide/:id/:provideVersion', function (req, res)
   })
 })
 
-router.get('/bespoke/ewc-codes/review/:id/:editVersion/:editMode?/:editRow?', function (req,res) {
+router.get('/bespoke/ewc-codes/review/:id/:provideVersion/:editMode?', function (req,res) {
   var continueLink = ''
-  if (req.params.editMode) {
-    continueLink = `/${folder}/bespoke/ewc-codes/review/${req.params.id}/${req.params.editVersion}`
+
+  if (req.params.id === '0') {
+    continueLink = `/${folder}/bespoke/ewc-codes/provide/1/${req.params.provideVersion}`
   } else {
-    if (req.params.id === '0') {
-      continueLink = `/${folder}/bespoke/ewc-codes/provide/1/${req.params.editVersion}`
-    } else {
-      continueLink = `/${folder}/bespoke/ewc-codes/task-list`
-    }
+    continueLink = `/${folder}/bespoke/ewc-codes/task-list`
   }
 
   res.render(`${folder}/bespoke/ewc-codes/review`,
   {
     title: req.session.data.ewcCodes[req.params.id].title,
     ewcCodes: req.session.data.ewcCodes[req.params.id].codes,
-    editVersion: req.params.editVersion,
+    provideVersion: req.params.provideVersion,
     editMode: req.params.editMode,
-    editRow: req.params.editRow,
-    formAction: `/${folder}/bespoke/ewc-codes/${req.params.id}/${req.params.editVersion}`,
-    returnLink: `/${folder}/bespoke/ewc-codes/provide/${req.params.id}/${req.params.editVersion}`,
+    formAction: `/${folder}/bespoke/ewc-codes/edit/${req.params.id}/${req.params.provideVersion}`,
+    returnLink: `/${folder}/bespoke/ewc-codes/provide/${req.params.id}/${req.params.provideVersion}`,
     continueLink: continueLink
   })
 })
@@ -859,31 +855,10 @@ router.get('/bespoke/ewc-codes/check-your-answers', function (req, res) {
   })
 })
 
-router.post('/bespoke/ewc-codes/provide/:id/:provideVersion', function(req, res) {
-  req.session.data.ewcCodes = req.session.data.ewcCodes || []
-
-  let ewcCodes = []
-
-  if (req.session.data.inputEwcCodes) {
-    for(let code of req.session.data.inputEwcCodes.split(',')) {
-      code = code.trim()
-      ewcCodes.push({
-          code: code,
-          description: getDescriptionForCode(code),
-          errors: []
-      })
-    }
-  } else {
-    var fileData = req.files.ewcCodeFile.data.toString()
-    var codes = fileData.split('\n')
-    for (let code of codes) {
-      let splitCode = code.split(',')
-      ewcCodes.push({
-        code: splitCode[0] ? splitCode[0].trim() : "",
-        description: splitCode[1] ? splitCode[1].trim() : "",
-        errors: []
-      })
-    }
+function validateCodes (req, ewcCodes) {
+  for (let ewcCode of ewcCodes) {
+    ewcCode.codeErrors = []
+    ewcCode.descriptionErrors = []
   }
 
   if (req.params.provideVersion === "upload-no-template") {
@@ -898,21 +873,56 @@ router.post('/bespoke/ewc-codes/provide/:id/:provideVersion', function(req, res)
     req.session.data.invalidCodes = invalidCodes
   } else {
     for (let ewcCode of ewcCodes) {
-      if (getDescriptionForCode(ewcCode.code) === "") {
-        ewcCode.errors.push("EWC code does not exist")
+      if (!/[0-9][0-9] [0-9][0-9] [0-9][0-9]\*?/.test(ewcCode.code)) {
+        ewcCode.codeErrors.push("EWC code is the incorrect format")
+      } else if (getDescriptionForCode(ewcCode.code) === "") {
+        ewcCode.codeErrors.push("EWC code does not exist")
+      }
+      if (req.params.provideVersion === "upload-template"
+       && ewcCode.description === "") {
+        ewcCode.descriptionErrors.push("Enter a description")
       }
     }
   }
+}
+
+router.post('/bespoke/ewc-codes/provide/:id/:provideVersion', function(req, res) {
+  req.session.data.ewcCodes = req.session.data.ewcCodes || []
+
+  let ewcCodes = []
+
+  if (req.session.data.inputEwcCodes) {
+    for(let code of req.session.data.inputEwcCodes.split(',')) {
+      code = code.trim()
+      ewcCodes.push({
+          code: code,
+          description: getDescriptionForCode(code)
+      })
+    }
+  } else {
+    var fileData = req.files.ewcCodeFile.data.toString()
+    var codes = fileData.split('\n')
+    for (let code of codes) {
+      let splitCode = code.split(',')
+      ewcCodes.push({
+        code: splitCode[0] ? splitCode[0].trim() : "",
+        description: splitCode[1] ? splitCode[1].trim() : ""
+      })
+    }
+  }
+
+  validateCodes(req, ewcCodes)
 
   req.session.data.ewcCodes[req.params.id] = {
     title: req.params.id === '0' ? activity1Title : activity2Title,
     codes: ewcCodes
   }
 
+
   res.redirect(`/${folder}/bespoke/ewc-codes/review/${req.params.id}/${req.params.provideVersion}`)
 })
 
-router.post('/bespoke/ewc-codes/:id/:editVersion', function(req, res) {
+router.post('/bespoke/ewc-codes/edit/:id/:provideVersion', function(req, res) {
   let ewcCodes = req.session.data.ewcCodes[req.params.id].codes
 
   for (let i = 0; i < ewcCodes.length; i++) {
@@ -926,7 +936,9 @@ router.post('/bespoke/ewc-codes/:id/:editVersion', function(req, res) {
     }
   }
 
-  res.redirect(`/${folder}/bespoke/ewc-codes/review/${req.params.id}/${req.params.editVersion}`)
+  validateCodes(req, req.session.data.ewcCodes[req.params.id].codes)
+
+  res.redirect(`/${folder}/bespoke/ewc-codes/review/${req.params.id}/${req.params.provideVersion}`)
 })
 
 // ENVIRONMENTAL RISK ASSESSMENT UPLOAD ========================================================

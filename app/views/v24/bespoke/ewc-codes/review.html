@@ -12,6 +12,8 @@
 
 {% block content %}
 
+{% set errors = 'false' %}
+
 <form action="{{formAction}}" method="POST">
 
   <div class="govuk-grid-row">
@@ -25,24 +27,42 @@
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">EWC code</th>
             <th scope="col" class="govuk-table__header">EWC description</th>
-            {% if not editMode %}
-            <th scope="col" class="govuk-table__header">{% if provideVersion === 'text-area' %}<a href="text-area/edit">Edit</a>{% endif %}</th>
+            {% if provideVersion === 'text-area' and not editMode %}
+            <th scope="col" class="govuk-table__header"><a href="text-area/edit">Edit</a></th>
             {% endif %}
           </tr>
         </thead>
         <tbody class="govuk-table__body">
           {% for ewcCode in ewcCodes %}
+          {% if ewcCode.codeErrors.length > 0 or ewcCode.descriptionErrors.length > 0 %}
+          {% set errors = 'true' %}
+          <tr class="govuk-table__row " style="vertical-align: top">
+            <td class="govuk-table__cell table-no-border" colspan="2">
+            {% for error in ewcCode.codeErrors %}
+            <span class="govuk-error-message">{{ error }}</span>
+            {% endfor %}
+            {% for error in ewcCode.descriptionErrors %}
+            <span class="govuk-error-message">{{ error }}</span>
+            {% endfor %}
+            </td>
+          </tr>
+          {% endif %}
           <tr class="govuk-table__row" style="vertical-align: top">
-
-            {% if editMode %}
-            <td class="govuk-table__cell"><input type="text" class="govuk-input" value="{{ ewcCode.code }}" name="ewcCode{{loop.index0}}"></textarea></td>
-            <td class="govuk-table__cell"><textarea class="govuk-textarea" rows="2" name="ewcDescription{{loop.index0}}">{{ ewcCode.description }}</textarea></td>
+            
+            {% if editMode or ewcCode.codeErrors.length > 0 %}
+            <td class="govuk-table__cell"><input type="text" class="govuk-input {% if ewcCode.codeErrors.length > 0 %}govuk-input--error{% endif %}" value="{{ ewcCode.code }}" name="ewcCode{{loop.index0}}"></textarea></td>
             {% else %}
             <td class="govuk-table__cell">{{ ewcCode.code }}</td>
+            {% endif %}
+
+            {% if editMode or ewcCode.descriptionErrors.length > 0 %}
+            <td class="govuk-table__cell"><textarea class="govuk-textarea {% if ewcCode.descriptionErrors.length > 0 %}govuk-textarea--error{% endif %}" rows="2" name="ewcDescription{{loop.index0}}">{{ ewcCode.description }}</textarea></td>
+            {% else %}
             <td class="govuk-table__cell">{{ ewcCode.description }}</td>
-              {% if not editMode %}
-              <td class="govuk-table__cell"></td>
-              {% endif %}
+            {% endif %}
+
+            {% if provideVersion === 'text-area' and not editMode %}
+            <td class="govuk-table__cell"></td>
             {% endif %}
           </tr>
           {% endfor %}
@@ -55,7 +75,7 @@
     <div class="govuk-grid-column-two-thirds">
       <a href="{{returnLink}}" class="govuk-button govuk-button--secondary">Upload or enter this list again</a>
       <br/>
-      {% if editMode %}
+      {% if editMode or errors == 'true' %}
         {{submitButton|safe}}
       {% else %}
         <a href="{{continueLink}}" class="govuk-button">Confirm</a>
