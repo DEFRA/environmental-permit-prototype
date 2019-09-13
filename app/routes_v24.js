@@ -837,15 +837,36 @@ router.get('/bespoke/ewc-codes/review/:id/:provideVersion/:editMode?', function 
     continueLink = `/${folder}/bespoke/ewc-codes/task-list`
   }
 
+  let errors = false
+  let title = ""
+
+  for (let code of req.session.data.ewcCodes[req.params.id].codes) {
+    if (code.codeErrors.length > 0
+     || code.descriptionErrors.length > 0) {
+      errors = true
+    }
+  }
+
+  if (errors) {
+    title = "Fix errors for "
+  } else if (req.params.editMode) {
+    title = "Edit the descriptions for "
+  } else {
+    title = "Check the list for "
+  }
+
+  title += req.session.data.ewcCodes[req.params.id].title
+
   res.render(`${folder}/bespoke/ewc-codes/review`,
   {
-    title: req.session.data.ewcCodes[req.params.id].title,
+    title: title,
     ewcCodes: req.session.data.ewcCodes[req.params.id].codes,
     provideVersion: req.params.provideVersion,
     editMode: req.params.editMode,
     formAction: `/${folder}/bespoke/ewc-codes/edit/${req.params.id}/${req.params.provideVersion}`,
     returnLink: `/${folder}/bespoke/ewc-codes/provide/${req.params.id}/${req.params.provideVersion}`,
-    continueLink: continueLink
+    continueLink: continueLink,
+    errors: errors
   })
 })
 
@@ -874,13 +895,13 @@ function validateCodes (req, ewcCodes) {
   } else {
     for (let ewcCode of ewcCodes) {
       if (!/^[0-9][0-9] [0-9][0-9] [0-9][0-9]\*?$/.test(ewcCode.code)) {
-        ewcCode.codeErrors.push("EWC code is the incorrect format")
+        ewcCode.codeErrors.push("Code format is wrong")
       } else if (getDescriptionForCode(ewcCode.code) === "") {
-        ewcCode.codeErrors.push("EWC code does not exist")
+        ewcCode.codeErrors.push("This code does not exist")
       }
       if (req.params.provideVersion === "upload-template"
        && ewcCode.description === "") {
-        ewcCode.descriptionErrors.push("Enter a description")
+        ewcCode.descriptionErrors.push("Add a description")
       }
     }
   }

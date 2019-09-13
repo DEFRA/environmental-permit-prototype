@@ -12,14 +12,12 @@
 
 {% block content %}
 
-{% set errors = 'false' %}
-
 <form action="{{formAction}}" method="POST">
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">   
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-          List the types of waste for {{title}}
+          {{title}}
       </legend>
 
       <table class="govuk-table">
@@ -27,7 +25,7 @@
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">EWC code</th>
             <th scope="col" class="govuk-table__header">EWC description</th>
-            {% if provideVersion === 'text-area' and not editMode %}
+            {% if provideVersion === 'text-area' and not editMode and not errors %}
             <th scope="col" class="govuk-table__header"><a href="text-area/edit">Edit</a></th>
             {% endif %}
           </tr>
@@ -35,7 +33,6 @@
         <tbody class="govuk-table__body">
           {% for ewcCode in ewcCodes %}
           {% if ewcCode.codeErrors.length > 0 or ewcCode.descriptionErrors.length > 0 %}
-          {% set errors = 'true' %}
           <tr class="govuk-table__row " style="vertical-align: top">
             <td class="govuk-table__cell table-no-border" colspan="2">
             {% for error in ewcCode.codeErrors %}
@@ -75,7 +72,7 @@
     <div class="govuk-grid-column-two-thirds">
       <a href="{{returnLink}}" class="govuk-button govuk-button--secondary">Upload or enter this list again</a>
       <br/>
-      {% if editMode or errors == 'true' %}
+      {% if editMode or errors == true %}
         {{submitButton|safe}}
       {% else %}
         <a href="{{continueLink}}" class="govuk-button">Confirm</a>
