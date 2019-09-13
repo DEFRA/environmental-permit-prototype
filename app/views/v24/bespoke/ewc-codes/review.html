@@ -20,6 +20,10 @@
           {{title}}
       </legend>
 
+      {% if provideVersion === 'upload-no-template' %}
+      <p>These are the EWC codes and descriptions you've uploaded.</p>
+      {% endif %}
+
       <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
@@ -44,8 +48,7 @@
             </td>
           </tr>
           {% endif %}
-          <tr class="govuk-table__row" style="vertical-align: top">
-            
+          <tr class="govuk-table__row" style="vertical-align: top">            
             {% if ewcCode.codeErrors.length > 0 %}
             <td class="govuk-table__cell"><input type="text" class="govuk-input {% if ewcCode.codeErrors.length > 0 %}govuk-input--error{% endif %}" value="{{ ewcCode.code }}" name="ewcCode{{loop.index0}}"></textarea></td>
             {% else %}

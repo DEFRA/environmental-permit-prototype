@@ -831,7 +831,9 @@ router.get('/bespoke/ewc-codes/provide/:id/:provideVersion', function (req, res)
 router.get('/bespoke/ewc-codes/review/:id/:provideVersion/:editMode?', function (req,res) {
   var continueLink = ''
 
-  if (req.params.id === '0') {
+  if (req.params.provideVersion === 'upload-no-template') {
+    continueLink = `/${folder}/bespoke/ewc-codes/review-discarded/${req.params.id}`
+  } else if (req.params.id === '0') {
     continueLink = `/${folder}/bespoke/ewc-codes/provide/1/${req.params.provideVersion}`
   } else {
     continueLink = `/${folder}/bespoke/ewc-codes/task-list`
@@ -867,6 +869,21 @@ router.get('/bespoke/ewc-codes/review/:id/:provideVersion/:editMode?', function 
     returnLink: `/${folder}/bespoke/ewc-codes/provide/${req.params.id}/${req.params.provideVersion}`,
     continueLink: continueLink,
     errors: errors
+  })
+})
+
+router.get('/bespoke/ewc-codes/review-discarded/:id', function (req,res) {
+  if (req.params.id === '0') {
+    continueLink = `/${folder}/bespoke/ewc-codes/provide/1/upload-no-template`
+  } else {
+    continueLink = `/${folder}/bespoke/ewc-codes/task-list`
+  }
+
+  res.render(`${folder}/bespoke/ewc-codes/review-removed-ewc`,
+  {
+    title: req.session.data.ewcCodes[req.params.id].title,
+    invalidCodes: req.session.data.invalidCodes,
+    continueLink: continueLink
   })
 })
 
