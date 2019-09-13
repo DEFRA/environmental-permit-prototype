@@ -49,7 +49,7 @@
           {% endif %}
           <tr class="govuk-table__row" style="vertical-align: top">
             
-            {% if editMode or ewcCode.codeErrors.length > 0 %}
+            {% if ewcCode.codeErrors.length > 0 %}
             <td class="govuk-table__cell"><input type="text" class="govuk-input {% if ewcCode.codeErrors.length > 0 %}govuk-input--error{% endif %}" value="{{ ewcCode.code }}" name="ewcCode{{loop.index0}}"></textarea></td>
             {% else %}
             <td class="govuk-table__cell">{{ ewcCode.code }}</td>

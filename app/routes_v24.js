@@ -873,7 +873,7 @@ function validateCodes (req, ewcCodes) {
     req.session.data.invalidCodes = invalidCodes
   } else {
     for (let ewcCode of ewcCodes) {
-      if (!/[0-9][0-9] [0-9][0-9] [0-9][0-9]\*?/.test(ewcCode.code)) {
+      if (!/^[0-9][0-9] [0-9][0-9] [0-9][0-9]\*?$/.test(ewcCode.code)) {
         ewcCode.codeErrors.push("EWC code is the incorrect format")
       } else if (getDescriptionForCode(ewcCode.code) === "") {
         ewcCode.codeErrors.push("EWC code does not exist")
@@ -929,6 +929,10 @@ router.post('/bespoke/ewc-codes/edit/:id/:provideVersion', function(req, res) {
     if (req.session.data[`ewcCode${i}`] !== undefined) {
       ewcCodes[i].code = req.session.data[`ewcCode${i}`]
       delete req.session.data[`ewcCode${i}`]
+
+      if (req.params.provideVersion === 'text-area') {
+        ewcCodes[i].description = getDescriptionForCode(ewcCodes[i].code)
+      }
     }
     if (req.session.data[`ewcDescription${i}`] !== undefined) {
       ewcCodes[i].description = req.session.data[`ewcDescription${i}`]
