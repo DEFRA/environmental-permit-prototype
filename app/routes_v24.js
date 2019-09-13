@@ -899,7 +899,7 @@ router.post('/bespoke/ewc-codes/provide/:id/:provideVersion', function(req, res)
   } else {
     for (let ewcCode of ewcCodes) {
       if (getDescriptionForCode(ewcCode.code) === "") {
-        ewcCode.codeErrors.push("EWC code does not exist")
+        ewcCode.errors.push("EWC code does not exist")
       }
     }
   }
