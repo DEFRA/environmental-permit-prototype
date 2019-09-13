@@ -817,7 +817,7 @@ res.redirect(`/${folder}/check/task-list`)
 
 // EUROPEAN WASTE CODES UPLOAD 2 ========================================================
 var activity1Title = 'physical treatment of hazardous waste'
-var activity2Title = 'physical treatment of nonhazardous waste'
+var activity2Title = 'metal recycling site - vehicle dismantling'
 
 router.get('/bespoke/ewc-codes/provide/:id/:provideVersion', function (req, res) {
   res.render(`${folder}/bespoke/ewc-codes/provide`,
@@ -909,7 +909,7 @@ router.post('/bespoke/ewc-codes/provide/:id/:provideVersion', function(req, res)
     codes: ewcCodes
   }
 
-  res.redirect(`/${folder}/bespoke/ewc-codes/review/${req.params.id}/${req.params.editVersion}`)
+  res.redirect(`/${folder}/bespoke/ewc-codes/review/${req.params.id}/${req.params.provideVersion}`)
 })
 
 router.post('/bespoke/ewc-codes/:id/:editVersion', function(req, res) {
