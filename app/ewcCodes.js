@@ -2,7 +2,7 @@ var getDescriptionForCode = function(code) {
     var referenceCode = referenceCodes.find((referenceCode) => {
         return referenceCode.code === code
     })
-    return referenceCode ? referenceCode.description : "No matching code found"
+    return referenceCode ? referenceCode.description : ""
 }
 
 const referenceCodes = [

@@ -859,7 +859,7 @@ router.get('/bespoke/ewc-codes/check-your-answers', function (req, res) {
   })
 })
 
-router.post('/bespoke/ewc-codes/provide/:id/:editVersion', function(req, res) {
+router.post('/bespoke/ewc-codes/provide/:id/:provideVersion', function(req, res) {
   req.session.data.ewcCodes = req.session.data.ewcCodes || []
 
   let ewcCodes = []
@@ -869,7 +869,8 @@ router.post('/bespoke/ewc-codes/provide/:id/:editVersion', function(req, res) {
       code = code.trim()
       ewcCodes.push({
           code: code,
-          description: getDescriptionForCode(code)
+          description: getDescriptionForCode(code),
+          errors: []
       })
     }
   } else {
@@ -878,9 +879,28 @@ router.post('/bespoke/ewc-codes/provide/:id/:editVersion', function(req, res) {
     for (let code of codes) {
       let splitCode = code.split(',')
       ewcCodes.push({
-        code: splitCode[0],
-        description: splitCode[1]
+        code: splitCode[0] ? splitCode[0].trim() : "",
+        description: splitCode[1] ? splitCode[1].trim() : "",
+        errors: []
       })
+    }
+  }
+
+  if (req.params.provideVersion === "upload-no-template") {
+    let invalidCodes = []
+    for (let ewcCode of ewcCodes) {
+      if (getDescriptionForCode(ewcCode.code) === ""
+       || ewcCode.description === "") {
+        ewcCodes.splice(ewcCodes.indexOf(ewcCode), 1)
+        invalidCodes.push(ewcCode)
+      }
+    }
+    req.session.data.invalidCodes = invalidCodes
+  } else {
+    for (let ewcCode of ewcCodes) {
+      if (getDescriptionForCode(ewcCode.code) === "") {
+        ewcCode.codeErrors.push("EWC code does not exist")
+      }
     }
   }
 
