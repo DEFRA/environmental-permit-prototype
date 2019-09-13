@@ -20,45 +20,7 @@
           List the types of waste for {{title}}
       </legend>
 
-      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
-       
-        <div class="govuk-error-summary__body">
-          <ul class="govuk-list govuk-error-summary__list">
-            <li>
-              <a href="#passport-issued-error">Some rows from your spreadsheet have been removed as they didn’t look like EWC codes.</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-        <details class="govuk-details" data-module="govuk-details">
-          <summary class="govuk-details__summary">
-            <span class="govuk-details__summary-text">
-              View removed rows
-            </span>
-          </summary>
-          <div class="govuk-details__text">
-            If these shouldn’t have been remove correct and reupload</br>
-            {% for ewcCode in ewcCodes %}
-            <tr class="govuk-table__row" style="vertical-align: top">
-  
-              {% if editMode === 'mega-edit' %}
-              <td class="govuk-table__cell"><input type="text" class="govuk-input" value="{{ ewcCode.code }}" name="ewcCode{{loop.index0}}"></textarea></td>
-              <td class="govuk-table__cell"><textarea class="govuk-textarea" rows="2" name="ewcDescription{{loop.index0}}">{{ ewcCode.description }}</textarea></td>
-              {% elif editMode === 'mini-edit' and editRow == loop.index %}
-              <td class="govuk-table__cell table-no-border">{{ ewcCode.code }}</td>
-              <td class="govuk-table__cell table-no-border">{{ ewcCode.description }}</td>
-              {% else %}
-              <td class="govuk-table__cell">{{ ewcCode.code }}</td>
-              <td class="govuk-table__cell">{{ ewcCode.description }}</td>
-              {% if editMode !== 'mini-edit' %}
-              <td class="govuk-table__cell">{% if editVersion === 'mini-edit' %}<a href="mini-edit/mini-edit/{{ loop.index }}">Edit</a>{% endif %}</td>
-              {% endif %}
-              {% endif %}
-              {% endfor %}
-          </div>
-    
-        </details>
-        
+<p>These are the EWC codes and descriptions you've uploaded.</p>
       <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
