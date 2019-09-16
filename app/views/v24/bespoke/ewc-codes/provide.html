@@ -20,6 +20,10 @@
         List the types of waste for {{title}}
     </legend>
 
+    {% if error %}
+      Something went wrong
+    {% endif %}
+
     {% if provideVersion == 'upload-no-template' %}
     <p>Create your list in a spreadsheet to upload (CSV files only) or to copy and paste the information more easily.</p>
   

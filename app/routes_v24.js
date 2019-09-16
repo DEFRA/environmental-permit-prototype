@@ -819,12 +819,13 @@ res.redirect(`/${folder}/check/task-list`)
 var activity1Title = 'physical treatment of hazardous waste'
 var activity2Title = 'metal recycling site - vehicle dismantling'
 
-router.get('/bespoke/ewc-codes/provide/:id/:provideVersion', function (req, res) {
+router.get('/bespoke/ewc-codes/provide/:id/:provideVersion/:error?', function (req, res) {
   res.render(`${folder}/bespoke/ewc-codes/provide`,
   {
     formAction: `/${folder}/bespoke/ewc-codes/provide/${req.params.id}/${req.params.provideVersion}`,
     provideVersion: req.params.provideVersion,
-    title: req.params.id === '0' ? activity1Title : activity2Title
+    title: req.params.id === '0' ? activity1Title : activity2Title,
+    error: req.params.error
   })
 })
 
@@ -937,7 +938,7 @@ router.post('/bespoke/ewc-codes/provide/:id/:provideVersion', function(req, res)
 
   let ewcCodes = []
 
-  if (req.session.data.inputEwcCodes) {
+  if (req.params.provideVersion === "text-area") {
     for(let code of req.session.data.inputEwcCodes.split(',')) {
       code = code.trim()
       ewcCodes.push({
@@ -945,8 +946,6 @@ router.post('/bespoke/ewc-codes/provide/:id/:provideVersion', function(req, res)
           description: getDescriptionForCode(code)
       })
     }
-
-    delete req.session.data.inputEwcCodes
   } else {
     var fileData = req.files.ewcCodeFile.data.toString()
     var codes = fileData.split('\n')
@@ -966,8 +965,12 @@ router.post('/bespoke/ewc-codes/provide/:id/:provideVersion', function(req, res)
     codes: ewcCodes
   }
 
-
-  res.redirect(`/${folder}/bespoke/ewc-codes/review/${req.params.id}/${req.params.provideVersion}`)
+  if (req.params.provideVersion === 'upload-no-template'
+   && ewcCodes.length === 0) {
+    res.redirect(`/${folder}/bespoke/ewc-codes/provide/${req.params.id}/${req.params.provideVersion}/error`)
+  } else {
+    res.redirect(`/${folder}/bespoke/ewc-codes/review/${req.params.id}/${req.params.provideVersion}`)
+  }
 })
 
 router.post('/bespoke/ewc-codes/edit/:id/:provideVersion', function(req, res) {
