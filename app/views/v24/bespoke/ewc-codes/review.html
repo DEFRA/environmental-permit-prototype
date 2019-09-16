@@ -50,13 +50,13 @@
           {% endif %}
           <tr class="govuk-table__row" style="vertical-align: top">            
             {% if ewcCode.codeErrors.length > 0 %}
-            <td class="govuk-table__cell"><input type="text" class="govuk-input {% if ewcCode.codeErrors.length > 0 %}govuk-input--error{% endif %}" value="{{ ewcCode.code }}" name="ewcCode{{loop.index0}}"></textarea></td>
+            <td class="govuk-table__cell" style="padding-top: 0"><input type="text" class="govuk-input {% if ewcCode.codeErrors.length > 0 %}govuk-input--error{% endif %}" value="{{ ewcCode.code }}" name="ewcCode{{loop.index0}}"></textarea></td>
             {% else %}
             <td class="govuk-table__cell">{{ ewcCode.code }}</td>
             {% endif %}
 
             {% if editMode or ewcCode.descriptionErrors.length > 0 %}
-            <td class="govuk-table__cell"><textarea class="govuk-textarea {% if ewcCode.descriptionErrors.length > 0 %}govuk-textarea--error{% endif %}" rows="2" name="ewcDescription{{loop.index0}}">{{ ewcCode.description }}</textarea></td>
+            <td class="govuk-table__cell" style="padding-top: 0"><textarea class="govuk-textarea {% if ewcCode.descriptionErrors.length > 0 %}govuk-textarea--error{% endif %}" rows="2" name="ewcDescription{{loop.index0}}">{{ ewcCode.description }}</textarea></td>
             {% else %}
             <td class="govuk-table__cell">{{ ewcCode.description }}</td>
             {% endif %}
