@@ -901,17 +901,25 @@ function validateCodes (req, ewcCodes) {
 
   if (req.params.provideVersion === "upload-no-template") {
     let invalidCodes = []
-    for (let ewcCode of ewcCodes) {
+    
+    let index = 0
+
+    while (index < ewcCodes.length) {
+      let ewcCode = ewcCodes[index]
       if (getDescriptionForCode(ewcCode.code) === ""
        || ewcCode.description === "") {
-        ewcCodes.splice(ewcCodes.indexOf(ewcCode), 1)
+        ewcCodes.splice(index, 1)
         invalidCodes.push(ewcCode)
+      } else {
+        index++
       }
     }
     req.session.data.invalidCodes = invalidCodes
   } else {
     for (let ewcCode of ewcCodes) {
-      if (!/^[0-9][0-9][0-9][0-9][0-9][0-9]\*?$/.test(ewcCode.code.replace(/\s+/g, ''))) {
+      if (ewcCode.code.trim() == '') {
+        ewcCode.codeErrors.push("Enter an EWC code")
+      } else if (!/^[0-9][0-9][0-9][0-9][0-9][0-9]\*?$/.test(ewcCode.code.replace(/\s+/g, ''))) {
         ewcCode.codeErrors.push("Code format is wrong")
       } else if (getDescriptionForCode(ewcCode.code) === "") {
         ewcCode.codeErrors.push("This code does not exist")
@@ -937,6 +945,8 @@ router.post('/bespoke/ewc-codes/provide/:id/:provideVersion', function(req, res)
           description: getDescriptionForCode(code)
       })
     }
+
+    delete req.session.data.inputEwcCodes
   } else {
     var fileData = req.files.ewcCodeFile.data.toString()
     var codes = fileData.split('\n')
