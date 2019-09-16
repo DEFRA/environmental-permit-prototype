@@ -884,6 +884,7 @@ router.get('/bespoke/ewc-codes/review-discarded/:id', function (req,res) {
   {
     title: req.session.data.ewcCodes[req.params.id].title,
     invalidCodes: req.session.data.invalidCodes,
+    returnLink: `/${folder}/bespoke/ewc-codes/provide/${req.params.id}/upload-no-template`,
     continueLink: continueLink
   })
 })
