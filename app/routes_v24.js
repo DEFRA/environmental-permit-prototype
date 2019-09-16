@@ -911,7 +911,7 @@ function validateCodes (req, ewcCodes) {
     req.session.data.invalidCodes = invalidCodes
   } else {
     for (let ewcCode of ewcCodes) {
-      if (!/^[0-9][0-9] [0-9][0-9] [0-9][0-9]\*?$/.test(ewcCode.code)) {
+      if (!/^[0-9][0-9][0-9][0-9][0-9][0-9]\*?$/.test(ewcCode.code.replace(/\s+/g, ''))) {
         ewcCode.codeErrors.push("Code format is wrong")
       } else if (getDescriptionForCode(ewcCode.code) === "") {
         ewcCode.codeErrors.push("This code does not exist")

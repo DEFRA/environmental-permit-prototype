@@ -1,4 +1,7 @@
 var getDescriptionForCode = function(code) {
+    code = code.replace(/\s+/g, '')
+    code = code.substr(0, 2) + ' ' + code.substr(2, 2) + ' ' + code.substr(4, 3)
+
     var referenceCode = referenceCodes.find((referenceCode) => {
         return referenceCode.code === code
     })
