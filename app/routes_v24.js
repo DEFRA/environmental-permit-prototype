@@ -947,7 +947,7 @@ router.post('/bespoke/ewc-codes/provide/:id/:provideVersion', function(req, res)
       })
     }
   } else {
-    var fileData = req.files.ewcCodeFile.data.toString()
+    var fileData = req.files ? req.files.ewcCodeFile.data.toString() : ""
     var codes = fileData.split('\n')
     for (let code of codes) {
       let splitCode = code.split(',')
