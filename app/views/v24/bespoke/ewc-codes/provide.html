@@ -17,104 +17,128 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">   
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-        {{title}}
+        List the types of waste for {{title}}
     </legend>
 
-    <div class="form-group">
-      <label class="govuk-label" for="input-ewc-codes">
-        <p>Create your list in a spreadsheet to upload (CSV files only) or to copy and paste the information more easily.</p>
-      
-        <p>
-          For example:
-          <table class="govuk-table">
-              <tbody class="govuk-table__body">
-                <tr class="govuk-table__row">
-                  <td class="govuk-table__cell table-bordered">06 01 01*</td>
-                  <td class="govuk-table__cell table-bordered">Sulphuric acid and sulphurous acid</td>
-                </tr>
-                <tr class="govuk-table__row">
-                  <td class="govuk-table__cell table-bordered">06 01 02*</td>
-                  <td class="govuk-table__cell table-bordered">Hydrochloric acid</td>
-                </tr>
-                <tr class="govuk-table__row">
-                  <td class="govuk-table__cell table-bordered">06 01 04*</td>
-                  <td class="govuk-table__cell table-bordered">Phosphoric and phosphorous acid</td>
-                </tr>
-              </tbody>
-            </table>
-        </p>
-        
-        <p>Use the codes and descriptions from the List of Waste or European Waste Catalogue (EWC). You can find these in the <a href="https://www.gov.uk/government/publications/waste-classification-technical-guidance" target="_blank">waste classification technical guidance (opens new tab).</a></p>
-        
-        <p>If the waste code ends in 99, you must give a full description of the waste.</p>
-        
-        <p>To restrict the type of waste you accept, for example for safety or legal reasons, add text after the description and mark or highlight this.</p>
-
-        <details class="govuk-details" data-module="govuk-details">
-          <summary class="govuk-details__summary">
-            <span class="govuk-details__summary-text">
-            Examples of restrictions
-            </span>
-          </summary>
-          <div class="govuk-details__text">
-            <p>Add text after the description to restrict:</p>
-            <ul class="govuk-list govuk-list--bullet">
-              <li>the quantity of the waste, for example: 16 06 01* lead batteries - no more than 500 tonnes</li>
-              
-              <li>the description of a particular waste within a code, for example: 16 01 03 - bicycle tyres only</li>
-              
-              <li>hazardous property, for example: no corrosive waste</li>
-              
-              <li>physical form, for example: 06 03 11* solid salts and solutions containing cyanides - no liquids</li>
-              
-              <li>the nature or attribute of the waste, for example: no odorous wastes</li>
-              
-              <li>specific substances or specific concentrations, for example: no chromium (VII) substances (greater than 1000 ppm)</li>
-              
-              <li>container type or size, for example: no Intermediate Bulk Containers (IBCs)</li>                          
-            </ul>
-          </div>
-        </details>                    
-      </label>
-      <fieldset class="govuk-fieldset">
-        <div class="govuk-radios govuk-radios--conditional" data-module="radios">
-          <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="enter-ewc-codes-option" name="ewcCodesInputType" type="radio" value="enterEwcCodes" data-aria-controls="conditional-input-ewc-codes">
-            <label class="govuk-label govuk-radios__label" for="enter-ewc-codes-option">
-              Enter EWC Codes
-              <span class="govuk-hint">Copy from a spreadsheet or add in comma separated lists</span>
-            </label>
-          </div>
-          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-input-ewc-codes">
-              <div class="govuk-form-group">
-                  <textarea class="govuk-textarea" name="inputEwcCodes" type="text" id="input-ewc-codes" rows="5"></textarea>
-              </div>
-          </div>
-          <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="upload-ewc-codes-option" name="ewcCodesInputType" type="radio" value="uploadEwcCodes" data-aria-controls="conditional-upload-ewc-codes">
-            <label class="govuk-label govuk-radios__label" for="upload-ewc-codes-option">
-              Upload EWC codes
-            </label>
-          </div>
-          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-upload-ewc-codes">
-            <div class="govuk-form-group">                         
-              <p class="upload_head">Upload a file</p>
-              <p class="text govuk-hint">
-                CSV files<br>
-                30MB maximum per file
-              </p>
-          
-              <div class="form-group form-uploader">
-                  <input id="upload" type="file" aria-labelelledby="upload-label">
-                  <input id="filename" name="{{currentFileName}}" type="hidden">
-              </div>
-            </div>
-          </div>
-        </div>
-      </fieldset>
+    {% if error %}
+    <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+      <h2 class="govuk-error-summary__title" id="error-summary-title">
+        You tried to upload the wrong type of file
+      </h2>
+      <div class="govuk-error-summary__body">
+        <ul class="govuk-list govuk-error-summary__list">
+          <li>
+            <a href="#passport-issued-error">The file type must be CSV</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    </br>
-    <a href="{{continueLink}}" class="govuk-button">Continue</a>
+    {% endif %}
+
+    {% if provideVersion == 'upload-no-template' %}
+    <p>Create your list in a spreadsheet to upload (CSV files only) or to copy and paste the information more easily.</p>
+  
+    <p>
+      For example:
+      <table class="govuk-table">
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell table-bordered">06 01 01*</td>
+            <td class="govuk-table__cell table-bordered">Sulphuric acid and sulphurous acid</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell table-bordered">06 01 02*</td>
+            <td class="govuk-table__cell table-bordered">Hydrochloric acid</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell table-bordered">06 01 04*</td>
+            <td class="govuk-table__cell table-bordered">Phosphoric and phosphorous acid</td>
+          </tr>
+        </tbody>
+      </table>
+    </p>
+    {% elif provideVersion == 'upload-template' %}
+    <p>Create your list in a spreadsheet (CSV files only) and upload it here.</p>
+    
+    <p>
+      You must:
+      <ul class="govuk-list govuk-list--bullet">
+        <li><a href="/public/images/ewc-codes-template.csv">download our template (opens new tab)</a> or use your own spreadsheet</li>
+        <li>enter your list of codes and descriptions, then save it as a CSV file</li>
+        <li>upload the CSV file using the box below</li>
+      </ul>
+    </p>
+    {% else %}
+    <p>Enter your codes as a comma separated list</p>
+    {% endif %}
+
+    <p>Use the codes and descriptions from the List of Waste or European Waste Catalogue (EWC). You can find these in the <a href="https://www.gov.uk/government/publications/waste-classification-technical-guidance" target="_blank">waste classification technical guidance (opens new tab).</a></p>
+    
+    {% if provideVersion == 'upload-template' or provideVersion == 'upload-no-template' %}
+    <p>If the waste code ends in 99, you must give a full description of the waste.</p>
+    
+    <p>To restrict the type of waste you accept, for example for safety or legal reasons, add text after the description and mark or highlight this.</p>
+
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+        Examples of restrictions
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <p>Add text after the description to restrict:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>the quantity of the waste, for example: 16 06 01* lead batteries - no more than 500 tonnes</li>
+          
+          <li>the description of a particular waste within a code, for example: 16 01 03 - bicycle tyres only</li>
+          
+          <li>hazardous property, for example: no corrosive waste</li>
+          
+          <li>physical form, for example: 06 03 11* solid salts and solutions containing cyanides - no liquids</li>
+          
+          <li>the nature or attribute of the waste, for example: no odorous wastes</li>
+          
+          <li>specific substances or specific concentrations, for example: no chromium (VII) substances (greater than 1000 ppm)</li>
+          
+          <li>container type or size, for example: no Intermediate Bulk Containers (IBCs)</li>                          
+        </ul>
+      </div>
+    </details>  
+    {% endif %}        
+
+    <form action="{{formAction}}" method="POST" {%if provideVersion != 'text-area' %} enctype="multipart/form-data" {% endif %}> 
+      {% if provideVersion == 'text-area' %}
+      <span class="govuk-hint">e.g: 01 02 03, 34 56 23, 95 48 28*</span>
+      <div class="govuk-form-group">
+        <textarea class="govuk-textarea" name="inputEwcCodes" type="text" id="input-ewc-codes" rows="5"></textarea>
+      </div>
+      {% else %}
+      <div class="govuk-form-group">                         
+        <p class="upload_head">Upload a file</p>
+        <p class="text govuk-hint">
+          CSV files<br>
+          30MB maximum per file
+        </p>
+        {% if error %}
+        <div class="govuk-form-group govuk-form-group--error">
+            <span id="upload-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> The file type must be CSV
+              </span>
+          <input id="upload" type="file" name="ewcCodeFile" aria-labelelledby="upload-label">
+          <input id="filename" name="{{currentFileName}}" type="hidden">
+        </div>
+        {% else %}
+        <div class="form-group form-uploader">
+          <input id="upload" type="file" name="ewcCodeFile" aria-labelelledby="upload-label">
+          <input id="filename" name="{{currentFileName}}" type="hidden">
+        </div>
+      </div>
+      {% endif %}
+      {% endif %}
+
+      </br>
+      {{submitButton|safe}}
+    </form>
   </div>
 </div>
 

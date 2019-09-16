@@ -1,8 +1,11 @@
 var express = require('express')
 var router = express.Router()
+const expressFileUpload = require('express-fileupload')
 
 const request = require('request')
 const async = require('async')
+
+const getDescriptionForCode = require('./ewcCodes').getDescriptionForCode
 
 // this file deals with all paths starting /version_x
 // How to use folder variable:
@@ -42,6 +45,8 @@ router.use(function (req, res, next) {
 
   next()
 });
+
+router.use(expressFileUpload())
 
 // CLEAR SESSION ==============================================================
 router.get('/cls', function (req, res) {
@@ -811,52 +816,184 @@ res.redirect(`/${folder}/check/task-list`)
 })
 
 // EUROPEAN WASTE CODES UPLOAD 2 ========================================================
-var activity1Title = 'List the types of waste for physical treatment of hazardous waste'
-var activity2Title = 'List the types of waste for physical treatment of nonhazardous waste'
+var activity1Title = 'physical treatment of hazardous waste'
+var activity2Title = 'metal recycling site - vehicle dismantling'
 
-var activity1Codes = [
-  { code: '15 01 10*', description: 'packaging containing residues of or contaminated by dangerous substances' },
-  { code: '15 02 02*', description: 'absorbents, filter materials (including oil filters not otherwise specified), wiping cloths, protective clothing contaminated by dangerous substances' },
-  { code: '16 03 03*', description: 'inorganic wastes containing dangerous substances' },
-  { code: '16 03 05*', description: 'organic wastes containing dangerous substances' },
-]
-var activity2Codes = [
-  { code: '16 01 04*', description: 'end-of-life vehicles' },
-  { code: '16 01 06', description: 'end-of-life vehicles, containing neither liquids nor other hazardous components' },
-  { code: '16 01 07*', description: 'oil filters' },
-  { code: '16 01 17', description: 'ferrous metal' }
-]
-
-router.get('/bespoke/ewc-codes/activity-provide/:id/:editVersion', function (req, res) {
+router.get('/bespoke/ewc-codes/provide/:id/:provideVersion/:error?', function (req, res) {
   res.render(`${folder}/bespoke/ewc-codes/provide`,
   {
-    continueLink: `/${folder}/bespoke/ewc-codes/activity-review/${req.params.id}/${req.params.editVersion}`,
-    title: req.params.id === '1' ? activity1Title : activity2Title,
+    formAction: `/${folder}/bespoke/ewc-codes/provide/${req.params.id}/${req.params.provideVersion}`,
+    provideVersion: req.params.provideVersion,
+    title: req.params.id === '0' ? activity1Title : activity2Title,
+    error: req.params.error
   })
 })
 
-router.get('/bespoke/ewc-codes/activity-review/:id/:editVersion/:editMode?/:editRow?', function (req,res) {
+router.get('/bespoke/ewc-codes/review/:id/:provideVersion/:editMode?', function (req,res) {
   var continueLink = ''
-  if (req.params.editMode) {
-    continueLink = `/${folder}/bespoke/ewc-codes/activity-review/${req.params.id}/${req.params.editVersion}`
+
+  if (req.params.provideVersion === 'upload-no-template') {
+    continueLink = `/${folder}/bespoke/ewc-codes/review-discarded/${req.params.id}`
+  } else if (req.params.id === '0') {
+    continueLink = `/${folder}/bespoke/ewc-codes/provide/1/${req.params.provideVersion}`
   } else {
-    if (req.params.id === '1') {
-      continueLink = `/${folder}/bespoke/ewc-codes/activity-provide/2/${req.params.editVersion}`
-    } else {
-      continueLink = `/${folder}/bespoke/ewc-codes/task-list`
+    continueLink = `/${folder}/bespoke/ewc-codes/task-list`
+  }
+
+  let errors = false
+  let title = ""
+
+  for (let code of req.session.data.ewcCodes[req.params.id].codes) {
+    if (code.codeErrors.length > 0
+     || code.descriptionErrors.length > 0) {
+      errors = true
     }
   }
 
+  if (errors) {
+    title = "Fix errors for "
+  } else if (req.params.editMode) {
+    title = "Edit the descriptions for "
+  } else {
+    title = "Check the list for "
+  }
+
+  title += req.session.data.ewcCodes[req.params.id].title
+
   res.render(`${folder}/bespoke/ewc-codes/review`,
   {
-    title: req.params.id === '1' ? activity1Title : activity2Title,
-    ewcCodes: req.params.id === '1' ? activity1Codes : activity2Codes,
-    editVersion: req.params.editVersion,
+    title: title,
+    ewcCodes: req.session.data.ewcCodes[req.params.id].codes,
+    provideVersion: req.params.provideVersion,
     editMode: req.params.editMode,
-    editRow: req.params.editRow,
-    returnLink: `/${folder}/bespoke/ewc-codes/activity-provide/${req.params.id}/${req.params.editVersion}`,
+    formAction: `/${folder}/bespoke/ewc-codes/edit/${req.params.id}/${req.params.provideVersion}`,
+    returnLink: `/${folder}/bespoke/ewc-codes/provide/${req.params.id}/${req.params.provideVersion}`,
+    continueLink: continueLink,
+    errors: errors
+  })
+})
+
+router.get('/bespoke/ewc-codes/review-discarded/:id', function (req,res) {
+  if (req.params.id === '0') {
+    continueLink = `/${folder}/bespoke/ewc-codes/provide/1/upload-no-template`
+  } else {
+    continueLink = `/${folder}/bespoke/ewc-codes/task-list`
+  }
+
+  res.render(`${folder}/bespoke/ewc-codes/review-removed-ewc`,
+  {
+    title: req.session.data.ewcCodes[req.params.id].title,
+    invalidCodes: req.session.data.invalidCodes,
     continueLink: continueLink
   })
+})
+
+router.get('/bespoke/ewc-codes/check-your-answers', function (req, res) {
+  res.render(`${folder}/bespoke/ewc-codes/review-cya`, {
+    activities: req.session.data.ewcCodes
+  })
+})
+
+function validateCodes (req, ewcCodes) {
+  for (let ewcCode of ewcCodes) {
+    ewcCode.codeErrors = []
+    ewcCode.descriptionErrors = []
+  }
+
+  if (req.params.provideVersion === "upload-no-template") {
+    let invalidCodes = []
+    
+    let index = 0
+
+    while (index < ewcCodes.length) {
+      let ewcCode = ewcCodes[index]
+      if (getDescriptionForCode(ewcCode.code) === ""
+       || ewcCode.description === "") {
+        ewcCodes.splice(index, 1)
+        invalidCodes.push(ewcCode)
+      } else {
+        index++
+      }
+    }
+    req.session.data.invalidCodes = invalidCodes
+  } else {
+    for (let ewcCode of ewcCodes) {
+      if (ewcCode.code.trim() == '') {
+        ewcCode.codeErrors.push("Enter an EWC code")
+      } else if (!/^[0-9][0-9][0-9][0-9][0-9][0-9]\*?$/.test(ewcCode.code.replace(/\s+/g, ''))) {
+        ewcCode.codeErrors.push("Code format is wrong")
+      } else if (getDescriptionForCode(ewcCode.code) === "") {
+        ewcCode.codeErrors.push("This code does not exist")
+      }
+      if (req.params.provideVersion === "upload-template"
+       && ewcCode.description === "") {
+        ewcCode.descriptionErrors.push("Add a description")
+      }
+    }
+  }
+}
+
+router.post('/bespoke/ewc-codes/provide/:id/:provideVersion', function(req, res) {
+  req.session.data.ewcCodes = req.session.data.ewcCodes || []
+
+  let ewcCodes = []
+
+  if (req.params.provideVersion === "text-area") {
+    for(let code of req.session.data.inputEwcCodes.split(',')) {
+      code = code.trim()
+      ewcCodes.push({
+          code: code,
+          description: getDescriptionForCode(code)
+      })
+    }
+  } else {
+    var fileData = req.files ? req.files.ewcCodeFile.data.toString() : ""
+    var codes = fileData.split('\n')
+    for (let code of codes) {
+      let splitCode = code.split(',')
+      ewcCodes.push({
+        code: splitCode[0] ? splitCode[0].trim() : "",
+        description: splitCode[1] ? splitCode[1].trim() : ""
+      })
+    }
+  }
+
+  validateCodes(req, ewcCodes)
+
+  req.session.data.ewcCodes[req.params.id] = {
+    title: req.params.id === '0' ? activity1Title : activity2Title,
+    codes: ewcCodes
+  }
+
+  if (req.params.provideVersion === 'upload-no-template'
+   && ewcCodes.length === 0) {
+    res.redirect(`/${folder}/bespoke/ewc-codes/provide/${req.params.id}/${req.params.provideVersion}/error`)
+  } else {
+    res.redirect(`/${folder}/bespoke/ewc-codes/review/${req.params.id}/${req.params.provideVersion}`)
+  }
+})
+
+router.post('/bespoke/ewc-codes/edit/:id/:provideVersion', function(req, res) {
+  let ewcCodes = req.session.data.ewcCodes[req.params.id].codes
+
+  for (let i = 0; i < ewcCodes.length; i++) {
+    if (req.session.data[`ewcCode${i}`] !== undefined) {
+      ewcCodes[i].code = req.session.data[`ewcCode${i}`]
+      delete req.session.data[`ewcCode${i}`]
+
+      if (req.params.provideVersion === 'text-area') {
+        ewcCodes[i].description = getDescriptionForCode(ewcCodes[i].code)
+      }
+    }
+    if (req.session.data[`ewcDescription${i}`] !== undefined) {
+      ewcCodes[i].description = req.session.data[`ewcDescription${i}`]
+      delete req.session.data[`ewcDescription${i}`]
+    }
+  }
+
+  validateCodes(req, req.session.data.ewcCodes[req.params.id].codes)
+
+  res.redirect(`/${folder}/bespoke/ewc-codes/review/${req.params.id}/${req.params.provideVersion}`)
 })
 
 // ENVIRONMENTAL RISK ASSESSMENT UPLOAD ========================================================

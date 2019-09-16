@@ -92,19 +92,16 @@
           {{ macros.taskHead("4", "Activities" )}}
           <ul class="app-task-list__items">
             <!-- EWC codes -->
-            {{ macros.task( "List the types of waste you want to accept 1", permit.ewcCodesEntered1, "activity-provide/1/no-edit", taskListError ) }}
+            {{ macros.task( "List the types of waste you want to accept 1", permit.ewcCodesEntered1, "provide/0/upload-template", taskListError ) }}
 
             <!-- EWC codes -->
-            {{ macros.task( "List the types of waste you want to accept 2", permit.ewcCodesEntered2, "activity-provide/1/mini-edit", taskListError ) }}
+            {{ macros.task( "List the types of waste you want to accept 2", permit.ewcCodesEntered2, "provide/0/upload-no-template", taskListError ) }}
 
             <!-- EWC codes -->
-            {{ macros.task( "List the types of waste you want to accept 3", permit.ewcCodesEntered3, "activity-provide/1/mega-edit", taskListError ) }}
+            {{ macros.task( "List the types of waste you want to accept 3", permit.ewcCodesEntered3, "provide/0/text-area", taskListError ) }}
 
             <!--R and D codes--------------->
             {{ macros.task( "List recovery and disposal codes for your activities", true, "/"+folder+"/RDcodes/list_recovery_codes", taskListError ) }}
-
-            <!--Waste codes--------------->
-            {{ macros.task( "List the types of waste you want to accept", true, "/"+folder+"/upload-waste-codes", taskListError ) }}
           </ul>
         </li>
 
