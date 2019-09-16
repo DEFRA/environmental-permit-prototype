@@ -21,7 +21,18 @@
     </legend>
 
     {% if error %}
-      Something went wrong
+    <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+      <h2 class="govuk-error-summary__title" id="error-summary-title">
+        You tried to upload the wrong type of file
+      </h2>
+      <div class="govuk-error-summary__body">
+        <ul class="govuk-list govuk-error-summary__list">
+          <li>
+            <a href="#passport-issued-error">The file type must be CSV</a>
+          </li>
+        </ul>
+      </div>
+    </div>
     {% endif %}
 
     {% if provideVersion == 'upload-no-template' %}
@@ -108,12 +119,21 @@
           CSV files<br>
           30MB maximum per file
         </p>
-    
+        {% if error %}
+        <div class="govuk-form-group govuk-form-group--error">
+            <span id="upload-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> The file type must be CSV
+              </span>
+          <input id="upload" type="file" name="ewcCodeFile" aria-labelelledby="upload-label">
+          <input id="filename" name="{{currentFileName}}" type="hidden">
+        </div>
+        {% else %}
         <div class="form-group form-uploader">
           <input id="upload" type="file" name="ewcCodeFile" aria-labelelledby="upload-label">
           <input id="filename" name="{{currentFileName}}" type="hidden">
         </div>
       </div>
+      {% endif %}
       {% endif %}
 
       </br>
