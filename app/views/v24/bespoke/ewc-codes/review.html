@@ -73,7 +73,11 @@
     
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <a href="{{returnLink}}" class="govuk-button govuk-button--secondary">Upload or enter this list again</a>
+        {% if provideVersion === 'text-area' %}
+        <a href="{{returnLink}}" class="govuk-button govuk-button--secondary">Enter this list again</a>
+        {% else %}
+        <a href="{{returnLink}}" class="govuk-button govuk-button--secondary">Upload this list again</a>
+        {% endif %}
       <br/>
       {% if editMode or errors == true %}
         {{submitButton|safe}}
