@@ -38,12 +38,12 @@
     {% if error === 'no-codes' %}
     <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
       <h2 class="govuk-error-summary__title" id="error-summary-title">
-        We were unable to find any EWC codes in that file
+          We couldn't find any EWC codes in your file
       </h2>
       <div class="govuk-error-summary__body">
         <ul class="govuk-list govuk-error-summary__list">
           <li>
-            <a href="#upload">The file you upload must have the EWC codes in the first column and the descriptions in the second column</a>
+            <a href="#upload">Your file must have codes in the first column and descriptions in the second column</a>
           </li>
         </ul>
       </div>
@@ -52,10 +52,10 @@
 
 
     {% if provideVersion == 'upload-no-template' %}
-    <p>Create your list in a spreadsheet to upload (CSV files only) or to copy and paste the information more easily.</p>
+    <p>Create your list in a spreadsheet (CSV files only) and upload it here.</p>
   
     <p>
-      For example:
+      You must use this table format:
       <table class="govuk-table">
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
@@ -79,13 +79,14 @@
     <p>
       Follow these steps:
       <ul class="govuk-list govuk-list--bullet">
-        <li><a href="/public/images/ewc-codes-template.csv">download our template (opens new tab)</a> or use your own spreadsheet</li>
-        <li>enter your list of codes and descriptions, then save it as a CSV file</li>
-        <li>upload the CSV file using the box below</li>
+        <li><a href="/public/images/ewc-codes-template.csv">Download our template (opens new tab)</a> or use your own spreadsheet</li>
+        <li>Enter your list of codes and descriptions, then save it as a CSV file</li>
+        <li>Upload the CSV file using the box below</li>
       </ul>
     </p>
     {% else %}
-    <p>Enter your codes as a comma separated list</p>
+    <p>Enter your codes in the box below, using a comma to separate each one, for example: 01 02 03, 34 56 23, 95 48 28*.</p>
+    <p>You can also copy and paste them directly from a spreadsheet (no commas needed).</p>
     {% endif %}
 
     <p>Use the codes and descriptions from the List of Waste or European Waste Catalogue (EWC). You can find these in the <a href="https://www.gov.uk/government/publications/waste-classification-technical-guidance" target="_blank">waste classification technical guidance (opens new tab).</a></p>
@@ -102,7 +103,7 @@
         </span>
       </summary>
       <div class="govuk-details__text">
-        <p>Add text after the description to restrict:</p>
+        <p>Add text after the description to:</p>
         <ul class="govuk-list govuk-list--bullet">
           <li>restrict the quantity of the waste, for example: </br>16 06 01* lead batteries - no more than 500 tonnes</li>
 
@@ -147,7 +148,7 @@
         {% elif error === 'no-codes' %}
         <div class="govuk-form-group govuk-form-group--error">
           <span id="upload-error" class="govuk-error-message">
-            <span class="govuk-visually-hidden">Error:</span> The first column of the file did not contain any valid EWC codes
+            <span class="govuk-visually-hidden">Error:</span> The first column of your file did not contain any valid EWC codes
           </span>
           <input id="upload" type="file" name="ewcCodeFile" aria-labelelledby="upload-label">
           <input id="filename" name="{{currentFileName}}" type="hidden">

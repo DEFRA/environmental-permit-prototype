@@ -924,7 +924,7 @@ function validateCodes (req, ewcCodes) {
       } else if (!/^[0-9][0-9][0-9][0-9][0-9][0-9]\*?$/.test(ewcCode.code.replace(/\s+/g, ''))) {
         ewcCode.codeErrors.push("Code format is wrong")
       } else if (getDescriptionForCode(ewcCode.code) === "") {
-        ewcCode.codeErrors.push("This code does not exist")
+        ewcCode.codeErrors.push("Code does not exist")
       }
       if (req.params.provideVersion === "upload-template"
        && ewcCode.description === "") {

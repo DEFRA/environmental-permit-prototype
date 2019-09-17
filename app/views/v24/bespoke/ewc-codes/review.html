@@ -19,7 +19,43 @@
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
           {{title}}
       </legend>
+      {% if provideVersion === 'text-area' %}
+      {% if editMode %}
+      <p>If a waste code ends in 99, you must write a full description of the waste.</p>
+      <p>To restrict the type of waste you accept, add a note after the description.</p>
 
+      <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+            Examples of restrictions
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <p>Add text after the description to:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>restrict the quantity of the waste, for example: </br>16 06 01* lead batteries - no more than 500 tonnes</li>
+    
+              <li>limit a particular waste within a code, for example: </br>16 01 03 - bicycle tyres only</li>
+    
+              <li>exclude a hazardous property, for example: </br>no corrosive waste</li>
+    
+              <li>restrict a physical form, for example: </br>06 03 11* solid salts and solutions containing cyanides - no liquids</li>
+    
+              <li>limit an attribute of the waste, for example: </br>no odorous wastes</li>
+    
+              <li>restrict specific substances or concentrations, for example: </br>no chromium (VII) substances (greater than 1000 ppm)</li>
+     
+              <li>describe container type or size limits, for example: </br>no Intermediate Bulk Containers (IBCs)</li>
+            
+            </ul>
+          </div>
+        </details>  
+    
+      {% endif %}    
+      {% if errors == true %}
+      <p style="font-weight: bold">You can edit descriptions after saving your changes.</p>
+      {% endif %}  
+      {% endif %}
       {% if provideVersion === 'upload-no-template' %}
       <p>These are the EWC codes and descriptions you've uploaded.</p>
       {% endif %}
@@ -30,7 +66,7 @@
             <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">EWC code</th>
             <th scope="col" class="govuk-table__header">EWC description</th>
             {% if provideVersion === 'text-area' and not editMode and not errors %}
-            <th scope="col" class="govuk-table__header"><a href="text-area/edit">Edit</a></th>
+            <th scope="col" class="govuk-table__header"><a href="text-area/edit">Edit descriptions</a></th>
             {% endif %}
           </tr>
         </thead>
@@ -73,7 +109,11 @@
     
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <a href="{{returnLink}}" class="govuk-button govuk-button--secondary">Upload or enter this list again</a>
+        {% if provideVersion === 'text-area' %}
+        <a href="{{returnLink}}" class="govuk-button govuk-button--secondary">Enter this list again</a>
+        {% else %}
+        <a href="{{returnLink}}" class="govuk-button govuk-button--secondary">Upload this list again</a>
+        {% endif %}
       <br/>
       {% if editMode or errors == true %}
         {{submitButton|safe}}
