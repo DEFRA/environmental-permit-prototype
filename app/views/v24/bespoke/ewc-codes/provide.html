@@ -17,7 +17,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">   
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-        List the types of waste for {{title}}
+        Upload the waste types for:</br> {{title}}
     </legend>
 
     {% if error %}
@@ -58,10 +58,10 @@
       </table>
     </p>
     {% elif provideVersion == 'upload-template' %}
-    <p>Create your list in a spreadsheet (CSV files only) and upload it here.</p>
+    <p>Create your list in a spreadsheet and upload it here (CSV files only).</p>
     
     <p>
-      You must:
+      Follow these steps:
       <ul class="govuk-list govuk-list--bullet">
         <li><a href="/public/images/ewc-codes-template.csv">download our template (opens new tab)</a> or use your own spreadsheet</li>
         <li>enter your list of codes and descriptions, then save it as a CSV file</li>
@@ -77,7 +77,7 @@
     {% if provideVersion == 'upload-template' or provideVersion == 'upload-no-template' %}
     <p>If the waste code ends in 99, you must give a full description of the waste.</p>
     
-    <p>To restrict the type of waste you accept, for example for safety or legal reasons, add text after the description and mark or highlight this.</p>
+    <p>To restrict the type of waste you accept, add a note after the description.</p>
 
     <details class="govuk-details" data-module="govuk-details">
       <summary class="govuk-details__summary">
@@ -88,19 +88,20 @@
       <div class="govuk-details__text">
         <p>Add text after the description to restrict:</p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>the quantity of the waste, for example: 16 06 01* lead batteries - no more than 500 tonnes</li>
-          
-          <li>the description of a particular waste within a code, for example: 16 01 03 - bicycle tyres only</li>
-          
-          <li>hazardous property, for example: no corrosive waste</li>
-          
-          <li>physical form, for example: 06 03 11* solid salts and solutions containing cyanides - no liquids</li>
-          
-          <li>the nature or attribute of the waste, for example: no odorous wastes</li>
-          
-          <li>specific substances or specific concentrations, for example: no chromium (VII) substances (greater than 1000 ppm)</li>
-          
-          <li>container type or size, for example: no Intermediate Bulk Containers (IBCs)</li>                          
+          <li>restrict the quantity of the waste, for example: </br>16 06 01* lead batteries - no more than 500 tonnes</li>
+
+          <li>limit a particular waste within a code, for example: </br>16 01 03 - bicycle tyres only</li>
+
+          <li>exclude a hazardous property, for example: </br>no corrosive waste</li>
+
+          <li>restrict a physical form, for example: </br>06 03 11* solid salts and solutions containing cyanides - no liquids</li>
+
+          <li>limit an attribute of the waste, for example: </br>no odorous wastes</li>
+
+          <li>restrict specific substances or concentrations, for example: </br>no chromium (VII) substances (greater than 1000 ppm)</li>
+ 
+          <li>describe container type or size limits, for example: </br>no Intermediate Bulk Containers (IBCs)</li>
+        
         </ul>
       </div>
     </details>  
