@@ -884,6 +884,7 @@ router.get('/bespoke/ewc-codes/review-discarded/:id', function (req,res) {
   {
     title: req.session.data.ewcCodes[req.params.id].title,
     invalidCodes: req.session.data.invalidCodes,
+    returnLink: `/${folder}/bespoke/ewc-codes/provide/${req.params.id}/upload-no-template`,
     continueLink: continueLink
   })
 })
@@ -933,6 +934,16 @@ function validateCodes (req, ewcCodes) {
   }
 }
 
+function ewcCodesAreAllErrors(ewcCodes) {
+  for (let ewcCode of ewcCodes) {
+    if (ewcCode.codeErrors.length === 0) {
+      return false
+    }
+  }
+
+  return true
+}
+
 router.post('/bespoke/ewc-codes/provide/:id/:provideVersion', function(req, res) {
   req.session.data.ewcCodes = req.session.data.ewcCodes || []
 
@@ -967,6 +978,9 @@ router.post('/bespoke/ewc-codes/provide/:id/:provideVersion', function(req, res)
 
   if (req.params.provideVersion === 'upload-no-template'
    && ewcCodes.length === 0) {
+    res.redirect(`/${folder}/bespoke/ewc-codes/provide/${req.params.id}/${req.params.provideVersion}/error`)
+  } else if (req.params.provideVersion === 'upload-template'
+   && ewcCodesAreAllErrors(req.session.data.ewcCodes[req.params.id].codes)) {
     res.redirect(`/${folder}/bespoke/ewc-codes/provide/${req.params.id}/${req.params.provideVersion}/error`)
   } else {
     res.redirect(`/${folder}/bespoke/ewc-codes/review/${req.params.id}/${req.params.provideVersion}`)
