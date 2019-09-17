@@ -18,9 +18,9 @@
     <div class="govuk-grid-column-two-thirds">   
         {% if invalidCodes.length === 0 %}
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            No info was removed for {{title}}
+          The info you uploaded looks correct for: </br>{{title}}
           </legend>
-        <p>Only the first two columns are checked.</br>Confim you would like to proceed.</p>
+        <p>We checked the first 2 columns in your file and all the info looks correct, so we haven't removed anything.</p>
         {% else %}
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
         Check the info we removed for  {{title}}
@@ -59,7 +59,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <a href="{{returnLink}}" class="govuk-button govuk-button--secondary">Upload or enter this list again</a>
+      <a href="{{returnLink}}" class="govuk-button govuk-button--secondary">Upload this list again</a>
       <br/>
 
         <a href="{{continueLink}}" class="govuk-button">Confirm</a>
