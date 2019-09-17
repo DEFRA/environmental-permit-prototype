@@ -816,7 +816,7 @@ res.redirect(`/${folder}/check/task-list`)
 })
 
 // EUROPEAN WASTE CODES UPLOAD 2 ========================================================
-var activity1Title = 'physical treatment of hazardous waste'
+var activity1Title = 'Household, commercial and industrial waste transfer station'
 var activity2Title = 'metal recycling site - vehicle dismantling'
 
 router.get('/bespoke/ewc-codes/provide/:id/:provideVersion/:error?', function (req, res) {

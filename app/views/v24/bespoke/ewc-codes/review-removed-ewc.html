@@ -16,6 +16,12 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">   
+        {% if invalidCodes.length === 0 %}
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            No info was removed for {{title}}
+          </legend>
+        <p>Only the first two columns are checked.</br>Confim you would like to proceed.</p>
+        {% else %}
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
         Check the info we removed for  {{title}}
       </legend>
@@ -47,6 +53,7 @@
           {% endfor %}
         </tbody>
       </table>
+      {% endif %}
     </div>
   </div>
 
