@@ -884,6 +884,7 @@ router.get('/bespoke/ewc-codes/review-discarded/:id', function (req,res) {
   {
     title: req.session.data.ewcCodes[req.params.id].title,
     invalidCodes: req.session.data.invalidCodes,
+    returnLink: `/${folder}/bespoke/ewc-codes/provide/${req.params.id}/upload-no-template`,
     continueLink: continueLink
   })
 })
@@ -936,6 +937,7 @@ function validateCodes (req, ewcCodes) {
 router.post('/bespoke/ewc-codes/provide/:id/:provideVersion', function(req, res) {
   req.session.data.ewcCodes = req.session.data.ewcCodes || []
 
+  let error = ""
   let ewcCodes = []
 
   if (req.params.provideVersion === "text-area") {
@@ -947,6 +949,10 @@ router.post('/bespoke/ewc-codes/provide/:id/:provideVersion', function(req, res)
       })
     }
   } else {
+    if (!(req.files && req.files.ewcCodeFile.name.endsWith(".csv"))) {
+      error = "wrong-filetype"
+    }
+
     var fileData = req.files ? req.files.ewcCodeFile.data.toString() : ""
     var codes = fileData.split('\n')
     for (let code of codes) {
@@ -965,9 +971,14 @@ router.post('/bespoke/ewc-codes/provide/:id/:provideVersion', function(req, res)
     codes: ewcCodes
   }
 
-  if (req.params.provideVersion === 'upload-no-template'
+  if (error === ""
+   && req.params.provideVersion === 'upload-no-template'
    && ewcCodes.length === 0) {
-    res.redirect(`/${folder}/bespoke/ewc-codes/provide/${req.params.id}/${req.params.provideVersion}/error`)
+    error = "no-codes"
+  }
+
+  if (error) {
+    res.redirect(`/${folder}/bespoke/ewc-codes/provide/${req.params.id}/${req.params.provideVersion}/${error}`)
   } else {
     res.redirect(`/${folder}/bespoke/ewc-codes/review/${req.params.id}/${req.params.provideVersion}`)
   }
