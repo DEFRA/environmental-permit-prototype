@@ -38,12 +38,12 @@
     {% if error === 'no-codes' %}
     <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
       <h2 class="govuk-error-summary__title" id="error-summary-title">
-        We were unable to find any EWC codes in that file
+          We couldn't find any EWC codes in your file
       </h2>
       <div class="govuk-error-summary__body">
         <ul class="govuk-list govuk-error-summary__list">
           <li>
-            <a href="#upload">The file you upload must have the EWC codes in the first column and the descriptions in the second column</a>
+            <a href="#upload">Your file must have codes in the first column and descriptions in the second column</a>
           </li>
         </ul>
       </div>
@@ -148,7 +148,7 @@
         {% elif error === 'no-codes' %}
         <div class="govuk-form-group govuk-form-group--error">
           <span id="upload-error" class="govuk-error-message">
-            <span class="govuk-visually-hidden">Error:</span> The first column of the file did not contain any valid EWC codes
+            <span class="govuk-visually-hidden">Error:</span> The first column of your file did not contain any valid EWC codes
           </span>
           <input id="upload" type="file" name="ewcCodeFile" aria-labelelledby="upload-label">
           <input id="filename" name="{{currentFileName}}" type="hidden">
