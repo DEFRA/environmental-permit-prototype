@@ -116,7 +116,9 @@
         {% endif %}
       <br/>
       {% if editMode or errors == true %}
-        {{submitButton|safe}}
+        {{ govukButton({
+          text: "Save changes"
+        }) }}
       {% else %}
         <a href="{{continueLink}}" class="govuk-button">Confirm</a>
       {% endif %}
