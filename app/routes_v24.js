@@ -851,14 +851,15 @@ router.get('/bespoke/ewc-codes/review/:id/:provideVersion/:editMode?', function 
   }
 
   if (errors) {
-    title = "Fix errors for "
+    title = "Check code errors"
   } else if (req.params.editMode) {
     title = "Edit the descriptions for "
   } else {
-    title = "Check the list for "
+    title = "Check the list for: "
   }
 
   title += req.session.data.ewcCodes[req.params.id].title
+
 
   res.render(`${folder}/bespoke/ewc-codes/review`,
   {
@@ -920,7 +921,7 @@ function validateCodes (req, ewcCodes) {
   } else {
     for (let ewcCode of ewcCodes) {
       if (ewcCode.code.trim() == '') {
-        ewcCode.codeErrors.push("Enter an EWC code")
+        ewcCode.codeErrors.push("Enter a waste code")
       } else if (!/^[0-9][0-9][0-9][0-9][0-9][0-9]\*?$/.test(ewcCode.code.replace(/\s+/g, ''))) {
         ewcCode.codeErrors.push("Code format is wrong")
       } else if (getDescriptionForCode(ewcCode.code) === "") {

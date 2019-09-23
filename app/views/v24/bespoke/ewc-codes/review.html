@@ -53,17 +53,18 @@
     
       {% endif %}    
       {% if errors == true %}
-      <p style="font-weight: bold">You can edit descriptions after saving your changes.</p>
+      <p style="font-weight: bold">You can edit descriptions on the next page.</p>
+      <p>Activity: < Activity 1 ></p>
       {% endif %}  
       {% endif %}
       {% if provideVersion === 'upload-no-template' %}
-      <p>These are the EWC codes and descriptions you've uploaded.</p>
+      <p>These are the waste codes and descriptions you've uploaded.</p>
       {% endif %}
 
       <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">EWC code</th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Code</th>
             <th scope="col" class="govuk-table__header">EWC description</th>
             {% if provideVersion === 'text-area' and not editMode and not errors %}
             <th scope="col" class="govuk-table__header"><a href="text-area/edit">Edit descriptions</a></th>
@@ -110,9 +111,9 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
         {% if provideVersion === 'text-area' %}
-        <a href="{{returnLink}}" class="govuk-button govuk-button--secondary">Enter this list again</a>
+        <a href="{{returnLink}}" class="govuk-button govuk-button--secondary">Enter the list again</a>
         {% else %}
-        <a href="{{returnLink}}" class="govuk-button govuk-button--secondary">Upload this list again</a>
+        <a href="{{returnLink}}" class="govuk-button govuk-button--secondary">Upload the list again</a>
         {% endif %}
       <br/>
       {% if editMode or errors == true %}
