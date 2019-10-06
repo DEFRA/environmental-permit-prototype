@@ -92,9 +92,6 @@ set mobile mcp
 
 
       <form method="post" action="/{{folder}}/check/check-answers" name="tasklist">
-        {% if appType=="bespoke" %}
-        <p><a href="/{{folder}}/dummy">Populate session with dummy data</a></p>
-        {% endif %}
 
         {# permit|dump #}
         {% if taskListError %}
@@ -122,7 +119,7 @@ set mobile mcp
         </h1>
 
 
-
+        <span class="govuk-body govuk-!-font-weight-bold">Activities</span>
         {% if appType=="bespoke"
         and facilityType=="Waste treatment" %}
         <!-- Output chosen activities ############################################ -->
@@ -142,7 +139,8 @@ set mobile mcp
       {% if facilityType !== 'mcp and sg' %}
         <p>You must select at least one activity</p>
       {% endif %}
-    {% endfor %}
+    {% endfor %}</br>
+    <span class="govuk-body govuk-!-font-weight-bold">Assessments</span></br>
 
     <!-- Output chosen assessments ############################################ -->
     {{ "Ammonia modelling assessment<br>" | safe
@@ -173,10 +171,11 @@ set mobile mcp
 
     {{ "Waste recovery plan assessment<br>" | safe
           if permit.wasteRecoveryPlan=="yes" }}
-
     <!-- Output cost ############################################ -->
-    <span value="totalCost">Total cost {{ permit.totalcost | int | formatnumber }}</span><br>
+    <p class="govuk-body govuk-!-font-weight-bold">
 
+    <span value="totalCost">Total cost {{ permit.totalcost | int | formatnumber }}</span><br>
+  </p>
     <!-- Link to change permit activities ##################################### -->
     <p>
     {% if facilityType !== "mcp and sg" %}
