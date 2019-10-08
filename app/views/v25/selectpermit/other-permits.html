@@ -1,0 +1,77 @@
+
+{% extends "layout.html" %}
+
+{% set title = "Does your site or installation already have an environmental (EPR) permit from the Environment Agency?
+" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% set versionxxx = "v24" %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form action="{{formAction}}" method="post">
+
+
+      {# permit|dump #}
+
+
+        <div class="form-group">
+
+            {{ govukRadios({
+              idPrefix: "epr-permit",
+              name: "eprPermit",
+              fieldset: {
+                legend: {
+                  text: title,
+                  isPageHeading: true,
+                  classes: "govuk-fieldset__legend--l"
+                }
+              },
+              hint: {
+                text: "This does not include permits issued by a council or local authority."
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "Yes and I am applying for the same site and operator as the existing permit"
+                },
+                {
+                  value: "no",
+                  text: "No"
+                }
+
+              ]
+            }) }}
+
+
+        </div>
+
+
+        <div class="form-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+        </div>
+
+    </form>
+
+    </div>
+  </div>
+
+
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% set title = "How do you want to pay?" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            {{title}}
+        </legend>
+
+        <div class="govuk-inset-text">
+            <p>
+    {% if permit.bespokePermit=="bespoke" %}
+    <b>The cost of the application is {{permit.totalcost | int | formatnumber }}.</b>
+    {% else %}
+    <b>The cost of the application is {{permit.permitCost}}.</b>
+    {% endif %}
+
+  </p>
+</div>
+
+<form method="post" action="{{formAction}}">
+  <div class="govuk-form-group">
+
+      <legend class="govuk-visually-hidden">{{title}}</legend>
+
+      <!-- paymentMethod -->
+
+      <div class="govuk-radios">
+          <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="paymentCard" type="radio" name="paymentMethod" value="Debit or credit card">
+      <label class="govuk-label govuk-radios__label" for="paymentCard">
+        Debit or credit card
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+       <input class="govuk-radios__input" id="paymentBACS" type="radio" name="paymentMethod" value="Bank transfer">
+       <label class="govuk-label govuk-radios__label" for="paymentBACS">
+        Bank transfer by Bacs
+      </label>
+    </div>
+    <!-- <div class="multiple-choice">
+      <input id="paymentCheque" type="radio" name="paymentMethod" value="Cheque">
+<label for="paymentCheque">
+        Cheque
+      </label>
+    </div> -->
+  </div>
+</div>
+
+
+  <div class="form-group">
+    {{submitButton|safe}}
+  </div>
+</form>
+
+    </div>
+  </div>
+
+
+{% endblock %}

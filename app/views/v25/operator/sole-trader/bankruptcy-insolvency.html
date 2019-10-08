@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% set title = "Do you have current or past bankruptcy or insolvency proceedings to declare?" %}
+
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            {{title}}
+        </legend>
+
+<p>
+  You must tell us about:
+</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>the individual</li>
+  <li>companies for which the individual is a director, manager or company secretary</li>
+</ul>
+
+
+<form action="/{{folder}}/check/task-list" method="post">
+
+  <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset">
+          <div class="govuk-radios govuk-radios--conditional" data-module="radios">
+
+           <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="yesBankruptcyInsolvency" type="radio" name="bankruptcyInsolvency" value="yes" data-aria-controls="conditional-how-contacted-conditional-1">
+<label class="govuk-label govuk-radios__label" for="yesBankruptcyInsolvency-conditional-1">
+        Yes, there are bankruptcy or insolvency proceedings
+      </label>
+      </div>
+      <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-how-contacted-conditional-1">
+          <div class="govuk-form-group">
+            </br>
+            <label class="govuk-label" for="bankruptcyInsolvencyDetails">Give details of the bankruptcy or insolvency
+          <span class="govuk-hint">
+            Include dates for the proceedings
+          </span>
+        </label>
+        <textarea class="govuk-textarea" name="bankruptcyInsolvencyDetails" rows="10" type="text" id="bankruptcyInsolvencyDetails"></textarea>
+        <p class="govuk-hint" style="margin-top:4px;">
+          No more than 2,000 characters
+        </p>
+      </div>
+    </div>
+      <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="noBankruptcyInsolvency" type="radio" name="bankruptcyInsolvency" value="no" data-aria-controls="conditional-how-contacted-conditional-2">
+          <label class="govuk-label govuk-radios__label" for="noBankruptcyInsolvency">
+        No
+      </label>
+      </div>
+
+    </fieldset>
+  </div>
+
+    <p>
+      We may contact a credit reference agency for a report about your business’s finances.
+    </p>
+
+  <div class="form-group">
+    {{submitButton|safe}}
+  </div>
+
+
+</form>
+
+
+    </div>
+  </div>
+</main>
+
+{% endblock %}

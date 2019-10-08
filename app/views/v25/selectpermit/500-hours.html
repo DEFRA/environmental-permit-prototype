@@ -1,0 +1,89 @@
+
+{% extends "layout.html" %}
+
+{% set title = "Will your MCP operate for less than 500 hours a year?" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form action="{{formAction}}" method="post">
+
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {# permit|dump #}
+
+<p>
+  Existing MCPs operating less than 500 hours per year, as a 5 year rolling average, are exempt from emission limit values (ELV).
+</p>
+
+<p>
+New MCPs operating less than 500 hours per year, as a 3 year rolling average, are exempt from meeting ELV. However, a limit of 100 mg/m3 dust applies to biomass MCPs.
+</p>
+
+<p>
+  MCPs that are also a Part B activity must meet ELV even if the MCP operates for less than 500 hours per year.
+</p>
+
+
+{{ govukWarningText({
+  text: "If you claim this, we will add a condition to your permit which will not allow you to operate for more than 500 hours a year.",
+  iconFallbackText: "Warning"
+}) }}
+        <div class="form-group">
+          
+
+
+            {{ govukRadios({
+              idPrefix: "500-hours",
+              name: "hours",
+      fieldset: {
+        legend: {
+          text: "",
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      items: [
+        {
+          value: "yes",
+          text: "Yes, I declare that we will operate for less than 500 hours a year on average and meet the conditions to be exempt from ELV."
+        },
+        {
+          value: "no",
+          text: "No, we will operate for more than 500 hours a year."
+        }
+    
+      ]
+    }) }}
+    
+
+
+          
+        </div>
+
+        <div class="form-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}      
+        
+        </div>
+    </form>
+
+    </div>
+  </div>
+
+
+{% endblock %}

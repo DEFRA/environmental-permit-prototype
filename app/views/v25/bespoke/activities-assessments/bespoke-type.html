@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% set title = "What type of facility do you want the permit for?" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+
+
+      {% import folder+"/custom_inc/macros.html" as macros %}
+      {% from folder+"/custom_inc/facility-list-json.html" import facilities %}
+
+
+      <form method="post" action="{{formAction}}">
+        {# permit|dump #}
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-labelledby="radio_label">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">{{title}}</legend>
+
+            {% for f in facilities %}
+
+            <div class="govuk-radios">
+            <div class="multiple-choice">
+            <span class="govuk-radios__item">
+              <input class="govuk-radios__input" id="{{f.value}}" type="radio" name="facilityType" value="{{f.value}}">
+              <label class="govuk-label govuk-radios__label" for="{{f.value}}">
+                {{f.text}} <span class="govuk-hint">{{f.hint}}</span>
+              </label>
+            </span>
+          </div>
+        </div>
+
+            {% else %}
+            <p>No categories</p>
+            {% endfor %}
+          </div>
+          
+        </div>
+      </div>
+ 
+          </br>
+          <!-- Set default value and then over-ride on activity selection loop -->
+          <input type="hidden" name="siteOrMobile" value="site">
+          
+     <div class="govuk-form-group">
+
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+
+          </div>
+
+
+      </form>
+
+
+    </div>
+  </div>
+
+
+{% endblock %}

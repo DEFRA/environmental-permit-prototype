@@ -1,0 +1,168 @@
+{% extends "layout.html" %}
+{% set version = folder %}
+
+{% set title = "Apply for a standard rules environmental permit" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% import folder+"/custom_inc/macros.html" as macros %}
+
+{% block beforeContent %}
+  {% include "includes/phase_banner_beta.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form method="post" action="/{{folder}}/check/check-answers" name="tasklist">  
+      <h1 class="govuk-heading-l">
+            Apply for a bespoke environmental permit
+      </h1>
+
+
+
+      <!-- Output chosen activities ############################################ -->
+      <p>
+        Physical treatment of hazardous waste<br/>
+        Physical treatment of nonhazardous waste<br/>
+        Total cost £12345.00
+      </p>
+
+      <!-- Link to change permit activities ##################################### -->
+      <p>
+        <a href="/{{folder}}/bespoke/activities-assessments/bespoke-choose-activity">
+          Change activities or assessments
+        </a>
+      </p>
+
+      <!-- TASK LIST ############################################################ -->
+      <!-- STARTS HERE ########################################################## -->
+      <ol class="app-task-list">
+        <li>
+          {{ macros.taskHead("1", "Register" )}}
+          <ul class="app-task-list__items">
+            <!--Save and return--------------->
+            {{ macros.task( "Save your application", true, "/"+folder+"/save-and-return/email-or-phone", taskListError ) }}
+          </ul>
+        </li>
+
+        <li>
+          {{ macros.taskHead("2", "About the application" )}}
+          <ul class="app-task-list__items">
+            <!--Contact details--------------->
+            {{ macros.task( "Give contact details", true, "/"+folder+"/contact/contact-details", taskListError ) }}
+
+            <!--Permit holder--------------->
+            {{ macros.task( "Give permit holder details", true, "/"+folder+"/operator/site-operator", taskListError ) }}
+
+            <!-- Confidentiality  ----------->
+            {{ macros.task( "Confirm confidentiality needs", true, "/"+folder+"/check/claim-confidentiality", taskListError ) }}
+
+            <!-- Invoicing ---------------->
+            {{ macros.task( "Give invoicing details", true, "/"+folder+"/billing/invoice-postcode", taskListError ) }}
+          </ul>
+        </li>
+
+        <li>
+          {{ macros.taskHead("3", "Operations" )}}
+          <ul class="app-task-list__items">
+            <!-- Give basic details about the operation ---------------->
+            {{ macros.task( "Give basic details about the operation", true, "/"+folder+"/bespoke/treatment-capacity", taskListError ) }}
+
+            <!-- Provide a non-technical summary ---------------->
+            {{ macros.task( "Upload a non-technical summary", true, "/"+folder+"/upload-non-technical-summary", taskListError ) }}
+
+            <!-- Confirm if you release to sewer, harbour or coastal waters ---------------->
+            {{ macros.task( "Confirm if you release to sewer, harbour or coastal waters", true, "/"+folder+"/bespoke/substance-release", taskListError ) }}
+
+            <!-- Site name and location ---------------->
+            {{ macros.task( "Give site name and location", true, "/"+folder+"/site/site-name", taskListError ) }}
+
+            <!-- Site condition report ---------------->
+            {{ macros.task( "Upload a site condition report", true, "/"+folder+"/upload-site-condition-report", taskListError ) }}
+
+            <!-- Site plan ------------------------->
+            {{ macros.task( "Upload the site plan", true, "/"+folder+"/upload-site-plan", taskListError ) }}
+          </ul>
+        </li>
+
+        <li>
+          {{ macros.taskHead("4", "Activities" )}}
+          <ul class="app-task-list__items">
+            <!-- EWC codes -->
+            {{ macros.task( "List the types of waste you want to accept 1", permit.ewcCodesEntered1, "provide/0/upload-template", taskListError ) }}
+
+            <!-- EWC codes -->
+            {{ macros.task( "List the types of waste you want to accept 2", permit.ewcCodesEntered2, "provide/0/upload-no-template", taskListError ) }}
+
+            <!-- EWC codes -->
+            {{ macros.task( "List the types of waste you want to accept 3", permit.ewcCodesEntered3, "provide/0/text-area", taskListError ) }}
+
+            <!--R and D codes--------------->
+            {{ macros.task( "List recovery and disposal codes for your activities", true, "/"+folder+"/RDcodes/list_recovery_codes", taskListError ) }}
+          </ul>
+        </li>
+
+        <li>
+          {{ macros.taskHead("5", "Evidence" )}}
+
+          <ul class="app-task-list__items">
+            <!-- Tech competence ----------------------->
+            {{ macros.task( "Prove technical competence", true, "/"+folder+"/evidence/techcomp/industry-scheme", taskListError ) }}
+
+            <!-- Fire plan CONDTIONAL ----------------------->
+            {{ macros.task( "Upload fire prevention plan", true, "/"+folder+"/upload-fire-plan", taskListError ) }}
+
+            <!-- Upload environmental risk assessment ----------->
+            {{ macros.task( "Upload environmental risk assessment", true, "/"+folder+"/upload-environmental-risk-assessment", taskListError ) }}
+
+            <!-- Upload emissions air water and land ----------->
+            {{ macros.task( "Tell us about emissions and monitoring", true, "/"+folder+"/bespoke/emissions/emissions-check", taskListError ) }}
+
+            <!-- Provide a management system summary ----------->
+            {{ macros.task( "Provide a management system summary", true, "/"+folder+"/bespoke/management-system", taskListError ) }}
+
+            <!-- List technical standards ----------->
+            {{ macros.task( "List the technical standards you use", true, "/"+folder+"/list-technical-standards", taskListError ) }}
+          </ul>
+        </li>
+
+        <li>
+          {{ macros.taskHead("6", "Apply" )}}
+          <ul class="app-task-list__items">
+            <li class="app-task-list__item" id="submit-pay">
+              <a href="check-answers" class="task-name" href="#">
+                Send application and pay
+              </a>
+            </li>
+          </ul>
+        </li>
+
+      </ol>
+
+</form>
+</div>
+
+</div>
+
+{% endblock %}
+
+{% block page_scripts %}
+<script>
+  $(document).ready(function () {
+
+    $.ajax({
+      url: '/{{folder}}/task-list-visit',
+      success: function(){
+             //alert('reply')
+           },
+           error: function(){
+              //alert('timeout/error')
+            }
+          })
+
+  })
+</script>
+{% endblock %}

@@ -1,0 +1,103 @@
+<!-- TASK LIST ############################################################ -->
+<!-- STARTS HERE ########################################################## -->
+
+<ol class="app-task-list">
+
+    <li><!-- START TASK SECTION ##################################### -->
+      {{ macros.taskHead("1", "Before you apply" )}}
+      <ul class="app-task-list__items">
+
+        <!--Check rules--------------->
+        {{ macros.task( "Confirm you can meet the rules", permit.readRules, "/"+folder+"/read-rules/index", taskListError ) }}
+ 
+        <!--Cost and time standard--------------->
+        {{ macros.task( "Check costs and processing time", permit.costTime, "/"+folder+"/selectpermit/cost-and-time", taskListError ) }}
+  
+        <!--Save and return--------------->
+        {{ macros.task( "Save your application", permit.saveReturnEmail, "/"+folder+"/save-and-return/email-or-phone", taskListError ) }}
+  
+        <!-- Download and complete generator template -->
+        {{ macros.task( "Download and complete the plant or generator list template", permit.Confirmandpay, "/"+folder+"/bespoke/generator/download-template", taskListError ) }}
+
+      </ul>
+
+    </li><!-- END TASK SECTION -->
+  
+  
+    <li><!-- START TASK SECTION ##################################### -->
+    {{ macros.taskHead("2", "Prepare application" )}}
+    <ul class="app-task-list__items">
+      
+    <!-- Special cases ------------------>
+    {% if permit.permitID=="SR-2009-4" %}
+        {% set linkText="Give the stack height" %}
+    {% endif %}
+  
+    {% if permit.permitID=="SR-2010-2" or permit.permitID=="SR-2010-3" %}
+        {% set linkText="Tell us the date when you want the permit to start" %}
+    {% endif %}
+  
+    {% if
+    permit.permitID=="SR-2009-4" or
+    permit.permitID=="SR-2010-2" or
+    permit.permitID=="SR-2010-3" or
+    permit.permitID=="SR-2014-2" or
+    permit.permitID=="SR-2015-17" or
+    permit.permitID=="SR-2015-13" or
+    permit.permitID=="SR-2015-18" or
+    permit.permitID=="SR-2015-39"
+    %}
+        {{ macros.task( linkText, permit.specialCasePageVisited, "/"+folder+"/check-special-cases", taskListError ) }}
+    {% endif %}
+  
+    <!--Contact details--------------->
+    {{ macros.task( "Give contact details", permit.contactFirstName, "/"+folder+"/contact/contact-details", taskListError ) }}
+  
+    <!--Permit holder--------------->
+    {{ macros.task( "Give permit holder details", permit.bankruptcyInsolvencyDetails, "/"+folder+HrefLink, taskListError ) }}
+
+    <!-- Site name DONT'T SHOW SITE FOR MOBILE PERMITS -------->
+    {% if
+    permit.permitID=="SR-2010-4" or
+    permit.permitID=="SR-2010-5" or
+    permit.permitID=="SR-2010-6" or
+    permit.permitID=="SR-2010-11" or
+    permit.permitID=="SR-2008-27"
+    %}
+    <!-- DO NOT SHOW -->
+    {% else %}
+        {{ macros.task( "Give site name and location", permit.siteName, "/"+folder+"/site/site-name", taskListError ) }}
+    {% endif %}
+  
+    <!-- Upload the plant or generator list -->
+    {{ macros.task( "Upload the plant or generator list template", permit.GenTemplate1, "/"+folder+"/generator-list-template", taskListError ) }}
+
+    <!-- NACE code, Choose business or activity type -->
+    {{ macros.task( "Choose business or activity type", permit.nacecodes, "/"+folder+"/check/nace-code", taskListError ) }}
+ 
+    <!-- Confidentiality  ----------->
+    {{ macros.task( "Confirm confidentiality needs", permit.confidential, "/"+folder+"/check/claim-confidentiality", taskListError ) }}
+  
+    <!-- Invoicing ---------------->
+    {{ macros.task( "Give invoicing details", permit.invoiceAddress, "/"+folder+"/billing/invoice-postcode", taskListError ) }}
+  
+    </ul>
+  </li>
+  
+  
+  <li><!-- START TASK SECTION ##################################### -->
+    {{ macros.taskHead("3", "Apply" )}}
+    <ul class="app-task-list__items">
+
+      <li class="app-task-list__item" id="submit-pay">
+        <a onclick="document.tasklist.submit(); return false;" class="task-name" href="#">
+          Send application and pay
+        </a>
+
+      </li>
+    </ul>
+
+  </li><!-- END TASK SECTION -->
+  
+  </ol>
+  

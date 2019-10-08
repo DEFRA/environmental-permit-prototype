@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+
+{% set title = "Do you need to provide an energy efficiency report?" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form action="{{formAction}}" method="post">
+
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+     
+      {# permit|dump #}
+      
+    
+<p>
+    You must provide an energy efficiency report if all of these apply to the plant - it is:
+  </p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>new or substantially refurbished</a></li>
+  <li>operating over 1,500 hours a year</a></li>
+  <li>over 20MW thermal total aggregated thermal input</a></li>
+  <li>using a boiler, furnace, gas turbine or compression ignition engine</a></li>
+</ul>
+
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+       How to decide if the plant is new or substantially refurbished
+      </span>
+  </summary>
+  <div class="govuk-details__text">
+    <p>Plant is considered to be new if it is:</p>
+    <ul class="govuk-list govuk-list--bullet">
+    <li>put into operation on or after 20 December 2018</li>
+    <li>altered or repaired such that the emission limit values (ELV) change - for example if an existing boiler is running on heavy oil and it is converted to run on natural gas</li>
+    <li>substantially refurbished, meaning that the cost of refurbishment was more than 50% of the investment cost for a new comparable MCP unit</li>
+  </ul>
+  </div>
+</details>
+        <div class="form-group">
+          
+            {{ govukRadios({
+              idPrefix: "energy-efiency-report",
+              name: "energyEffiencyReport",
+      fieldset: {
+        legend: {
+          text: "",
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      items: [
+        {
+          value: "yes",
+          text: "Yes we need to provide an energy efficiency report"
+        },
+        {
+          value: "no",
+          text: "No"
+        }
+    
+      ]
+    }) }}
+
+          
+    <div class="form-group">
+      {{ govukButton({
+        text: "Continue"
+      }) }}      
+    
+    </div>    </div>
+
+    </form>
+
+    </div>
+  </div>
+
+
+{% endblock %}

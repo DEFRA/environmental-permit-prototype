@@ -1,0 +1,294 @@
+{% extends "layout.html" %}
+
+{% set title = "Check your answers" %}
+
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+<style>
+  .govuk-summary-list__key, .govuk-summary-list__value {
+      word-break: normal !important;
+  }
+</style>
+
+
+
+  <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds-from-desktop">
+
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              {{title}}
+          </legend>
+          {# permit|dump #}
+
+{% import folder+"/custom_inc/macros.html" as macros %}
+{% from folder+"/bespoke/activities-assessments/json/bespoke-assessment-list.html" import assessments %}
+{% from folder+"/bespoke/activities-assessments/json/bespoke_activities.html" import activities %}
+
+
+  <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+
+
+<!-- Output chosen activities ############################################ -->
+<div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">Activities</dt>
+  <dd class="govuk-summary-list__value">
+    Physical treatment of hazardous waste<br/>
+    Physical treatment of nonhazardous waste<br/>
+
+    </dd>
+    <dd class="govuk-summary-list__actions"><a href="/{{folder}}/bespoke/mobile-plant">Change</a></dd>
+  </div>
+
+<div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">Application cost</dt>
+    <dd class="govuk-summary-list__value">£12345.00</dd>
+    <dd class="govuk-summary-list__actions"></dd>
+  </div>
+
+<div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">Contact details</dt>
+      <dd class="govuk-summary-list__value">
+        Sarah Taylor<br>
+        Telephone 01234567890<br>
+        sarah.taylor@email.com
+      </dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/contact/contact-details">Change <span class="govuk-visually-hidden">Contact details</span></a></dd>
+    </div>
+
+<div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">Email address for permit and official notices</dt>
+      <dd class="govuk-summary-list__value">john@email.com</dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/contact/company-secretary">Change <span class="govuk-visually-hidden"> email address for permit and official notices</span></a></dd>
+    </div>
+
+<div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">Relevant offences</dt>
+      <dd class="govuk-summary-list__value">None</dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/operator/sole-trader/convictions">Change <span class="govuk-visually-hidden"> relevant offences</span></a></dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">Bankruptcy or insolvency</dt>
+      <dd class="govuk-summary-list__value">None</dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/operator/sole-trader/bankruptcy-insolvency">Change <span class="govuk-visually-hidden"> bankruptcy or insolvency</span></a></dd>
+    </div>
+
+<!-- BASIC details -->
+<div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">Name of operation</dt>
+      <dd class="govuk-summary-list__value">New operation</dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/bespoke/waste-operation">Change</a></dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Description of operation</dt>
+      <dd class="govuk-summary-list__value">Processing of hazardous and nonhazardous waste</dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/bespoke/waste-operation">Change</a></dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Total hazardous treatment capacity</dt>
+      <dd class="govuk-summary-list__value">25,000 tonnes a year</dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/bespoke/treatment-capacity">Change</a></dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Total non-hazardous treatment capacity</dt>
+      <dd class="govuk-summary-list__value">50,000 tonnes a year</dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/bespoke/treatment-capacity">Change</a></dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Maximum amount of waste stored</dt>
+      <dd class="govuk-summary-list__value">75,000 tonnes</dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/bespoke/waste-stored">Change</a></dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Annual throughput</dt>
+      <dd class="govuk-summary-list__value">200,000 tonnes a year</dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/bespoke/waste-stored">Change</a></dd>
+    </div>
+
+<div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">Site name</dt>
+      <dd class="govuk-summary-list__value">New site</dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/site/site-name">Change <span class="govuk-visually-hidden">site name</span></a></dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Grid reference for the site</dt>
+      <dd class="govuk-summary-list__value">ST 58687 75944</dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/site/grid-reference">Change <span class="govuk-visually-hidden">grid reference</span></a>
+      </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Site address</dt>
+      <dd class="govuk-summary-list__value">123 Site Street</dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/address/address">Change <span class="govuk-visually-hidden">site address</span></a></dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Site contact details</dt>
+      <dd class="govuk-summary-list__value">
+        Steve Jones<br>
+        Telephone 01234567890<br>
+        steve.jones@email.com
+      </dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/site/site-contact">Change <span class="govuk-visually-hidden">site contact details</span></a></dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">Site plan</dt>
+      <dd class="govuk-summary-list__value">siteplan.pdf</dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/evidence/upload-site-plan">Change <span class="govuk-visually-hidden">site plan</span></a></dd>
+    </div>
+
+<div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">WAMITAB certificate</dt>
+      <dd class="govuk-summary-list__value">wamitab.pdf</dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/evidence/techcomp/wamitab-details">Change <span class="govuk-visually-hidden">WAMITAB certificate</span></a></dd>
+    </div>
+
+<div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">Fire prevention plan filename</dt>
+      <dd class="govuk-summary-list__value">fpp.pdf</dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/upload-fire-plan">Change <span class="govuk-visually-hidden">fire plan</span></a></dd>
+    </div>
+
+
+
+<div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">Non-technical summary</dt>
+      <dd class="govuk-summary-list__value">Non technical summary.pdf</dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/upload-non-technical-summary">Change</a></dd>
+    </div>
+
+<div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">Waste codes</dt>
+  <dd class="govuk-summary-list__value">8 waste codes</dd>
+  <dd class="govuk-summary-list__actions"><a href="/{{folder}}/bespoke/ewc-codes/check-your-answers">View</a><br><a href="/{{folder}}/bespoke/ewc-codes/review/0/mega-edit">Change</a></dd>
+</div>
+
+<div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">Environmental risk assessment</dt>
+  <dd class="govuk-summary-list__value">risk assessment.pdf</dd>
+  <dd class="govuk-summary-list__actions"><a href="/{{folder}}/upload-environmental-risk-assessment">Change</a></dd>
+</div>
+
+<div class="govuk-summary-list__row">        <dt class="govuk-summary-list__key">Management system summary</dt>
+  <dd class="govuk-summary-list__value">managementsystem.pdf</dd>
+  <dd class="govuk-summary-list__actions"><a href="/{{folder}}/upload-management-system-summary">Change</a></dd>
+</div>
+
+<div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">List of technical standards</dt>
+  <dd class="govuk-summary-list__value">technicalstandards.pdf</dd>
+  <dd class="govuk-summary-list__actions"><a href="/{{folder}}/list-technical-standards">Change</a></dd>
+</div>
+
+<div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">Claim confidentiality</dt>
+  <dd class="govuk-summary-list__value">No</dd>
+  <dd class="govuk-summary-list__actions"><a href="/{{folder}}/check/claim-confidentiality">Change <span class="govuk-visually-hidden">claim confidentiality</span></a></dd>
+</div>
+
+<div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">Invoice address</dt>
+  <dd class="govuk-summary-list__value">123 Church Street</dd>
+  <dd class="govuk-summary-list__actions"><a href="/{{folder}}/billing/invoice-postcode">Change <span class="govuk-visually-hidden">invoice address</span></a></dd>
+</div>
+
+<div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">Invoice contact details</dt>
+  <dd class="govuk-summary-list__value">
+    joesmith@email.com
+  </dd>
+  <dd class="govuk-summary-list__actions"><a href="/{{folder}}/billing/invoice-contact">Change <span class="govuk-visually-hidden">Contact details</span></a></dd>
+</div>
+
+</dl>
+
+
+<h2 class="govuk-heading-m">
+  Declaration
+</h2>
+
+<div class="form-group notice">
+    <div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon"aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+      <span class="govuk-warning-text__assistive">Warning</span>
+    You can be fined if you give false or misleading information.
+  </strong>
+</div>
+</div>
+
+<p class="text">
+  I confirm that:
+</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>I am authorised to apply for this permit by the organisation or individual responsible</li>
+  <li>the information I have given is true</li>
+</ul>
+
+
+    <h3 class="govuk-heading-s">Ecological survey data</h3>
+    <p>If you supply ecological survey data we may use your ecological survey data for other uses in addition to assessing your application. Contact us if you do not want us to use your data in this way.</p>
+
+    <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">How we use your ecological survey data</span></summary>
+      <div class="govuk-details__text">
+        <p>If you supply ecological survey data we will use it when we consider your application.</p>
+        <p>Unless you tell us not to, we may also use it for other uses in connection with our statutory and regulatory responsibilities.</p>
+        <p>We may:</p>
+        <ul class="list list-bullet">
+          <li>incorporate the information into our datasets and mapping - these are used for a variety of purposes</li>
+          <li>provide information to other applicants and organisations where this enables us to protect wildlife as we are directed to do in the Environment Act</li>
+          <li>respond to requests for information under the Freedom of Information Act and the associated Environmental Information Regulations 2004 and agree limited usage rights in accordance with our Standard Notices that we use when supplying our Information</li>
+          <li>license datasets and mapping derived from or containing information</li>
+        </ul>
+      </div>
+    </details>
+
+
+    <p><a target="_blank" rel="noopener noreferrer" href="/{{folder}}/pages/privacy">Privacy: how we use your personal information (opens new tab)</a></p>
+
+<div class="govuk-inset-text">
+    <p>
+    If you want a copy of your application, print this page now. You will not get a copy after you submit.
+  </p>
+</div>
+
+<form method="post" action="{{formAction}}">
+
+    <div class="form-group">
+        {{ govukButton({
+          text: "Confirm and continue",
+          name: "Confirm and pay"
+        }) }}
+    </div>
+
+
+</form>
+
+
+
+    </div>
+  </div>
+
+{% endblock %}

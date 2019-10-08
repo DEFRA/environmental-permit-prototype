@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+
+{% set title = "Do you need to provide an air dispersion modelling report?" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form action="{{formAction}}" method="post">
+
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {# permit|dump #}
+
+
+      {% if permit.generatorType=="ssg" or permit.generatorType=="smcp also sg"%}
+
+<p>
+  To check this:
+</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>for abated diesels generators operating less than 500 hours per or for gas fuelled generators operating over any period use the <a href="/public/images/Specified Generator TB Screening Tool-v2.0.xlsm">specified generator screening tool (opens new tab)</a></li>
+  <li>for generator plant operating on other fuels or for diesel generator plant operating for more than 500 hours per year use Environment Agency’s <a href="https://www.gov.uk/government/collections/risk-assessments-for-specific-activities-environmental-permits#H1-software-tool" target="_blank">H1 risk assessment tool (opens new tab)</a></li>
+</ul>
+{% endif %}
+{% if permit.generatorType=="smcp" %}
+<p>
+  You should use the Environment Agency’s <a href="https://www.gov.uk/government/collections/risk-assessments-for-specific-activities-environmental-permits#H1-software-tool" target="_blank">H1 risk assessment tool (opens new tab)</a> to check this if:
+</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>the fuel is natural gas or low-sulphur diesel and there are designated European protected habitats (SAC, SPA or RAMSAR) within 5km</a></li>
+  <li>the fuel is biogas or landfill gas and there are designated European protected habitats (SAC, SPA or RAMSAR) within 10km</a></li>
+  <li>there are sites of special scientific interest (SSSI) within 2km</li>
+</ul>
+
+
+<p>If there are no protected habitats within these screening distances then a detailed modelling assessment is not required for ecological assessment.</p>
+{% endif %}
+        <div class="form-group">
+          
+
+
+            {{ govukRadios({
+              idPrefix: "dispersion-modelling",
+              name: "dispersionModelling",
+      fieldset: {
+        legend: {
+          text: "",
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      items: [
+        {
+          value: "yes",
+          text: "Yes, we need to provide an air dispersion modelling report"
+        },
+        {
+          value: "no",
+          text: "No"
+        }
+    
+      ]
+    }) }}
+
+          
+        </div>
+
+
+        <div class="form-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}      
+        
+        </div>
+
+    </form>
+
+    </div>
+  </div>
+
+
+{% endblock %}

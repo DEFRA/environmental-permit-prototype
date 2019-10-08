@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+
+{% endblock %}
+
+{% block content %}
+	
+			<div class="govuk-grid-row">
+				<div class="govuk-grid-column-two-thirds">
+
+            <div class="govuk-panel govuk-panel--confirmation">
+                <h1 class="govuk-panel__title">
+                Application sent
+                </h1>
+
+                <div class="govuk-panel__body">
+                    Your reference number is
+            <br/>
+            <strong>{{ permit.permitRefNumber }}</strong>
+                </div>
+
+
+        </div>
+<p>
+  We have sent a confirmation to {{permit.contactEmail}}. 
+</p>
+<p>
+  We will not start processing your application until we get your payment.
+</p>
+
+ 
+        <h2 class="govuk-heading-m">What happens next</h2>
+
+          <p class="text">
+            We will check any documents you have uploaded and the site location, if applicable. We will run checks on the permit holder and any other relevant people.          </p>
+
+          <p class="text">
+            It takes up to 13 weeks to issue a permit. It may take longer if the information you gave us does not meet our requirements.
+          </p>
+
+          <p class="text">
+            We will not issue a permit if we believe that your operation will pollute the environment or harm human health.
+          </p>
+
+
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>For testing:</p>
+        <ul class="govuk-list govuk-list--bullet">
+      
+        {% if permitoperation=="mcp" %}
+
+        <li><a href="/{{folder}}/done/email-confirm-mcp" target="_blank">Confirmation email</a></li>
+
+        {% else %}
+        <li><a href="/{{folder}}/done/email-confirm-waste" target="_blank">Confirmation email</a></li>
+
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+
+
+{% endblock %}

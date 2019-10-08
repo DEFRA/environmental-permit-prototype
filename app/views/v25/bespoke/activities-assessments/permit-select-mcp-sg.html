@@ -1,0 +1,113 @@
+{% extends "layout.html" %}
+
+{% set title = "What is your permit for?" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+
+
+
+      <form action="/{{folder}}/selectpermit/other-permits">
+        {# permit|dump #}
+      
+        <div class="form-group">
+          <fieldset class="govuk-fieldset" aria-labelledby="radio_label">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">{{title}}</legend>
+
+            <div class="govuk-radios govuk-radios--conditional" data-module="radios">
+              <div class="govuk-radios">
+                <div class="multiple-choice">
+              
+            <span class="govuk-radios__item">
+              <input class="govuk-radios__input" id="smcp" type="radio" name="generatorType" value="smcp">
+              <label class="govuk-label govuk-radios__label" for="smcp">
+                  Stationary medium combustion plant (MCP) <span class="govuk-hint"></span>
+              </label>
+            </span>
+          </div>
+        </div>
+            <div class="govuk-radios">
+                <div class="multiple-choice">
+            <span class="govuk-radios__item">
+                <input class="govuk-radios__input" id="ssg" type="radio" name="generatorType" value="ssg">
+                <label class="govuk-label govuk-radios__label" for="ssg">
+                    Stationary specified generator (SG) <span class="govuk-hint"></span>
+                </label>
+              </span>
+            </div>
+          </div>
+              <div class="govuk-radios">
+                  <div class="multiple-choice">
+              <span class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="smcp also sg" type="radio" name="generatorType" value="smcp also sg">
+                  <label class="govuk-label govuk-radios__label" for="smcp also sg">
+                      Stationary MCP which is also an SG <span class="govuk-hint"></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+                <div class="govuk-radios">
+                    <div class="multiple-choice">
+                <span class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="mobile sg" type="radio" name="generatorType" value="mobile sg" data-aria-controls="mobile-conditional-2">
+                    <label class="govuk-label govuk-radios__label" for="mobile sg">
+                        Mobile SG <span class="govuk-hint"></span>
+                    </label>
+                  </span>
+                </div>
+              </div>
+
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="mobile-mcp-conditional-1" name="generatorType" type="radio" value="mobile mcp" data-aria-controls="mobile-conditional-1">
+                    <label class="govuk-label govuk-radios__label" for="mobile-mcp-conditional-1">
+                        Mobile MCP
+                    </label>
+                  </div>
+                  <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="mobile-conditional-1">
+                    <div class="govuk-form-group">
+                      <p>Before you can use your mobile MCP or SG permit, you must make a further application to deploy the plant on a particular site. </p>
+                    </div>
+                  </div>
+                  <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="mobile-conditional-2">
+                      <div class="govuk-form-group">
+                          <p>Before you can use your mobile MCP or SG permit, you must make a further application to deploy the plant on a particular site. </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+      
+          </br>
+          <!-- Set default value and then over-ride on activity selection loop -->
+          <input type="hidden" name="siteOrMobile" value="site">
+          
+     <div class="form-group">
+
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+
+          </div>
+
+
+      </form>
+
+
+    </div>
+  </div>
+
+</main>
+
+{% endblock %}

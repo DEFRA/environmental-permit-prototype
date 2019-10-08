@@ -1,0 +1,127 @@
+<!-- TASK LIST ############################################################ -->
+<!-- STARTS HERE ########################################################## -->
+
+<ol class="app-task-list">
+
+    <li><!-- START TASK SECTION ##################################### -->
+      {{ macros.taskHead("1", "Register" )}}
+      <ul class="app-task-list__items">
+
+    <!--Save and return--------------->
+    {{ macros.task( "Save your application", permit.saveReturnEmail, "/"+folder+"/save-and-return/email-or-phone", taskListError ) }}
+
+            </ul>
+    </li><!-- END TASK SECTION -->
+
+
+    <li><!-- START TASK SECTION ##################################### -->
+    {{ macros.taskHead("2", "About the application" )}}
+    <ul class="app-task-list__items">
+
+    <!--Contact details--------------->
+    {{ macros.task( "Give contact details", permit.contactFirstName, "/"+folder+"/contact/contact-details", taskListError ) }}
+
+    <!--Permit holder--------------->
+    {{ macros.task( "Give permit holder details", permit.bankruptcyInsolvencyDetails, "/"+folder+"/operator/site-operator", taskListError ) }}
+
+    <!-- Confidentiality  ----------->
+    {{ macros.task( "Confirm confidentiality needs", permit.confidential, "/"+folder+"/check/claim-confidentiality", taskListError ) }}
+
+    <!-- Invoicing ---------------->
+    {{ macros.task( "Give invoicing details", permit.invoiceAddress, "/"+folder+"/billing/invoice-postcode", taskListError ) }}
+
+
+  </ul>
+  </li><!-- END TASK SECTION -->
+  <li><!-- START TASK SECTION ##################################### -->
+      {{ macros.taskHead("3", "Operations" )}}
+      <ul class="app-task-list__items">
+
+          {% if permit.siteOrMobile=="site" %}
+          {% if appType=="bespoke"
+      and facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.generatorType=="ssg" or permit.generatorType=="smcp also sg" %}
+          <!-- Site name and location ---------------->
+          {{ macros.task( "Give site name and location", permit.siteName, "/"+folder+"/site/site-name", taskListError ) }}
+    {% endif %}
+    {% endif %}
+
+    {% if appType=="bespoke"
+      and facilityType=="mcp and sg" and permit.generatorType=="smcp" or permit.generatorType=="ssg" or permit.generatorType=="smcp also sg" %}
+      <!-- AQMA -->
+      {{ macros.task( "Give Air Quality Management Area details", permit.aqma, "/"+folder+"/bespoke/activities-assessments/aqma", taskListError ) }}
+      {% endif %}
+
+
+      <!-- Provide a non-technical summary ---------------->
+  <!-- UPLOAD - NOTE FOR UPLOADS THE PERMIT.<FILENAME> ENDS IN A 1, IN REFERENCE TO THE SECOND UPLOAD ##################################### -->
+      {{ macros.task( "Upload a non-technical summary", permit.NonTechSummary1, "/"+folder+"/upload-non-technical-summary", taskListError ) }}
+
+
+
+      </ul>
+      </li><!-- END TASK SECTION -->
+
+  <li><!-- START TASK SECTION ##################################### -->
+    {{ macros.taskHead("4", "Activities" )}}
+    <ul class="app-task-list__items">
+
+  <!-- Download and complete generator template -->
+  {{ macros.task( "Download and complete the plant or generator list template", permit.Confirmandpay, "/"+folder+"/bespoke/generator/download-template", taskListError ) }}
+
+   <!-- Upload the plant or generator list -->
+   {{ macros.task( "Upload the plant or generator list template", permit.GenTemplate1, "/"+folder+"/generator-list-template", taskListError ) }}
+
+   {% if appType=="bespoke"
+   and facilityType=="mcp and sg" and permit.generatorType=="mobile mcp" or permit.generatorType=="smcp also sg" or permit.generatorType=="smcp"%}
+
+   <!-- NACE code, Choose business or activity type -->
+   {{ macros.task( "Choose business or activity type", permit.nacecodes, "/"+folder+"/check/nace-code", taskListError ) }}
+   {% endif %}
+  </ul>
+  </li><!-- END TASK SECTION -->
+
+  <li><!-- START TASK SECTION ##################################### -->
+    {{ macros.taskHead("5", "Evidence" )}}
+
+    <ul class="app-task-list__items">
+
+    {% if permit.dispersionModelling=="yes" %}
+     <!-- Air dispersion modelling -->
+    {{ macros.task( "Upload air dispersion modelling report and screening tool", permit.ModellingTool1, "/"+folder+"/modelling-tool", taskListError ) }}
+    {% endif %}
+
+    {% if permit.dispersionModelling=="no" or permit.hours=="yes"%}
+    <!-- Screening tool -->
+   {{ macros.task( "Upload screening tool", permit.ScreeningTool1, "/"+folder+"/screening-tool", taskListError ) }}
+   {% endif %}
+
+
+    {% if permit.energyEffiencyReport=="yes" %}
+    <!--Energy efficiency report -->
+    {{ macros.task( "Upload the energy efficiency report", permit.EnergyEfficiency1, "/"+folder+"/energy-report", taskListError ) }}
+    {% endif %}
+
+    {% if permit.hours=="no" and permit.energysource=="boiler-furnace-gas" or permit.exceed1mwth=="yes"%}
+    <!--BAT report -->
+    {{ macros.task( "Upload the best available techniques assessment", permit.BatAssessment1, "/"+folder+"/bat-assessment-report", taskListError ) }}
+    {% endif %}
+
+
+    </ul>
+  </li>
+
+
+  <li><!-- START TASK SECTION ##################################### -->
+    {{ macros.taskHead("6", "Apply" )}}
+    <ul class="app-task-list__items">
+
+      <li class="app-task-list__item" id="submit-pay">
+        <a onclick="document.tasklist.submit(); return false;" class="task-name" href="#">
+          Send application and pay
+        </a>
+      </li>
+
+    </ul>
+  </li><!-- END TASK SECTION -->
+
+  </ol>

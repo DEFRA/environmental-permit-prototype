@@ -1,0 +1,109 @@
+{% extends "layout.html" %}
+
+  {% set title = "We have resent the email - check again" %}
+
+
+{% block page_title %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+      <form action="{{formAction}}" method="post">
+
+
+
+        {% if data.user_phone %}
+
+          <h1 class="heading-large">{{title}}</h1>
+
+          <p>We sent a secure code to <span class="bold">{{ permit.saveReturnPhone }}</span> that allows you to return to your application at any time.</p>
+
+        {% else %}
+
+          <h1 class="govuk-heading-l">{{title}}</h1>
+
+          <p>We sent a secure link to <span class="bold">{{ permit.saveReturnEmail }}</span> that allows you to return to your application at any time.</p>
+
+          <p class="text">
+Every time you complete a screen we will save your data automatically.
+          </p>
+
+
+        {% endif %}
+
+
+        <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" aria-describedby="how-contacted-conditional-hint">
+              <div class="govuk-radios govuk-radios--conditional" data-module="radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="how-contacted-conditional-1" name="GOTEMAIL" type="radio" value="YES" data-aria-controls="conditional-how-contacted-conditional-1">
+                  <label class="govuk-label govuk-radios__label" for="how-contacted-conditional-1">
+                    I got the email
+                  </label>
+                </div>
+              
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="how-contacted-conditional-2" name="GOTEMAIL" type="radio" value="NO" data-aria-controls="conditional-how-contacted-conditional-2">
+                  <label class="govuk-label govuk-radios__label" for="how-contacted-conditional-2">
+                    I checked spam and junk and cannot find the email - resend it
+                  </label>
+                </div>
+                <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-how-contacted-conditional-2">
+                  <div class="govuk-form-group">
+                    
+                    <ul class="govuk-list govuk-list--number">
+                      <li>Check your spam folder.</li>
+                      <li>Search for 'standard rules permit application' in your emails.</li>
+                      <li>Wait for a few minutes - email can take a while to arrive.</li>
+                      <li>Select continue to resend the email.</a>
+                      </li>
+                      </ul>
+                    <input class="govuk-input govuk-!-width-two-thirds" id="user_email" name="saveReturnEmail" type="text" value="{{permit.saveReturnEmail}}">
+                  </br>
+                </br>
+
+                  </div>
+          
+                </div>
+                
+
+              </div>
+            </fieldset>
+          </div>
+              
+    <div class="form-group">
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+  </div>
+
+  </form>
+
+      </form>
+
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>For testing:
+        <a href="/{{folder}}/save-and-return/email-save-link-mcp-bespoke" target="_blank">link email</a>
+      </p>
+
+    </div>
+  </div>
+</div>
+</div>
+
+{% endblock %}

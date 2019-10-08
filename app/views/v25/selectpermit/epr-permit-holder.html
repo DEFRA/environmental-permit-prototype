@@ -1,0 +1,50 @@
+
+{% extends "layout.html" %}
+
+{% set title = "Contact us before you apply" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% set versionxxx = "v24" %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+    <form action="/{{folder}}/operator/site-operator" method="post">
+
+      
+      {# permit|dump #}
+
+
+        
+        {% set bespokeChecked="" %}
+        {% if permit.permitSelected=="bespoke" %}
+          {% set bespokeChecked=" checked" %}
+        {% endif %}
+
+        <h1 class="govuk-heading-l">{{title}}</h1>
+
+        <div class="govuk-inset-text">
+            You told us that your site or installation already has an environmental (EPR) permit.
+          </div>
+
+<p><a target="_blank" href="https://www.gov.uk/government/publications/environmental-permit-pre-application-advice-form">Contact us for advice (opens new tab)</a> before you apply to <a target="_blank" href="https://www.gov.uk/guidance/change-transfer-or-cancel-your-environmental-permit">find out if you should vary the existing permit (opens new tab)</a> or make a new application.</p>
+    </form>
+
+    </div>
+  </div>
+
+
+{% endblock %}

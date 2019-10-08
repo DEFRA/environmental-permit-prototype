@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% set title = "Do you need a habitat assessment?" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+    <form action="/{{folder}}/bespoke/activities-assessments/confirm-mcp-costs" method="post">
+
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {# permit|dump #}
+
+
+    
+<p>
+  If you have an emission point that is within the screening distance of a natural habitat that is either a Special Area of Conservation, Special Protection Area, site of special scientific interest (SSSI) or Ramsar wetlands site, you will need to pay us to do a habitat assessment.
+</p>
+
+<p>The screening distance for an MCP burning:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>natural gas or low-sulphur diesel is 5km</li>
+  <li>Biogas, landfill gas or other fuels is 10km</li>
+</ul>
+<p>
+  If you have a specified generator you should use the specified generator screening tool to calculate the screening distance for your site.
+</p>
+
+<p>If you are not sure if there is a relevant habitat within the screening distance of your site, then you can order a <a href="https://www.gov.uk/government/publications/environmental-permit-pre-application-advice-form" target="_blank">free nature and heritage conservation check (opens new tab)</a>.</p>
+        <div class="form-group">
+          
+
+
+            {{ govukRadios({
+              idPrefix: "habitat-assessment",
+              name: "habitatAssessment",
+      fieldset: {
+        legend: {
+          text: "",
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      items: [
+        {
+          value: "yes",
+          text: "Yes, we need the Environment Agency to do a habitat assessment"
+        },
+        {
+          value: "no",
+          text: "No"
+        }
+    
+      ]
+    }) }}
+
+          
+        </div>
+
+
+      <div class="form-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}      
+        
+        </div>
+<p>If you need a habitat assessment, we will ask you for the location of the plant or generators later in the application.</p>
+
+    </form>
+
+    </div>
+  </div>
+
+
+{% endblock %}

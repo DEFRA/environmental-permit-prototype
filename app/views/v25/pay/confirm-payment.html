@@ -1,0 +1,115 @@
+{% extends "layout.html" %}
+
+{% set title = "Confirm payment" %}
+
+{% set name = "Alan Smith" %}
+{% set email_address = "alansmith@gmail.com" %}
+{% set address = "2 Acacia Avenue, Redland, Bristol BS1 2FT" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+			<h1 class="govuk-heading-l">Confirm your payment</h1>
+			
+			<dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+
+							<dt class="govuk-summary-list__value">
+								Card number
+							</dt>
+								<dd class="govuk-summary-list__value">
+									************6256</dd>
+								</div>
+								<div class="govuk-summary-list__row">
+
+									<dt class="govuk-summary-list__value">
+										Expiry date
+									</dt>
+										<dd class="govuk-summary-list__value">
+											17 April 2017</dd>
+										</div>
+								<div class="govuk-summary-list__row">
+
+								<dd class="govuk-summary-list__value">
+										Name on card
+									</dd>
+									<dd class="govuk-summary-list__value">
+											{{name}}
+										</dd>
+									</div>
+
+										<div class="govuk-summary-list__row">
+
+										<dd class="govuk-summary-list__value">
+								Billing address
+							</dd>
+  		        <dd class="govuk-summary-list__value">{{address}}</dd>
+						</div>
+
+						<div class="govuk-summary-list__row">
+
+								<dd class="govuk-summary-list__value">Email address</dd>
+								<dd class="govuk-summary-list__value">{{email_address}}</dd>
+
+						</div>
+						<div class="govuk-summary-list__row">
+							
+								<dd class="govuk-summary-list__value">Payment for</dd>
+              {% if permit.bespokePermit=="bespoke" %}
+              <dd class="govuk-summary-list__value">Bespoke permit</dd>
+						</div>
+
+
+					 
+              {% endif %}
+
+  		      
+						<div class="govuk-summary-list__row">
+								<dd class="govuk-summary-list__value">
+								Amount to pay</dd>
+								<dd class="govuk-summary-list__value">
+                {% if permit.bespokePermit=="bespoke" %}
+                    {{ permit.totalcost | int | formatnumber }}
+                {% else %}
+                   {{ permit.permitCost }}
+                {% endif %}
+							</dd>
+						</dl>
+  		      </div><div>
+  		</div>
+  	</div>
+  
+
+
+        <form method="post" action="{{formAction}}">
+   
+					<div class="form-group">
+							{{ govukButton({
+								text: "Continue"
+							}) }}
+					</div>
+        </form>
+
+          <p>
+  				<a href="/{{folder}}/pay/payment-method">Cancel payment</a>
+					</p>
+
+  		 </div>
+  	 </div>
+
+
+
+</main>
+
+{% endblock %}

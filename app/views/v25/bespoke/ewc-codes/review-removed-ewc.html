@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+<form action="{{formAction}}" method="POST">
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">   
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          List the types of waste for {{title}}
+      </legend>
+
+      <div class="govuk-inset-text">
+        We removed some rows from your spreadsheet because they didn’t look like EWC codes.</br></br>
+        We only accept codes and descriptions in the format shown on the previous page, and only in the first 2 columns of the spreadsheet.</br></br>
+
+        <p class="govuk-body">You can either:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>make changes in your spreadsheet and upload it again</li>
+          <li>or confirm that you’re happy to exclude the rows shown below</li>
+        </ul>
+      </div>
+
+         
+    
+
+        
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">EWC code</th>
+            <th scope="col" class="govuk-table__header">EWC description</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row" style="vertical-align: top">
+
+            <td class="govuk-table__cell">{{ invalidCodes.code }}</td>
+            <td class="govuk-table__cell">{{ invalidCodes.description }}</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+    
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <a href="{{returnLink}}" class="govuk-button govuk-button--secondary">Upload or enter this list again</a>
+      <br/>
+
+        <a href="{{continueLink}}" class="govuk-button">Confirm</a>
+
+    </div>
+  </div>
+</form>
+
+{% endblock %}

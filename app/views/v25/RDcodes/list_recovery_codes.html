@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+
+{% set title = "List the recovery codes for this activity" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            {{title}}
+        </legend>
+
+<!-- Look up first chosen activity ############################################ -->
+{% from folder+"/bespoke/activities-assessments/json/bespoke_activities.html" import activities %}
+
+
+{% set activitytext = "NOT SET" %}
+
+<!-- Get ID of first activity ============================== -->
+{% set firstpermitID = permit.chosenPermitID | first %}
+
+{% for aNumber, aData in activities %}
+    {% if aNumber==firstpermitID %}
+        {% set activitytext = aData.D_Activity_Title | lower + " ("+firstpermitID + ")" %}
+    {% endif %}
+{% endfor %}
+
+
+
+  <h2 class="govuk-heading-m">R codes for  {{activitytext}}</h2>
+  <p>Use the <a target="_blank" rel="noopener noreferrer" href="https://www.gov.uk/government/publications/waste-returns-spreadsheet-and-supporting-information">D and R code flowchart</a> to help you select the correct codes for your activity.</p>
+  <div class="govuk-hint">Select all that apply. Leave blank if there is no recovery for this activity.</div>
+</br>
+
+{% from folder+"/bespoke/activities-assessments/json/r-codes.html" import rcodes %}
+
+<form action="{{formAction}}" method="post">
+
+    <div class="govuk-form-group">
+
+          {% for t in rcodes %}
+
+
+                <!-- R and D codes stored -->
+                <div class="govuk-checkboxes" style="margin:1em;">
+                    <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="{{t.rd_code}}" type="checkbox" name="RCodes" value="{{t.rd_code}} {{t.rd_title}}">
+            <label class="govuk-label govuk-checkboxes__label" for="{{t.rd_code}}">
+              {{t.rd_code}} {{t.rd_title}} {{"-" if t.rd_hint!=""}} {{t.rd_hint}}
+
+            </label>
+          </div>
+        </div>
+          {% else %}
+          <p>No types</p>
+          {% endfor %}
+        </div>
+
+        </div>
+      </div>
+
+</br>
+
+  <div class="form-group">
+      {{submitButton|safe}}
+    </div>
+  </form>
+  </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% set title = "Download and complete the plant or generator list template" %}
+
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds-from-desktop">
+
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              {{title}}
+          </legend>
+
+          {% if permit.Confirmandpay %}
+          <div class="govuk-inset-text">
+                You have downloaded the template
+          </div>
+          {% endif %}
+
+<p>Download a template and save it on your computer. Enter the details for each plant or generator you want the permit to cover. You will be asked to upload it later in the application.</p>
+
+{% if permit.generatorType=="smcp" or permit.generatorType=="smcp also sg" %}
+
+    <p><a href="/public/images/plant-generator-list-template-app1-v1-0.xls">Plant or generator list template (Excel XLS)</a></p>
+    <p><a href="/public/images/plant-generator-list-template-app1-v1-0.ods">Plant or generator list template (Open Document ODS)</a>
+    </p>
+{% endif %}
+
+{% if permit.generatorType=="ssg" or permit.generatorType=="mobile sg" %}
+
+    <p><a href="/public/images/plant-generator-list-template-app1-v1-0.xls">Plant or generator list template (Excel XLS)</a></p>
+    <p><a href="/public/images/plant-generator-list-template-app1-v1-0.ods">Plant or generator list template (Open Document ODS)</a>
+    </p>
+{% endif %}
+
+{% if permit.permitoperation=="mcp-standard" %}
+
+    <p><a href="/public/images/plant-generator-list-template-app1-v1-0.xls">Plant or generator list template (Excel XLS)</a></p>
+    <p><a href="/public/images/plant-generator-list-template-app1-v1-0.ods">Plant or generator list template (Open Document ODS)</a>
+    </p>
+{% endif %}
+   
+
+{% if permit.Confirmandpay %}
+<form action="/{{folder}}/check/task-list" method="post" name="Confirmandpay">
+    <input class="govuk-visually-hidden" id="Confirmandpay" name="Confirmandpay" type="text" value="yes">
+
+    <div class="form-group">
+        {{ govukButton({
+          text: "Return to task list",
+          name: "Confirmandpay"
+        }) }}
+    </div>
+{% else %}
+
+<form action="/{{folder}}/check/task-list" method="post" name="Confirmandpay">
+    <input class="govuk-visually-hidden" id="Confirmandpay" name="Confirmandpay" type="text" value="yes">
+
+    <div class="form-group">
+        {{ govukButton({
+          text: "I downloaded the template",
+          name: "Confirmandpay"
+        }) }}
+    </div>
+
+    {% endif %}
+
+
+</form>
+
+
+
+    </div>
+  </div>
+
+{% endblock %}

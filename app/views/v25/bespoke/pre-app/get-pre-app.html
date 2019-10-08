@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% set title = "Get help with your application" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="https://www.gov.uk/government/publications/environmental-permit-pre-application-advice-form" method="get">
+
+
+        <h1 class="govuk-heading-l">{{title}}</h1>
+        <p>
+          The Environment Agency offers free basic pre-application advice to:
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>check that your activity meets the criteria for a permit</li>
+          <li>carry out nature and heritage conservation screening</li>
+          <li>advise which risk assessments you may need to do to accompany your application</li>
+            
+        </ul>
+        
+      
+        <div class="govuk-inset-text">
+          <p>
+          We strongly recommend that you get pre-application advice before you apply.
+        </p>
+      </div>
+
+
+        <div class="form-group">
+          <p>
+            If you need more in depth advice they offer an enhanced pre-application advice service which costs £100 an hour plus VAT.
+          </p>
+        </div>
+      </br> 
+        <div class="form-group">      
+
+            {{ govukButton({
+              text: "Request advice online"
+            }) }}
+  
+          
+          <span style="padding:10px 10px 10px 20px;display:inline-block;font-size: 19px;"><a href="/{{folder}}/bespoke/activities-assessments/bespoke-type">Continue with application
+          </a></span>
+        </div>
+
+
+    </div>
+  </div>
+
+{% endblock %}

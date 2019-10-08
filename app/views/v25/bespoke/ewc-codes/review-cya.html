@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds"> 
+    {% for activity in activities %}
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      EWC code summary for {{ activity.title }}
+    </legend>
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">EWC code</th>
+          <th scope="col" class="govuk-table__header">EWC description</th>
+                 
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {% for ewcCode in activity.codes %}
+        <tr class="govuk-table__row" style="vertical-align: top">
+          <td class="govuk-table__cell">{{ewcCode.code}}</textarea></td>
+          <td class="govuk-table__cell">{{ewcCode.description}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endfor %}
+  </div>
+</div>
+
+      <br/>
+
+      <form action="check-answers" method="post">
+        {{ govukButton({
+          text: "Return to check your check your answers"
+        }) }}
+
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

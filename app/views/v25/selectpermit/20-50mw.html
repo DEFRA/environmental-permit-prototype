@@ -1,0 +1,97 @@
+
+{% extends "layout.html" %}
+
+{% set title = "Does any single generator unit have a rated thermal input between 20MW and 50MW?" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+        <form action="{{formAction}}" method="post">
+
+
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">{{title}}</legend>
+
+
+      {# permit|dump #}
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="how-contacted-conditional-hint">
+            <div class="govuk-radios govuk-radios--conditional" data-module="radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="how-contacted-conditional-1" name="20-50mw" type="radio" value="yes" data-aria-controls="conditional-how-contacted-conditional-1">
+                <label class="govuk-label govuk-radios__label" for="how-contacted-conditional-1">
+                  Yes, a single unit is rated between 20MW and 50MW thermal
+                </label>
+              </div>
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="how-contacted-conditional-2" name="20-50mw" type="radio" value="no" data-aria-controls="conditional-how-contacted-conditional-2">
+                <label class="govuk-label govuk-radios__label" for="how-contacted-conditional-2">
+                  No
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-how-contacted-conditional-1">
+                
+                <p>What does that generator get its energy from?</p>
+                {{ govukRadios({
+                  idPrefix: "energy-source",
+                  name: "energysource",
+          fieldset: {
+            legend: {
+              text: "",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "boiler-furnace-gas",
+              text: "Boiler, furnace, gas turbine or compression ignition engine"
+            },
+            {
+              value: "spark",
+              text: "Spark ignition engine"
+            }
+        
+          ]
+        }) }}
+             
+             
+              </div>
+        
+              </div>
+
+            </div>
+          </fieldset>
+        </div>
+     
+      </div>
+
+      <div class="form-group">
+        {{ govukButton({
+          text: "Continue"
+        }) }}      
+      
+      </div>
+
+          <p>We are asking this to check if you need to provide a best available techniques assessment. If you do, we will add it to your application task list.
+            </p>
+
+    </div>
+  </div>
+
+
+{% endblock %}

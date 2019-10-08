@@ -1,0 +1,128 @@
+{% extends "layout_unbranded.html" %}
+
+{% set imgpath="/public/images/email/" %}
+
+{% block page_title %}
+  Gmail | Application received: Bespoke rules environmental permit
+{% endblock %}
+
+{% block proposition_header %}
+  <!-- blank to remove the proposition header -->
+{% endblock %}
+
+{% block header_class %}
+  <!-- blank to remove the proposition header -->
+{% endblock %}
+
+{% block main %}
+
+<div id="email">
+
+<div id="gmail_header">
+  <img src="{{ imgpath }}gmail_header.png" alt="" />
+</div>
+
+  <div class="govuk-grid-row">
+
+      <div style="width:15%" class="govuk-grid-column-one-quarter">
+          <img style="margin-bottom:900px" src="{{ imgpath }}gmail_menu_left.png" alt="" />
+      </div>
+
+
+    <div class="govuk-grid-column-two-thirds">
+
+        <p class="subject">
+         Application received - Bespoke waste environmental permit <img class="inboxicon" src="{{ imgpath }}gmail_icon_inbox.png" alt="" />
+        </p>
+
+      <p class="from">
+        <img src="{{ imgpath }}gmail_from_text.png" alt="" />
+      </p>
+
+      <div id="email_text">
+
+        <div id="banner" class="email-banner"><img src="{{ imgpath }}gov_uk_email_header.png" alt="GOV.UK"></div>
+
+
+        <h1 class="govuk-heading-m">
+        We have received your application.<br>
+        
+        {% if permit.paymentMethod=="Bank transfer" %}
+
+        {% endif %}
+        
+        {% if permit.paymentMethod=="Debit or credit card" %}
+        You paid {{permit.permitCost}} by card.
+        {% endif %}
+      </h1>
+      
+      {% if permit.paymentMethod=="Debit or credit card" %}
+      <p>
+        We have emailed you a separate receipt for your card payment.
+      </p>
+      {% endif %}
+      
+      
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">
+          {% if permit.paymentMethod=="Bank transfer" %}
+          You paid {{permit.permitCost}} by BACS.
+          {% endif %}
+  
+        {% if permit.paymentMethod=="Debit or credit card" %}
+        You paid {{permit.permitCost}} by card.
+           {% endif %}
+      </h2>
+      <p class="text font-small">
+      <strong>Application reference:</strong> {{ permit.permitRefNumber }}<br>
+      <strong>Activities:</strong> Biological treatment of waste - not composting (1.16.19)</br>
+      <strong>Assessments:</strong> Odour management plan assessment</br>
+  
+      <strong>Application cost:</strong> {{ permit.totalcost | int | formatnumber }}</br>
+  
+      <strong>Operator:</strong> ABC Limited<br>
+      <strong>Date received:</strong> 12 March 2018</p>
+      
+      
+
+      <h2 class="govuk-heading-m">
+          {% if permit.paymentMethod=="Bank transfer" %}
+        What happens after we get your payment
+      {% endif %}
+
+      {% if permit.paymentMethod=="Debit or credit card" %}
+        What happens next
+      {% endif %}
+    </h2>
+        <p>
+          We will check the information you supplied and the site location, if applicable. We will run checks on the permit holder and any other relevant people.
+      
+       
+        We usually issue a permit within: 
+          </p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>13 weeks for a waste permit</li>
+          <li>9 weeks for a medium combustion plant or generator permit</li>
+        </ul>
+     
+        <p>
+          We will not issue a permit if we believe that your operation will pollute the environment or harm human health.
+        </p>
+        
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-1">To contact us</h2>
+          <p>
+            Permitting and Support Centre<br>
+            <a href="mailto:p&sc-default-team@environment-agency.gov.uk">p&sc-default-team@environment-agency.gov.uk</a><br>
+            Telephone: 02030 253 898<br>
+            Monday to Friday, 8am to 5pm<br>
+          </p>
+
+      </div><!-- // end #email_text -->
+
+    </div><!-- // end .column 3/4 -->
+
+  </div><!-- // end .grid_row -->
+
+</div><!-- // end #email -->
+
+{% endblock %}

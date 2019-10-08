@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% set title = "Who will be the permit holder?" %}
+
+{% block page_title %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+    <form action="/{{folder}}/operator/sole-trader/trading-name" method="post">
+
+      <div class="govuk-form-group">
+
+          <label class="govuk-label" for="first-name-2">First name</label>
+          <input class="govuk-input govuk-!-width-one-half" id="first-name-2" name="first-name-2" type="text">
+        </div>
+        <div class="form-group">
+          <label class="govuk-label" for="last-name-2">Last name</label>
+          <input class="govuk-input govuk-!-width-one-half" id="last-name-2" name="last-name-2" type="text">
+        </div>
+
+
+
+      <div class="govuk-inset-text">
+        <p>
+          We need their date of birth to identify them when we do security checks. We will not include it in the public permit register.
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label class="govuk-label" for="date-of-birth">Date of birth</label>
+
+    <span class="govuk-hint">
+      For example, 26  5  1971
+    </span>
+
+    <fieldset class="govuk-fieldset" aria-describedby="passport-issued-hint" role="group">
+       <div class="govuk-date-input">
+
+         <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="dob-day">Day</label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-day" name="dob-day" type="number" pattern="[0-9]*" min="0" max="31" aria-describedby="dob-hint">
+            </div>
+          </div>
+
+         <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-date-input__label" for="dob-month">Month</label>
+              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-month" name="dob-month" type="number" pattern="[0-9]*" min="0" max="12">
+            </div>
+        </div>
+
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" for="dob-year">Year</label>
+            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-year" name="dob-year" type="number" pattern="[0-9]*" min="0" max="2016">
+          </div>
+        </div>
+
+       </div>
+  </fieldset>
+
+</br>
+      <div class="form-group">
+        {{submitButton|safe}}
+      </div>
+
+    </form>
+
+  </div>
+</div>
+</div>
+
+</main>
+
+{% endblock %}

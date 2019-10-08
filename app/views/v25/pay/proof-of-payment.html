@@ -1,0 +1,191 @@
+{% extends "layout.html" %}
+
+{% set title = "Confirm payment" %}
+
+{% set name = "Alan Smith" %}
+{% set email_address = "alansmith@gmail.com" %}
+{% set address = "2 Acacia Avenue, Redland, Bristol BS1 2FT" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+		{# permit|dump #}
+
+			<h1 class="govuk-heading-l">Give proof of your Bacs payment before you send your application</h1>
+
+			<h2 class="govuk-heading-m">Bacs payment details</h2>
+			<p>We have sent you an email with a copy of these details.</p>
+
+			<dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+
+							<dt class="govuk-summary-list__value">
+									Payment reference
+							</dt>
+								<dd class="govuk-summary-list__value">
+									WP-WE1234AB-ER</dd>
+								</div>
+
+								<div class="govuk-summary-list__row">
+
+								<dd class="govuk-summary-list__value">
+										Amount
+									</dd>
+									<dd class="govuk-summary-list__value">
+										{% if permit.bespokePermit=="bespoke" %}
+										{{permit.totalcost | int | formatnumber }}
+										{% else %}
+										{{permit.permitCost}}
+										{% endif %}
+										</dd>
+									</div>
+
+										<div class="govuk-summary-list__row">
+
+										<dd class="govuk-summary-list__value">
+								Sort code
+							</dd>
+  		        <dd class="govuk-summary-list__value">60-70-80</dd>
+						</div>
+
+						<div class="govuk-summary-list__row">
+
+								<dd class="govuk-summary-list__value">Account number</dd>
+								<dd class="govuk-summary-list__value">1001 4411</dd>
+
+						</div>
+						<div class="govuk-summary-list__row">
+
+								<dd class="govuk-summary-list__value">Account name</dd>
+              <dd class="govuk-summary-list__value">EA RECEIPTS</dd>
+						</div>
+
+
+					</dl>
+
+					<details class="govuk-details">
+							<summary class="govuk-details__summary">
+								<span class="govuk-details__summary-text">
+										Overseas accounts
+									</span>
+							</summary>
+							<div class="govuk-details__text">
+									<p>Use these details to pay from an overseas account.</p>
+									<p>International bank account number (IBAN): GB23NWK60708010014411</p>
+									<p>SWIFT bank identifier code (BIC): NWBKGB2L</p>
+									<p>Use the payment reference above.</p>
+									<p>The payment must be in sterling.</p>
+																</div>
+						</details>
+
+
+						<h3 class="govuk-heading-m">Proof of your Bacs payment</h3>
+
+						<div class="govuk-inset-text">
+								Your application has been saved. You can use the return link email to get back to this screen after you have paid.
+							</div>
+
+
+							<div class="govuk-form-group">
+									<fieldset class="govuk-fieldset" aria-describedby="passport-issued-hint" role="group">
+											<span style="font-family: arial; font-size: 1.1875rem">Date when you paid</span>
+										<span id="passport-issued-hint" class="govuk-hint">
+											For example, 12 02 2019
+										</span>
+										<div class="govuk-date-input" id="passport-issued">
+											<div class="govuk-date-input__item">
+												<div class="govuk-form-group">
+													<label class="govuk-label govuk-date-input__label" for="passport-issued-day">
+														Day
+													</label>
+													<input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day" name="passport-issued-day" type="number" pattern="[0-9]*">
+												</div>
+											</div>
+											<div class="govuk-date-input__item">
+												<div class="govuk-form-group">
+													<label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+														Month
+													</label>
+													<input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-month" name="passport-issued-month" type="number" pattern="[0-9]*">
+												</div>
+											</div>
+											<div class="govuk-date-input__item">
+												<div class="govuk-form-group">
+													<label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+														Year
+													</label>
+													<input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-issued-year" name="passport-issued-year" type="number" pattern="[0-9]*">
+												</div>
+											</div>
+										</div>
+									</fieldset>
+								</br>
+
+								<fieldset class="govuk-fieldset">
+										<div class="govuk-form-group">
+												<label class="govuk-label" for="address-town">
+													Total amount paid
+												</label>
+												<span id="waste-hint" class="govuk-hint">
+													If payment for this application was included with other payments give the total amount that you paid
+
+													</span>
+												<input class="govuk-input govuk-!-width-two-thirds" id="address-town" name="address-town" type="text">
+											</div>
+											<div class="govuk-form-group">
+
+												<label class="govuk-label" for="address-town">
+														The payment reference you used
+													</label>
+													<input class="govuk-input govuk-!-width-two-thirds" id="address-town" name="address-town" type="text">
+
+
+											</div>
+
+									</fieldset>
+								</div>
+
+        <form method="post" action="/{{folder}}/done/index">
+
+					<div class="form-group">
+							{{ govukButton({
+								text: "Send application"
+							}) }}
+					</div>
+        </form>
+
+
+
+					<p>&nbsp;</p>
+					<p>&nbsp;</p>
+					<p>For testing:</p>
+					<ul class="govuk-list govuk-list--bullet">
+							{% if permitoperation==="mcp" %}
+
+						<li><a href="/{{folder}}/pay/email-pay-by-bacs-mcp" target="_blank">Confirmation email</a></li>
+
+						{% else %}
+						<li><a href="/{{folder}}/pay/email-pay-by-bacs-waste" target="_blank">Confirmation email</a></li>
+
+						{% endif %}
+
+
+					</ul>
+
+
+  		 </div>
+  	 </div>
+
+
+
+{% endblock %}

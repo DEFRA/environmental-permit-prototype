@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% set title = "What is their address?" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/{{folder}}/operator/sole-trader/address" method="post">
+
+        <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                {{title}}
+            </legend>
+            <label class="govuk-label" for="postcode">UK postcode
+              <span class="govuk-hint">For example, BS1 5AH</span>
+            </label>
+            <input type="text" class="govuk-input govuk-!-width-one-half" id="postcode" name="sitePostCode" />
+          </div>
+
+          <div class="govuk-form-group">
+
+              <a style="font-size:18px" href="/{{folder}}/operator/sole-trader/address-manual">
+                Enter address manually
+              </a>
+
+          </div>
+
+
+
+        </fieldset>
+
+        <div class="form-group">
+          {{submitButton|safe}}
+        </div>
+
+        <div class="form-group">
+          <hr>
+          <p class="text font-xsmall" id="os-notice">
+            &copy; Crown copyright and database rights 2017 Ordnance Survey 100024198. Use of this addressing data is subject to the <a target="_blank" rel="noopener noreferrer" href="/{{folder}}/address/os_place_terms">terms and conditions (opens new window)</a>.
+          </p>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+</main>
+
+{% endblock %}
