@@ -9,6 +9,7 @@ router.use(function (req, res, next) {
 
 // anything beginning with "/vn" will go into this
 router.use('/v24', require('./routes_v24'))
+router.use('/v25', require('./routes_v25'))
 
 
 // Route index page
