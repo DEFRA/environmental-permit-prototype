@@ -798,7 +798,7 @@ router.post('/check-environmental-risk-assessment2', function (req, res) {
 // EUROPEAN WASTE CODES UPLOAD ========================================================
 router.all('/upload-waste-codes', function (req, res) {
   var path="/upload-waste-codes"
-  var title="Upload a document that lists the waste codes you want to accept"
+  var title="Upload the waste codes for your activities"
   var fileName="WasteCodes"
   var guidanceTop="wastecodestop"
   var guidanceBot=""
