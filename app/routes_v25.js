@@ -802,7 +802,7 @@ router.all('/upload-waste-codes', function (req, res) {
   var fileName="WasteCodes"
   var guidanceTop="wastecodestop"
   var guidanceBot=""
-  var fileTypes="PDF, DOC, DOCX, XLSX or XLS"
+  var fileTypes="CSV"
 
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
