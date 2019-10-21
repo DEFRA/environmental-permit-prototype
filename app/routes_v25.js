@@ -815,6 +815,65 @@ res.redirect(`/${folder}/check/task-list`)
   }
 })
 
+// STORE OR TREAT CLINICAL WASTE UPLOAD ========================================================
+router.all('/store-or-treat-clinical-waste', function (req, res) {
+  var path="/store-or-treat-clinical-waste"
+  var title="Will you store or treat a waste type not included in Section 2.1?"
+  var fileName="storetreatclinical"
+  var guidanceTop="storetreatclinicaltop"
+  var guidanceBot=""
+  var fileTypes="PDF, DOC, DOCX, XLSX or XLS"
+
+  if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
+    delete req.session.data['dontUploadOtherFile']
+
+    // on to next upload
+res.redirect(`/${folder}/summary-clinical-waste`)
+
+  } else {  // show upload page
+    res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
+  }
+})
+
+// SUMMARY CLINICAL WASTE UPLOAD ========================================================
+router.all('/summary-clinical-waste', function (req, res) {
+  var path="/summary-clinical-waste"
+  var title="Upload a summary of how you’ll treat clinical waste"
+  var fileName="summaryclinical"
+  var guidanceTop="summaryclinicaltop"
+  var guidanceBot=""
+  var fileTypes="PDF, DOC, DOCX, XLSX or XLS"
+
+  if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
+    delete req.session.data['dontUploadOtherFile']
+
+    // on to next upload
+    res.redirect(`/${folder}/layout-plans-clinical-waste`)
+
+  } else {  // show upload page
+    res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
+  }
+})
+
+// LAY PLANS CLINICAL WASTE UPLOAD ========================================================
+router.all('/layout-plans-clinical-waste', function (req, res) {
+  var path="/layout-plans-clinical-waste"
+  var title="Upload layout plans and process flows"
+  var fileName="layoutclinical"
+  var guidanceTop="layoutclinicaltop"
+  var guidanceBot=""
+  var fileTypes="PDF, DOC, DOCX, XLSX or XLS"
+
+  if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
+    delete req.session.data['dontUploadOtherFile']
+
+    // on to next page
+    res.redirect(`/${folder}/bespoke/waste-types/clinical/guide-to-clinical`)
+
+  } else {  // show upload page
+    res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
+  }
+})
 // EUROPEAN WASTE CODES UPLOAD 2 ========================================================
 var activity1Title = 'physical treatment of hazardous waste'
 var activity2Title = 'metal recycling site - vehicle dismantling'

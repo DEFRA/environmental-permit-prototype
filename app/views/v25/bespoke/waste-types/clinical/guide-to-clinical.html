@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% set title = "Guide for creating clinical waste site layout plans and process flows" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form method="post" action="{{formAction}}"> 
+        
+        <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                      {{title}}
+                  </legend> 
+
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                      Layout plans 
+                  </legend> 
+
+                  <p>Draw your plan to a size and scale that’s easy to read and include these features:</p>
+                  <ul class="govuk-list govuk-list--bullet">
+                      <li><span class="govuk-body govuk-!-font-weight-bold">site location</span> – add and label local details like named roads, watercourses and buildings</li>
+                      <li><span class="govuk-body govuk-!-font-weight-bold">site infrastructure</span> – identify and label main plant items, and provide this additional information:</li>
+                            <ul class="govuk-list govuk-list--bullet">
+                                <li>storage capacities</li>
+                                <li>types of waste that can be stored</li>
+                                <li>emission points to air, ground, water and sewers</li>
+                            </ul>
+
+                      <li><span class="govuk-body govuk-!-font-weight-bold">scale</span> – to help locate items easily</li>
+                      <li><span class="govuk-body govuk-!-font-weight-bold">skey</span> – to help identify the infrastructure shown on the plan</li>
+                      <li><span class="govuk-body govuk-!-font-weight-bold">scolour code</span> – to help highlight different areas of the site</li>
+                      <li><span class="govuk-body govuk-!-font-weight-bold">sinstallation boundary</span> – of the facility</li>
+                      <li><span class="govuk-body govuk-!-font-weight-bold">sother boundaries</span> – of any waste operations on the site</li>
+                  </ul>
+               
+
+
+              
+            </fieldset>
+          </div>
+
+    
+    
+
+
+        
+        <div class="form-group">
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+
+{% endblock %}
