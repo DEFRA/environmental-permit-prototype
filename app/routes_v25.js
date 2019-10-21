@@ -84,6 +84,36 @@ router.post('/save-and-return/save-choice', function (req, res) {
   }
 })
 
+
+// Clinical waste types ==============================================================
+
+ router.get('/bespoke/waste-types/clinical/waste-types', function (req, res) {
+  res.render(folder + '/bespoke/waste-types/clinical/waste-types',{
+    "formAction":"/"+ folder + "/bespoke/waste-types/clinical/waste-types-check"
+  })
+})
+
+router.post('/bespoke/waste-types/clinical/waste-types', function (req, res) {
+  res.render(folder + '/bespoke/waste-types/clinical/waste-types',{
+    "formAction":"/"+ folder + "/bespoke/waste-types/clinical/waste-types-check"
+  })
+})
+
+
+// Deal with what to show next
+router.post('/bespoke/waste-types/clinical/waste-types-check', function (req, res) {
+  var wastetypes = req.body.wastetypes
+
+  if (wastetypes === 'no') {
+    res.redirect("/"+ folder + "/layout-plans-clinical-waste")
+  } else {
+    res.redirect("/"+ folder + "/store-or-treat-clinical-waste")
+  }
+})
+
+
+
+
 // Check category is in-scope ============================
 
 // required for 'select a different permit' via start page or task list
@@ -855,7 +885,7 @@ router.all('/summary-clinical-waste', function (req, res) {
   }
 })
 
-// LAY PLANS CLINICAL WASTE UPLOAD ========================================================
+// LAYOUT PLANS CLINICAL WASTE UPLOAD ========================================================
 router.all('/layout-plans-clinical-waste', function (req, res) {
   var path="/layout-plans-clinical-waste"
   var title="Upload layout plans and process flows"
@@ -867,8 +897,8 @@ router.all('/layout-plans-clinical-waste', function (req, res) {
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
 
-    // on to next page
-    res.redirect(`/${folder}/bespoke/waste-types/clinical/guide-to-clinical`)
+    // Back to the task list
+    res.redirect(`/${folder}/check/task-list`)
 
   } else {  // show upload page
     res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})

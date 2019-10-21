@@ -32,23 +32,29 @@
                       <li>accept additional waste for thermal or chemical disinfection not included in table 2.1a?</li>
                       <li>treat a waste in tables 2.1a or 2.1c other than by the specified methods?</li>
                   </ul>
-                  <div class="govuk-radios">
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="where-do-you-live" name="where-do-you-live" type="radio" value="england">
-                  <label class="govuk-label govuk-radios__label" for="where-do-you-live">
-                    No
-                  </label>
-                </div>
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="where-do-you-live-2" name="where-do-you-live" type="radio" value="scotland">
-                  <label class="govuk-label govuk-radios__label" for="where-do-you-live-2">
-                      Yes - I will provide a justification on the next page 
-                  </label>
-                </div>
 
 
-              </div>
-            </fieldset>
+                  {{ govukRadios({
+                    idPrefix: "wastetypes",
+                    name: "wastetypes",
+            fieldset: {
+              legend: {
+
+              }
+            },
+            items: [
+              {
+                value: "no",
+                text: "No"
+              },
+              {
+                value: "yes",
+                text: "Yes - I will provide a justification on the next page"
+              }
+          
+            ]
+          }) }}
+                           </fieldset>
           </div>
 
     
