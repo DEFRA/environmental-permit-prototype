@@ -70,7 +70,8 @@
     {{ macros.task( "List recovery and disposal codes for your activities", permit.RDCode_entered, "/"+folder+"/RDcodes/list_recovery_codes", taskListError ) }}
 
     <!--Waste codes--------------->
-<!-- UPLOAD - NOTE FOR UPLOADS THE PERMIT.<FILENAME> ENDS IN A 1, IN REFERENCE TO THE SECOND UPLOAD ##################################### -->
+      
+    <!-- UPLOAD - NOTE FOR UPLOADS THE PERMIT.<FILENAME> ENDS IN A 1, IN REFERENCE TO THE SECOND UPLOAD ##################################### -->
     {{ macros.task( "Upload the waste codes for your activities", permit.WasteCodes1, "/"+folder+"/upload-waste-codes", taskListError ) }}
 
   </ul>
@@ -89,6 +90,9 @@
 
     <!-- Tech competence ----------------------->
     {{ macros.task( "Prove technical competence", permit.industryScheme, "/"+folder+"/evidence/techcomp/industry-scheme", taskListError ) }}
+  
+    <!-- Clinical waste ----------------------->
+    {{ macros.task( "Provide clinical waste details", permit.layoutclinical1, "/"+folder+"/bespoke/waste-types/clinical/waste-types", taskListError ) }}
 
     <!-- Fire plan CONDTIONAL ----------------------->
     {% if permit.firePreventionPlan=="yes" or permit.firePreventionPlanIncluded=="yes" %}
@@ -98,8 +102,8 @@
     <!-- Upload environmental risk assessment ----------->
     {{ macros.task( "Upload environmental risk assessment", permit.EnvRiskAssessment1, "/"+folder+"/upload-environmental-risk-assessment", taskListError ) }}
 
- <!-- Upload emissions air water and land ----------->
- {{ macros.task( "Tell us about emissions and monitoring", permit.emissionsYesNo, "/"+folder+"/bespoke/emissions/emissions-check", taskListError ) }}
+    <!-- Upload emissions air water and land ----------->
+    {{ macros.task( "Tell us about emissions and monitoring", permit.emissionsYesNo, "/"+folder+"/bespoke/emissions/emissions-check", taskListError ) }}
 
     <!-- Provide a management system summary ----------->
     {{ macros.task( "Provide a management system summary", permit.ManSysSummary1, "/"+folder+"/bespoke/management-system", taskListError ) }}

@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+
+{% set title = "Do you accept any of these types of waste?" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form method="post" action="{{formAction}}">
+  
+
+
+        
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          {{title}}
+      </legend>  
+        <p>Read the guidance on GOV.UK to ensure you select the correct types of waste:</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li><a class="govuk-link" target="_blank" href="https://www.gov.uk/government/publications/clinical-waste-additional-guidance">Clinical waste (opens new tab)</a></br></li>
+            <li><a class="govuk-link" target="_blank" href="https://www.gov.uk/government/publications/fire-prevention-plans-environmental-permits/fire-prevention-plans-environmental-permits#types-of-combustible-waste">Combustible waste (opens new tab)</a></li>
+            <li><a class="govuk-link" target="_blank" href="https://www.gov.uk/dispose-hazardous-waste">Hazardous waste (opens new tab)</a></li>
+        </ul>
+        <p>Select all types your operation accepts:</p>
+  
+        <div class="govuk-checkboxes">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="clinical">
+            <label class="govuk-label govuk-checkboxes__label" for="waste">
+                Clinical waste
+            </label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="combustible">
+            <label class="govuk-label govuk-checkboxes__label" for="waste-2">
+                Combustible waste
+            </label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="hazardous">
+            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+                Hazardous waste
+            </label>
+          </div>
+          <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="waste-4" name="waste" type="checkbox" value="none">
+              <label class="govuk-label govuk-checkboxes__label" for="waste-4">
+                  None of the above
+              </label>
+            </div>
+        </div>
+      </fieldset>
+    </div>
+
+    
+    
+
+
+        
+        <div class="form-group">
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+
+{% endblock %}

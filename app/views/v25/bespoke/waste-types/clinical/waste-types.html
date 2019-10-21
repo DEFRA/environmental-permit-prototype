@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% set title = "Will you store or treat a waste type not included in Section 2.1?" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form method="post" action="{{formAction}}"> 
+        
+        <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                      {{title}}
+                  </legend> 
+
+                  <p>If you want to store or treat a waste type not included in Annex 5, <a class="govuk-link" target="_blank" href="https://www.gov.uk/government/publications/clinical-waste-additional-guidance
+                    ">Section 2.1 of EPR 5.07 (opens new tab)</a>, then you need to submit a full justification on the next page. </p>
+                  <p>Are you proposing to:</p>
+                  <ul class="govuk-list govuk-list--bullet">
+                      <li>accept additional waste for thermal or chemical disinfection not included in table 2.1a?</li>
+                      <li>treat a waste in tables 2.1a or 2.1c other than by the specified methods?</li>
+                  </ul>
+
+
+                  {{ govukRadios({
+                    idPrefix: "wastetypes",
+                    name: "wastetypes",
+            fieldset: {
+              legend: {
+
+              }
+            },
+            items: [
+              {
+                value: "no",
+                text: "No"
+              },
+              {
+                value: "yes",
+                text: "Yes - I will provide a justification on the next page"
+              }
+          
+            ]
+          }) }}
+                           </fieldset>
+          </div>
+
+    
+    
+
+
+        
+        <div class="form-group">
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+
+{% endblock %}
