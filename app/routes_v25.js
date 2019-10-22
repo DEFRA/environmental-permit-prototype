@@ -1448,14 +1448,14 @@ res.redirect(`/${folder}/check/task-list`)
 
 // R & D codes ===========================================================
 
-router.get('/RDcodes/list_recovery_codes', function (req, res) {
-  res.render(folder + '/RDcodes/list_recovery_codes',{
-    "formAction":"/"+ folder + "/RDcodes/list_disposal_codes"
+router.get('/RDcodes/list_disposal_codes', function (req, res) {
+  res.render(folder + '/RDcodes/list_disposal_codes',{
+    "formAction":"/"+ folder + "/RDcodes/list_recovery_codes"
   })
 })
 
-router.get('/RDcodes/list_disposal_codes', function (req, res) {
-  res.render(folder + '/RDcodes/list_disposal_codes',{
+router.get('/RDcodes/list_recovery_codes', function (req, res) {
+  res.render(folder + '/RDcodes/list_recovery_codes',{
     "formAction":"/"+ folder + "/check/task-list"
   })
 })
