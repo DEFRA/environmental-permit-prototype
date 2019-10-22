@@ -2,7 +2,7 @@
 <!-- STARTS HERE ########################################################## -->
 
 <ol class="app-task-list">
-
+    {{ permit|dump }}
     <li><!-- START TASK SECTION ##################################### -->
       {{ macros.taskHead("1", "Register" )}}
       <ul class="app-task-list__items">
@@ -92,7 +92,9 @@
     {{ macros.task( "Prove technical competence", permit.industryScheme, "/"+folder+"/evidence/techcomp/industry-scheme", taskListError ) }}
   
     <!-- Clinical waste ----------------------->
+    {% if permit.clinical=="yes" %}
     {{ macros.task( "Tell us how you will manage clinical waste", permit.layoutclinical1, "/"+folder+"/bespoke/waste-types/clinical/waste-types", taskListError ) }}
+    {% endif %}
 
     <!-- Fire plan CONDTIONAL ----------------------->
     {% if permit.firePreventionPlan=="yes" or permit.firePreventionPlanIncluded=="yes" %}
