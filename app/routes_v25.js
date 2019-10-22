@@ -1676,6 +1676,7 @@ const bespokeWasteDummyData = {
   chosenPermitID: [ '1.16.19' ],
   odourManagementPlanIncluded: 'yes',
   odourManagementPlan: 'no',
+  clinical: 'yes',
   totalcost: '10141',
   saveReturnEmail: 'Register to return to this application email address',
   saveProgress: 'save-link-sent',
@@ -1750,6 +1751,8 @@ const bespokeWasteDummyData = {
   manSys: 'EC Eco management and audit scheme (EMAS)',
   ManSysSummary1: 'ManSysSummary.pdf',
   TechStandards1: 'TechStandards.pdf',
+  summaryclinical1: 'summaryclinical.pdf',
+  storetreatclinical1: 'storetreatclinical.pdf',
   layoutclinical1: 'layoutclinical1.pdf',
   OdourPlan1: 'OdourPlan.pdf' 
 }

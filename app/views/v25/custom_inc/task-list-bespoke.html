@@ -3,7 +3,7 @@
 
 <ol class="app-task-list">
 
-    <li><!-- START TASK SECTION ##################################### -->
+  <li><!-- START TASK SECTION ##################################### -->
       {{ macros.taskHead("1", "Register" )}}
       <ul class="app-task-list__items">
 
@@ -66,8 +66,8 @@
     {{ macros.taskHead("4", "Activities" )}}
     <ul class="app-task-list__items">
 
-    <!--R and D codes--------------->
-    {{ macros.task( "List disposal and recovery codes for your activities", permit.RDCode_entered, "/"+folder+"/RDcodes/list_disposal_codes", taskListError ) }}
+    <!--D and R codes--------------->
+    {{ macros.task( "List the disposal and recovery codes for your activities", permit.RDCode_entered, "/"+folder+"/RDcodes/list_recovery_codes", taskListError ) }}
 
     <!--Waste codes--------------->
       
@@ -92,7 +92,9 @@
     {{ macros.task( "Prove technical competence", permit.industryScheme, "/"+folder+"/evidence/techcomp/industry-scheme", taskListError ) }}
   
     <!-- Clinical waste ----------------------->
-    {{ macros.task( "Provide clinical waste details", permit.layoutclinical1, "/"+folder+"/bespoke/waste-types/clinical/waste-types", taskListError ) }}
+    {% if permit.clinical=="yes" %}
+    {{ macros.task( "Tell us how you will manage clinical waste", permit.layoutclinical1, "/"+folder+"/bespoke/waste-types/clinical/waste-types", taskListError ) }}
+    {% endif %}
 
     <!-- Fire plan CONDTIONAL ----------------------->
     {% if permit.firePreventionPlan=="yes" or permit.firePreventionPlanIncluded=="yes" %}
