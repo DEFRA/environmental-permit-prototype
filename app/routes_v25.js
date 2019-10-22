@@ -1750,6 +1750,7 @@ const bespokeWasteDummyData = {
   manSys: 'EC Eco management and audit scheme (EMAS)',
   ManSysSummary1: 'ManSysSummary.pdf',
   TechStandards1: 'TechStandards.pdf',
+  layoutclinical1: 'layoutclinical1.pdf',
   OdourPlan1: 'OdourPlan.pdf' 
 }
 
