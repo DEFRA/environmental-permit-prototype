@@ -258,12 +258,10 @@
     <dt class="govuk-summary-list__key">D and R codes</dt>
     <dd class="govuk-summary-list__value">
         {% for DCode in permit.DCodes %}
-          {{DCode}}
-        </br>
+          {{DCode}},
         {% endfor %}
         {% for RCode in permit.RCodes %}
-        {{RCode}}
-      </br>
+        {{RCode}},
       {% endfor %}
     </dd>
     <dd class="govuk-summary-list__actions"><a href="/{{folder}}/RDcodes/list_disposal_codes">Change</a></dd>
