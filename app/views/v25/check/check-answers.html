@@ -254,18 +254,18 @@
 
 <!-- Output chosen R and D codes ############################################ -->
 <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">R and D codes</dt>
+    <dt class="govuk-summary-list__key">D and R codes</dt>
     <dd class="govuk-summary-list__value">
-        {% for RCode in permit.RCodes %}
-          {{RCode}}
+        {% for DCode in permit.DCodes %}
+          {{DCode}}
         </br>
         {% endfor %}
-        {% for DCode in permit.DCodes %}
-        {{DCode}}
+        {% for RCode in permit.RCodes %}
+        {{RCode}}
       </br>
       {% endfor %}
     </dd>
-    <dd class="govuk-summary-list__actions"><a href="/{{folder}}/RDcodes/list_recovery_codes">Change</a></dd>
+    <dd class="govuk-summary-list__actions"><a href="/{{folder}}/RDcodes/list_disposal_codes">Change</a></dd>
 </div>
 
 
