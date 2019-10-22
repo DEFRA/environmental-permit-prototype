@@ -392,6 +392,22 @@
     </div>
 {% endif %}
 
+{% if permit.hazardous=="yes" %}
+<div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">Hazardous waste treatment summary</dt>
+      <dd class="govuk-summary-list__value">{{ permit.summaryhazardous1 }}</dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/upload-fire-plan">Change <span class="govuk-visually-hidden">fire plan</span></a></dd>
+    </div>
+{% endif %}
+
+{% if permit.hazardous=="yes" %}
+<div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">Hazardous waste layout plans and process flows</dt>
+      <dd class="govuk-summary-list__value">{{ permit.layouthazardous1 }}</dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/upload-fire-plan">Change <span class="govuk-visually-hidden">fire plan</span></a></dd>
+    </div>
+{% endif %}
+
 {% if permit.bespokePermit=="bespoke" %}
 
 <div class="govuk-summary-list__row">

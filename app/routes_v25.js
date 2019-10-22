@@ -885,6 +885,26 @@ router.all('/summary-clinical-waste', function (req, res) {
   }
 })
 
+// SUMMARY HAZARDOUS WASTE UPLOAD ========================================================
+router.all('/summary-hazardous-waste', function (req, res) {
+  var path="/summary-hazardous-waste"
+  var title="Upload a summary of how you’ll treat hazardous waste"
+  var fileName="summaryhazardous"
+  var guidanceTop="summaryhazardoustop"
+  var guidanceBot=""
+  var fileTypes="PDF, DOC, DOCX, XLSX or XLS"
+
+  if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
+    delete req.session.data['dontUploadOtherFile']
+
+    // on to next upload
+    res.redirect(`/${folder}/layout-plans-hazardous-waste`)
+
+  } else {  // show upload page
+    res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
+  }
+})
+
 // LAYOUT PLANS CLINICAL WASTE UPLOAD ========================================================
 router.all('/layout-plans-clinical-waste', function (req, res) {
   var path="/layout-plans-clinical-waste"
@@ -904,6 +924,27 @@ router.all('/layout-plans-clinical-waste', function (req, res) {
     res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
   }
 })
+
+// LAYOUT PLANS HAZARDOUS WASTE UPLOAD ========================================================
+router.all('/layout-plans-hazardous-waste', function (req, res) {
+  var path="/layout-plans-hazardous-waste"
+  var title="Upload layout plans and process flows"
+  var fileName="layouthazardous"
+  var guidanceTop="layouthazardoustop"
+  var guidanceBot=""
+  var fileTypes="PDF, DOC, DOCX, XLSX or XLS"
+
+  if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
+    delete req.session.data['dontUploadOtherFile']
+
+    // Back to the task list
+    res.redirect(`/${folder}/check/task-list`)
+
+  } else {  // show upload page
+    res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
+  }
+})
+
 // EUROPEAN WASTE CODES UPLOAD 2 ========================================================
 var activity1Title = 'physical treatment of hazardous waste'
 var activity2Title = 'metal recycling site - vehicle dismantling'
@@ -1677,6 +1718,7 @@ const bespokeWasteDummyData = {
   odourManagementPlanIncluded: 'yes',
   odourManagementPlan: 'no',
   clinical: 'yes',
+  hazardous: 'yes',
   totalcost: '10141',
   saveReturnEmail: 'Register to return to this application email address',
   saveProgress: 'save-link-sent',
@@ -1752,6 +1794,8 @@ const bespokeWasteDummyData = {
   ManSysSummary1: 'ManSysSummary.pdf',
   TechStandards1: 'TechStandards.pdf',
   summaryclinical1: 'summaryclinical.pdf',
+  summaryhazardous1: 'summaryhazardous.pdf',
+  layouthazardous1: 'layouthazardous.pdf',
   storetreatclinical1: 'storetreatclinical.pdf',
   layoutclinical1: 'layoutclinical1.pdf',
   OdourPlan1: 'OdourPlan.pdf' 

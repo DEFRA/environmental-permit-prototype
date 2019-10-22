@@ -96,6 +96,11 @@
     {{ macros.task( "Tell us how you will manage clinical waste", permit.layoutclinical1, "/"+folder+"/bespoke/waste-types/clinical/waste-types", taskListError ) }}
     {% endif %}
 
+    <!-- Hazardous waste ----------------------->
+    {% if permit.hazardous=="yes" %}
+    {{ macros.task( "Tell us how you will manage hazardous waste", permit.layouthazardous1, "/"+folder+"/summary-hazardous-waste", taskListError ) }}
+    {% endif %}
+
     <!-- Fire plan CONDTIONAL ----------------------->
     {% if permit.firePreventionPlan=="yes" or permit.firePreventionPlanIncluded=="yes" %}
         {{ macros.task( "Upload fire prevention plan", permit.FirePlan1, "/"+folder+"/upload-fire-plan", taskListError ) }}

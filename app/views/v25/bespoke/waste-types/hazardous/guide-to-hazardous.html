@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% set title = "Guide for creating hazardous waste site layout plans and process flows" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+        
+        <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                      {{title}}
+                  </legend> 
+
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                      Layout plans 
+                  </legend> 
+
+                  <p>Draw your plan to a size and scale that’s easy to read and include these features:</p>
+                  <ul class="govuk-list govuk-list--bullet">
+                      <li><span class="govuk-body govuk-!-font-weight-bold">site location</span> – add and label local details like named roads, watercourses and buildings</li>
+                      <li><span class="govuk-body govuk-!-font-weight-bold">site infrastructure</span> – identify and label main plant items, and provide this additional information:</li>
+                            <ul class="govuk-list govuk-list--bullet">
+                                <li>storage capacities</li>
+                                <li>types of waste that can be stored</li>
+                                <li>emission points to air, ground, water and sewers</li>
+                            </ul>
+
+                      <li><span class="govuk-body govuk-!-font-weight-bold">scale</span> – to help locate items easily</li>
+                      <li><span class="govuk-body govuk-!-font-weight-bold">key</span> – to help identify the infrastructure shown on the plan</li>
+                      <li><span class="govuk-body govuk-!-font-weight-bold">colour code</span> – to help highlight different areas of the site</li>
+                      <li><span class="govuk-body govuk-!-font-weight-bold">installation boundary</span> – of the facility</li>
+                      <li><span class="govuk-body govuk-!-font-weight-bold">other boundaries</span> – of any waste operations on the site</li>
+                  </ul>
+               
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                      Process flow diagrams 
+                  </legend> 
+
+                  <p>You need to provide a process flow diagram for each:</p>
+                  <ul class="govuk-list govuk-list--bullet">
+                      <li><span class="govuk-body govuk-!-font-weight-bold">plant</span> in the layout plan</li>
+                      <li><span class="govuk-body govuk-!-font-weight-bold">treatment</span> activity you’re applying for</li>
+                    </ul>
+
+                  <p>Diagrams need to be clear and easy to read, using labels, symbols and colours in a consistent way to represent the plant and its processes.</p>
+                  <p>Always include a key to explain the symbols and colours used in the diagram.</p>
+                  
+                  <p>Your diagrams must show:</p>
+                  <ul class="govuk-list govuk-list--bullet">
+                      <li><span class="govuk-body govuk-!-font-weight-bold">Inputs</span> to each treatment plant, including raw materials, wastes and energy</li>
+                      <li><span class="govuk-body govuk-!-font-weight-bold">distinct stages</span> of the treatment processes</li>
+                      <li><span class="govuk-body govuk-!-font-weight-bold">outputs</span> including emissions and residual wastes</li>
+                      <li><span class="govuk-body govuk-!-font-weight-bold">flow direction</span> of the treatment process</li>
+                      <li><span class="govuk-body govuk-!-font-weight-bold">other details</span> such as bypasses, control loops, recirculation lines and connections with other plant</li>
+                      <li><span class="govuk-body govuk-!-font-weight-bold">operational values</span> such as minimum, normal and maximum flow, temperature and pressure, etc.</li>
+                    </ul>
+            </fieldset>
+          </div>
+
+    </div>
+  </div>
+
+
+{% endblock %}
