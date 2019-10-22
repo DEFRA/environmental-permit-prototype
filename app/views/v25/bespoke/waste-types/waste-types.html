@@ -16,9 +16,9 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <form method="post" action="{{formAction}}">
   
-
+             <!-- substanceRelease entered -->
+             <input type="hidden" name="substanceRelease" value="Yes">
 
         
     <div class="govuk-form-group">
@@ -34,28 +34,29 @@
         </ul>
         <p>Select all types your operation accepts:</p>
   
-        <div class="govuk-checkboxes">
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="clinical">
-            <label class="govuk-label govuk-checkboxes__label" for="waste">
+        <div class="govuk-checkboxes" data-module="checkboxes">
+
+          <div class="govuk-checkboxes__item" data-target="clinical">
+            <input class="govuk-checkboxes__input" id="clinical" name="clinical" type="checkbox" value="yes">
+            <label class="govuk-label govuk-checkboxes__label" for="clinical">
                 Clinical waste
             </label>
           </div>
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="combustible">
-            <label class="govuk-label govuk-checkboxes__label" for="waste-2">
+          <div class="govuk-checkboxes__item" data-target="combustible">
+            <input class="govuk-checkboxes__input" id="combustible" name="combustible" type="checkbox" value="yes">
+            <label class="govuk-label govuk-checkboxes__label" for="combustible">
                 Combustible waste
             </label>
           </div>
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="waste-3" name="waste" type="checkbox" value="hazardous">
-            <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+          <div class="govuk-checkboxes__item" data-target="hazardous">
+            <input class="govuk-checkboxes__input" id="hazardous" name="hazardous" type="checkbox" value="yes">
+            <label class="govuk-label govuk-checkboxes__label" for="hazardous">
                 Hazardous waste
             </label>
           </div>
-          <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="waste-4" name="waste" type="checkbox" value="none">
-              <label class="govuk-label govuk-checkboxes__label" for="waste-4">
+          <div class="govuk-checkboxes__item" data-target="noneofabove">
+              <input class="govuk-checkboxes__input" id="noneofabove" name="noneofabove" type="checkbox" value="yes">
+              <label class="govuk-label govuk-checkboxes__label" for="noneofabove">
                   None of the above
               </label>
             </div>
@@ -63,20 +64,14 @@
       </fieldset>
     </div>
 
-    
-    
-
 
         
-        <div class="form-group">
+    <form action="/{{folder}}/bespoke/assessments/your-assessments" method="post">
+      {{ govukButton({
+        text: "Confirm"
+      }) }}
+    </form>
 
-          {{ govukButton({
-            text: "Continue"
-          }) }}
-
-        </div>
-
-      </form>
     </div>
   </div>
 
