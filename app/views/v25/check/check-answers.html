@@ -372,7 +372,7 @@
 <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">Clinical waste storage and treatment justification</dt>
       <dd class="govuk-summary-list__value">{{ permit.storetreatclinical1 }}</dd>
-      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/upload-fire-plan">Change <span class="govuk-visually-hidden">fire plan</span></a></dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/store-or-treat-clinical-waste">Change <span class="govuk-visually-hidden">store or track clinical waste</span></a></dd>
     </div>
 {% endif %}
 
@@ -380,7 +380,7 @@
 <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">Clinical waste treatment summary</dt>
       <dd class="govuk-summary-list__value">{{ permit.summaryclinical1 }}</dd>
-      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/upload-fire-plan">Change <span class="govuk-visually-hidden">fire plan</span></a></dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/summary-clinical-waste">Change <span class="govuk-visually-hidden">clinical waste treatment summary</span></a></dd>
     </div>
 {% endif %}
 
@@ -388,7 +388,7 @@
 <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">Clinical waste layout plans and process flows</dt>
       <dd class="govuk-summary-list__value">{{ permit.layoutclinical1 }}</dd>
-      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/upload-fire-plan">Change <span class="govuk-visually-hidden">fire plan</span></a></dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/layout-plans-clinical-waste">Change <span class="govuk-visually-hidden">clinical waste layout plans and process flows</span></a></dd>
     </div>
 {% endif %}
 
@@ -396,7 +396,7 @@
 <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">Hazardous waste treatment summary</dt>
       <dd class="govuk-summary-list__value">{{ permit.summaryhazardous1 }}</dd>
-      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/upload-fire-plan">Change <span class="govuk-visually-hidden">fire plan</span></a></dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/summary-hazardous-waste">Change <span class="govuk-visually-hidden">hazardous waste treatment summary</span></a></dd>
     </div>
 {% endif %}
 
@@ -404,7 +404,7 @@
 <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">Hazardous waste layout plans and process flows</dt>
       <dd class="govuk-summary-list__value">{{ permit.layouthazardous1 }}</dd>
-      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/upload-fire-plan">Change <span class="govuk-visually-hidden">fire plan</span></a></dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/layout-plans-hazardous-waste">Change <span class="govuk-visually-hidden">hazardous waste layout plans and process flows</span></a></dd>
     </div>
 {% endif %}
 
@@ -421,8 +421,8 @@
 
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">Waste codes</dt>
-      <dd class="govuk-summary-list__value">35 waste codes</dd>
-      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/bespoke/ewc-codes/review-cya">View</a><br><a href="/{{folder}}/bespoke/ewc-codes/activity-provide/1/mega-edit">Change</a></dd>
+      <dd class="govuk-summary-list__value">{{ permit.WasteCodes1 }}</dd>
+      <dd class="govuk-summary-list__actions"><a href="/{{folder}}/upload-waste-codes">Change</a></dd>
     </div>
 
     <div class="govuk-summary-list__row">
