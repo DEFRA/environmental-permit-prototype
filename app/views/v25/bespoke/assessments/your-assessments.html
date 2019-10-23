@@ -211,6 +211,20 @@ wood
 {{ macros.hidden("odourManagementPlanIncluded",odourManagementPlanIncluded) if odourManagementPlanIncluded=="yes" }}
 
 <!-- Either output the checkbox OR a hidden field to pass on the data -->
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="dustBio" name="dustBio" type="checkbox" value="yes">
+      <label class="govuk-label govuk-checkboxes__label" for="dustBio">
+          Dust and bio-aerosol risk assessment
+      </label>
+</div>
+
+  <div class="govuk-checkboxes__item">
+    <input class="govuk-checkboxes__input" id="dustManagement" name="dustManagement" type="checkbox" value="yes">
+    <label class="govuk-label govuk-checkboxes__label" for="dustManagement">
+        Dust management plan
+    </label>
+</div>
+
 {# macros.checkbox("Ammonia modelling assessment","ammoniaModelling","a1","yes") 
   if ammoniaModelling=="no"
   else macros.hidden("Ammonia modelling assessment",ammoniaModelling) #}
@@ -248,6 +262,20 @@ wood
 {# macros.checkbox("Waste recovery plan","wasteRecoveryPlan","a9","yes") 
   if wasteRecoveryPlan=="no" 
   else macros.hidden("wasteRecoveryPlan",wasteRecoveryPlan) #}
+
+    <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="pestPlan" name="pestPlan" type="checkbox" value="yes">
+        <label class="govuk-label govuk-checkboxes__label" for="pestPlan">
+            Pest management plan
+        </label>
+    </div>
+
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="wasteRecovery" name="wasteRecovery" type="checkbox" value="yes">
+      <label class="govuk-label govuk-checkboxes__label" for="wasteRecovery">
+          Waste recovery plan
+      </label>
+    </div>
 </div>
 </fieldset>
                      

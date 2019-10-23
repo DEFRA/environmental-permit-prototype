@@ -2,6 +2,7 @@
 <!-- STARTS HERE ########################################################## -->
 
 <ol class="app-task-list">
+    {{permit|dump}}
 
   <li><!-- START TASK SECTION ##################################### -->
       {{ macros.taskHead("1", "Register" )}}
@@ -82,7 +83,6 @@
 
     <ul class="app-task-list__items">
 
-
     {% if permit.energyEffiencyReport=="yes" %}
     <!--Energy efficiency report -->
     {{ macros.task( "Upload the energy efficiency report", permit.EnergyEfficiency1, "/"+folder+"/energy-report", taskListError ) }}
@@ -136,6 +136,21 @@
     <!-- Odour plan CONDTIONAL ----------->
     {% if permit.odourManagementPlan=="yes" or permit.odourManagementPlanIncluded=="yes" %}
       {{ macros.task( "Upload the odour management plan", permit.OdourPlan1, "/"+folder+"/upload-odour-management-plan", taskListError ) }}
+    {% endif %}
+
+    {% if permit.dustManagement=="yes" %}
+    <!--Dust management upload -->
+    {{ macros.task( "Upload a dust management plan", permit.dustManagement1, "/"+folder+"/dust-plan", taskListError ) }}
+    {% endif %}
+
+    <!--Dust and bioaerosol risk report
+    {% if permit.dustBio=="yes" %}
+    {{ macros.task( "Upload the dust and bioaerosol risk assessment", permit.dustBio1, "/"+folder+"/dust-bio", taskListError ) }}
+    {% endif %} -->
+
+    {% if permit.pestPlan=="yes" %}
+    <!--Pest managment plan -->
+    {{ macros.task( "Upload a pest management plan", permit.pestPlan1, "/"+folder+"/pest-plan", taskListError ) }}
     {% endif %}
 
     <!-- Dust plan CONDTIONAL ----------->

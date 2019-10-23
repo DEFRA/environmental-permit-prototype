@@ -714,7 +714,65 @@ res.redirect(`/${folder}/check/task-list`)
   }
 })
 
+// DUST BIO-AEROSOL RISK TOOL UPLOAD ========================================================
+router.all('/dust-bio', function (req, res) {
+  var path="/dust-bio"
+  var title="Complete and upload the dust and bioaerosol risk assessment"
+  var fileName="dustBio"
+  var guidanceTop="dustbiotop"
+  var guidanceBot=""
+  var fileTypes="XLS or ODS"
 
+  if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
+    delete req.session.data['dontUploadOtherFile']
+
+    // Back to the task list
+res.redirect(`/${folder}/check/task-list`)
+
+  } else {  // show upload page
+    res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
+  }
+})
+
+// DUST MANAGEMENT UPLOAD ========================================================
+router.all('/dust-plan', function (req, res) {
+  var path="/dust-plan"
+  var title="Complete and upload a dust management plan"
+  var fileName="dustManagement"
+  var guidanceTop="dustManagementtop"
+  var guidanceBot=""
+  var fileTypes="XLS or ODS"
+
+  if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
+    delete req.session.data['dontUploadOtherFile']
+
+    // Back to the task list
+res.redirect(`/${folder}/check/task-list`)
+
+  } else {  // show upload page
+    res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
+  }
+})
+
+// PEST MANAGEMENT PLAN UPLOAD ========================================================
+router.all('/pest-plan', function (req, res) {
+  var path="/pest-plan"
+  var title="Complete and upload a pest management plan"
+  var fileName="pestPlan"
+  var guidanceTop="pestPlantop"
+  var guidanceBot=""
+  var fileTypes="XLS or ODS"
+
+  if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
+    delete req.session.data['dontUploadOtherFile']
+
+    // Back to the task list
+res.redirect(`/${folder}/check/task-list`)
+
+  } else {  // show upload page
+    res.render(folder + '/upload/upload-file',{"title":title,"fileName":fileName,"guidanceTop":guidanceTop,"guidanceBot":guidanceBot,"formAction":"/"+ folder + path,"fileTypes":fileTypes})
+  }
+})
 
 // SCREENING TOOL UPLOAD ========================================================
 router.all('/screening-tool', function (req, res) {
