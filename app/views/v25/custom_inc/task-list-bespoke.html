@@ -90,16 +90,6 @@
 
     <!-- Tech competence ----------------------->
     {{ macros.task( "Prove technical competence", permit.industryScheme, "/"+folder+"/evidence/techcomp/industry-scheme", taskListError ) }}
-  
-    <!-- Clinical waste ----------------------->
-    {% if permit.clinical=="yes" %}
-    {{ macros.task( "Tell us how you will manage clinical waste", permit.layoutclinical1, "/"+folder+"/bespoke/waste-types/clinical/waste-types", taskListError ) }}
-    {% endif %}
-
-    <!-- Hazardous waste ----------------------->
-    {% if permit.hazardous=="yes" %}
-    {{ macros.task( "Tell us how you will manage hazardous waste", permit.layouthazardous1, "/"+folder+"/summary-hazardous-waste", taskListError ) }}
-    {% endif %}
 
     <!-- Fire plan CONDTIONAL ----------------------->
     {% if permit.firePreventionPlan=="yes" or permit.firePreventionPlanIncluded=="yes" %}
@@ -121,6 +111,16 @@
     <!-- Provide a waste recovery plan CONDTIONAL ----------->
     {% if permit.wasteRecoveryPlan=="yes" %}
         {{ macros.task( "Upload a waste recovery plan", permit.WasteRecoveryPlan1, "/"+folder+"/upload-waste-recovery-plan", taskListError ) }}
+    {% endif %}
+
+    <!-- Clinical waste ----------------------->
+    {% if permit.clinical=="yes" %}
+    {{ macros.task( "Tell us how you will manage clinical waste", permit.layoutclinical1, "/"+folder+"/bespoke/waste-types/clinical/waste-types", taskListError ) }}
+    {% endif %}
+    
+    <!-- Hazardous waste ----------------------->
+    {% if permit.hazardous=="yes" %}
+    {{ macros.task( "Tell us how you will manage hazardous waste", permit.layouthazardous1, "/"+folder+"/summary-hazardous-waste", taskListError ) }}
     {% endif %}
 
     <!-- Provide a noise plan CONDTIONAL  ----------->
