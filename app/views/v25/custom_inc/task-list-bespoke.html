@@ -153,10 +153,6 @@
     {{ macros.task( "Upload a pest management plan", permit.pestPlan1, "/"+folder+"/pest-plan", taskListError ) }}
     {% endif %}
 
-    <!-- Dust plan CONDTIONAL ----------->
-    {% if dustPlan=="yes" %}
-      {{ macros.task( "Upload the dust management plan", permit.DustPlan1, "/"+folder+"/upload-dust-management-plan", taskListError ) }}
-    {% endif %}
 
 
     </ul>

@@ -99,7 +99,7 @@
         or permit.odourManagementPlanIncluded=="yes" }}
 
       {{ "Pests management plan assessment<br>" | safe
-        if permit.pestsPlan=="yes" }}
+        if permit.pestPlan=="yes" }}
 
       {{ "Waste recovery plan assessment<br>" | safe
         if permit.wasteRecoveryPlan=="yes" }}
@@ -431,7 +431,8 @@
       <dd class="govuk-summary-list__actions"><a href="/{{folder}}/upload-environmental-risk-assessment">Change</a></dd>
     </div>
 
-    <div class="govuk-summary-list__row">        <dt class="govuk-summary-list__key">Management system summary</dt>
+    <div class="govuk-summary-list__row">        
+      <dt class="govuk-summary-list__key">Management system summary</dt>
       <dd class="govuk-summary-list__value">{{ permit.ManSysSummary1 }}</dd>
       <dd class="govuk-summary-list__actions"><a href="/{{folder}}/upload-management-system-summary">Change</a></dd>
     </div>
@@ -474,12 +475,20 @@
         </div>
     {% endif %}
 
-    {% if dustPlan=="yes" %}
+    {% if permit.dustManagement=="yes" %}
     <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">Dust management plan</dt>
-          <dd class="govuk-summary-list__value">{{ permit.DustPlan1 }}</dd>
+          <dd class="govuk-summary-list__value">{{ permit.dustManagement1 }}</dd>
           <dd class="govuk-summary-list__actions"><a href="/{{folder}}/upload-dust-management-plan">Change</a></dd>
         </div>
+    {% endif %}
+
+    {% if permit.pestPlan=="yes" %}
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Upload a pest management plan</dt>
+          <dd class="govuk-summary-list__value">{{ permit.pestPlan1 }}</dd>
+          <dd class="govuk-summary-list__actions"><a href="/{{folder}}/pest-plan">Change</a></dd>
+    </div>
     {% endif %}
 
 {% endif %}
