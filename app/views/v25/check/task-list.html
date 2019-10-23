@@ -120,8 +120,14 @@ set mobile mcp
               Apply for a standard rules environmental permit
           {% endif %}
         </h1>
-
-
+<div class="govuk-details" data-module="govuk-details">
+        <details>
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                View activities
+              </span>
+            </summary>
+            <div class="govuk-details__text">
 
         {% if appType=="bespoke"
         and facilityType=="Waste treatment" %}
@@ -143,6 +149,16 @@ set mobile mcp
         <p>You must select at least one activity</p>
       {% endif %}
     {% endfor %}
+
+  </div>
+</details>
+<details>
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        View assessments
+      </span>
+    </summary>
+    <div class="govuk-details__text">
 
     <!-- Output chosen assessments ############################################ -->
     {{ "Ammonia modelling assessment<br>" | safe
@@ -173,9 +189,13 @@ set mobile mcp
 
     {{ "Waste recovery plan assessment<br>" | safe
           if permit.wasteRecoveryPlan=="yes" }}
+        </div>
+      </details>
+    </div>
 
     <!-- Output cost ############################################ -->
-    <span value="totalCost">Total cost {{ permit.totalcost | int | formatnumber }}</span><br>
+
+    <p value="totalCost" class="govuk-body govuk-!-font-weight-bold">Total cost {{ permit.totalcost | int | formatnumber }}</p>
 
     <!-- Link to change permit activities ##################################### -->
     <p>
@@ -220,6 +240,7 @@ Mobile MCP
     <!-- Output cost ############################################ -->
 
 <br>
+
     <span value="totalCost">Total cost {{ permit.totalcost | int | formatnumber }}</span>
 
 
@@ -237,6 +258,7 @@ Select a different permit      </a>
 
 {% if appType=="bespoke"
 and facilityType=="Waste treatment"%}
+</br>
 {% include folder+"/custom_inc/task-list-bespoke.html" %}
 {% endif %}
 
