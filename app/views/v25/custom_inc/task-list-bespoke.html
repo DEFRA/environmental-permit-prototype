@@ -2,7 +2,6 @@
 <!-- STARTS HERE ########################################################## -->
 
 <ol class="app-task-list">
-    {{permit|dump}}
 
   <li><!-- START TASK SECTION ##################################### -->
       {{ macros.taskHead("1", "Register" )}}
@@ -108,10 +107,10 @@
     <!-- List technical standards ----------->
     {{ macros.task( "List the technical standards you use", permit.TechStandards1, "/"+folder+"/list-technical-standards", taskListError ) }}
 
-    <!-- Provide a waste recovery plan CONDTIONAL ----------->
+    <!-- Provide a waste recovery plan CONDTIONAL 
     {% if permit.wasteRecoveryPlan=="yes" %}
         {{ macros.task( "Upload a waste recovery plan", permit.WasteRecoveryPlan1, "/"+folder+"/upload-waste-recovery-plan", taskListError ) }}
-    {% endif %}
+    {% endif %}----------->
 
     <!-- Clinical waste ----------------------->
     {% if permit.clinical=="yes" %}
