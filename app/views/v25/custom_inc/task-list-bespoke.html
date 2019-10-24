@@ -4,7 +4,7 @@
 <ol class="app-task-list">
 
   <li><!-- START TASK SECTION ##################################### -->
-      {{ macros.taskHead("1", "Register" )}}
+      {{ macros.taskHead("1", "Get a save link" )}}
       <ul class="app-task-list__items">
 
     <!--Save and return--------------->
@@ -45,7 +45,7 @@
       {{ macros.task( "Upload a non-technical summary", permit.NonTechSummary1, "/"+folder+"/upload-non-technical-summary", taskListError ) }}
 
       <!-- Confirm if you release to sewer, harbour or coastal waters ---------------->
-      {{ macros.task( "Confirm if you release to sewer, harbour or coastal waters", permit.substanceRelease, "/"+folder+"/bespoke/substance-release", taskListError ) }}
+      {{ macros.task( "Tell us who we need to consult", permit.substanceRelease, "/"+folder+"/bespoke/substance-release", taskListError ) }}
 
 {% if permit.siteOrMobile=="site" %}
       <!-- Site name and location ---------------->
@@ -96,7 +96,7 @@
     {% endif %}
 
     <!-- Upload environmental risk assessment ----------->
-    {{ macros.task( "Upload environmental risk assessment", permit.EnvRiskAssessment1, "/"+folder+"/upload-environmental-risk-assessment", taskListError ) }}
+    {{ macros.task( "Upload the environmental risk assessment", permit.EnvRiskAssessment1, "/"+folder+"/upload-environmental-risk-assessment", taskListError ) }}
 
     <!-- Upload emissions air water and land ----------->
     {{ macros.task( "Tell us about emissions and monitoring", permit.emissionsYesNo, "/"+folder+"/bespoke/emissions/emissions-check", taskListError ) }}
