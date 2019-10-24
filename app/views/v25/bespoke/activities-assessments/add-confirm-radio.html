@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set title = "Add or confirm activities" %}
+{% set title = "Add another activity or continue" %}
 
 {% block pageTitle %}
     {{title}} - GOV.UK
@@ -41,12 +41,12 @@
       {% endfor %}
     </dl>
 
-    <a href="/{{folder}}/bespoke/activities-assessments/bespoke-choose-activity-radio" class="govuk-button--secondary govuk-button">Add another</a>
+    <a href="/{{folder}}/bespoke/activities-assessments/bespoke-choose-activity-radio" class="govuk-button--secondary govuk-button">Add another activity</a>
     </br>
 
     <form action="/{{folder}}/bespoke/waste-types/waste-types" method="post">
       {{ govukButton({
-        text: "Confirm"
+        text: "Continue"
       }) }}
     </form>
   </div>

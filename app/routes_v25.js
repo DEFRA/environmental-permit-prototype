@@ -673,7 +673,7 @@ router.get('/bespoke/treatment-capacity', function (req, res) {
 // NON TECH SUMMARY UPLOAD ========================================================
 router.all('/upload-non-technical-summary', function (req, res) {
   var path="/upload-non-technical-summary"
-  var title="Provide a non-technical summary"
+  var title="Upload a non-technical summary"
   var fileName="NonTechSummary"
   var guidanceTop="nontechsummarytop"
   var guidanceBot=""
@@ -1124,7 +1124,7 @@ router.all('/upload-environmental-risk-assessment', function (req, res) {
   var fileName="EnvRiskAssessment"
   var guidanceTop="envriskassesstop"
   var guidanceBot=""
-  var fileTypes="PDF, JPG, DOC or DOCX"
+  var fileTypes="PDF, JPG, DOC, DOCX or ODT"
 
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
@@ -1220,7 +1220,7 @@ router.all('/list-technical-standards', function (req, res) {
   var fileName="TechStandards"
   var guidanceTop="techstandardslisttop"
   var guidanceBot=""
-  var fileTypes="PDF, JPG, DOC or DOCX"
+  var fileTypes="PDF, JPG, DOC, DOCX or ODT"
 
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
@@ -1245,7 +1245,7 @@ router.all('/upload-odour-management-plan', function (req, res) {
   var fileName="OdourPlan"
   var guidanceTop="odourplantop"
   var guidanceBot=""
-  var fileTypes="PDF, DOC, DOCX or JPG"
+  var fileTypes="PDF, DOC, DOCX or ODT"
 
   if ( req.session.data['dontUploadOtherFile']=="yes" ){ // show task list
     delete req.session.data['dontUploadOtherFile']
@@ -1500,7 +1500,7 @@ router.get('/bespoke/management-system', function (req, res) {
 // EMISSIONS TO AIR WATER AND LAND UPLOAD ========================================================
 router.all('/upload-emissions-to-air-water-land', function (req, res) {
   var path="/upload-emissions-to-air-water-land"
-  var title="Upload details on emissions to air water and land"
+  var title="Upload details about the emissions"
   var fileName="EmissionsAirWaterLand"
   var guidanceTop="emissionsairwaterlandtop"
   var guidanceBot=""

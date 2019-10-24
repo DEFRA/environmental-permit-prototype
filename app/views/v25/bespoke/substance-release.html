@@ -31,7 +31,7 @@
         <div class="govuk-form-group">
             <legend class="Permit type govuk-visually-hidden">{{title}}</legend>
 
-<p>If it does, we will ask the relevant organisation for their views on your permit application.</p>
+<p>If it does, we will ask the organisation involved for their views on your permit application.</p>
 
 <h2 class="govuk-heading-s">Select all that you will release into</h2>
 <div class="govuk-form-group">
@@ -40,7 +40,9 @@
         <div class="govuk-checkboxes__item" data-target="sewerageUndertakerName">
           <input class="govuk-checkboxes__input" id="sewerage-conditional-1" name="sewerage" type="checkbox" value="yea" data-aria-controls="conditional-citizenship-conditional-1">
           <label class="govuk-label govuk-checkboxes__label" for="sewerage-conditional-1">
-              A sewer managed by a sewerage undertaker
+              A sewer managed by a water or sewerage company
+              <span class="govuk-hint">This does not apply if the only release is sewage or foul water from staff facilities</span>
+
           </label>
         </div>
         <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-citizenship-conditional-1">
