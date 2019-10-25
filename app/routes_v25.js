@@ -338,7 +338,7 @@ router.get('/bespoke/activities-assessments/bespoke-type', function (req, res) {
 router.post('/bespoke-check', function (req, res) {
   var facilityType = req.body.facilityType
   if (facilityType === "Waste treatment") {
-    res.redirect("/"+ folder + "/bespoke/activities-assessments/bespoke-choose-activity-radio")
+    res.redirect("/"+ folder + "/bespoke/activities-assessments/bespoke-choose-activity-radio-details-inc")
 
   } else if (facilityType === 'mcp and sg') {
     // redirect to the relevant page

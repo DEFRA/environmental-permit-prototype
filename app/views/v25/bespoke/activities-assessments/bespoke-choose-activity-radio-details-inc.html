@@ -1,0 +1,134 @@
+{% extends "layout.html" %}
+
+{% import folder+"/custom_inc/macros.html" as macros %}
+{% from folder+"/bespoke/activities-assessments/json/bespoke_activities.html" import activities %}
+
+{% set title = "Add an activity to the permit" %}
+
+{% block pageTitle %}
+  {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l" id="radio_label">{{title}}</h1>
+
+    <p>
+      These activities are for waste operations.
+      <a href="/{{folder}}/bespoke/activities-assessments/bespoke-type">Change facility type</a>.
+    </p>
+
+    <form method="post" action="/{{folder}}/add-waste-activity">
+      <div class="form-group">
+     
+          <div class="govuk-radios govuk-radios--conditional" data-module="radios">
+              <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="preAppYesNo" name="newActivity" type="radio" value="1.16.19" data-aria-controls="conditional-how-contacted-conditional-2">
+                  <label class="govuk-label govuk-radios__label" for="pre-app-yes">
+                      Biological treatment of waste - not composting
+                  </label>
+                </div>
+              <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="preAppYesNo" name="newActivity" type="radio" value="1.16.17" data-aria-controls="conditional-how-contacted-conditional-2">
+                  <label class="govuk-label govuk-radios__label" for="pre-app-yes">
+                      Chemical treatment of waste
+                  </label>
+                </div>
+              <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="preAppYesNo" name="newActivity" type="radio" value="1.16.7" data-aria-controls="conditional-how-contacted-conditional-2">
+                  <label class="govuk-label govuk-radios__label" for="pre-app-yes">
+                      Clinical waste transfer station
+                  </label>
+                </div>
+              <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="preAppYesNo" name="newActivity" type="radio" value="1.16.18" data-aria-controls="conditional-how-contacted-conditional-2">
+                  <label class="govuk-label govuk-radios__label" for="pre-app-yes">
+                      Composting facility
+                  </label>
+                </div>
+              <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="preAppYesNo" name="newActivity" type="radio" value="1.6.2" data-aria-controls="conditional-how-contacted-conditional-2">
+                  <label class="govuk-label govuk-radios__label" for="pre-app-yes">
+                      Fuel production from waste or treatment of waste water - Section 5.5 and 5.7
+                  </label>
+                </div>
+              <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="preAppYesNo" name="newActivity" type="radio" value="1.16.5" data-aria-controls="conditional-how-contacted-conditional-2">
+                  <label class="govuk-label govuk-radios__label" for="pre-app-yes">
+                      Hazardous waste storage - temporary or in underground storage - section 5.6
+                  </label>
+                </div>
+              <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="preAppYesNo" name="newActivity" type="radio" value="1.16.5" data-aria-controls="conditional-how-contacted-conditional-2">
+                  <label class="govuk-label govuk-radios__label" for="pre-app-yes">
+                      Hazardous waste transfer station
+                  </label>
+                </div>
+              <div class="govuk-radios__item" data-target="preAppRefPanel">
+                <input class="govuk-radios__input" id="preAppYesNo" name="newActivity" type="radio" value="1.16.9" data-aria-controls="conditional-how-contacted-conditional-1">
+                <label class="govuk-label govuk-radios__label" for="pre-app-yes">
+                    Household waste amenity site taking hazardous waste
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-how-contacted-conditional-1">
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="contact-by-text">
+                        This activity could be an installation. To check you’re applying for the correct type of permit, <a target="blank" href="https://www.gov.uk/guidance/check-if-you-need-an-environmental-permit#what-you-need-a-permit-for">read the guidance on installations (opens new tab)</a>
+                      </label>
+                </div>
+      
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="preAppYesNo" name="newActivity" type="radio" value="1.16.8" data-aria-controls="conditional-how-contacted-conditional-2">
+                <label class="govuk-label govuk-radios__label" for="pre-app-yes">
+                    Household waste amenity site taking non-hazardous waste only
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="preAppYesNo" name="newActivity" type="radio" value="1.16.6" data-aria-controls="conditional-how-contacted-conditional-2">
+                  <label class="govuk-label govuk-radios__label" for="pre-app-yes">
+                      Household, commercial and industrial waste transfer station
+                  </label>
+                </div>   
+              <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="preAppYesNo" name="newActivity" type="radio" value="1.16.11" data-aria-controls="conditional-how-contacted-conditional-2">
+                  <label class="govuk-label govuk-radios__label" for="pre-app-yes">
+                      Material recycling facility
+                  </label>
+                </div>  
+              <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="preAppYesNo" name="newActivity" type="radio" value="1.16.16" data-aria-controls="conditional-how-contacted-conditional-2">
+                  <label class="govuk-label govuk-radios__label" for="pre-app-yes">
+                      Metal recycling site - mixed metals
+                  </label>
+                </div>    
+              <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="preAppYesNo" name="newActivity" type="radio" value="1.16.14" data-aria-controls="conditional-how-contacted-conditional-2">
+                  <label class="govuk-label govuk-radios__label" for="pre-app-yes">
+                      Physical treatment of waste
+                  </label>
+                </div>  
+            </div>
+          </fieldset>
+        </div>    
+        
+      </br>
+      <div class="govuk-form-group">
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
