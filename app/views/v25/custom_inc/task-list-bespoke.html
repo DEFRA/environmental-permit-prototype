@@ -3,6 +3,8 @@
 
 <ol class="app-task-list">
 
+  {{ permit| dump }}
+
   <li><!-- START TASK SECTION ##################################### -->
       {{ macros.taskHead("1", "Get a save link" )}}
       <ul class="app-task-list__items">
@@ -37,8 +39,19 @@
       {{ macros.taskHead("3", "Operations" )}}
       <ul class="app-task-list__items">
 
-      <!-- Give basic details about the operation ---------------->
+      <!-- The treatment storage page needs to appear only for activities that could be installations, I've picked two at random two show how, whilst SME confirms the list ---------------->
+  {% if permit.newActivity=="1.16.18" or permit.newActivity=="1.16.11" %}
+
+      <!-- Give basic details about the operation if possibly installations ---------------->
+      {{ macros.task( "Give basic details about the operation", permit.max_waste_stored, "/"+folder+"/bespoke/treatment-storage-waste-types", taskListError ) }}
+
+  {% else %}
+
+      <!-- Give basic details about the operation if not possibly installations ---------------->
       {{ macros.task( "Give basic details about the operation", permit.max_waste_stored, "/"+folder+"/bespoke/treatment-capacity", taskListError ) }}
+
+  {% endif %}
+
 
       <!-- Provide a non-technical summary ---------------->
   <!-- UPLOAD - NOTE FOR UPLOADS THE PERMIT.<FILENAME> ENDS IN A 1, IN REFERENCE TO THE SECOND UPLOAD ##################################### -->

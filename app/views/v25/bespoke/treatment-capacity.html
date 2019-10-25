@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set title = "How much waste do you store or treat?" %}
+{% set title = "Enter the waste weights" %}
 
 {% block pageTitle %}
     {{title}} - GOV.UK
@@ -17,47 +17,87 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            {{title}}
-        </legend>
-
       <form method="post" action="{{formAction}}">
+
+        <!-- Look up first chosen activity ############################################ -->
+{% from folder+"/bespoke/activities-assessments/json/bespoke_activities.html" import activities %}
+
+{% set activitytext = "NOT SET" %}
+
+<!-- Get ID of first activity ============================== -->
+{% set firstpermitID = permit.chosenPermitID | first %}
+
+{% for aNumber, aData in activities %}
+    {% if aNumber==firstpermitID %}
+        {% set activitytext = aData.D_Activity_Title | lower + " ("+firstpermitID + ")" %}
+    {% endif %}
+{% endfor %}
+{{ permit | dump }}
+
+<legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                Enter the waste weights for {{activitytext}}
+         </legend>
+
+<p>These weights must not exceed the maximums allowed by your permit.</p>
+
+{% if permit.hazWaste=="yes" or permit.bioTreatment=="yes"  or permit.physicoChemTreatment=="yes" or permit.preTreatIncin=="yes" or permit.ashSlags=="yes" or permit.shreddingWaste=="yes" %}
 
       <div class="govuk-form-group">
           <label class="govuk-label" for="max_waste_stored">
-          Maximum weight of waste stored on the site at any one time
-          <span class="govuk-hint">If you only know volumes, you can estimate the weight using <a href="https://www.gov.uk/government/publications/waste-returns-spreadsheet-and-supporting-information" target="_blank">waste conversion factors (opens new tab)</a></span>
+                Daily treatment capacity for this activity:
           </label>
-          <input class="govuk-input govuk-input--width-20" id="max_waste_stored" name="max_waste_stored" value="{{ permit.max_waste_stored }}"> 
-          <span style="padding: 10px; font-size: 18px; font-family: arial;">tonnes</span>
+          
+          <input class="govuk-input govuk-input--width-10" id="max_waste_stored" name="max_waste_stored" value="{{ permit.max_waste_stored }}"> 
+          <span style="padding: 10px; font-size: 18px; font-family: arial; font-weight: normal; ">tonnes a day</span>
       </div>
+{% endif %}
       
-      <div class="govuk-form-group">
-          <label class="govuk-label" for="annual_throughput">
-          Annual throughput
-          </label>
-          <input class="govuk-input govuk-input--width-20" name="annual_throughput" id="annual_throughput" value="{{ permit.annual_throughput }}"></input> 
-          <span style="padding: 10px; font-size: 18px; font-family: arial;">tonnes a year</span>
-      </div>
-      
+      <h3 class="govuk-heading-m">Non-hazardous waste</h3>
+
       <div class="govuk-form-group">
           <label class="govuk-label" for="nonhazardous_waste_treatment_capacity">
-          Non-hazardous waste treatment total capacity
+            Annual throughput of non-hazardous waste:
           <span class="govuk-hint">If none enter 0</span>
           </label>
-          <input class="govuk-input govuk-input--width-20" name="nonhazardous_waste_treatment_capacity" id="nonhazardous_waste_treatment_capacity" value="{{ permit.nonhazardous_waste_treatment_capacity }}">
-          <span style="padding: 10px; font-size: 18px; font-family: arial;">tonnes a year</span>
+          <input class="govuk-input govuk-input--width-10" name="nonhazardous_waste_treatment_capacity" id="nonhazardous_waste_treatment_capacity" value="{{ permit.nonhazardous_waste_treatment_capacity }}">
+          <span style="padding: 10px; font-size: 18px; font-family: arial; font-weight: normal; ">tonnes a year</span>
       </div>
-              
+      <div class="govuk-form-group">
+            <label class="govuk-label" for="nonhazardous_waste_treatment_capacity">
+            Maximum amount of non-hazardous waste stored on site at any one time:
+
+            <span class="govuk-hint">If none enter 0</span>
+            </label>
+            <input class="govuk-input govuk-input--width-10" name="nonhazardous_waste_treatment_capacity" id="nonhazardous_waste_treatment_capacity" value="{{ permit.nonhazardous_waste_treatment_capacity }}">
+            <span style="padding: 10px; font-size: 18px; font-family: arial; font-weight: normal; ">tonnes</span>
+        </div>
+         
+            <!-- Fire plan CONDTIONAL ----------------------->
+    {% if permit.hazWaste=="yes" or permit.hazardous=="yes" %}
+
+      <h3 class="govuk-heading-m">Hazardous waste</h3>
+
       <div class="govuk-form-group">
           <label class="govuk-label" for="hazardous_waste_treatment_capacity">
-          Hazardous waste treatment total capacity
+                Annual throughput of hazardous waste:
           <span class="govuk-hint">If none enter 0</span>
           </label>
-          <input class="govuk-input govuk-input--width-20" id="hazardous_waste_treatment_capacity" name="hazardous_waste_treatment_capacity" value="{{ permit.hazardous_waste_treatment_capacity }}">
-          <span style="padding: 10px; font-size: 18px; font-family: arial;">tonnes a year</span>
+          <input class="govuk-input govuk-input--width-10" id="hazardous_waste_treatment_capacity" name="hazardous_waste_treatment_capacity" value="{{ permit.hazardous_waste_treatment_capacity }}">
+          <span style="padding: 10px; font-size: 18px; font-family: arial; font-weight: normal; ">tonnes a year</span>
       </div>
+
+      <div class="govuk-form-group">
+            <label class="govuk-label" for="hazardous_waste_treatment_capacity">
+                    Maximum amount of hazardous waste stored on site at any one time:
+            <span class="govuk-hint">If none enter 0</span>
+            </label>
+            <input class="govuk-input govuk-input--width-10" id="hazardous_waste_treatment_capacity" name="hazardous_waste_treatment_capacity" value="{{ permit.hazardous_waste_treatment_capacity }}">
+            <span style="padding: 10px; font-size: 18px; font-family: arial; font-weight: normal; ">tonnes</span>
+        </div>
         
+    {% endif %}
+
       <div class="form-group">
           {{submitButton|safe}}
       </div>

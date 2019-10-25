@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+
+{% set title = "Assessments - GOV.UK" %}
+
+{% block pageTitle %}
+    {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/phase_banner_beta.html" %}
+{{backlink|safe}}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+<form action="/{{folder}}/bespoke/treatment-capacity" method="post">
+  
+  
+<!-- Look up first chosen activity ############################################ -->
+{% from folder+"/bespoke/activities-assessments/json/bespoke_activities.html" import activities %}
+
+{% set activitytext = "NOT SET" %}
+
+<!-- Get ID of first activity ============================== -->
+{% set firstpermitID = permit.chosenPermitID | first %}
+
+{% for aNumber, aData in activities %}
+    {% if aNumber==firstpermitID %}
+        {% set activitytext = aData.D_Activity_Title | lower + " ("+firstpermitID + ")" %}
+    {% endif %}
+{% endfor %}
+
+    <h1 class="govuk-heading-l" id="radio_label">Does {{activitytext}} include any treatment or storage of these waste types?</h1>
+
+
+<!-- Either output the checkbox OR a hidden field to pass on the data -->
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="bioTreatment" name="bioTreatment" type="checkbox" value="yes">
+      <label class="govuk-label govuk-checkboxes__label" for="bioTreatment">
+          Biological treatment
+      </label>
+</div>
+
+  <div class="govuk-checkboxes__item">
+    <input class="govuk-checkboxes__input" id="hazWaste" name="hazWaste" type="checkbox" value="yes">
+    <label class="govuk-label govuk-checkboxes__label" for="hazWaste">
+        Hazardous waste
+    </label>
+</div>
+
+    <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="physicoChemTreatment" name="physicoChemTreatment" type="checkbox" value="yes">
+        <label class="govuk-label govuk-checkboxes__label" for="physicoChemTreatment">
+            Physico-chemical treatment
+        </label>
+    </div>
+
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="preTreatIncin" name="preTreatIncin" type="checkbox" value="yes">
+      <label class="govuk-label govuk-checkboxes__label" for="preTreatIncin">
+          Pre-treatment of waste for incineration or co-incineration
+      </label>
+    </div>
+
+    <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="ashSlags" name="ashSlags" type="checkbox" value="yes">
+        <label class="govuk-label govuk-checkboxes__label" for="ashSlags">
+            Slags and ashes treatment
+        </label>
+    </div>
+
+    <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="shreddingWaste" name="shreddingWaste" type="checkbox" value="yes">
+        <label class="govuk-label govuk-checkboxes__label" for="shreddingWaste">
+            Shredding of metal waste</br>
+            <span style="color:grey">Including waste electrical and electronic equipment and end-of-life vehicles and their components</span>
+        </label>
+    </div>
+
+    <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="noneOfTheseTreat" name="noneOfTheseTreat" type="checkbox" value="yes">
+        <label class="govuk-label govuk-checkboxes__label" for="noneOfTheseTreat">
+            None of these
+        </label>
+    </div>
+</div>
+</fieldset>
+                     
+</div>
+</br>
+
+
+        
+<div class="form-group">
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+
+  </div>
+
+
+    </div>
+  </div>
+
+
+{% endblock %}
